@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="AnchorPane_QLSinhVien" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="562.0" prefWidth="837.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.alpha.JavaFx.controller.QLSinhVienController">
+   <children>
+      <TableView fx:id="TableView_SinhVien" layoutX="11.0" layoutY="123.0" prefHeight="290.0" prefWidth="816.0">
+         <columns>
+            <TableColumn fx:id="Column_MaSV" prefWidth="114.39989471435547" text="MaSV" />
+            <TableColumn fx:id="Column_HoTen" prefWidth="111.20006561279297" text="HoTen" />
+            <TableColumn fx:id="Column_GioiTinh" prefWidth="95.199951171875" text="GioiTinh" />
+            <TableColumn fx:id="Column_NgaySinh" prefWidth="109.60003662109375" text="NgaySinh" />
+            <TableColumn fx:id="Column_Email" prefWidth="120.00003051757812" text="email" />
+            <TableColumn fx:id="Column_DiaChi" prefWidth="102.39996337890625" text="DiaChi" />
+            <TableColumn fx:id="Column_MaTonGiao" prefWidth="75.0" text="MaTonGiao" />
+            <TableColumn fx:id="Column_MaDanToc" prefWidth="75.0" text="MaDanToc" />
+         </columns>
+      </TableView>
+      <Label fx:id="Label_MaKH" layoutX="15.0" layoutY="437.0" text="MaKH" />
+      <Label fx:id="Label_TenKH" layoutX="14.0" layoutY="471.0" text="TenKH" />
+      <Label fx:id="Label_DienThoai" layoutX="283.0" layoutY="471.0" text="DienThoai" />
+      <Label fx:id="Label_DiaChi" layoutX="292.0" layoutY="437.0" text="DiaChi" />
+      <TextField fx:id="TextField_MaKH" layoutX="59.0" layoutY="433.0" />
+      <TextField fx:id="TextField_TenKH" layoutX="59.0" layoutY="467.0" />
+      <TextField fx:id="TextField_DiaChi" layoutX="338.0" layoutY="433.0" />
+      <TextField fx:id="TextField_DienThoai" layoutX="338.0" layoutY="467.0" />
+      <Button fx:id="Button_Add" layoutX="160.0" layoutY="508.0" mnemonicParsing="false" text="ADD" />
+      <Button fx:id="Button_Update" layoutX="64.0" layoutY="508.0" mnemonicParsing="false" text="UPDATE" />
+      <Button fx:id="Button_Delete" layoutX="232.0" layoutY="508.0" mnemonicParsing="false" text="DELETE" />
+      <TextField fx:id="TextField_Search" layoutX="92.0" layoutY="71.0" />
+      <Button fx:id="Button_Search" layoutX="12.0" layoutY="71.0" mnemonicParsing="false" text="Search" />
+   </children>
+</AnchorPane>

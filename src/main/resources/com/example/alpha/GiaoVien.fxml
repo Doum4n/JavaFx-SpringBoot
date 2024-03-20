@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.alpha.JavaFx.controller.QLGiaoVienController">
+   <children>
+      <TableView fx:id="TableView_GiaoVien" layoutX="52.0" layoutY="50.0" prefHeight="238.0" prefWidth="406.0">
+         <columns>
+            <TableColumn fx:id="Column_MaGV" prefWidth="85.5999755859375" text="MaGV" />
+            <TableColumn fx:id="Column_TenGV" prefWidth="75.199951171875" text="TenGV" />
+            <TableColumn fx:id="Column_MaMH" prefWidth="83.20001220703125" text="MaMH" />
+            <TableColumn fx:id="Column_DiaChi" prefWidth="87.20001220703125" text="DiaChi" />
+            <TableColumn fx:id="Column_DienThoai" prefWidth="75.0" text="DienThoai" />
+         </columns>
+      </TableView>
+      <Label fx:id="label" layoutX="25.0" layoutY="289.0" prefHeight="46.0" prefWidth="472.0" />
+   </children>
+</AnchorPane>
