@@ -6,9 +6,11 @@ import javafx.stage.Stage;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.Configuration;
 
 import java.io.IOException;
 
+@Configuration
 @SpringBootApplication
 public class Main extends Application {
     private ConfigurableApplicationContext applicationContext;
@@ -18,16 +20,16 @@ public class Main extends Application {
     }
 
     @Override
-    public void init() {
-        applicationContext = SpringApplication.run(Main.class);
-    }
-
-    public static void main(String[] args) {
-        Application.launch(args);
+    public void init(){
+        this.applicationContext = SpringApplication.run(Main.class);
     }
 
     @Override
-    public void stop() {
+    public void stop(){
         applicationContext.stop();
+    }
+
+    public static void main(String[] args) {
+        launch(args);
     }
 }

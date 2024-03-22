@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="191.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.alpha.JavaFx.controller.LoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="216.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.alpha.JavaFx.controller.LoginController">
    <Label fx:id="Label_username" layoutX="45.0" layoutY="41.0" text="user name" />
    <Label fx:id="Label_password" layoutX="47.0" layoutY="74.0" text="password" />
    <TextField fx:id="Textfield_username" layoutX="104.0" layoutY="37.0" />
@@ -14,5 +15,5 @@
    <Button fx:id="button_login" layoutX="104.0" layoutY="123.0" mnemonicParsing="false" onAction="#LoginAction" text="Login" />
    <Label fx:id="Label_message" layoutX="104.0" layoutY="100.0" prefHeight="18.0" prefWidth="182.0" textFill="RED" />
    <Button fx:id="Button_Register" layoutX="191.0" layoutY="123.0" mnemonicParsing="false" onAction="#RegisterButtonAction" text="Register" />
-   <Label layoutX="104.0" layoutY="164.0" text="don't have an account yet" textFill="#e73838" />
+   <ChoiceBox fx:id="ChoiceBox" layoutX="103.0" layoutY="164.0" prefWidth="150.0" />
 </AnchorPane>

@@ -15,7 +15,6 @@ public class PhancongEntity {
     @Column(name = "MaNamHoc")
     private String maNamHoc;
 
-
     @Basic
     @Column(name = "MaLop")
     private String maLop;

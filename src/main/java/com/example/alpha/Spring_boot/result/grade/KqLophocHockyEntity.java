@@ -2,7 +2,7 @@ package com.example.alpha.Spring_boot.result.grade;
 
 import com.example.alpha.Spring_boot.class_grade.LopEntity;
 import com.example.alpha.Spring_boot.class_grade.NamhocEntity;
-import com.example.alpha.Spring_boot.student.HockyEntity;
+import com.example.alpha.Spring_boot.class_grade.HockyEntity;
 import jakarta.persistence.*;
 import lombok.Data;
 

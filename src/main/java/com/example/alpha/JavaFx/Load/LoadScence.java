@@ -6,10 +6,12 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.util.Objects;
 
+@Component
 public class LoadScence {
     private static Parent root;
     private static Scene scene;

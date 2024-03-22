@@ -1,4 +1,4 @@
-package com.example.alpha.Spring_boot.student;
+package com.example.alpha.Spring_boot.class_grade;
 
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;

@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:id="AnchorPane_Menu" prefHeight="616.0" prefWidth="121.0" style="-fx-background-color: AFBB73;" styleClass="button_TongQuan" stylesheets="@css/TongQuan.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.alpha.JavaFx.controller.MenuController">
+<AnchorPane fx:id="AnchorPane_Menu" prefHeight="578.0" prefWidth="121.0" style="-fx-background-color: AFBB73;" styleClass="button_TongQuan" stylesheets="@css/TongQuan.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.alpha.JavaFx.controller.MenuController">
    <children>
       <VBox layoutX="14.0" layoutY="30.0" prefHeight="267.0" prefWidth="118.0">
          <children>
@@ -13,5 +13,6 @@
             <Button fx:id="button_TongKe" mnemonicParsing="false" prefHeight="43.0" prefWidth="78.0" style="-fx-background-color: #879A2E; -fx-border-color: black;" text="Thống kê" />
          </children>
       </VBox>
+      <Button fx:id="Button_LogOut" layoutX="31.0" layoutY="523.0" mnemonicParsing="false" text="Đăng xuất" />
    </children>
 </AnchorPane>

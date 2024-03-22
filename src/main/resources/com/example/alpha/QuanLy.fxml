@@ -7,14 +7,14 @@
 
 <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="574.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.alpha.JavaFx.controller.QuanLyController">
    <children>
-      <AnchorPane prefHeight="100.0" prefWidth="186.0" style="-fx-background-color: #209141; -fx-border-color: black;">
+      <AnchorPane prefHeight="100.0" prefWidth="186.0" style="-fx-background-color: #338564; -fx-border-color: black;">
          <children>
             <Button fx:id="button_QLSinhVien" layoutX="21.0" layoutY="45.0" mnemonicParsing="false" style="-fx-background-color: AFD663;" text="Sinh viên" />
             <Label alignment="CENTER" layoutX="3.0" layoutY="2.0" prefHeight="23.0" prefWidth="219.0" style="-fx-background-color: B0BC88;" text="Sinh viên" textAlignment="CENTER" />
             <Button fx:id="button_PhanLop" layoutX="124.0" layoutY="45.0" mnemonicParsing="false" style="-fx-background-color: AFD663;" text="Phân lớp" />
          </children>
       </AnchorPane>
-      <AnchorPane prefHeight="100.0" prefWidth="367.0" style="-fx-background-color: #209141; -fx-border-color: black;">
+      <AnchorPane prefHeight="100.0" prefWidth="367.0" style="-fx-background-color: #338564; -fx-border-color: black;">
          <children>
             <Button fx:id="button_KetQua" layoutX="26.0" layoutY="44.0" mnemonicParsing="false" prefWidth="70.0" style="-fx-background-color: AFD663;" text="Kết quả" />
             <Label alignment="TOP_CENTER" layoutX="1.0" layoutY="2.0" prefHeight="22.0" prefWidth="346.0" style="-fx-background-color: B0BC88;" text="Kết quả" />

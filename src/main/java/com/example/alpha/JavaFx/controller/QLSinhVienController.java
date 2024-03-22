@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 @Component
-public class QLSinhVienController implements Initializable {
+public class QLSinhVienController implements Initializable, setTable {
     @FXML
     private AnchorPane AnchorPane_QLSinhVien;
 
@@ -90,15 +90,15 @@ public class QLSinhVienController implements Initializable {
 
     private SVEntityRepository svEntityRepository;
 
-    public void setTableView_SinhVien() throws SQLException, JsonProcessingException {
+    public void setTableView() {
         if(svEntityRepository != null) {
-            setCellColumnSinhVien();
+            setCellColumn();
             List<SinhVienEntity> myObjects = svEntityRepository.findAll(); /*getHttpConnection.getData("http://localhost:8080/SinhVien/all").readValue(getHttpConnection.getResponse(), new TypeReference<>() {});*/
             TableView_SinhVien.setItems(FXCollections.observableArrayList(myObjects));
         }
     }
 
-    public void setCellColumnSinhVien() {
+    public void setCellColumn() {
         Column_DiaChi.setCellValueFactory(new PropertyValueFactory<>("DiaChi"));
         Column_Email.setCellValueFactory(new PropertyValueFactory<>("Email"));
         Column_GioiTinh.setCellValueFactory(new PropertyValueFactory<>("GioiTinh"));
@@ -111,11 +111,7 @@ public class QLSinhVienController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        try {
-            setTableView_SinhVien();
-        } catch (SQLException | JsonProcessingException e) {
-            throw new RuntimeException(e);
-        }
+        setTableView();
     }
 
     @Autowired

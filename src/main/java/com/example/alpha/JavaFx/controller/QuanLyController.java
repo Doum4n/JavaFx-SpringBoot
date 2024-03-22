@@ -31,5 +31,7 @@ public class QuanLyController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         button_QLSinhVien.setOnAction(event -> Model.getInstant().getViewFactory().getStringProperty().set("QLSinhVien"));
+        button_KetQua.setOnAction(event -> Model.getInstant().getViewFactory().getStringProperty().set("KetQua"));
+        button_PhanLop.setOnAction(event -> Model.getInstant().getViewFactory().getStringProperty().set("PhanLop"));
     }
 }

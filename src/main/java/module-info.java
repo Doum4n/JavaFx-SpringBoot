@@ -22,6 +22,9 @@ module com.example.alpha {
     opens com.example.alpha.JavaFx.model;
     opens com.example.alpha.JavaFx.controller;
     opens com.example.alpha.JavaFx.DatabaseConnection;
+    opens com.example.alpha.JavaFx.Load;
+    opens com.example.alpha.JavaFx.view;
+
 
     opens com.example.alpha.Spring_boot.result;
     opens com.example.alpha.Spring_boot.result.student;
@@ -33,9 +36,11 @@ module com.example.alpha {
     opens com.example.alpha.Spring_boot.user;
     opens com.example.alpha.Spring_boot.subject;
     opens com.example.alpha.Spring_boot.assignment;
+
 //    opens com.example.alpha.Spring_boot.regulations;
     exports com.example.alpha;
     exports com.example.alpha.Spring_boot.student;
     exports com.example.alpha.JavaFx.view;
     exports com.example.alpha.Spring_boot.repository;
+    exports com.example.alpha.Spring_boot.class_grade;
 }

@@ -17,6 +17,9 @@ public class MenuController implements Initializable {
     private AnchorPane AnchorPane_Menu;
 
     @FXML
+    private Button Button_LogOut;
+
+    @FXML
     private Button button_QuanLy;
 
     @FXML
@@ -29,6 +32,7 @@ public class MenuController implements Initializable {
         button_QuanLy.setOnAction(event -> addListenerQuanLy());
         button_TongQuan.setOnAction(event -> addListenerTongQuan());
         button_TongKe.setOnAction(event -> addListenerThongKe());
+        Button_LogOut.setOnAction(event -> Model.getInstant().getViewFactory().showLoginWindow());
     }
 
     private void addListenerQuanLy(){

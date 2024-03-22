@@ -1,6 +1,7 @@
 package com.example.alpha.Spring_boot.student;
 
 import com.example.alpha.Spring_boot.assignment.PhanlopEntity;
+import com.example.alpha.Spring_boot.class_grade.LopEntity;
 import com.example.alpha.Spring_boot.student.student_profile.DantocEntity;
 import com.example.alpha.Spring_boot.student.student_profile.TongiaoEntity;
 import jakarta.persistence.*;
@@ -63,9 +64,12 @@ public class SinhVienEntity {
     @JoinColumn(name = "MaTonGiao")
     private TongiaoEntity tongiaoEntity;
 
-    @OneToMany(mappedBy = "hocsinhEntities")
+    @OneToOne
     @ToString.Exclude
-    private Set<PhanlopEntity> phanlopEntity;
+    private PhanlopEntity phanlopEntity;
+
+    @ManyToOne
+    private LopEntity lopEntity;
 
     @Override
     public final boolean equals(Object o) {

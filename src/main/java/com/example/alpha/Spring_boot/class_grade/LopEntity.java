@@ -14,9 +14,6 @@ public class LopEntity {
     @Column(name = "TenLop")
     private String tenLop;
     @Basic
-    @Column(name = "MaKhoiLop")
-    private String maKhoiLop;
-    @Basic
     @Column(name = "MaNamHoc")
     private String maNamHoc;
     @Basic

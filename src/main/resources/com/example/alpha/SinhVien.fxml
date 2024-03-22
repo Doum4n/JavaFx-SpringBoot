@@ -7,9 +7,9 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="AnchorPane_QLSinhVien" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="562.0" prefWidth="837.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.alpha.JavaFx.controller.QLSinhVienController">
+<AnchorPane fx:id="AnchorPane_QLSinhVien" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="578.0" prefWidth="933.0" style="-fx-background-color: #6086B1;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.alpha.JavaFx.controller.QLSinhVienController">
    <children>
-      <TableView fx:id="TableView_SinhVien" layoutX="11.0" layoutY="123.0" prefHeight="290.0" prefWidth="816.0">
+      <TableView fx:id="TableView_SinhVien" layoutX="66.0" layoutY="110.0" prefHeight="290.0" prefWidth="816.0">
          <columns>
             <TableColumn fx:id="Column_MaSV" prefWidth="114.39989471435547" text="MaSV" />
             <TableColumn fx:id="Column_HoTen" prefWidth="111.20006561279297" text="HoTen" />
@@ -21,18 +21,18 @@
             <TableColumn fx:id="Column_MaDanToc" prefWidth="75.0" text="MaDanToc" />
          </columns>
       </TableView>
-      <Label fx:id="Label_MaKH" layoutX="15.0" layoutY="437.0" text="MaKH" />
-      <Label fx:id="Label_TenKH" layoutX="14.0" layoutY="471.0" text="TenKH" />
-      <Label fx:id="Label_DienThoai" layoutX="283.0" layoutY="471.0" text="DienThoai" />
-      <Label fx:id="Label_DiaChi" layoutX="292.0" layoutY="437.0" text="DiaChi" />
-      <TextField fx:id="TextField_MaKH" layoutX="59.0" layoutY="433.0" />
-      <TextField fx:id="TextField_TenKH" layoutX="59.0" layoutY="467.0" />
-      <TextField fx:id="TextField_DiaChi" layoutX="338.0" layoutY="433.0" />
-      <TextField fx:id="TextField_DienThoai" layoutX="338.0" layoutY="467.0" />
-      <Button fx:id="Button_Add" layoutX="160.0" layoutY="508.0" mnemonicParsing="false" text="ADD" />
-      <Button fx:id="Button_Update" layoutX="64.0" layoutY="508.0" mnemonicParsing="false" text="UPDATE" />
-      <Button fx:id="Button_Delete" layoutX="232.0" layoutY="508.0" mnemonicParsing="false" text="DELETE" />
-      <TextField fx:id="TextField_Search" layoutX="92.0" layoutY="71.0" />
-      <Button fx:id="Button_Search" layoutX="12.0" layoutY="71.0" mnemonicParsing="false" text="Search" />
+      <Label fx:id="Label_MaKH" layoutX="70.0" layoutY="424.0" text="MaKH" textFill="WHITE" />
+      <Label fx:id="Label_TenKH" layoutX="69.0" layoutY="458.0" text="TenKH" textFill="WHITE" />
+      <Label fx:id="Label_DienThoai" layoutX="328.0" layoutY="458.0" text="DienThoai" textFill="WHITE" />
+      <Label fx:id="Label_DiaChi" layoutX="347.0" layoutY="424.0" text="DiaChi" textFill="WHITE" />
+      <TextField fx:id="TextField_MaKH" layoutX="114.0" layoutY="420.0" />
+      <TextField fx:id="TextField_TenKH" layoutX="114.0" layoutY="454.0" />
+      <TextField fx:id="TextField_DiaChi" layoutX="393.0" layoutY="420.0" />
+      <TextField fx:id="TextField_DienThoai" layoutX="393.0" layoutY="454.0" />
+      <Button fx:id="Button_Add" layoutX="201.0" layoutY="495.0" mnemonicParsing="false" text="ADD" />
+      <Button fx:id="Button_Update" layoutX="117.0" layoutY="495.0" mnemonicParsing="false" text="UPDATE" />
+      <Button fx:id="Button_Delete" layoutX="269.0" layoutY="495.0" mnemonicParsing="false" text="DELETE" />
+      <TextField fx:id="TextField_Search" layoutX="147.0" layoutY="58.0" />
+      <Button fx:id="Button_Search" layoutX="67.0" layoutY="58.0" mnemonicParsing="false" text="Search" />
    </children>
 </AnchorPane>

@@ -2,7 +2,7 @@ package com.example.alpha.Spring_boot.result.student;
 
 import com.example.alpha.Spring_boot.class_grade.LopEntity;
 import com.example.alpha.Spring_boot.class_grade.NamhocEntity;
-import com.example.alpha.Spring_boot.student.HockyEntity;
+import com.example.alpha.Spring_boot.class_grade.HockyEntity;
 import com.example.alpha.Spring_boot.student.SinhVienEntity;
 import com.example.alpha.Spring_boot.subject.MonhocEntity;
 import jakarta.persistence.*;
@@ -64,5 +64,4 @@ public class KqSinhVienMonhocEntity {
     @OneToOne(orphanRemoval = true)
     @JoinColumn(name = "MaHocKy", updatable = false, insertable = false)
     private HockyEntity hockyEntity;
-
 }
