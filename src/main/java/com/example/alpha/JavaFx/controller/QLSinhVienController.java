@@ -1,23 +1,20 @@
 package com.example.alpha.JavaFx.controller;
 
-import com.example.alpha.Spring_boot.repository.SVEntityRepository;
-import com.fasterxml.jackson.core.JsonProcessingException;
+import com.example.alpha.JavaFx.model.SinhVien;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import com.example.alpha.Spring_boot.student.SinhVienEntity;
+import org.springframework.stereotype.Controller;
 
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
 
-@Component
+@Controller
 public class QLSinhVienController implements Initializable, setTable {
     @FXML
     private AnchorPane AnchorPane_QLSinhVien;
@@ -88,14 +85,10 @@ public class QLSinhVienController implements Initializable, setTable {
     @FXML
     protected TableView<SinhVienEntity> TableView_SinhVien;
 
-    private SVEntityRepository svEntityRepository;
-
     public void setTableView() {
-        if(svEntityRepository != null) {
-            setCellColumn();
-            List<SinhVienEntity> myObjects = svEntityRepository.findAll(); /*getHttpConnection.getData("http://localhost:8080/SinhVien/all").readValue(getHttpConnection.getResponse(), new TypeReference<>() {});*/
-            TableView_SinhVien.setItems(FXCollections.observableArrayList(myObjects));
-        }
+        setCellColumn();
+        List<SinhVienEntity> myObjects = SinhVien.getRepository().findAll(); /*getHttpConnection.getData("http://localhost:8080/SinhVien/all").readValue(getHttpConnection.getResponse(), new TypeReference<>() {});*/
+        TableView_SinhVien.setItems(FXCollections.observableArrayList(myObjects));
     }
 
     public void setCellColumn() {
@@ -104,7 +97,7 @@ public class QLSinhVienController implements Initializable, setTable {
         Column_GioiTinh.setCellValueFactory(new PropertyValueFactory<>("GioiTinh"));
         Column_HoTen.setCellValueFactory(new PropertyValueFactory<>("HoTen"));
         Column_MaDanToc.setCellValueFactory(new PropertyValueFactory<>("MaDanToc"));
-        Column_MaSV.setCellValueFactory(new PropertyValueFactory<>("MaSV"));
+        Column_MaSV.setCellValueFactory(new PropertyValueFactory<>("MaSinhVien"));
         Column_MaTonGiao.setCellValueFactory(new PropertyValueFactory<>("MaTonGiao"));
         Column_NgaySinh.setCellValueFactory(new PropertyValueFactory<>("NgaySinh"));
     }
@@ -112,10 +105,5 @@ public class QLSinhVienController implements Initializable, setTable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         setTableView();
-    }
-
-    @Autowired
-    public void setController(SVEntityRepository studentController) {
-        this.svEntityRepository = studentController;
     }
 }

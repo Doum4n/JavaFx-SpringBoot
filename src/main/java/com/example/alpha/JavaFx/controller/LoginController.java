@@ -1,6 +1,5 @@
 package com.example.alpha.JavaFx.controller;
 
-import com.example.alpha.JavaFx.DatabaseConnection.DatabaseConnection;
 import com.example.alpha.JavaFx.model.Model;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -63,14 +62,6 @@ public class LoginController implements Initializable {
         LoadScence(event,"Register.fxml");
     }
 
-    public String getTextfield_password() {
-        return Textfield_password.getText();
-    }
-
-    public String getTextfield_username() {
-        return Textfield_username.getText();
-    }
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         button_login.setOnAction(event -> onLogin());
@@ -80,9 +71,9 @@ public class LoginController implements Initializable {
     }
 
     public void onLogin(){
-        if(Model.getInstant().getViewFactory().getType() == AccountType.Student){
+        if(Model.getInstant().getViewFactory().getType() == AccountType.Admin){
             Model.getInstant().getViewFactory().showWorkPlaceWindow();
-        }else if(Model.getInstant().getViewFactory().getType() == AccountType.Admin){
+        }else if(Model.getInstant().getViewFactory().getType() == AccountType.Student){
             Model.getInstant().getViewFactory().showAdminWindow();
         }
     }

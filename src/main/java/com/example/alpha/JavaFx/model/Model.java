@@ -1,8 +1,10 @@
 package com.example.alpha.JavaFx.model;
 
 import com.example.alpha.JavaFx.view.viewFactory;
+import lombok.Getter;
 
 //@Component
+@Getter
 public class Model {
     private static Model model;
     private final viewFactory viewFactory;
@@ -16,9 +18,5 @@ public class Model {
             model = new Model();
         }
         return model;
-    }
-
-    public viewFactory getViewFactory(){
-        return viewFactory;
     }
 }

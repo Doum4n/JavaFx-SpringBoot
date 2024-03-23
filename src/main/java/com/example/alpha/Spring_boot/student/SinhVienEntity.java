@@ -55,21 +55,22 @@ public class SinhVienEntity {
     @Column(name = "Email")
     private String email;
 
+    @Basic
+    @Column(name = "MaDanToc")
+    private String MaDanToc;
+
+    @Basic
+    @Column(name = "MaTonGiao")
+    private String MaTonGiao;
+
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "MaDanToc")
+    @JoinColumn(name = "MaDanToc",insertable = false, updatable = false)
     private DantocEntity dantocEntity;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "MaTonGiao")
+    @JoinColumn(name = "MaTonGiao", updatable = false, insertable = false)
     private TongiaoEntity tongiaoEntity;
-
-    @OneToOne
-    @ToString.Exclude
-    private PhanlopEntity phanlopEntity;
-
-    @ManyToOne
-    private LopEntity lopEntity;
 
     @Override
     public final boolean equals(Object o) {

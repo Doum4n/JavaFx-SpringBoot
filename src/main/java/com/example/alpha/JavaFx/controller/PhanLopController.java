@@ -1,8 +1,8 @@
 package com.example.alpha.JavaFx.controller;
 
 import com.example.alpha.Spring_boot.assignment.PhanlopEntity;
-import com.example.alpha.Spring_boot.repository.PhancongEntityRepository;
-import com.example.alpha.Spring_boot.repository.PhanlopEntityRepository;
+import com.example.alpha.repository.PhancongEntityRepository;
+import com.example.alpha.repository.PhanlopEntityRepository;
 import jakarta.validation.spi.ValidationProvider;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;

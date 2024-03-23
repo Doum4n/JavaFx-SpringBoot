@@ -1,6 +1,6 @@
 package com.example.alpha.JavaFx.controller;
 
-import com.example.alpha.Spring_boot.repository.DiemEntityRepository;
+import com.example.alpha.repository.DiemEntityRepository;
 import com.example.alpha.Spring_boot.subject.DiemEntity;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;

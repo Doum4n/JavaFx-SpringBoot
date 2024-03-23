@@ -1,4 +1,4 @@
-package com.example.alpha.Spring_boot.repository;
+package com.example.alpha.repository;
 
 import com.example.alpha.Spring_boot.result.grade.KqLophocHockyEntity;
 import com.example.alpha.Spring_boot.result.grade.KqLophocHockyEntityPK;

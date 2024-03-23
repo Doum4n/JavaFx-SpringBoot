@@ -1,4 +1,4 @@
-package com.example.alpha.Spring_boot.repository;
+package com.example.alpha.repository;
 
 import com.example.alpha.Spring_boot.student.SinhVienEntity;
 import org.springframework.data.jpa.repository.JpaRepository;

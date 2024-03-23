@@ -33,7 +33,7 @@ public class PhanlopEntity {
     @JoinColumn(name = "MaLop", insertable = false, updatable = false)
     private LopEntity lopEntity;
 
-    @OneToOne(mappedBy = "phanlopEntity")
-    @JoinColumn(name = "MaSinhVien",nullable = false,insertable = false)
+    @OneToOne
+    @JoinColumn(name = "MaSinhVien",updatable = false,insertable = false)
     private SinhVienEntity hocsinhEntities;
 }

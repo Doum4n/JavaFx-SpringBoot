@@ -1,4 +1,4 @@
-package com.example.alpha.Spring_boot.repository;/*
+package com.example.alpha.repository;/*
 package com.example.QuanLySinhVien.repository;
 
 import com.example.QuanLySinhVien.student.student_profile.NghenghiepEntity;

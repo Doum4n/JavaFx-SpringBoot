@@ -1,6 +1,5 @@
 package com.example.alpha.JavaFx.controller;
 
-import com.example.alpha.JavaFx.DatabaseConnection.getHttpConnection;
 import com.example.alpha.Spring_boot.class_grade.GiaovienEntity;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -51,7 +50,7 @@ public class QLGiaoVienController implements Initializable {
     }
     public void setTableView_MatHang() throws SQLException, JsonProcessingException {
         setCellColumnMatHangs();
-        List<GiaovienEntity> myObjects = getHttpConnection.getData("http://localhost:8080/GiaoVien/all").readValue(getHttpConnection.getResponse(), new TypeReference<>() {});
+        List<GiaovienEntity> myObjects = null; /*getHttpConnection.getData("http://localhost:8080/GiaoVien/all").readValue(getHttpConnection.getResponse(), new TypeReference<>() {});*/
         TableView_GiaoVien.setItems(FXCollections.observableArrayList(myObjects));
     }
 
