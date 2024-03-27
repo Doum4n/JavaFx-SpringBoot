@@ -2,6 +2,8 @@ package com.example.alpha.JavaFx.view;
 
 import com.example.alpha.JavaFx.controller.AccountType;
 import com.example.alpha.JavaFx.controller.LoginController;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.fxml.FXMLLoader;
@@ -9,37 +11,32 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
+import lombok.Data;
+import lombok.Getter;
 
 import java.util.Objects;
 
-//@Component
+@Data
 public class viewFactory {
+    @Getter
     private AccountType type;
     private HBox QuanLy;
+
     private AnchorPane dashboard;
     private AnchorPane PhanLop;
-
     private AnchorPane QLSinhVien;
-
+    private AnchorPane QLGiaoVien;
+    private AnchorPane PhanCong;
     private AnchorPane Diem;
-    private final StringProperty stringProperty;
+
+    private final ObjectProperty<Menu> menuProperty;
+    private final ObjectProperty<QuanLy> quanLyProperty;
     private Stage stage = new Stage();
 
     public viewFactory(){
+        this.quanLyProperty = new SimpleObjectProperty<>();
         this.type = AccountType.Student;
-        this.stringProperty = new SimpleStringProperty("");
-    }
-
-    public AccountType getType() {
-        return type;
-    }
-
-    public void setType(AccountType type) {
-        this.type = type;
-    }
-
-    public StringProperty getStringProperty(){
-        return stringProperty;
+        this.menuProperty = new SimpleObjectProperty<>();
     }
 
     public HBox getQuanLyView(){
@@ -75,6 +72,17 @@ public class viewFactory {
         return QLSinhVien;
     }
 
+    public AnchorPane getQLGiaoVien(){
+        try {
+            if (QLGiaoVien == null) {
+                QLGiaoVien = new FXMLLoader(getClass().getResource("/com/example/alpha/GiaoVien.fxml")).load();
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return QLGiaoVien;
+    }
+
     public AnchorPane getDiem(){
         try {
             if (Diem == null) {
@@ -95,6 +103,17 @@ public class viewFactory {
             e.printStackTrace();
         }
         return PhanLop;
+    }
+
+    public AnchorPane getPhanCong(){
+        try {
+            if (PhanCong == null) {
+                PhanCong = new FXMLLoader(getClass().getResource("/com/example/alpha/PhanCong.fxml")).load();
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return PhanCong;
     }
 
     public void showLoginWindow(){

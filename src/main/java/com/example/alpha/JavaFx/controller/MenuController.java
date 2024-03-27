@@ -1,6 +1,7 @@
 package com.example.alpha.JavaFx.controller;
 
 import com.example.alpha.JavaFx.model.Model;
+import com.example.alpha.JavaFx.view.Menu;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 @Controller
@@ -36,15 +38,15 @@ public class MenuController implements Initializable {
     }
 
     private void addListenerQuanLy(){
-        Model.getInstant().getViewFactory().getStringProperty().set("QuanLy");
+        Model.getInstant().getViewFactory().getMenuProperty().set(Menu.QuanLy);
     }
 
     private void addListenerTongQuan(){
-        Model.getInstant().getViewFactory().getStringProperty().set("TongQuan");
+        Model.getInstant().getViewFactory().getMenuProperty().set(Menu.TongQuan);
     }
 
     private void addListenerThongKe(){
-        Model.getInstant().getViewFactory().getStringProperty().set("ThongKe");
+        Model.getInstant().getViewFactory().getMenuProperty().set(Menu.ThongKe);
     }
 
 }

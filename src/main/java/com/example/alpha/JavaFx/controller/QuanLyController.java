@@ -1,6 +1,7 @@
 package com.example.alpha.JavaFx.controller;
 
 import com.example.alpha.JavaFx.model.Model;
+import com.example.alpha.JavaFx.view.QuanLy;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -22,16 +23,23 @@ public class QuanLyController implements Initializable {
     private Button button_KetQua;
 
     @FXML
+    private Button button_PhanCong;
+
+    @FXML
     private Button button_PhanLop;
+
+    @FXML
+    private Button button_QLGiaoVien;
 
     @FXML
     private Button button_QLSinhVien;
 
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        button_QLSinhVien.setOnAction(event -> Model.getInstant().getViewFactory().getStringProperty().set("QLSinhVien"));
-        button_KetQua.setOnAction(event -> Model.getInstant().getViewFactory().getStringProperty().set("KetQua"));
-        button_PhanLop.setOnAction(event -> Model.getInstant().getViewFactory().getStringProperty().set("PhanLop"));
+        button_QLSinhVien.setOnAction(event -> Model.getInstant().getViewFactory().getQuanLyProperty().set(QuanLy.QLSinhVien));
+        button_KetQua.setOnAction(event -> Model.getInstant().getViewFactory().getQuanLyProperty().set(QuanLy.KetQua));
+        button_PhanLop.setOnAction(event -> Model.getInstant().getViewFactory().getQuanLyProperty().set(QuanLy.PhanLop));
+        button_QLGiaoVien.setOnAction(event -> Model.getInstant().getViewFactory().getQuanLyProperty().set(QuanLy.QLGiaoVien));
+        button_PhanCong.setOnAction(event -> Model.getInstant().getViewFactory().getQuanLyProperty().set(QuanLy.PhanCong));
     }
 }

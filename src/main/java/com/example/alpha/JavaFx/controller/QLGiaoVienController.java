@@ -1,6 +1,8 @@
 package com.example.alpha.JavaFx.controller;
 
+import com.example.alpha.JavaFx.model.GiaoVien;
 import com.example.alpha.Spring_boot.class_grade.GiaovienEntity;
+import com.example.alpha.repository.GiaovienEntityRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import javafx.collections.FXCollections;
@@ -10,6 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 
@@ -50,7 +53,7 @@ public class QLGiaoVienController implements Initializable {
     }
     public void setTableView_MatHang() throws SQLException, JsonProcessingException {
         setCellColumnMatHangs();
-        List<GiaovienEntity> myObjects = null; /*getHttpConnection.getData("http://localhost:8080/GiaoVien/all").readValue(getHttpConnection.getResponse(), new TypeReference<>() {});*/
+        List<GiaovienEntity> myObjects = GiaoVien.getRepository().findAll(); /*getHttpConnection.getData("http://localhost:8080/GiaoVien/all").readValue(getHttpConnection.getResponse(), new TypeReference<>() {});*/
         TableView_GiaoVien.setItems(FXCollections.observableArrayList(myObjects));
     }
 

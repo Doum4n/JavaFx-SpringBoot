@@ -5,9 +5,9 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.alpha.JavaFx.controller.QLGiaoVienController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="578.0" prefWidth="1052.0" style="-fx-background-color: #6086B1;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.alpha.JavaFx.controller.QLGiaoVienController">
    <children>
-      <TableView fx:id="TableView_GiaoVien" layoutX="52.0" layoutY="50.0" prefHeight="238.0" prefWidth="406.0">
+      <TableView fx:id="TableView_GiaoVien" layoutX="378.0" layoutY="132.0" prefHeight="238.0" prefWidth="406.0">
          <columns>
             <TableColumn fx:id="Column_MaGV" prefWidth="85.5999755859375" text="MaGV" />
             <TableColumn fx:id="Column_TenGV" prefWidth="75.199951171875" text="TenGV" />
