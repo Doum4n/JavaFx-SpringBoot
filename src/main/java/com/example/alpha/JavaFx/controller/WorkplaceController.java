@@ -1,5 +1,6 @@
 package com.example.alpha.JavaFx.controller;
 
+import com.example.alpha.JavaFx.Load.LoadScence;
 import com.example.alpha.JavaFx.model.Model;
 import com.example.alpha.JavaFx.view.Menu;
 import javafx.application.Platform;
@@ -43,17 +44,26 @@ public class WorkplaceController implements Initializable{
                         AnchorPane_HBox.getChildren().clear();
                         AnchorPane_HBox.getChildren().add(Model.getInstant().getViewFactory().getQuanLyView());
                     }
+                    addListenerQuanLy();
                 }
-                default -> Model.getInstant().getViewFactory().getDashboard();
+                case TongQuan -> {
+                    AnchorPane_HBox.getChildren().clear();
+                    borderPane.setRight(Model.getInstant().getViewFactory().getDashboard());
+                }
             }
         });
-        Model.getInstant().getViewFactory().getQuanLyProperty().addListener((observable, oldValue, newValue) -> {
+    }
+
+    private void addListenerQuanLy(){
+        Model.getInstant().getViewQuanLy().getQuanLyProperty().addListener((observable, oldValue, newValue) -> {
             switch (newValue){
-                case QLSinhVien -> borderPane.setRight(Model.getInstant().getViewFactory().getQLSinhVien());
-                case KetQua -> borderPane.setRight(Model.getInstant().getViewFactory().getDiem());
-                case PhanLop -> borderPane.setRight(Model.getInstant().getViewFactory().getPhanLop());
-                case QLGiaoVien -> borderPane.setRight(Model.getInstant().getViewFactory().getQLGiaoVien());
-                case PhanCong -> borderPane.setRight(Model.getInstant().getViewFactory().getPhanCong());
+                case QLSinhVien -> {
+                    borderPane.setRight(Model.getInstant().getViewQuanLy().getQLSinhVien());
+                }
+                case KetQua -> borderPane.setRight(Model.getInstant().getViewQuanLy().getDiem());
+                case PhanLop -> borderPane.setRight(Model.getInstant().getViewQuanLy().getPhanLop());
+                case QLGiaoVien -> borderPane.setRight(Model.getInstant().getViewQuanLy().getQLGiaoVien());
+                case PhanCong -> borderPane.setRight(Model.getInstant().getViewQuanLy().getPhanCong());
             }
         });
     }

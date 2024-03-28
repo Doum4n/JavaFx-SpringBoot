@@ -1,27 +1,21 @@
 package com.example.alpha.Spring_boot.student;
 
-import com.example.alpha.Spring_boot.assignment.PhanlopEntity;
-import com.example.alpha.Spring_boot.class_grade.LopEntity;
 import com.example.alpha.Spring_boot.student.student_profile.DantocEntity;
 import com.example.alpha.Spring_boot.student.student_profile.TongiaoEntity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import org.hibernate.proxy.HibernateProxy;
 
 import java.sql.Date;
-import java.util.LinkedHashSet;
+import java.time.LocalDate;
 import java.util.Objects;
-import java.util.Set;
 
 @Entity
 @Getter
 @Setter
 @ToString
-@RequiredArgsConstructor
+@NoArgsConstructor
 @Table(name = "SINHVIEN")
 public class SinhVienEntity {
     @Id
@@ -64,13 +58,24 @@ public class SinhVienEntity {
     private String MaTonGiao;
 
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "MaDanToc",insertable = false, updatable = false)
     private DantocEntity dantocEntity;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "MaTonGiao", updatable = false, insertable = false)
     private TongiaoEntity tongiaoEntity;
+
+    public SinhVienEntity(String maSinhVien, String hoTen, Boolean gioiTinh, Date ngaySinh, String diaChi, String email, String maDanToc, String maTonGiao) {
+        this.maSinhVien = maSinhVien;
+        this.hoTen = hoTen;
+        this.gioiTinh = gioiTinh;
+        this.ngaySinh = ngaySinh;
+        this.diaChi = diaChi;
+        this.email = email;
+        MaDanToc = maDanToc;
+        MaTonGiao = maTonGiao;
+    }
 
     @Override
     public final boolean equals(Object o) {
