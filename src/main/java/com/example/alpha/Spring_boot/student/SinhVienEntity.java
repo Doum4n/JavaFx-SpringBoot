@@ -16,7 +16,7 @@ import java.util.Objects;
 @Setter
 @ToString
 @NoArgsConstructor
-@Table(name = "SINHVIEN")
+@Table(name = "SINHVIEN",uniqueConstraints = @UniqueConstraint(columnNames = "MaSinhVien"))
 public class SinhVienEntity {
     @Id
     @Column(

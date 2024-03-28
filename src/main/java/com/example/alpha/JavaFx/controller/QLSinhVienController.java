@@ -102,6 +102,8 @@ public class QLSinhVienController implements Initializable, setTable {
     private List<SinhVienEntity> sv;
     private final SimpleBooleanProperty isFemale = new SimpleBooleanProperty();
 
+    private SortedList<SinhVienEntity> sortedList;
+
     public void setTableView() {
         setCellColumn();
         sv = SinhVien.getRepository().findAll();
@@ -149,11 +151,6 @@ public class QLSinhVienController implements Initializable, setTable {
         Column_NgaySinh.setCellValueFactory(new PropertyValueFactory<>("NgaySinh"));
     }
 
-    private void load(){
-        sv = SinhVien.getRepository().findAll();
-        TableView_SinhVien.setItems(FXCollections.observableArrayList(sv));
-    }
-
 
     private void addListenerSearch(){
         FilteredList<SinhVienEntity> filteredList = new FilteredList<>(data, b->true);
@@ -170,7 +167,7 @@ public class QLSinhVienController implements Initializable, setTable {
                         sinhVienEntity.getMaDanToc().toLowerCase().contains(id) ||
                         sinhVienEntity.getMaTonGiao().toLowerCase().contains(id);
             });
-            SortedList<SinhVienEntity> sortedList = new SortedList<>(FXCollections.observableArrayList(filteredList));
+            sortedList = new SortedList<>(FXCollections.observableArrayList(filteredList));
             sortedList.comparatorProperty().bind(TableView_SinhVien.comparatorProperty());
             TableView_SinhVien.setItems(sortedList);
         });
@@ -184,12 +181,14 @@ public class QLSinhVienController implements Initializable, setTable {
         Button_Add.setOnAction(event -> {
             SinhVienEntity sinhVienEntity = new SinhVienEntity(TextField_MaSV.getText(),TextField_HoTen.getText(),isFemale.get(), Date.valueOf(DataPicker_NgaySinh.getValue()),TextArea_DiaChi.getText(), TextField_Email.getText(), TextField_DanToc.getText(), TextField_TonGiao.getText());
             SinhVien.getRepository().save(sinhVienEntity);
-            load();
+            data.add(sinhVienEntity);
+            TableView_SinhVien.setItems(data);
         });
 
         Button_Delete.setOnAction(event -> {
             SinhVien.getRepository().deleteById(TextField_MaSV.getText());
-            load();
+            data.removeIf(entity -> entity.getMaSinhVien().equals(TextField_MaSV.getText()));
+            TableView_SinhVien.setItems(data);
         });
     }
 }
