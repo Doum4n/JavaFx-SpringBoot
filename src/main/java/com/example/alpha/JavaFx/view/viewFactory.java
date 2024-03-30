@@ -2,8 +2,11 @@ package com.example.alpha.JavaFx.view;
 
 import com.example.alpha.JavaFx.controller.AccountType;
 import com.example.alpha.JavaFx.controller.LoginController;
+import com.example.alpha.JavaFx.model.NamHoc;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -21,11 +24,16 @@ public class viewFactory {
     private AnchorPane dashboard;
 
     private final ObjectProperty<Menu> menuProperty;
+
+    private final StringProperty NamHoc;
+    private final StringProperty Hocky;
     private Stage stage = new Stage();
 
     public viewFactory(){
         this.type = AccountType.Student;
         this.menuProperty = new SimpleObjectProperty<>();
+        this.NamHoc = new SimpleStringProperty();
+        this.Hocky = new SimpleStringProperty();
     }
 
     public HBox getQuanLyView(){

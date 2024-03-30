@@ -80,8 +80,6 @@ public class QLSinhVienController implements Initializable, setTable {
     @FXML
     private TextArea TextArea_DiaChi;
 
-    @FXML
-    private TextField TextField_DanToc;
 
     @FXML
     private TextField TextField_Email;
@@ -95,8 +93,6 @@ public class QLSinhVienController implements Initializable, setTable {
     @FXML
     private TextField TextField_Search;
 
-    @FXML
-    private TextField TextField_TonGiao;
     private SinhVienEntity sinhVien;
     private ObservableList<SinhVienEntity> data = FXCollections.observableArrayList();
     private List<SinhVienEntity> sv;
@@ -104,13 +100,15 @@ public class QLSinhVienController implements Initializable, setTable {
 
     private SortedList<SinhVienEntity> sortedList;
 
+    @Override
     public void setTableView() {
         setCellColumn();
         sv = SinhVien.getRepository().findAll();
         TableView_SinhVien.setItems(FXCollections.observableArrayList(sv));
     }
 
-    private void addlistenerTableView(){
+    @Override
+    public void addListenerTableView(){
         data = FXCollections.observableArrayList(sv);
         TableView_SinhVien.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
             if (event.getClickCount() == 1) {
@@ -120,8 +118,6 @@ public class QLSinhVienController implements Initializable, setTable {
                 TextField_HoTen.setText(sinhVien.getHoTen());
                 TextField_Email.setText(sinhVien.getEmail());
                 TextArea_DiaChi.setText(sinhVien.getDiaChi());
-                TextField_DanToc.setText(sinhVien.getMaDanToc());
-                TextField_TonGiao.setText(sinhVien.getMaTonGiao());
 
                 isFemale.bind(CheckBox_Nu.selectedProperty());
 
@@ -140,19 +136,18 @@ public class QLSinhVienController implements Initializable, setTable {
         addListenerSearch();
     }
 
+    @Override
     public void setCellColumn() {
         Column_DiaChi.setCellValueFactory(new PropertyValueFactory<>("DiaChi"));
         Column_Email.setCellValueFactory(new PropertyValueFactory<>("Email"));
         Column_GioiTinh.setCellValueFactory(new PropertyValueFactory<>("GioiTinh"));
         Column_HoTen.setCellValueFactory(new PropertyValueFactory<>("HoTen"));
-        Column_MaDanToc.setCellValueFactory(new PropertyValueFactory<>("MaDanToc"));
         Column_MaSV.setCellValueFactory(new PropertyValueFactory<>("MaSinhVien"));
-        Column_MaTonGiao.setCellValueFactory(new PropertyValueFactory<>("MaTonGiao"));
         Column_NgaySinh.setCellValueFactory(new PropertyValueFactory<>("NgaySinh"));
     }
 
-
-    private void addListenerSearch(){
+    @Override
+    public void addListenerSearch(){
         FilteredList<SinhVienEntity> filteredList = new FilteredList<>(data, b->true);
         TextField_Search.textProperty().addListener((observable, oldValue, newValue) -> {
             filteredList.setPredicate(sinhVienEntity -> {
@@ -163,9 +158,7 @@ public class QLSinhVienController implements Initializable, setTable {
                 return sinhVienEntity.getMaSinhVien().toLowerCase().contains(id) ||
                         sinhVienEntity.getHoTen().toLowerCase().contains(id) ||
                         sinhVienEntity.getDiaChi().toLowerCase().contains(id) ||
-                        sinhVienEntity.getNgaySinh().toString().toLowerCase().contains(id) ||
-                        sinhVienEntity.getMaDanToc().toLowerCase().contains(id) ||
-                        sinhVienEntity.getMaTonGiao().toLowerCase().contains(id);
+                        sinhVienEntity.getNgaySinh().toString().toLowerCase().contains(id);
             });
             sortedList = new SortedList<>(FXCollections.observableArrayList(filteredList));
             sortedList.comparatorProperty().bind(TableView_SinhVien.comparatorProperty());
@@ -176,10 +169,10 @@ public class QLSinhVienController implements Initializable, setTable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         setTableView();
-        addlistenerTableView();
+        addListenerTableView();
 
         Button_Add.setOnAction(event -> {
-            SinhVienEntity sinhVienEntity = new SinhVienEntity(TextField_MaSV.getText(),TextField_HoTen.getText(),isFemale.get(), Date.valueOf(DataPicker_NgaySinh.getValue()),TextArea_DiaChi.getText(), TextField_Email.getText(), TextField_DanToc.getText(), TextField_TonGiao.getText());
+            SinhVienEntity sinhVienEntity = new SinhVienEntity(TextField_MaSV.getText(),TextField_HoTen.getText(),isFemale.get(), Date.valueOf(DataPicker_NgaySinh.getValue()),TextArea_DiaChi.getText(), TextField_Email.getText());
             SinhVien.getRepository().save(sinhVienEntity);
             data.add(sinhVienEntity);
             TableView_SinhVien.setItems(data);

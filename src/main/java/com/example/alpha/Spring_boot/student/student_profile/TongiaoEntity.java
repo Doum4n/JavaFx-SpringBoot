@@ -1,3 +1,4 @@
+/*
 package com.example.alpha.Spring_boot.student.student_profile;
 
 import com.example.alpha.Spring_boot.student.SinhVienEntity;
@@ -46,3 +47,4 @@ public class TongiaoEntity {
         return this instanceof HibernateProxy ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass().hashCode() : getClass().hashCode();
     }
 }
+*/

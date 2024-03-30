@@ -45,6 +45,16 @@ public class PhanCongController implements Initializable, setTable {
     }
 
     @Override
+    public void addListenerTableView() {
+
+    }
+
+    @Override
+    public void addListenerSearch() {
+
+    }
+
+    @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setTableView();
     }

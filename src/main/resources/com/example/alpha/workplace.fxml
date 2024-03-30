@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.text.Font?>
 
 <BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="1173.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.alpha.JavaFx.controller.WorkplaceController">
    <left>
@@ -15,21 +14,13 @@
    </right>
    <top>
       <AnchorPane prefHeight="92.0" prefWidth="1066.0" style="-fx-background-color: #819830;" BorderPane.alignment="CENTER">
-         <Label fx:id="Label_Menu" layoutX="31.0" layoutY="24.0" text="MENU">
-            <font>
-               <Font size="20.0" />
-            </font>
-         </Label>
-         <Label fx:id="Label_Menu_close" layoutX="31.0" layoutY="24.0" prefHeight="30.0" prefWidth="65.0" text="MENU">
-            <font>
-               <Font size="20.0" />
-            </font>
-         </Label>
          <AnchorPane fx:id="AnchorPane_HBox" layoutX="131.0">
             <children>
                <HBox fx:id="HBox_Main" prefHeight="100.0" prefWidth="200.0" />
             </children>
          </AnchorPane>
+         <ChoiceBox fx:id="ChoiceBox_Nam" layoutX="14.0" layoutY="14.0" prefHeight="26.0" prefWidth="97.0" />
+         <ChoiceBox fx:id="ChoiceBox_HocKy" layoutX="13.0" layoutY="50.0" prefHeight="26.0" prefWidth="100.0" />
       </AnchorPane>
    </top>
 </BorderPane>

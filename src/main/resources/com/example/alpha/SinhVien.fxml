@@ -12,7 +12,7 @@
 
 <AnchorPane fx:id="AnchorPane_QLSinhVien" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="578.0" prefWidth="1052.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.alpha.JavaFx.controller.QLSinhVienController">
    <children>
-      <TableView fx:id="TableView_SinhVien" layoutX="128.0" layoutY="93.0" prefHeight="290.0" prefWidth="816.0">
+      <TableView fx:id="TableView_SinhVien" layoutX="128.0" layoutY="93.0" prefHeight="290.0" prefWidth="656.0">
          <columns>
             <TableColumn fx:id="Column_MaSV" prefWidth="114.39989471435547" text="MaSV" />
             <TableColumn fx:id="Column_HoTen" prefWidth="111.20006561279297" text="HoTen" />
@@ -20,8 +20,6 @@
             <TableColumn fx:id="Column_NgaySinh" prefWidth="109.60003662109375" text="NgaySinh" />
             <TableColumn fx:id="Column_Email" prefWidth="120.00003051757812" text="email" />
             <TableColumn fx:id="Column_DiaChi" prefWidth="102.39996337890625" text="DiaChi" />
-            <TableColumn fx:id="Column_MaTonGiao" prefWidth="75.0" text="MaTonGiao" />
-            <TableColumn fx:id="Column_MaDanToc" prefWidth="75.0" text="MaDanToc" />
          </columns>
       </TableView>
       <TextField fx:id="TextField_Search" layoutX="128.0" layoutY="41.0" prefHeight="26.0" prefWidth="231.0" promptText="search" />
@@ -34,8 +32,6 @@
       <Label layoutX="109.0" layoutY="516.0" text="Ngày sinh" />
       <Label layoutX="379.0" layoutY="401.0" text="email" />
       <Label layoutX="373.0" layoutY="451.0" text="Địa chỉ" />
-      <Label layoutX="659.0" layoutY="398.0" text="Tôn giáo" />
-      <Label layoutX="668.0" layoutY="446.0" text="Dân tộc" />
       <DatePicker fx:id="DataPicker_NgaySinh" layoutX="174.0" layoutY="512.0" />
       <CheckBox fx:id="CheckBox_Nam" layoutX="174.0" layoutY="475.0" mnemonicParsing="false" text="Nam" />
       <CheckBox fx:id="CheckBox_Nu" layoutX="243.0" layoutY="475.0" mnemonicParsing="false" text="Nữ" />
@@ -43,7 +39,5 @@
       <Button fx:id="Button_Add" layoutX="772.0" layoutY="500.0" mnemonicParsing="false" text="ADD" />
       <Button fx:id="Button_Update" layoutX="688.0" layoutY="500.0" mnemonicParsing="false" text="UPDATE" />
       <Button fx:id="Button_Delete" layoutX="840.0" layoutY="500.0" mnemonicParsing="false" text="DELETE" />
-      <TextField fx:id="TextField_TonGiao" layoutX="717.0" layoutY="394.0" />
-      <TextField fx:id="TextField_DanToc" layoutX="718.0" layoutY="442.0" />
    </children>
 </AnchorPane>

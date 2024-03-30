@@ -29,7 +29,6 @@ module com.example.alpha {
     opens com.example.alpha.Spring_boot.result.student;
     opens com.example.alpha.Spring_boot.result.grade;
     opens com.example.alpha.Spring_boot.student;
-    opens com.example.alpha.Spring_boot.student.student_profile;
     opens com.example.alpha.repository;
     opens com.example.alpha.Spring_boot.class_grade;
     opens com.example.alpha.Spring_boot.user;

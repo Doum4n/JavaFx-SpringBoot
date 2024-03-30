@@ -56,6 +56,16 @@ public class PhanLopController implements setTable, Initializable {
         column_MaNamHoc.setCellValueFactory(new PropertyValueFactory<>("MaNamHoc"));
     }
 
+    @Override
+    public void addListenerTableView() {
+
+    }
+
+    @Override
+    public void addListenerSearch() {
+
+    }
+
     @Autowired
     public void setPhanlopEntityRepository(PhanlopEntityRepository phanlopEntityRepository) {
         this.repository = phanlopEntityRepository;

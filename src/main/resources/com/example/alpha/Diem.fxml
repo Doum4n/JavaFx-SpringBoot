@@ -1,22 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="578.0" prefWidth="933.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.alpha.JavaFx.controller.DiemController">
    <children>
-      <TableView fx:id="TableView_Diem" layoutX="23.0" layoutY="74.0" prefHeight="200.0" prefWidth="603.0">
+      <TableView fx:id="TableView_Diem" layoutX="263.0" layoutY="86.0" prefHeight="274.0" prefWidth="366.0">
         <columns>
-          <TableColumn fx:id="Column_MaSV" prefWidth="75.0" text="MaSV" />
-          <TableColumn fx:id="Column_MaLop" prefWidth="75.0" text="MaLop" />
-            <TableColumn fx:id="Column_MaMonHoc" prefWidth="75.0" text="MaMonHoc" />
-            <TableColumn fx:id="Column_LanThi" prefWidth="75.0" text="LanThi" />
-            <TableColumn fx:id="Column_Diem" prefWidth="75.0" text="Diem" />
-            <TableColumn fx:id="Column_MaLoai" prefWidth="75.0" text="MaLoai" />
-            <TableColumn fx:id="Column_MaHocKy" prefWidth="75.0" text="MaHocKy" />
-            <TableColumn fx:id="Column_MaNamHoc" prefWidth="75.0" text="MaNamHoc" />
+          <TableColumn fx:id="Column_MaSV" prefWidth="103.199951171875" text="MaSV" />
+            <TableColumn fx:id="Column_MaMonHoc" prefWidth="82.4000244140625" text="MaMonHoc" />
+            <TableColumn fx:id="Column_LanThi" prefWidth="71.20004272460938" text="LanThi" />
+            <TableColumn fx:id="Column_Diem" prefWidth="104.79998779296875" text="DiemThi" />
         </columns>
       </TableView>
+      <TextField fx:id="TextField_MaSV" layoutX="303.0" layoutY="402.0" />
+      <TextField fx:id="TextField_MaMonHoc" layoutX="303.0" layoutY="442.0" />
+      <TextField fx:id="TextField_LanThi" layoutX="549.0" layoutY="402.0" />
+      <TextField fx:id="TextField_Diem" layoutX="549.0" layoutY="442.0" />
+      <Label layoutX="259.0" layoutY="406.0" text="MaSV" />
+      <Label layoutX="231.0" layoutY="446.0" text="MaMonHoc" />
+      <Label layoutX="509.0" layoutY="406.0" text="LanThi" />
+      <Label layoutX="513.0" layoutY="446.0" text="Diem" />
+      <Button fx:id="button_update" layoutX="552.0" layoutY="492.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="63.0" text="Update" />
+      <Button fx:id="button_delete" layoutX="648.0" layoutY="492.0" mnemonicParsing="false" text="Delete" />
+      <TextField fx:id="textField_search" layoutX="259.0" layoutY="39.0" prefHeight="26.0" prefWidth="170.0" promptText="search" />
+      <ChoiceBox fx:id="ChoiceBox_PhongThi" layoutX="47.0" layoutY="86.0" prefWidth="150.0" />
    </children>
 </AnchorPane>

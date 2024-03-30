@@ -1,24 +1,20 @@
 package com.example.alpha.Spring_boot.subject;
 
-import com.example.alpha.Spring_boot.class_grade.LopEntity;
 import com.example.alpha.Spring_boot.class_grade.NamhocEntity;
-import com.example.alpha.Spring_boot.result.LanThiEntity;
-import com.example.alpha.Spring_boot.result.LoaidiemEntity;
 import com.example.alpha.Spring_boot.class_grade.HockyEntity;
+import com.example.alpha.Spring_boot.result.PhongThiEntity;
 import com.example.alpha.Spring_boot.student.SinhVienEntity;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import org.hibernate.annotations.Check;
 import org.hibernate.proxy.HibernateProxy;
+import org.springframework.stereotype.Component;
 
 @Entity
 @Getter
 @Setter
 @ToString
-@RequiredArgsConstructor
+@NoArgsConstructor
 @IdClass(DiemPKEntity.class)
 @Table(name = "DIEM")
 public class DiemEntity {
@@ -45,28 +41,22 @@ public class DiemEntity {
     @Column(name = "MaNamHoc")
     private String maNamHoc;
 
-    @Id
-    @Basic
-    @Column(name = "MaLop")
-    private String maLop;
-
-    @Id
-    @Basic
-    @Column(name = "MaLoai")
-    private String maLoai;
-
     @Basic
     @Column(name = "Diem")
     @Check(constraints = "diem BETWEEN 0 AND 10")
     private double diem;
 
     @Id
+    @Basic
     @Column(name = "LanThi")
     private int lanThi;
 
+    @Id
+    @Column(name = "PhongThi")
+    private String PhongThi;
 
     @ToString.Exclude
-    @OneToOne(orphanRemoval = true)
+    @OneToOne
     @JoinColumn(name = "MaNamHoc", insertable = false, updatable = false)
     private NamhocEntity namhocEntity;
 
@@ -81,24 +71,24 @@ public class DiemEntity {
     private MonhocEntity monhocEntity;
 
     @ToString.Exclude
-    @OneToOne(orphanRemoval = true)
-    @JoinColumn(name = "MaLop", insertable = false, updatable = false)
-    private LopEntity lopEntity;
-
-    @ToString.Exclude
-    @OneToOne(orphanRemoval = true)
-    @JoinColumn(name = "MaLoai", updatable = false, insertable = false)
-    private LoaidiemEntity loaidiemEntity;
-
-    @ToString.Exclude
-    @OneToOne(orphanRemoval = true)
-    @JoinColumn(name = "LanThi", insertable = false, updatable = false)
-    private LanThiEntity lanThiEntity;
-
-    @ToString.Exclude
     @ManyToOne
     @JoinColumn(name = "MaHocKy", updatable = false, insertable = false)
     private HockyEntity hockyEntity;
+
+    @ToString.Exclude
+    @ManyToOne
+    @JoinColumn(name = "PhongThi", insertable = false, updatable = false)
+    private PhongThiEntity phongThiEntity;
+
+    public DiemEntity(String maSinhVien, String maMonHoc, String maHocKy, String maNamHoc, double diem, int lanThi, String phongThi) {
+        this.maSinhVien = maSinhVien;
+        this.maMonHoc = maMonHoc;
+        this.maHocKy = maHocKy;
+        this.maNamHoc = maNamHoc;
+        this.diem = diem;
+        this.lanThi = lanThi;
+        this.PhongThi = phongThi;
+    }
 
     @Override
     public final boolean equals(Object o) {

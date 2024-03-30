@@ -1,7 +1,4 @@
 package com.example.alpha.Spring_boot.student;
-
-import com.example.alpha.Spring_boot.student.student_profile.DantocEntity;
-import com.example.alpha.Spring_boot.student.student_profile.TongiaoEntity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
@@ -48,32 +45,13 @@ public class SinhVienEntity {
     @Column(name = "Email")
     private String email;
 
-    @Basic
-    @Column(name = "MaDanToc")
-    private String MaDanToc;
-
-    @Basic
-    @Column(name = "MaTonGiao")
-    private String MaTonGiao;
-
-
-    @ManyToOne
-    @JoinColumn(name = "MaDanToc",insertable = false, updatable = false)
-    private DantocEntity dantocEntity;
-
-    @ManyToOne
-    @JoinColumn(name = "MaTonGiao", updatable = false, insertable = false)
-    private TongiaoEntity tongiaoEntity;
-
-    public SinhVienEntity(String maSinhVien, String hoTen, Boolean gioiTinh, Date ngaySinh, String diaChi, String email, String maDanToc, String maTonGiao) {
+    public SinhVienEntity(String maSinhVien, String hoTen, Boolean gioiTinh, Date ngaySinh, String diaChi, String email) {
         this.maSinhVien = maSinhVien;
         this.hoTen = hoTen;
         this.gioiTinh = gioiTinh;
         this.ngaySinh = ngaySinh;
         this.diaChi = diaChi;
         this.email = email;
-        MaDanToc = maDanToc;
-        MaTonGiao = maTonGiao;
     }
 
     @Override
