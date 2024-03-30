@@ -132,7 +132,7 @@ public class DiemController implements Initializable, setTable {
         ChoiceBox_PhongThi.valueProperty().addListener((observable, oldValue, newValue) -> {
             PhongThiProperty.set(ChoiceBox_PhongThi.getValue());
 
-            filteredList.setPredicate(diemEntity -> diemEntity.getPhongThi().contains(newValue));
+            filteredList.setPredicate(diemEntity -> diemEntity.getPhongThi().equals(newValue));
             sortedList = new SortedList<>(FXCollections.observableArrayList(filteredList));
             sortedList.comparatorProperty().bind(TableView_Diem.comparatorProperty());
             TableView_Diem.setItems(sortedList);
