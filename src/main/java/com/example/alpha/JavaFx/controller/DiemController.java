@@ -3,14 +3,9 @@ package com.example.alpha.JavaFx.controller;
 import com.example.alpha.JavaFx.model.Diem;
 import com.example.alpha.JavaFx.model.Model;
 import com.example.alpha.JavaFx.model.PhongThi;
-import com.example.alpha.JavaFx.model.SinhVien;
-import com.example.alpha.Spring_boot.result.PhongThiEntity;
-import com.example.alpha.Spring_boot.student.SinhVienEntity;
-import com.example.alpha.repository.DiemEntityRepository;
 import com.example.alpha.Spring_boot.subject.DiemEntity;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -25,8 +20,11 @@ import org.springframework.stereotype.Controller;
 
 import java.net.URL;
 import java.sql.Date;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
+
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 @Controller
 public class DiemController implements Initializable, setTable {
@@ -68,12 +66,11 @@ public class DiemController implements Initializable, setTable {
 
     @FXML
     private ChoiceBox<String> ChoiceBox_PhongThi;
-
     private ObservableList<DiemEntity> data = FXCollections.observableArrayList();
-    private List<DiemEntity> diemEntities;
-
     private SortedList<DiemEntity> sortedList;
 
+    private List<DiemEntity> diemEntities;
+    FilteredList<DiemEntity> filteredList;
     private final StringProperty PhongThiProperty = new SimpleStringProperty();
 
     public void setCellColumn() {
@@ -96,7 +93,7 @@ public class DiemController implements Initializable, setTable {
         TableView_Diem.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
             if (event.getClickCount() == 1) {
                 int index = TableView_Diem.getSelectionModel().getSelectedIndex();
-                DiemEntity diemEntity = data.get(index);
+                DiemEntity diemEntity = sortedList.get(index);
 
                 TextField_MaSV.setText(diemEntity.getMaSinhVien());
                 TextField_MaMonHoc.setText(diemEntity.getMaMonHoc());
@@ -109,7 +106,7 @@ public class DiemController implements Initializable, setTable {
 
 
     public void addListenerSearch() {
-        System.out.println(data);
+//        System.out.println(data);
         FilteredList<DiemEntity> filteredList = new FilteredList<>(data, b->true);
         textField_search.textProperty().addListener((observable, oldValue, newValue) -> {
             filteredList.setPredicate(diemEntity -> {
@@ -126,15 +123,20 @@ public class DiemController implements Initializable, setTable {
     }
 
     private void addListenerChoiceBox(){
-        FilteredList<DiemEntity> filteredList = new FilteredList<>(data, b->true);
+        filteredList = new FilteredList<>(data, b->true);
         ChoiceBox_PhongThi.setItems(FXCollections.observableArrayList(PhongThi.getRepository().getMa()));
         ChoiceBox_PhongThi.setValue(PhongThi.getRepository().getMa().get(0));
         ChoiceBox_PhongThi.valueProperty().addListener((observable, oldValue, newValue) -> {
             PhongThiProperty.set(ChoiceBox_PhongThi.getValue());
 
-            filteredList.setPredicate(diemEntity -> diemEntity.getPhongThi().equals(newValue));
+//            filteredList = new FilteredList<>(data, b->true);
+
+            filteredList.setPredicate(diemEntity -> diemEntity.getPhongThi().equals(newValue) &&
+                    diemEntity.getMaNamHoc().equals(Model.getInstant().getViewFactory().getNamHoc().get()) &&
+                    diemEntity.getMaHocKy().equals(Model.getInstant().getViewFactory().getHocky().get()));
             sortedList = new SortedList<>(FXCollections.observableArrayList(filteredList));
             sortedList.comparatorProperty().bind(TableView_Diem.comparatorProperty());
+
             TableView_Diem.setItems(sortedList);
             System.out.println(newValue);
         });
@@ -158,13 +160,57 @@ public class DiemController implements Initializable, setTable {
             );
             Diem.getRepository().save(diemEntity);
             data.add(diemEntity);
-            TableView_Diem.setItems(data);
+
+//            filteredList = new FilteredList<>(data, b->true);
+
+            filteredList.setPredicate(diemEntity1 -> diemEntity1.getPhongThi().equals(diemEntity.getPhongThi()) &&
+                    diemEntity1.getMaHocKy().equals(Model.getInstant().getViewFactory().getHocky().get()) &&
+                    diemEntity1.getMaNamHoc().equals(Model.getInstant().getViewFactory().getNamHoc().get()));
+            sortedList = new SortedList<>(FXCollections.observableArrayList(filteredList));
+            TableView_Diem.setItems(sortedList);
+            System.out.println(filteredList);
         });
 
         button_delete.setOnAction(event -> {
             Diem.getRepository().deleteByMaSinhVien(TextField_MaSV.getText());
             data.removeIf(entity -> entity.getMaSinhVien().equals(TextField_MaSV.getText()));
-            TableView_Diem.setItems(data);
+
+            filteredList.removeIf(entity -> entity.getMaSinhVien().equals(TextField_MaSV.getText()));
+            sortedList = new SortedList<>(FXCollections.observableArrayList(filteredList));
+            TableView_Diem.setItems(sortedList);
+        });
+
+
+
+        Model.getInstant().getViewFactory().getNamHoc().addListener((observable, oldValue, newValue) -> {
+            if(Objects.equals(newValue, "2025")){
+                button_update.setVisible(false);
+                button_delete.setVisible(false);
+            }else {
+                button_update.setVisible(true);
+                button_delete.setVisible(true);
+            }
+
+            filteredList.setPredicate(diemEntity -> diemEntity.getMaNamHoc().equals(newValue) &&
+                    diemEntity.getPhongThi().equals(PhongThiProperty.get()) &&
+                    diemEntity.getMaHocKy().equals(Model.getInstant().getViewFactory().getHocky().get()));
+            sortedList = new SortedList<>(FXCollections.observableArrayList(filteredList));
+            TableView_Diem.setItems(sortedList);
+        });
+
+        Model.getInstant().getViewFactory().getHocky().addListener((observable, oldValue, newValue) -> {
+            if(Objects.equals(newValue, "1")){
+                button_update.setVisible(false);
+                button_delete.setVisible(false);
+            }else {
+                button_update.setVisible(true);
+                button_delete.setVisible(true);
+            }
+            filteredList.setPredicate(diemEntity -> diemEntity.getMaHocKy().equals(newValue) &&
+                    diemEntity.getPhongThi().equals(PhongThiProperty.get()) &&
+                    diemEntity.getMaNamHoc().equals(Model.getInstant().getViewFactory().getNamHoc().get()));
+            sortedList = new SortedList<>(FXCollections.observableArrayList(filteredList));
+            TableView_Diem.setItems(sortedList);
         });
     }
 }

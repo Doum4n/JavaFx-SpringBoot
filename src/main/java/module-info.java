@@ -16,13 +16,14 @@ module com.example.alpha {
     requires spring.web;
     requires com.fasterxml.jackson.databind;
     requires jakarta.validation;
+    requires spring.tx;
+    requires javafx.base;
 
-
-    opens com.example.alpha;
     opens com.example.alpha.JavaFx.model;
     opens com.example.alpha.JavaFx.controller;
     opens com.example.alpha.JavaFx.Load;
     opens com.example.alpha.JavaFx.view;
+    opens com.example.alpha;
 
 
     opens com.example.alpha.Spring_boot.result;
@@ -34,7 +35,6 @@ module com.example.alpha {
     opens com.example.alpha.Spring_boot.user;
     opens com.example.alpha.Spring_boot.subject;
     opens com.example.alpha.Spring_boot.assignment;
-
 //    opens com.example.alpha.Spring_boot.regulations;
     exports com.example.alpha;
     exports com.example.alpha.Spring_boot.student;

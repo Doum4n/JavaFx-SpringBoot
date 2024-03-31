@@ -7,11 +7,13 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.transaction.annotation.*;
 
 import java.io.IOException;
 
 @Configuration
 @SpringBootApplication
+@EnableTransactionManagement
 public class Main extends Application {
     private ConfigurableApplicationContext applicationContext;
     @Override
