@@ -26,4 +26,8 @@ public class NguoidungEntity {
     @Basic
     @Column(name = "MatKhau")
     private String matKhau;
+
+    private enum Loai{
+        Admin, Teacher, Student
+    }
 }

@@ -60,13 +60,7 @@ public class QLSinhVienController implements Initializable, setTable {
     private TableColumn<?, ?> Column_HoTen;
 
     @FXML
-    private TableColumn<?, ?> Column_MaDanToc;
-
-    @FXML
     private TableColumn<?, ?> Column_MaSV;
-
-    @FXML
-    private TableColumn<?, ?> Column_MaTonGiao;
 
     @FXML
     private TableColumn<?, ?> Column_NgaySinh;
@@ -170,6 +164,9 @@ public class QLSinhVienController implements Initializable, setTable {
     public void initialize(URL location, ResourceBundle resources) {
         setTableView();
         addListenerTableView();
+
+//        CheckBox_Nu.setDisable(true);
+//        CheckBox_Nam.setDisable(true);
 
         Button_Add.setOnAction(event -> {
             SinhVienEntity sinhVienEntity = new SinhVienEntity(TextField_MaSV.getText(),TextField_HoTen.getText(),isFemale.get(), Date.valueOf(DataPicker_NgaySinh.getValue()),TextArea_DiaChi.getText(), TextField_Email.getText());

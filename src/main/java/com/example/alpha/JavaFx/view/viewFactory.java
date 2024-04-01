@@ -2,6 +2,7 @@ package com.example.alpha.JavaFx.view;
 
 import com.example.alpha.JavaFx.controller.AccountType;
 import com.example.alpha.JavaFx.controller.LoginController;
+import com.example.alpha.JavaFx.model.HocKy;
 import com.example.alpha.JavaFx.model.NamHoc;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -32,8 +33,8 @@ public class viewFactory {
     public viewFactory(){
         this.type = AccountType.Student;
         this.menuProperty = new SimpleObjectProperty<>();
-        this.NamHoc = new SimpleStringProperty();
-        this.Hocky = new SimpleStringProperty();
+        this.NamHoc = new SimpleStringProperty(com.example.alpha.JavaFx.model.NamHoc.getRepository().getNamHoc().get(0));
+        this.Hocky = new SimpleStringProperty(HocKy.getRepository().getHocKy().get(0));
     }
 
     public HBox getQuanLyView(){
@@ -98,16 +99,5 @@ public class viewFactory {
         stage.show();
     }
 
-    public void showEditSV(){
-        FXMLLoader loader = new FXMLLoader((Objects.requireNonNull(LoginController.class.getResource("/com/example/alpha/EditSV.fxml"))));
-        Scene scene = null;
-        try{
-            scene = new Scene(loader.load());
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-        Stage stage = new Stage();
-        stage.setScene(scene);
-        stage.show();
-    }
+
 }

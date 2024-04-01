@@ -32,6 +32,9 @@ public class QuanLyController implements Initializable {
     private Button button_PhanLop;
 
     @FXML
+    private Button button_TaiKhoan;
+
+    @FXML
     private Button button_QLGiaoVien;
 
     @FXML
@@ -41,8 +44,9 @@ public class QuanLyController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         button_QLSinhVien.setOnAction(event -> Model.getInstant().getViewQuanLy().getQuanLyProperty().set(QuanLy.QLSinhVien));
         button_Diem.setOnAction(event -> Model.getInstant().getViewQuanLy().getQuanLyProperty().set(QuanLy.Diem));
-        button_PhanLop.setOnAction(event -> Model.getInstant().getViewQuanLy().getQuanLyProperty().set(QuanLy.PhanLop));
+//        button_PhanLop.setOnAction(event -> Model.getInstant().getViewQuanLy().getQuanLyProperty().set(QuanLy.PhanLop));
         button_QLGiaoVien.setOnAction(event -> Model.getInstant().getViewQuanLy().getQuanLyProperty().set(QuanLy.QLGiaoVien));
         button_PhanCong.setOnAction(event -> Model.getInstant().getViewQuanLy().getQuanLyProperty().set(QuanLy.PhanCong));
+        button_TaiKhoan.setOnAction(event -> Model.getInstant().getViewQuanLy().getQuanLyProperty().set(QuanLy.TaiKhoan));
     }
 }

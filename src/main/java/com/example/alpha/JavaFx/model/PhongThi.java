@@ -7,13 +7,11 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class PhongThi {
+    @Getter
     private static PhongThiEntityRepository repository;
 
     public PhongThi(PhongThiEntityRepository repository) {
         PhongThi.repository = repository;
     }
 
-    public static PhongThiEntityRepository getRepository() {
-        return repository;
-    }
 }

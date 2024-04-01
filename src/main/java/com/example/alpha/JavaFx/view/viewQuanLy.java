@@ -1,8 +1,12 @@
 package com.example.alpha.JavaFx.view;
 
+import com.example.alpha.Spring_boot.user.NguoidungEntity;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
 import lombok.Data;
 
@@ -14,11 +18,16 @@ public class viewQuanLy {
     private AnchorPane PhanCong;
     private AnchorPane Diem;
     private AnchorPane EditSV;
+    private AnchorPane TaiKhoan;
+    private TableView<NguoidungEntity> tbView_TaiKhoan;
 
     private final ObjectProperty<QuanLy> quanLyProperty;
 
+    private StringProperty Tab_selected;
+
     public viewQuanLy() {
         this.quanLyProperty = new SimpleObjectProperty<>();
+        this.Tab_selected = new SimpleStringProperty();
     }
 
     public AnchorPane getQLSinhVien(){
@@ -41,6 +50,17 @@ public class viewQuanLy {
             e.printStackTrace();
         }
         return QLGiaoVien;
+    }
+
+    public AnchorPane getTaiKhoan(){
+        try {
+            if (TaiKhoan == null) {
+                TaiKhoan = new FXMLLoader(getClass().getResource("/com/example/alpha/TaiKhoan.fxml")).load();
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return TaiKhoan;
     }
 
     public AnchorPane getDiem(){
@@ -74,5 +94,16 @@ public class viewQuanLy {
             e.printStackTrace();
         }
         return PhanCong;
+    }
+
+    public TableView<NguoidungEntity> getTbView_TaiKhoan() {
+        try {
+            if (tbView_TaiKhoan == null) {
+                tbView_TaiKhoan = new FXMLLoader(getClass().getResource("/com/example/alpha/TableView_TaiKhoan.fxml")).load();
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return tbView_TaiKhoan;
     }
 }
