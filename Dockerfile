@@ -7,16 +7,6 @@
 # Want to help us make this template better? Share your feedback here: https://forms.gle/ybq9Krt8jtBL3iCk7
 
 ################################################################################
-# Cài đặt Maven
-RUN apt-get update && apt-get install -y openjdk-8 maven
-
-# Cấp quyền thực thi cho mvnw
-RUN chmod +x mvnw
-
-# Chạy lệnh của bạn
-CMD ["mvnw", "dependency:go-offline", "-DskipTests"]
-
-
 # Create a stage for resolving and downloading dependencies.
 FROM eclipse-temurin:21-jdk-jammy as deps
 

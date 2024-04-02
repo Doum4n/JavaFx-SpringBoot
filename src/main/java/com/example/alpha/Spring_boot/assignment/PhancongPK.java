@@ -10,4 +10,5 @@ public class PhancongPK implements Serializable {
     private String maLop;
     private String maMonHoc;
     private String maGiaoVien;
+    private String maHocKy;
 }

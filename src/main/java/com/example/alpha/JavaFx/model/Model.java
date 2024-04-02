@@ -10,10 +10,12 @@ public class Model {
     private static Model model;
     private final viewFactory viewFactory;
     private final viewQuanLy viewQuanLy;
+    private final CellGiaoVien cellGiaoVien;
 
     public Model(){
         this.viewQuanLy = new viewQuanLy();
         this.viewFactory = new viewFactory();
+        this.cellGiaoVien = new CellGiaoVien();
     }
 
     public static synchronized Model getInstant(){

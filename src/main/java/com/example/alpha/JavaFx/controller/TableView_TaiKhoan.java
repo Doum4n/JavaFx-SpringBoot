@@ -1,12 +1,10 @@
 package com.example.alpha.JavaFx.controller;
 
-import com.example.alpha.JavaFx.model.GiaoVien;
 import com.example.alpha.JavaFx.model.Model;
 import com.example.alpha.JavaFx.model.TaiKhoan;
 import com.example.alpha.Spring_boot.user.NguoidungEntity;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
