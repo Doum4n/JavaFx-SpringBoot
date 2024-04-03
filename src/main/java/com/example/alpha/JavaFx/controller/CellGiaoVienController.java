@@ -36,18 +36,22 @@ public class CellGiaoVienController implements Initializable {
     private VBox VBox_LopHoc;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        int i=0;
+        int i=0; //Số lần xuất hiện của MaGV trong bảng phân công
         List<PhancongEntity> phancongEntities = PhanCong.getRepository().findAll();
         Label_MaGV.setText(Model.getInstant().getCellGiaoVien().getMaGV().get());
         Label_tenGV.setText(Model.getInstant().getCellGiaoVien().getTenGV().get());
         Label_MaMH.setText(Model.getInstant().getCellGiaoVien().getMaMH().get());
 
+        //lưu MaGV, MaMH để tìm kiếm
+        Model.getInstant().getViewQuanLy().getId().set(Model.getInstant().getCellGiaoVien().getMaGV().get());
+        Model.getInstant().getViewQuanLy().getMaMH().set(Model.getInstant().getCellGiaoVien().getMaMH().get());
+
         Map<String, Integer> SL = new HashMap<>();
 
+        // Tải CellClass.fxml cho mỗi PhanCong khớp
         for (PhancongEntity phanCong : phancongEntities) {
             if (Objects.equals(phanCong.getMaGiaoVien(), Model.getInstant().getCellGiaoVien().getMaGV().get())) {
                 Model.getInstant().getCellGiaoVien().getMaLop().set(phanCong.getMaLop());
-                // Tải CellClass.fxml cho mỗi PhanCong khớp
                 FXMLLoader loaderClass = new FXMLLoader();
                 loaderClass.setLocation(getClass().getResource("/com/example/alpha/CellClass.fxml"));
                 AnchorPane anchorPaneClass;
@@ -57,12 +61,13 @@ public class CellGiaoVienController implements Initializable {
                     throw new RuntimeException(e);
                 }
                 VBox_LopHoc.getChildren().add(anchorPaneClass);
-                SL.put(Model.getInstant().getCellGiaoVien().getTenGV().get(),++i);
+                SL.put(Model.getInstant().getCellGiaoVien().getMaGV().get(),++i);
             }
         }
 
         SL.forEach((s, integer) -> System.out.println(s+" "+integer));
 
+        //Lấy số lần xuất hiện của MaGV trong bảng phân công
         SL.forEach((s, integer) -> {
             if(integer>=2){
                 Model.getInstant().getViewQuanLy().getSlMH().set(integer);

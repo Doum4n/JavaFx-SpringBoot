@@ -2,6 +2,8 @@ package com.example.alpha.JavaFx.view;
 
 import com.example.alpha.Spring_boot.user.NguoidungEntity;
 import javafx.beans.property.*;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TableView;
@@ -19,20 +21,25 @@ public class viewQuanLy {
     private AnchorPane EditSV;
     private AnchorPane TaiKhoan;
     private TableView<NguoidungEntity> tbView_TaiKhoan;
-    private ScrollPane scrollPane;
+    private AnchorPane scrollPane;
 
     private final ObjectProperty<QuanLy> quanLyProperty;
 
     private StringProperty Tab_selected;
-
-    private AnchorPane CellClass;
-    private Pane CellGiaoVien;
     private IntegerProperty SlMH;
+
+    private StringProperty Id;
+    private StringProperty MaMH;
+
+    private MapProperty<String, Integer> mapProperty;
 
     public viewQuanLy() {
         this.quanLyProperty = new SimpleObjectProperty<>();
         this.Tab_selected = new SimpleStringProperty();
         this.SlMH = new SimpleIntegerProperty(1);
+        this.Id = new SimpleStringProperty();
+        this.MaMH = new SimpleStringProperty();
+        this.mapProperty = new SimpleMapProperty<>();
     }
 
     public AnchorPane getQLSinhVien(){
@@ -68,28 +75,6 @@ public class viewQuanLy {
         return TaiKhoan;
     }
 
-    public Pane getCellGiaoVien() {
-        try {
-            if (CellGiaoVien == null) {
-                CellGiaoVien = new FXMLLoader(getClass().getResource("/com/example/alpha/CellGiaoVien.fxml")).load();
-            }
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        return CellGiaoVien;
-    }
-
-    public AnchorPane getCellClass() {
-        try {
-            if (CellClass == null) {
-                CellClass = new FXMLLoader(getClass().getResource("/com/example/alpha/CellClass.fxml")).load();
-            }
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        return CellClass;
-    }
-
     public AnchorPane getDiem(){
         try {
             if (Diem == null) {
@@ -101,7 +86,7 @@ public class viewQuanLy {
         return Diem;
     }
 
-    public ScrollPane getScrollPane() {
+    public AnchorPane getPCChamDiem() {
         try {
             if (scrollPane == null) {
                 scrollPane = new FXMLLoader(getClass().getResource("/com/example/alpha/PhanCongChamDiem.fxml")).load();

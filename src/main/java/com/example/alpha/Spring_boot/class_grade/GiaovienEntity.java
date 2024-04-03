@@ -1,7 +1,12 @@
 package com.example.alpha.Spring_boot.class_grade;
 
+import com.example.alpha.Spring_boot.subject.MonhocEntity;
 import jakarta.persistence.*;
 import lombok.Data;
+import org.springframework.stereotype.Controller;
+
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 @Entity
 @Data
@@ -22,8 +27,4 @@ public class GiaovienEntity {
     @Basic
     @Column(name = "DienThoai")
     private String dienThoai;
-
-    @Basic
-    @Column(name = "MaMonHoc")
-    private String maMonHoc;
 }

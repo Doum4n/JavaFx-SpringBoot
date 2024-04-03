@@ -1,5 +1,6 @@
 package com.example.alpha.Spring_boot.subject;
 
+import com.example.alpha.Spring_boot.class_grade.GiaovienEntity;
 import jakarta.persistence.*;
 import lombok.Data;
 

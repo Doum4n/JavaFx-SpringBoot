@@ -4,6 +4,7 @@ import com.example.alpha.JavaFx.model.Diem;
 import com.example.alpha.JavaFx.model.Model;
 import com.example.alpha.JavaFx.model.PhongThi;
 import com.example.alpha.Spring_boot.subject.DiemEntity;
+import com.example.alpha.Spring_boot.subject.MonhocEntity;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
@@ -104,6 +105,7 @@ public class DiemController implements Initializable, setTable {
 
         sortedList = new SortedList<>(FXCollections.observableArrayList(filteredList));
         TableView_Diem.setItems(sortedList);
+        System.out.println(Model.getInstant().getViewFactory().getHocky());
     }
 
     @Override

@@ -17,6 +17,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -91,7 +92,7 @@ public class WorkplaceController implements Initializable{
                 case Diem -> borderPane.setRight(Model.getInstant().getViewQuanLy().getDiem());
 //                case PhanLop -> borderPane.setRight(Model.getInstant().getViewQuanLy().getPhanLop());
                 case QLGiaoVien -> borderPane.setRight(Model.getInstant().getViewQuanLy().getQLGiaoVien());
-                case PhanCong -> borderPane.setRight(Model.getInstant().getViewQuanLy().getScrollPane());
+                case PhanCong -> borderPane.setRight(Model.getInstant().getViewQuanLy().getPCChamDiem());
                 case TaiKhoan -> borderPane.setRight(Model.getInstant().getViewQuanLy().getTaiKhoan());
             }
         });

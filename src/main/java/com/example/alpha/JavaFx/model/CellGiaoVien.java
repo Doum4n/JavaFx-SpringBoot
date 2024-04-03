@@ -21,7 +21,7 @@ public class CellGiaoVien {
 
     public CellGiaoVien(){
         List<GiaovienEntity> giaovienEntities = GiaoVien.getRepository().findAll();
-        List<PhancongEntity> phancongEntities = PhanCong.getRepository().findAll();
+        List<PhancongEntity> phancongEntities = PhanCong.getRepository().findAll();;
         this.MaGV = new SimpleStringProperty(giaovienEntities.get(0).getMaGiaoVien());
         this.TenGV = new SimpleStringProperty(giaovienEntities.get(0).getTenGiaoVien());
         this.MaMH = new SimpleStringProperty(phancongEntities.get(0).getMaMonHoc());
