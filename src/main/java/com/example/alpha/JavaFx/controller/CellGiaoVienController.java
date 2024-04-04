@@ -49,6 +49,7 @@ public class CellGiaoVienController implements Initializable {
         for (PhancongEntity phanCong : phancongEntities) {
             if (Objects.equals(phanCong.getMaGiaoVien(), Model.getInstant().getCellGiaoVien().getMaGV().get())) {
                 Model.getInstant().getCellGiaoVien().getMaLop().set(phanCong.getMaLop());
+
                 FXMLLoader loaderClass = new FXMLLoader();
                 loaderClass.setLocation(getClass().getResource("/com/example/alpha/CellClass.fxml"));
                 AnchorPane anchorPaneClass;
@@ -61,8 +62,6 @@ public class CellGiaoVienController implements Initializable {
                 SL.put(Model.getInstant().getCellGiaoVien().getMaGV().get(),++i);
             }
         }
-
-        SL.forEach((s, integer) -> System.out.println(s+" "+integer));
 
         //Lấy số lần xuất hiện của MaGV trong bảng phân công
         SL.forEach((s, integer) -> {
