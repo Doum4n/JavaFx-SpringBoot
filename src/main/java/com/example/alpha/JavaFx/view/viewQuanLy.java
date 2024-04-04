@@ -11,6 +11,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import lombok.Data;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @Data
 public class viewQuanLy {
     private AnchorPane PhanLop;

@@ -51,50 +51,54 @@ public class PCChamDiemController implements Initializable {
         Map<Pane,String> MaMH = new HashMap<>();
 
         // Tải CellGiaoVien cho mỗi Giáo viên được phân công
-        for (int i=1;i<phanCongList.size();i++) {
-            if(Objects.equals(Model.getInstant().getCellGiaoVien().getMaGV().get(), phanCongList.get(i).getMaGiaoVien()) && i+1!=phanCongList.size()) {
-                continue;
-            }
-            System.out.println("GV "+i+": "+phanCongList.get(i).getMaGiaoVien());
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/com/example/alpha/CellGiaoVien.fxml"));
-            Pane pane;
-            try {
-                pane = loader.load();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+        for (int i=1; i<phanCongList.size(); i++) {
+            System.out.println(Model.getInstant().getCellGiaoVien().getMaGV().get()+" : "+phanCongList.get(i).getMaGiaoVien());
 
-            //So sánh với bảng giáo viên
-            for (GiaovienEntity giaovienEntity : giaovienEntities) {
-                if (phanCongList.get(i).getMaGiaoVien().equals(giaovienEntity.getMaGiaoVien())) {
-                    Model.getInstant().getCellGiaoVien().getMaGV().set(giaovienEntity.getMaGiaoVien());
-                    Model.getInstant().getCellGiaoVien().getTenGV().set(giaovienEntity.getTenGiaoVien());
-                    Model.getInstant().getCellGiaoVien().getMaMH().set(phanCongList.get(i).getMaMonHoc());
+            // Lấy MaGV xuất hiện lần đầu trong MaGV Property CellGiaoVien
+            if(!Model.getInstant().getCellGiaoVien().getMaGV().get().contains(phanCongList.get(i).getMaGiaoVien())) {
+                Model.getInstant().getCellGiaoVien().getMaGV().set(phanCongList.get(i).getMaGiaoVien());
+
+                System.out.println("GV "+i+": "+phanCongList.get(i).getMaGiaoVien());
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource("/com/example/alpha/CellGiaoVien.fxml"));
+                Pane pane;
+                try {
+                    pane = loader.load();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
                 }
-            }
 
-            //Tính độ cao của CellGiaovien
-            double height = pane.getHeight();
-            if (Model.getInstant().getViewQuanLy().getSlMH().get() >= 2) {
-                for (int k = 0; k < Model.getInstant().getViewQuanLy().getSlMH().get(); k++) {
-                    pane.setPrefHeight(height + 33);
-                    pane.setMinHeight(height + 33);
-                    pane.setMaxHeight(height + 33);
-                    height += 33;
+                //So sánh với bảng giáo viên
+                for (GiaovienEntity giaovienEntity : giaovienEntities) {
+                    if (phanCongList.get(i).getMaGiaoVien().equals(giaovienEntity.getMaGiaoVien())) {
+//                    Model.getInstant().getCellGiaoVien().getMaGV().set(giaovienEntity.getMaGiaoVien());
+                        Model.getInstant().getCellGiaoVien().getTenGV().set(giaovienEntity.getTenGiaoVien());
+                        Model.getInstant().getCellGiaoVien().getMaMH().set(phanCongList.get(i).getMaMonHoc());
+                    }
                 }
-                Model.getInstant().getViewQuanLy().getSlMH().set(1);
+
+                //Tính độ cao của CellGiaovien
+                double height = pane.getHeight();
+                if (Model.getInstant().getViewQuanLy().getSlMH().get() >= 2) {
+                    for (int k = 0; k < Model.getInstant().getViewQuanLy().getSlMH().get(); k++) {
+                        pane.setPrefHeight(height + 33);
+                        pane.setMinHeight(height + 33);
+                        pane.setMaxHeight(height + 33);
+                        height += 33;
+                    }
+                    Model.getInstant().getViewQuanLy().getSlMH().set(1);
+                }
+
+                VBox_GV.getChildren().add(pane);
+
+                //Đưa vào danh sách để gắn mỗi Pane là MaGV, và MaMH
+                MaGV.put(pane, Model.getInstant().getViewQuanLy().getId().get());
+                MaMH.put(pane, Model.getInstant().getViewQuanLy().getMaMH().get());
+
+                panes = new SortedList<>(FXCollections.observableArrayList(MaGV.keySet()));
+                //VBox tự động thay đổi chiều cao cho phù hợp với đối tượng vừa thêm vào
+                VBox_GV.setPrefHeight(Region.USE_COMPUTED_SIZE);
             }
-
-            VBox_GV.getChildren().add(pane);
-
-            //Đưa vào danh sách để gắn mỗi Pane là MaGV, và MaMH
-            MaGV.put(pane, Model.getInstant().getViewQuanLy().getId().get());
-            MaMH.put(pane, Model.getInstant().getViewQuanLy().getMaMH().get());
-
-            panes = new SortedList<>(FXCollections.observableArrayList(MaGV.keySet()));
-            //VBox tự động thay đổi chiều cao cho phù hợp với đối tượng vừa thêm vào
-            VBox_GV.setPrefHeight(Region.USE_COMPUTED_SIZE);
         }
 
         //Tìm kiếm dựa trên MaGV và MaMH
