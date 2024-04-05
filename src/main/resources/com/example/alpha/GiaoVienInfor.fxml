@@ -3,15 +3,15 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.Pane?>
 
-<Pane prefHeight="166.0" prefWidth="294.0" style="-fx-background-color: B8EDE6;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.alpha.JavaFx.controller.GiaoVienInforController">
+<Pane prefHeight="166.0" prefWidth="294.0" style="-fx-background-color: A7AA1F;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.alpha.JavaFx.controller.GiaoVienInforController">
    <children>
-      <Label fx:id="Label_MaGV" layoutX="102.0" layoutY="29.0" />
-      <Label fx:id="Label_TenGV" layoutX="102.0" layoutY="57.0" />
-      <Label fx:id="Label_DiaChi" layoutX="102.0" layoutY="87.0" />
-      <Label fx:id="Label_DienThoai" layoutX="102.0" layoutY="120.0" />
-      <Label fx:id="Label_MaGV1" layoutX="15.0" layoutY="29.0" text="Mã giáo viên:" />
-      <Label fx:id="Label_TenGV1" layoutX="14.0" layoutY="57.0" text="Tên giáo viên:" />
-      <Label fx:id="Label_DiaChi1" layoutX="48.0" layoutY="87.0" text="Địa chỉ:" />
-      <Label fx:id="Label_DienThoai1" layoutX="66.0" layoutY="120.0" text="SĐT:" />
+      <Label fx:id="Label_MaGV" layoutX="102.0" layoutY="29.0" textFill="WHITE" />
+      <Label fx:id="Label_TenGV" layoutX="102.0" layoutY="57.0" textFill="WHITE" />
+      <Label fx:id="Label_DiaChi" layoutX="102.0" layoutY="87.0" textFill="WHITE" />
+      <Label fx:id="Label_DienThoai" layoutX="102.0" layoutY="120.0" textFill="WHITE" />
+      <Label fx:id="Label_MaGV1" layoutX="15.0" layoutY="29.0" text="Mã giáo viên:" textFill="WHITE" />
+      <Label fx:id="Label_TenGV1" layoutX="14.0" layoutY="57.0" text="Tên giáo viên:" textFill="WHITE" />
+      <Label fx:id="Label_DiaChi1" layoutX="48.0" layoutY="87.0" text="Địa chỉ:" textFill="WHITE" />
+      <Label fx:id="Label_DienThoai1" layoutX="66.0" layoutY="120.0" text="SĐT:" textFill="WHITE" />
    </children>
 </Pane>

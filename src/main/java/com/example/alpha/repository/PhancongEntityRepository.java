@@ -7,6 +7,8 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface PhancongEntityRepository extends JpaRepository<PhancongEntity, Integer> {
-    @Query("select a.maGiaoVien from PhancongEntity a where a.maLop=?1 and a.maMonHoc=?2")
-    String getMaGV(String MaLop, String MaMH);
+    @Query("select a.maHocKy from PhancongEntity a where a.maGiaoVien=?1")
+    String getMaHocKy(String MaSV);
+    @Query("select a.maNamHoc from PhancongEntity a where a.maGiaoVien=?1")
+    List<String> getNamHoc(String MaSV);
 }

@@ -49,7 +49,7 @@ public class CellGiaoVienController implements Initializable {
 
         // Tải CellClass.fxml cho mỗi PhanCong khớp
         for (PhancongEntity phanCong : phancongEntities) {
-            if (Objects.equals(phanCong.getMaGiaoVien(), Model.getInstant().getCellGiaoVien().getMaGV().get())) {
+            if (Objects.equals(phanCong.getMaGiaoVien(), Model.getInstant().getCellGiaoVien().getMaGV().get()) && Objects.equals(phanCong.getMaNamHoc(), Model.getInstant().getViewFactory().getNamHoc().get())) {
                 Model.getInstant().getCellGiaoVien().getMaLop().set(phanCong.getMaLop());
 
                 FXMLLoader loaderClass = new FXMLLoader();
