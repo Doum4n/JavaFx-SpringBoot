@@ -1,5 +1,7 @@
 package com.example.alpha.JavaFx.view;
 
+import com.example.alpha.JavaFx.model.CellGiaoVien;
+import com.example.alpha.Spring_boot.assignment.PhancongEntity;
 import com.example.alpha.Spring_boot.user.NguoidungEntity;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
@@ -34,7 +36,13 @@ public class viewQuanLy {
     private StringProperty Id;
     private StringProperty MaMH;
 
-    private MapProperty<String, Integer> mapProperty;
+    private StringProperty MaSV;
+
+    private StringProperty LopSelected;
+    private StringProperty MaGVSelected;
+    private StringProperty MaMHSelected;
+
+    private ObjectProperty<AnchorPane> anchorPaneProperty;
 
     public viewQuanLy() {
         this.quanLyProperty = new SimpleObjectProperty<>();
@@ -42,7 +50,12 @@ public class viewQuanLy {
         this.SlMH = new SimpleIntegerProperty(1);
         this.Id = new SimpleStringProperty();
         this.MaMH = new SimpleStringProperty();
-        this.mapProperty = new SimpleMapProperty<>();
+
+        this.LopSelected = new SimpleStringProperty();
+        this.MaGVSelected = new SimpleStringProperty();
+        this.MaMHSelected = new SimpleStringProperty();
+
+        this.anchorPaneProperty = new SimpleObjectProperty<>(new AnchorPane());
     }
 
     public AnchorPane getQLSinhVien(){

@@ -18,13 +18,15 @@ public class CellGiaoVien {
     private final StringProperty TenGV;
     private final StringProperty MaMH;
     private final StringProperty MaLop;
+    private final StringProperty DiaChi;
+    private final StringProperty SDT;
 
     public CellGiaoVien(){
-        List<GiaovienEntity> giaovienEntities = GiaoVien.getRepository().findAll();
-        List<PhancongEntity> phancongEntities = PhanCong.getRepository().findAll();;
         this.MaGV = new SimpleStringProperty(""/*giaovienEntities.get(0).getMaGiaoVien()*/);
         this.TenGV = new SimpleStringProperty(/*giaovienEntities.get(0).getTenGiaoVien()*/);
         this.MaMH = new SimpleStringProperty(/*phancongEntities.get(0).getMaMonHoc()*/);
         this.MaLop = new SimpleStringProperty(/*phancongEntities.get(0).getMaLop()*/);
+        this.DiaChi = new SimpleStringProperty();
+        this.SDT = new SimpleStringProperty();
     }
 }

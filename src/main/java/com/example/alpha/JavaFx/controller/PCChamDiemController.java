@@ -1,36 +1,65 @@
 package com.example.alpha.JavaFx.controller;
 
-import com.example.alpha.JavaFx.model.CellGiaoVien;
-import com.example.alpha.JavaFx.model.GiaoVien;
-import com.example.alpha.JavaFx.model.Model;
-import com.example.alpha.JavaFx.model.PhanCong;
+import com.example.alpha.JavaFx.model.*;
 import com.example.alpha.Spring_boot.assignment.PhancongEntity;
 import com.example.alpha.Spring_boot.class_grade.GiaovienEntity;
-import javafx.beans.property.MapProperty;
+import com.example.alpha.Spring_boot.student.SinhVienEntity;
+import com.example.alpha.Spring_boot.subject.DiemQTEntity;
+import com.example.alpha.Spring_boot.subject.DiemQTPK;
+import javafx.beans.binding.Bindings;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import javafx.util.Callback;
+import org.springframework.jmx.export.metadata.ManagedOperation;
 import org.springframework.stereotype.Controller;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 
 @Controller
-public class PCChamDiemController implements Initializable {
+public class PCChamDiemController implements Initializable{
     @FXML
     private VBox VBox_GV;
+
+    @FXML
+    private TableColumn<?, ?> Column_DiemQT;
+
+    @FXML
+    private TableColumn<DiemQTEntity, String> Column_MaSV;
+
+    @FXML
+    private TableColumn<DiemQTEntity, String> Column_TenSV;
+
+    @FXML
+    private TableView<DiemQTEntity> TableView_Diem;
+
+    @FXML
+    private Label Label_DiaChi;
+
+    @FXML
+    private Label Label_DienThoai;
+
+    @FXML
+    private Label Label_MaGV;
+
+    @FXML
+    private Label Label_TenGV;
 
     @FXML
     private ScrollPane ScrollPane_Main;
@@ -41,7 +70,7 @@ public class PCChamDiemController implements Initializable {
     private SortedList<Pane> panes;
 
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    public void initialize(URL url, ResourceBundle resourceBundle){
         List<GiaovienEntity> giaovienEntities = GiaoVien.getRepository().findAll();
         List<PhancongEntity> phanCongList = PhanCong.getRepository().findAll();
         ScrollPane_Main.setHbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
@@ -54,19 +83,21 @@ public class PCChamDiemController implements Initializable {
 
         // Tải CellGiaoVien cho mỗi Giáo viên được phân công
         for (int i=1; i<phanCongList.size(); i++) {
-            System.out.println(Model.getInstant().getCellGiaoVien().getMaGV().get()+" : "+phanCongList.get(i).getMaGiaoVien());
-
             // Lấy MaGV xuất hiện lần đầu trong MaGV của CellGiaoVien
             if(!Model.getInstant().getCellGiaoVien().getMaGV().get().contains(phanCongList.get(i).getMaGiaoVien())) {
                 //Cập nhật thông tin trước khi tải CellGiaoVien
                 // Thiết lập MaGV cho CellGiaoVien trước vì Model.getInstant().getCellGiaoVien().getMaGV().get = ""
                 Model.getInstant().getCellGiaoVien().getMaGV().set(phanCongList.get(i).getMaGiaoVien());
+
                 for (GiaovienEntity giaovienEntity : giaovienEntities) {
                     if (phanCongList.get(i).getMaGiaoVien().equals(giaovienEntity.getMaGiaoVien())) {
-                        Model.getInstant().getCellGiaoVien().getTenGV().set(giaovienEntity.getTenGiaoVien());
                         Model.getInstant().getCellGiaoVien().getMaMH().set(phanCongList.get(i).getMaMonHoc());
+                        Model.getInstant().getCellGiaoVien().getTenGV().set(giaovienEntity.getTenGiaoVien());
+                        Model.getInstant().getCellGiaoVien().getDiaChi().set(giaovienEntity.getDiaChi());
+                        Model.getInstant().getCellGiaoVien().getSDT().set(giaovienEntity.getDienThoai());
                     }
                 }
+
 
                 //Tải CellGiaoVien
                 FXMLLoader loader = new FXMLLoader();
@@ -89,6 +120,7 @@ public class PCChamDiemController implements Initializable {
                     }
                     Model.getInstant().getViewQuanLy().getSlMH().set(1);
                 }
+
 
                 //Thêm vào VBox_GV
                 VBox_GV.getChildren().add(pane);
@@ -118,7 +150,6 @@ public class PCChamDiemController implements Initializable {
                 });*/
             }else{
                 VBox_GV.getChildren().clear();
-                VBox_GV.getChildren().addAll(panes);
             }
         });
     }

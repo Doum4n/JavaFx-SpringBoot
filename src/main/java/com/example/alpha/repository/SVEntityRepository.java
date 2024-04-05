@@ -10,4 +10,7 @@ import java.util.List;
 @Repository
 public interface SVEntityRepository extends JpaRepository<SinhVienEntity, String> {
     List<SinhVienEntity> findAllByMaSinhVienIsContaining(String id);
+
+    @Query("select a.hoTen from SinhVienEntity a where a.maSinhVien=?1")
+    String getByHoTen(String MaSV);
 }

@@ -3,6 +3,7 @@ package com.example.alpha.JavaFx.controller;
 import com.example.alpha.JavaFx.model.GiaoVien;
 import com.example.alpha.JavaFx.model.Model;
 import com.example.alpha.JavaFx.model.PhanCong;
+import com.example.alpha.JavaFx.model.PhanLop;
 import com.example.alpha.Spring_boot.assignment.PhancongEntity;
 import javafx.beans.property.*;
 import javafx.fxml.FXML;
@@ -14,6 +15,7 @@ import javafx.scene.layout.VBox;
 import lombok.Getter;
 import org.springframework.stereotype.Controller;
 
+import javax.xml.transform.Source;
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
@@ -60,6 +62,7 @@ public class CellGiaoVienController implements Initializable {
                 }
                 VBox_LopHoc.getChildren().add(anchorPaneClass);
                 SL.put(Model.getInstant().getCellGiaoVien().getMaGV().get(),++i);
+
             }
         }
 
