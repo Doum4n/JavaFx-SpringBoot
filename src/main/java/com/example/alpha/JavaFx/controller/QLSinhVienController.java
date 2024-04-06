@@ -1,8 +1,9 @@
 package com.example.alpha.JavaFx.controller;
 
+import com.example.alpha.JavaFx.model.ButtonCell;
 import com.example.alpha.JavaFx.model.Model;
 import com.example.alpha.JavaFx.model.SinhVien;
-import javafx.beans.property.Property;
+import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -12,20 +13,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import com.example.alpha.Spring_boot.student.SinhVienEntity;
 import org.springframework.stereotype.Controller;
 
 import java.net.URL;
 import java.sql.Date;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.time.chrono.Chronology;
-import java.time.temporal.ChronoField;
 import java.util.*;
-import java.util.jar.JarOutputStream;
 
 @Controller
 public class QLSinhVienController implements Initializable, setTable {
@@ -66,6 +60,9 @@ public class QLSinhVienController implements Initializable, setTable {
     private TableColumn<?, ?> Column_NgaySinh;
 
     @FXML
+    private TableColumn<SinhVienEntity, Button> ColumnX;
+
+    @FXML
     private DatePicker DataPicker_NgaySinh;
 
     @FXML
@@ -104,28 +101,27 @@ public class QLSinhVienController implements Initializable, setTable {
     @Override
     public void addListenerTableView(){
         data = FXCollections.observableArrayList(sv);
-        TableView_SinhVien.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-            if (event.getClickCount() == 1) {
-                int index = TableView_SinhVien.getSelectionModel().getSelectedIndex();
-                sinhVien = data.get(index);
-
-                TextField_HoTen.setText(sinhVien.getHoTen());
-                TextField_Email.setText(sinhVien.getEmail());
-                TextArea_DiaChi.setText(sinhVien.getDiaChi());
+        Model.getInstant().getViewQuanLy().getSvSelected().addListener((observable, oldValue, newValue) -> {
+            data.stream().filter(sinhVienEntity ->
+                    sinhVienEntity.getMaSinhVien().equals(Model.getInstant().getViewQuanLy().getSvSelected().get())
+            ).findFirst().ifPresent(sinhVienEntity -> {
+                TextField_HoTen.setText(sinhVienEntity.getHoTen());
+                TextField_Email.setText(sinhVienEntity.getEmail());
+                TextArea_DiaChi.setText(sinhVienEntity.getDiaChi());
 
                 isFemale.bind(CheckBox_Nu.selectedProperty());
 
                 //Hien thi gioi tinh
-                if(sinhVien.getGioiTinh()){
+                if (sinhVienEntity.getGioiTinh()) {
                     CheckBox_Nu.selectedProperty().set(true);
                     CheckBox_Nam.selectedProperty().set(false);
-                }else{
+                } else {
                     CheckBox_Nam.selectedProperty().set(true);
                     CheckBox_Nu.selectedProperty().set(false);
                 }
-                TextField_MaSV.setText(sinhVien.getMaSinhVien());
-                DataPicker_NgaySinh.setValue(sinhVien.getNgaySinh().toLocalDate());
-            }
+                TextField_MaSV.setText(sinhVienEntity.getMaSinhVien());
+                DataPicker_NgaySinh.setValue(sinhVienEntity.getNgaySinh().toLocalDate());
+            });
         });
         addListenerSearch();
     }
@@ -138,6 +134,9 @@ public class QLSinhVienController implements Initializable, setTable {
         Column_HoTen.setCellValueFactory(new PropertyValueFactory<>("HoTen"));
         Column_MaSV.setCellValueFactory(new PropertyValueFactory<>("MaSinhVien"));
         Column_NgaySinh.setCellValueFactory(new PropertyValueFactory<>("NgaySinh"));
+        ColumnX.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(new ButtonCell().getButton()));
+
+        System.out.println(ColumnX.getColumns());
     }
 
     @Override

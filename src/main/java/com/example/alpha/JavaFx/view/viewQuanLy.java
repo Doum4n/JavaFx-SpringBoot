@@ -7,6 +7,7 @@ import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
@@ -15,6 +16,7 @@ import lombok.Data;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 @Data
 public class viewQuanLy {
@@ -43,6 +45,9 @@ public class viewQuanLy {
     private StringProperty MaMHSelected;
 
     private ObjectProperty<AnchorPane> anchorPaneProperty;
+    private ObjectProperty<Button> buttonProperty;
+
+    private StringProperty SvSelected;
 
     public viewQuanLy() {
         this.quanLyProperty = new SimpleObjectProperty<>();
@@ -55,7 +60,10 @@ public class viewQuanLy {
         this.MaGVSelected = new SimpleStringProperty();
         this.MaMHSelected = new SimpleStringProperty();
 
+        this.SvSelected = new SimpleStringProperty();
+
         this.anchorPaneProperty = new SimpleObjectProperty<>(new AnchorPane());
+        this.buttonProperty = new SimpleObjectProperty<>(new Button("Xem"));
     }
 
     public AnchorPane getQLSinhVien(){
