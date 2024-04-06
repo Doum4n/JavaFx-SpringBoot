@@ -7,7 +7,7 @@ import javafx.scene.control.*;
 import lombok.Getter;
 
 @Getter
-public class ButtonCell extends TableCell<SinhVienEntity, Button> {
+public class ButtonCell {
 
     private final Button button;
 
@@ -17,19 +17,6 @@ public class ButtonCell extends TableCell<SinhVienEntity, Button> {
             TableCell tableCell = (TableCell) button.getParent().getParent().lookup("#Column_MaSV");
             Model.getInstant().getViewQuanLy().getSvSelected().set(tableCell.getItem().toString());
         });
-    }
-
-    @Override
-    protected void updateItem(Button item, boolean empty) {
-        super.updateItem(item, empty);
-
-        if (empty) {
-            setGraphic(null);
-            setText(null);
-        } else {
-            setGraphic(item);
-            setText(null); // Hiển thị giá trị String nếu có
-        }
     }
 
 }
