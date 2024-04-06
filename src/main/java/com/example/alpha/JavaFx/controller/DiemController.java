@@ -165,9 +165,13 @@ public class DiemController implements Initializable, setTable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        //Tải dữ liệu cho bảng
         setTableView();
+        //Thêm Listener khi nhấn vào một dòng trong bảng
         addListenerTableView();
+        //Listener của ChoiceBox mã phòng thi
         addListenerChoiceBox();
+
         button_update.setOnAction(event -> {
             DiemEntity diemEntity = new DiemEntity(
                     TextField_MaSV.getText(),

@@ -49,7 +49,9 @@ public class CellGiaoVienController implements Initializable {
 
         // Tải CellClass.fxml cho mỗi PhanCong khớp
         for (PhancongEntity phanCong : phancongEntities) {
-            if (Objects.equals(phanCong.getMaGiaoVien(), Model.getInstant().getCellGiaoVien().getMaGV().get()) && Objects.equals(phanCong.getMaNamHoc(), Model.getInstant().getViewFactory().getNamHoc().get())) {
+            if (Objects.equals(phanCong.getMaGiaoVien(), Model.getInstant().getCellGiaoVien().getMaGV().get())
+                    && Objects.equals(phanCong.getMaNamHoc(), Model.getInstant().getViewFactory().getNamHoc().get())
+                    && Objects.equals(phanCong.getMaHocKy(),Model.getInstant().getViewFactory().getHocky().get())) {
                 Model.getInstant().getCellGiaoVien().getMaLop().set(phanCong.getMaLop());
 
                 FXMLLoader loaderClass = new FXMLLoader();
@@ -61,8 +63,8 @@ public class CellGiaoVienController implements Initializable {
                     throw new RuntimeException(e);
                 }
                 VBox_LopHoc.getChildren().add(anchorPaneClass);
-                SL.put(Model.getInstant().getCellGiaoVien().getMaGV().get(),++i);
 
+                SL.put(Model.getInstant().getCellGiaoVien().getMaGV().get(),++i);
             }
         }
 
