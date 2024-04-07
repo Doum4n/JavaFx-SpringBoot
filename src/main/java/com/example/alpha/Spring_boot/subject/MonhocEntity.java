@@ -21,6 +21,6 @@ public class MonhocEntity {
     private int soTiet;
 
     @Basic
-    @Column(name = "HeSo")
-    private int heSo;
+    @Column(name = "SoTC")
+    private int SoTC;
 }

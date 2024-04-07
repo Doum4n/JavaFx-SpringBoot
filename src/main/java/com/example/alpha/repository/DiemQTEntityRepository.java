@@ -3,6 +3,9 @@ package com.example.alpha.repository;
 import com.example.alpha.Spring_boot.subject.DiemQTEntity;
 import com.example.alpha.Spring_boot.subject.DiemQTPK;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 public interface DiemQTEntityRepository extends JpaRepository<DiemQTEntity, DiemQTPK> {
+    @Query("select a.DiemQT from DiemQTEntity a where a.MaSV=?1")
+    Double getDiemQT(String MaSV);
 }
