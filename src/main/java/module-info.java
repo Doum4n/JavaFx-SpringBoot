@@ -42,4 +42,9 @@ module com.example.alpha {
     exports com.example.alpha.repository;
     exports com.example.alpha.Spring_boot.class_grade;
     exports com.example.alpha.JavaFx.model;
+    opens com.example.alpha.JavaFx.controller.Diem;
+    opens com.example.alpha.JavaFx.controller.SinhVien;
+    opens com.example.alpha.JavaFx.controller.GiaoVien;
+    opens com.example.alpha.JavaFx.controller.TaiKhoan;
+    opens com.example.alpha.JavaFx.controller.Menu;
 }

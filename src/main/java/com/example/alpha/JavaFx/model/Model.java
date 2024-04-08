@@ -11,11 +11,13 @@ public class Model {
     private final viewFactory viewFactory;
     private final viewQuanLy viewQuanLy;
     private final CellGiaoVien cellGiaoVien;
+    private final NhapDiemThi nhapDiemThi;
 
     public Model(){
         this.viewQuanLy = new viewQuanLy();
         this.viewFactory = new viewFactory();
         this.cellGiaoVien = new CellGiaoVien();
+        this.nhapDiemThi = new NhapDiemThi();
     }
 
     public static synchronized Model getInstant(){

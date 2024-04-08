@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="578.0" prefWidth="1052.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.alpha.JavaFx.controller.GiaoVien.PCChamDiemController">
+   <ScrollPane fx:id="ScrollPane_Main" layoutX="84.0" layoutY="94.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="459.0" prefWidth="615.0">
+      <VBox fx:id="VBox_GV" prefHeight="484.0" prefWidth="598.0" />
+   </ScrollPane>
+   <TextField fx:id="textField_Search" layoutX="84.0" layoutY="26.0" promptText="Search" />
+   <Label layoutX="84.0" layoutY="67.0" text="MaGV" />
+   <Label layoutX="172.0" layoutY="67.0" text="TenGV" />
+   <Label layoutX="250.0" layoutY="67.0" text="MaMH" />
+   <Pane layoutX="735.0" layoutY="11.0" prefHeight="166.0" prefWidth="294.0">
+      <children>
+         <fx:include source="GiaoVienInfor.fxml" />
+      </children>
+   </Pane>
+   <Pane layoutX="735.0" layoutY="197.0" prefHeight="353.0" prefWidth="294.0">
+      <children>
+         <fx:include source="DiemQT.fxml" />
+      </children>
+   </Pane>
+</AnchorPane>

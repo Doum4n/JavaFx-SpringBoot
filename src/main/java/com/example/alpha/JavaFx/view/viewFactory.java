@@ -1,9 +1,8 @@
 package com.example.alpha.JavaFx.view;
 
-import com.example.alpha.JavaFx.controller.AccountType;
-import com.example.alpha.JavaFx.controller.LoginController;
+import com.example.alpha.JavaFx.controller.TaiKhoan.AccountType;
+import com.example.alpha.JavaFx.controller.Menu.LoginController;
 import com.example.alpha.JavaFx.model.HocKy;
-import com.example.alpha.JavaFx.model.NamHoc;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -14,7 +13,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import lombok.Data;
-import lombok.Getter;
 
 import java.util.Objects;
 
@@ -40,7 +38,7 @@ public class viewFactory {
     public HBox getQuanLyView(){
         try {
             if (QuanLy == null) {
-                QuanLy = new FXMLLoader(getClass().getResource("/com/example/alpha/QuanLy.fxml")).load();
+                QuanLy = new FXMLLoader(getClass().getResource("/com/example/alpha/Workplace/QuanLy.fxml")).load();
             }
         }catch (Exception e){
             e.printStackTrace();
@@ -51,7 +49,7 @@ public class viewFactory {
     public AnchorPane getDashboard(){
         try {
             if (dashboard == null) {
-                dashboard = new FXMLLoader(getClass().getResource("/com/example/alpha/TongQuan.fxml")).load();
+                dashboard = new FXMLLoader(getClass().getResource("/com/example/alpha/Workplace/TongQuan.fxml")).load();
             }
         }catch (Exception e){
             e.printStackTrace();
@@ -74,7 +72,7 @@ public class viewFactory {
     }
 
     public void showWorkPlaceWindow(){
-        FXMLLoader loader = new FXMLLoader((Objects.requireNonNull(LoginController.class.getResource("/com/example/alpha/workplace.fxml"))));
+        FXMLLoader loader = new FXMLLoader((Objects.requireNonNull(LoginController.class.getResource("/com/example/alpha/Workplace/workplace.fxml"))));
         Scene scene = null;
         try{
             scene = new Scene(loader.load());

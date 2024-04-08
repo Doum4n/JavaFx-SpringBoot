@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+
+<TableView fx:id="TableView_Diem" prefHeight="362.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.alpha.JavaFx.controller.Diem.DiemQTController">
+   <columns>
+      <TableColumn fx:id="Column_MaSV" prefWidth="57.5999755859375" text="MaSV" />
+      <TableColumn fx:id="Column_TenSV" prefWidth="181.5999755859375" text="TenSV" />
+      <TableColumn fx:id="Column_DiemQT" prefWidth="57.60003662109375" text="DiemQT" />
+   </columns>
+</TableView>

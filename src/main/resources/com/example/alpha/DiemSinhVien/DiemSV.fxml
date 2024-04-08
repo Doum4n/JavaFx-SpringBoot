@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+
+<TableView fx:id="TableView_DiemSV" prefHeight="226.0" prefWidth="604.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.alpha.JavaFx.controller.Diem.DiemSVController">
+   <columns>
+      <TableColumn fx:id="Column_MaMH" prefWidth="75.0" text="MaMH" />
+      <TableColumn fx:id="Column_TenMH" prefWidth="75.0" text="TenMH" />
+      <TableColumn fx:id="Column_DiemQT" prefWidth="75.0" text="DiemQT" />
+      <TableColumn prefWidth="75.0" text="Điểm thi">
+         <columns>
+            <TableColumn fx:id="Column_ThiL1" prefWidth="75.0" text="Thi L1" />
+            <TableColumn fx:id="Column_ThiL2" prefWidth="75.0" text="Thi L2" />
+            <TableColumn fx:id="Column_ThiL3" prefWidth="75.0" text="Thi L3" />
+         </columns>
+      </TableColumn>
+      <TableColumn fx:id="Column_DiemTK" prefWidth="75.0" text="ĐiểmTK" />
+      <TableColumn fx:id="Column_Loai" prefWidth="75.0" text="Loại" />
+   </columns>
+</TableView>

@@ -41,11 +41,6 @@ public class DiemEntity {
     @Column(name = "MaNamHoc")
     private String maNamHoc;
 
-    @Basic
-    @Column(name = "Diem")
-    @Check(constraints = "diem BETWEEN 0 AND 10")
-    private double diem;
-
     @Id
     @Basic
     @Column(name = "LanThi")
@@ -66,26 +61,25 @@ public class DiemEntity {
     private SinhVienEntity sinhVienEntity;
 
     @ToString.Exclude
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "MaMonHoc", updatable = false, insertable = false)
     private MonhocEntity monhocEntity;
 
     @ToString.Exclude
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "MaHocKy", updatable = false, insertable = false)
     private HockyEntity hockyEntity;
 
     @ToString.Exclude
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "PhongThi", insertable = false, updatable = false)
     private PhongThiEntity phongThiEntity;
 
-    public DiemEntity(String maSinhVien, String maMonHoc, String maHocKy, String maNamHoc, double diem, int lanThi, String phongThi) {
+    public DiemEntity(String maSinhVien, String maMonHoc, String maHocKy, String maNamHoc, int lanThi, String phongThi) {
         this.maSinhVien = maSinhVien;
         this.maMonHoc = maMonHoc;
         this.maHocKy = maHocKy;
         this.maNamHoc = maNamHoc;
-        this.diem = diem;
         this.lanThi = lanThi;
         this.PhongThi = phongThi;
     }

@@ -9,6 +9,7 @@ import com.example.alpha.Spring_boot.subject.MonhocEntity;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.lang.Nullable;
 
 @Entity
 @Data
@@ -33,10 +34,12 @@ public class KqSinhVienMonhocEntity {
     private String maHocKy;
 
     @Basic
+    @Nullable
     @Column(name = "DiemQuaTrinh")
     private double diemQuaTrinh;
 
     @Basic
+    @Nullable
     @Column(name = "DiemThi")
     private double diemThi;
 
@@ -54,7 +57,6 @@ public class KqSinhVienMonhocEntity {
         this.maNamHoc = maNamHoc;
         this.maMonHoc = maMonHoc;
         this.maHocKy = maHocKy;
-        this.diemQuaTrinh = diemQuaTrinh;
         this.diemThi = diemThi;
         this.lanThi = lanThi;
     }

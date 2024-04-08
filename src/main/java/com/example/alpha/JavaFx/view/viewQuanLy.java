@@ -1,22 +1,13 @@
 package com.example.alpha.JavaFx.view;
 
-import com.example.alpha.JavaFx.model.CellGiaoVien;
-import com.example.alpha.Spring_boot.assignment.PhancongEntity;
 import com.example.alpha.Spring_boot.user.NguoidungEntity;
 import javafx.beans.property.*;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
 import lombok.Data;
-
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+import lombok.Getter;
 
 @Data
 public class viewQuanLy {
@@ -69,7 +60,7 @@ public class viewQuanLy {
     public AnchorPane getQLSinhVien(){
         try {
             if (QLSinhVien == null) {
-                QLSinhVien = new FXMLLoader(getClass().getResource("/com/example/alpha/SinhVien.fxml")).load();
+                QLSinhVien = new FXMLLoader(getClass().getResource("/com/example/alpha/DiemSinhVien/SinhVien.fxml")).load();
             }
         }catch (Exception e){
             e.printStackTrace();
@@ -91,7 +82,7 @@ public class viewQuanLy {
     public AnchorPane getTaiKhoan(){
         try {
             if (TaiKhoan == null) {
-                TaiKhoan = new FXMLLoader(getClass().getResource("/com/example/alpha/TaiKhoan.fxml")).load();
+                TaiKhoan = new FXMLLoader(getClass().getResource("/com/example/alpha/QuanLyTaiKhoan/TaiKhoan.fxml")).load();
             }
         }catch (Exception e){
             e.printStackTrace();
@@ -102,7 +93,7 @@ public class viewQuanLy {
     public AnchorPane getDiem(){
         try {
             if (Diem == null) {
-                Diem = new FXMLLoader(getClass().getResource("/com/example/alpha/Diem.fxml")).load();
+                Diem = new FXMLLoader(getClass().getResource("/com/example/alpha/NhapDiemThi/Diem.fxml")).load();
             }
         }catch (Exception e){
             e.printStackTrace();
@@ -113,7 +104,7 @@ public class viewQuanLy {
     public AnchorPane getPCChamDiem() {
         try {
             if (scrollPane == null) {
-                scrollPane = new FXMLLoader(getClass().getResource("/com/example/alpha/PhanCongChamDiem.fxml")).load();
+                scrollPane = new FXMLLoader(getClass().getResource("/com/example/alpha/DiemQuaTrinh/PhanCongChamDiem.fxml")).load();
             }
         }catch (Exception e){
             e.printStackTrace();
@@ -146,7 +137,7 @@ public class viewQuanLy {
     public TableView<NguoidungEntity> getTbView_TaiKhoan() {
         try {
             if (tbView_TaiKhoan == null) {
-                tbView_TaiKhoan = new FXMLLoader(getClass().getResource("/com/example/alpha/TableView_TaiKhoan.fxml")).load();
+                tbView_TaiKhoan = new FXMLLoader(getClass().getResource("/com/example/alpha/QuanLyTaiKhoan/TableView_TaiKhoan.fxml")).load();
             }
         }catch (Exception e){
             e.printStackTrace();
