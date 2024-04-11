@@ -1,9 +1,9 @@
 package com.example.alpha.JavaFx.controller.SinhVien;
 
 import com.example.alpha.JavaFx.controller.setTable;
-import com.example.alpha.JavaFx.model.ButtonCellSV;
+import com.example.alpha.JavaFx.model.SinhVien.ButtonCellSV;
 import com.example.alpha.JavaFx.model.Model;
-import com.example.alpha.JavaFx.model.SinhVien;
+import com.example.alpha.JavaFx.model.SinhVien.SinhVien;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.FXCollections;

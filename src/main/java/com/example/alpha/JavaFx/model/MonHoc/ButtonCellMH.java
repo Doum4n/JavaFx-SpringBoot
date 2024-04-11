@@ -1,5 +1,6 @@
-package com.example.alpha.JavaFx.model;
+package com.example.alpha.JavaFx.model.MonHoc;
 
+import com.example.alpha.JavaFx.model.Model;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableCell;
 import lombok.Getter;

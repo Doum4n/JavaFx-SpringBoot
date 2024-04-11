@@ -1,6 +1,6 @@
 package com.example.alpha.JavaFx.controller.GiaoVien;
 
-import com.example.alpha.JavaFx.model.GiaoVien;
+import com.example.alpha.JavaFx.model.GiaoVien.GiaoVien;
 import com.example.alpha.Spring_boot.class_grade.GiaovienEntity;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import javafx.collections.FXCollections;

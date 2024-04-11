@@ -51,4 +51,12 @@ public class DiemQTEntity {
     @OneToOne(orphanRemoval = true)
     @JoinColumn(name = "MaNH",insertable = false,updatable = false)
     private NamhocEntity namhocEntity;
+
+    public DiemQTEntity(String maSV, String maMH, String maHK, String maNH, Double diemQT) {
+        MaSV = maSV;
+        MaMH = maMH;
+        MaHK = maHK;
+        MaNH = maNH;
+        DiemQT = diemQT;
+    }
 }

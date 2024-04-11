@@ -1,4 +1,4 @@
-package com.example.alpha.JavaFx.model;
+package com.example.alpha.JavaFx.model.GiaoVien;
 
 import com.example.alpha.Spring_boot.assignment.PhancongEntity;
 import com.example.alpha.Spring_boot.class_grade.GiaovienEntity;

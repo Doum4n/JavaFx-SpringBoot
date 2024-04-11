@@ -1,8 +1,6 @@
-package com.example.alpha.JavaFx.model;
+package com.example.alpha.JavaFx.model.Diem;
 
 import com.example.alpha.repository.DiemQTEntityRepository;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 import lombok.Getter;
 import org.springframework.stereotype.Component;
 

@@ -31,10 +31,6 @@ public class viewQuanLy {
 
     private StringProperty MaSV;
 
-    private StringProperty LopSelected;
-    private StringProperty MaGVSelected;
-    private StringProperty MaMHSelected;
-
     private ObjectProperty<AnchorPane> anchorPaneProperty;
     private ObjectProperty<Button> buttonProperty;
 
@@ -46,10 +42,6 @@ public class viewQuanLy {
         this.SlMH = new SimpleIntegerProperty(1);
         this.Id = new SimpleStringProperty();
         this.MaMH = new SimpleStringProperty();
-
-        this.LopSelected = new SimpleStringProperty();
-        this.MaGVSelected = new SimpleStringProperty();
-        this.MaMHSelected = new SimpleStringProperty();
 
         this.SvSelected = new SimpleStringProperty();
 

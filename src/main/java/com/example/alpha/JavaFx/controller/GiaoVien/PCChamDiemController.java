@@ -1,6 +1,9 @@
 package com.example.alpha.JavaFx.controller.GiaoVien;
 
 import com.example.alpha.JavaFx.model.*;
+import com.example.alpha.JavaFx.model.Diem.DiemQT;
+import com.example.alpha.JavaFx.model.GiaoVien.GiaoVien;
+import com.example.alpha.JavaFx.model.GiaoVien.PhanCong;
 import com.example.alpha.Spring_boot.assignment.PhancongEntity;
 import com.example.alpha.Spring_boot.class_grade.GiaovienEntity;
 import javafx.fxml.FXML;
@@ -26,6 +29,8 @@ public class PCChamDiemController implements Initializable{
     private TextField textField_Search;
     @FXML
     private TextField TextField_DiemQT;
+    @FXML
+    private Button Button_Update;
     private List<GiaovienEntity> giaovienEntities;
     private List<PhancongEntity> phanCongList;
     @Override
@@ -60,12 +65,6 @@ public class PCChamDiemController implements Initializable{
                                 VBox_GV.getChildren().add(pane);
                             }
                         }));
-                /*MaMH.forEach((pane, s) -> {
-                    if(newValue.equals(s)){
-                        VBox_GV.getChildren().clear();
-                        VBox_GV.getChildren().add(pane);
-                    }
-                });*/
             }else{
                 addData(MaGV,MaMH);
             }
@@ -74,6 +73,11 @@ public class PCChamDiemController implements Initializable{
         Model.getInstant().getDiemQuaTrinh().getDiem().addListener((observable, oldValue, newValue) -> {
             TextField_DiemQT.setText(newValue);
         });
+
+        Button_Update.setOnAction(event -> {
+            DiemQT.getRepository().updateDiemQT(Model.getInstant().getDiemQuaTrinh().getMaSV().get(), Double.parseDouble(TextField_DiemQT.getText()));
+            Model.getInstant().getDiemQuaTrinh().getIsUpdate().set(true);
+        });
     }
 
     private void addData(Map<String,Pane> MaGV, Map<String,Pane> MaMH){
@@ -81,18 +85,18 @@ public class PCChamDiemController implements Initializable{
         VBox_GV.getChildren().clear();
 
         // Tải CellGiaoVien cho mỗi Giáo viên được phân công
-        for (int i=0; i<phanCongList.size(); i++) {
+        for (PhancongEntity phancongEntity : phanCongList) {
             // Lấy MaGV xuất hiện lần đầu trong MaGV của CellGiaoVien
-            if(!Model.getInstant().getCellGiaoVien().getMaGV().get().contains(phanCongList.get(i).getMaGiaoVien())
-                    && Objects.equals(Model.getInstant().getViewFactory().getHocky().get(),phanCongList.get(i).getMaHocKy())
-                    && Objects.equals(phanCongList.get(i).getMaNamHoc(), Model.getInstant().getViewFactory().getNamHoc().get())) {
+            if (!Model.getInstant().getCellGiaoVien().getMaGV().get().contains(phancongEntity.getMaGiaoVien())
+                    && Objects.equals(Model.getInstant().getViewFactory().getHocky().get(), phancongEntity.getMaHocKy())
+                    && Objects.equals(phancongEntity.getMaNamHoc(), Model.getInstant().getViewFactory().getNamHoc().get())) {
 
                 //Cập nhật thông tin trước khi tải CellGiaoVien
                 // Thiết lập MaGV cho CellGiaoVien trước vì Model.getInstant().getCellGiaoVien().getMaGV().get = ""
-                Model.getInstant().getCellGiaoVien().getMaGV().set(phanCongList.get(i).getMaGiaoVien());
+                Model.getInstant().getCellGiaoVien().getMaGV().set(phancongEntity.getMaGiaoVien());
                 for (GiaovienEntity giaovienEntity : giaovienEntities) {
-                    if (phanCongList.get(i).getMaGiaoVien().equals(giaovienEntity.getMaGiaoVien())) {
-                        Model.getInstant().getCellGiaoVien().getMaMH().set(phanCongList.get(i).getMaMonHoc());
+                    if (phancongEntity.getMaGiaoVien().equals(giaovienEntity.getMaGiaoVien())) {
+                        Model.getInstant().getCellGiaoVien().getMaMH().set(phancongEntity.getMaMonHoc());
                         Model.getInstant().getCellGiaoVien().getTenGV().set(giaovienEntity.getTenGiaoVien());
                         Model.getInstant().getCellGiaoVien().getDiaChi().set(giaovienEntity.getDiaChi());
                         Model.getInstant().getCellGiaoVien().getSDT().set(giaovienEntity.getDienThoai());

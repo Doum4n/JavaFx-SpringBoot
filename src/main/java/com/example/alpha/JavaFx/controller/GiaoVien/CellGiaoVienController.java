@@ -1,7 +1,7 @@
 package com.example.alpha.JavaFx.controller.GiaoVien;
 
 import com.example.alpha.JavaFx.model.Model;
-import com.example.alpha.JavaFx.model.PhanCong;
+import com.example.alpha.JavaFx.model.GiaoVien.PhanCong;
 import com.example.alpha.Spring_boot.assignment.PhancongEntity;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

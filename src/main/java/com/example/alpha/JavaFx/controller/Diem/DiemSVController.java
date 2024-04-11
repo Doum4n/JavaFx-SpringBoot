@@ -1,9 +1,9 @@
 package com.example.alpha.JavaFx.controller.Diem;
 
 import com.example.alpha.JavaFx.controller.setTable;
-import com.example.alpha.JavaFx.model.Diem;
+import com.example.alpha.JavaFx.model.Diem.Diem;
 import com.example.alpha.JavaFx.model.Model;
-import com.example.alpha.JavaFx.model.MonHoc;
+import com.example.alpha.JavaFx.model.MonHoc.MonHoc;
 import com.example.alpha.Spring_boot.subject.DiemEntity;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;

@@ -1,6 +1,5 @@
-package com.example.alpha.JavaFx.model;
+package com.example.alpha.JavaFx.model.Diem;
 
-import com.example.alpha.Spring_boot.result.PhongThiEntity;
 import com.example.alpha.repository.PhongThiEntityRepository;
 import lombok.Getter;
 import org.springframework.stereotype.Component;

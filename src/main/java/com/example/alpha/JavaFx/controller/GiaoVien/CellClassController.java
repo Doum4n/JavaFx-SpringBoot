@@ -1,14 +1,10 @@
 package com.example.alpha.JavaFx.controller.GiaoVien;
 
 import com.example.alpha.JavaFx.model.Model;
-import com.example.alpha.JavaFx.model.PhanCong;
-import com.example.alpha.JavaFx.model.PhanLop;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.Pane;
-import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 
 import java.net.URL;
@@ -28,12 +24,12 @@ public class CellClassController implements Initializable {
         buttonn_Xem.setOnAction(event -> {
 
             Label MaMH = (Label) buttonn_Xem.getParent().getParent().getParent().lookup("#Label_MaMH");
-            Model.getInstant().getViewQuanLy().getMaMHSelected().set(MaMH.getText());
+            Model.getInstant().getDiemQuaTrinh().getMaMHSelected().set(MaMH.getText());
 
-            Model.getInstant().getViewQuanLy().getLopSelected().set(Label_Lop.getText());
+            Model.getInstant().getDiemQuaTrinh().getLopSelected().set(Label_Lop.getText());
 
             Label MaGV = (Label) buttonn_Xem.getParent().getParent().getParent().lookup("#Label_MaGV");
-            Model.getInstant().getViewQuanLy().getMaGVSelected().set(MaGV.getText());
+            Model.getInstant().getDiemQuaTrinh().getMaGVSelected().set(MaGV.getText());
         });
     }
 }

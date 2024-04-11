@@ -1,4 +1,4 @@
-package com.example.alpha.JavaFx.model;
+package com.example.alpha.JavaFx.model.GiaoVien;
 
 import com.example.alpha.repository.GiaovienEntityRepository;
 import lombok.Getter;

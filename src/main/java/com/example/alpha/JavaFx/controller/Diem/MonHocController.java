@@ -1,10 +1,10 @@
 package com.example.alpha.JavaFx.controller.Diem;
 
+import com.example.alpha.JavaFx.model.MonHoc.ButtonCellMH;
 import com.example.alpha.JavaFx.controller.setTable;
-import com.example.alpha.JavaFx.model.ButtonCellMH;
-import com.example.alpha.JavaFx.model.Diem;
+import com.example.alpha.JavaFx.model.Diem.Diem;
 import com.example.alpha.JavaFx.model.Model;
-import com.example.alpha.JavaFx.model.MonHoc;
+import com.example.alpha.JavaFx.model.MonHoc.MonHoc;
 import com.example.alpha.Spring_boot.subject.MonhocEntity;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.property.SimpleObjectProperty;

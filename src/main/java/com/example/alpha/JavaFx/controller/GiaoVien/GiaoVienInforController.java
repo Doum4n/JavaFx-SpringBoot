@@ -1,16 +1,11 @@
 package com.example.alpha.JavaFx.controller.GiaoVien;
 
-import com.example.alpha.JavaFx.model.GiaoVien;
+import com.example.alpha.JavaFx.model.GiaoVien.GiaoVien;
 import com.example.alpha.JavaFx.model.Model;
-import com.example.alpha.JavaFx.model.PhanCong;
-import com.example.alpha.JavaFx.model.PhanLop;
-import com.example.alpha.Spring_boot.assignment.PhancongEntity;
-import com.example.alpha.Spring_boot.assignment.PhanlopEntity;
 import com.example.alpha.Spring_boot.class_grade.GiaovienEntity;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import org.hibernate.loader.ast.spi.SingleIdEntityLoader;
 import org.springframework.stereotype.Controller;
 
 import java.net.URL;
@@ -36,7 +31,7 @@ public class GiaoVienInforController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         List<GiaovienEntity> giaovienEntities = GiaoVien.getRepository().findAll();
 
-        Model.getInstant().getViewQuanLy().getMaGVSelected().addListener((observable, oldValue, newValue) -> {
+        Model.getInstant().getDiemQuaTrinh().getMaGVSelected().addListener((observable, oldValue, newValue) -> {
             giaovienEntities.stream().filter(giaovienEntity -> Objects.equals(giaovienEntity.getMaGiaoVien(), newValue))
                     .findFirst().ifPresent(giaovienEntity -> {
                         Label_DiaChi.setText(giaovienEntity.getDiaChi());

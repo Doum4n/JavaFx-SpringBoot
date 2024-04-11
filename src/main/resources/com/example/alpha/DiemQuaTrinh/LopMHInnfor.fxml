@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane prefHeight="108.0" prefWidth="209.0" style="-fx-background-color: A4A4A2;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.alpha.JavaFx.controller.MonHoc.LopMHInnforController">
+   <children>
+      <Label layoutX="16.0" layoutY="14.0" text="Mã môn học:" textFill="WHITE" />
+      <Label layoutX="14.0" layoutY="41.0" text="Tên môn học:" textFill="WHITE" />
+      <Label layoutX="14.0" layoutY="73.0" text="Lớp:" textFill="WHITE" />
+      <Label fx:id="Label_MaMH" layoutX="93.0" layoutY="14.0" prefHeight="17.0" prefWidth="40.0" textFill="WHITE" />
+      <Label fx:id="Label_TenMH" layoutX="93.0" layoutY="41.0" prefHeight="17.0" prefWidth="63.0" textFill="WHITE" />
+      <Label fx:id="Label_Lop" layoutX="51.0" layoutY="73.0" prefHeight="17.0" prefWidth="40.0" textFill="WHITE" />
+   </children>
+</Pane>

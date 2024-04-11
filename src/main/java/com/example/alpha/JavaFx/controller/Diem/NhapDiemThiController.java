@@ -2,6 +2,9 @@ package com.example.alpha.JavaFx.controller.Diem;
 
 import com.example.alpha.JavaFx.controller.setTable;
 import com.example.alpha.JavaFx.model.*;
+import com.example.alpha.JavaFx.model.Diem.Diem;
+import com.example.alpha.JavaFx.model.Diem.LanThi;
+import com.example.alpha.JavaFx.model.Diem.PhongThi;
 import com.example.alpha.Spring_boot.subject.DiemEntity;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;

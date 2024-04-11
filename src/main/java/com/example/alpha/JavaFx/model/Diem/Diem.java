@@ -1,4 +1,4 @@
-package com.example.alpha.JavaFx.model;
+package com.example.alpha.JavaFx.model.Diem;
 
 import com.example.alpha.repository.DiemEntityRepository;
 import lombok.Getter;

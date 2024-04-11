@@ -1,6 +1,5 @@
-package com.example.alpha.JavaFx.model;
+package com.example.alpha.JavaFx.model.SinhVien;
 
-import com.example.alpha.Spring_boot.result.student.KqSinhVienMonhocEntity;
 import com.example.alpha.repository.KqSVMonhocEntityRepository;
 import lombok.Getter;
 import org.springframework.stereotype.Component;

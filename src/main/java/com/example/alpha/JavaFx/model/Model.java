@@ -1,5 +1,8 @@
 package com.example.alpha.JavaFx.model;
 
+import com.example.alpha.JavaFx.model.Diem.DiemQuaTrinh;
+import com.example.alpha.JavaFx.model.Diem.NhapDiemThi;
+import com.example.alpha.JavaFx.model.GiaoVien.CellGiaoVien;
 import com.example.alpha.JavaFx.view.viewFactory;
 import com.example.alpha.JavaFx.view.viewQuanLy;
 import lombok.Getter;

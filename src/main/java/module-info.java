@@ -24,6 +24,11 @@ module com.example.alpha {
     opens com.example.alpha.JavaFx.Load;
     opens com.example.alpha.JavaFx.view;
     opens com.example.alpha;
+    opens com.example.alpha.JavaFx.model.MonHoc;
+    opens com.example.alpha.JavaFx.model.Diem;
+    opens com.example.alpha.JavaFx.model.GiaoVien;
+    opens com.example.alpha.JavaFx.model.SinhVien;
+    opens com.example.alpha.JavaFx.controller.MonHoc;
 
 
     opens com.example.alpha.Spring_boot.result;
@@ -47,4 +52,8 @@ module com.example.alpha {
     opens com.example.alpha.JavaFx.controller.GiaoVien;
     opens com.example.alpha.JavaFx.controller.TaiKhoan;
     opens com.example.alpha.JavaFx.controller.Menu;
+    exports com.example.alpha.JavaFx.model.Diem;
+    exports com.example.alpha.JavaFx.model.GiaoVien;
+    exports com.example.alpha.JavaFx.model.SinhVien;
+    exports com.example.alpha.JavaFx.model.MonHoc;
 }

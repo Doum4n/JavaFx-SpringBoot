@@ -1,11 +1,12 @@
 package com.example.alpha.JavaFx.controller.Diem;
 
 import com.example.alpha.JavaFx.controller.setTable;
-import com.example.alpha.JavaFx.model.DiemQT;
+import com.example.alpha.JavaFx.model.Diem.DiemQT;
 import com.example.alpha.JavaFx.model.Model;
 import com.example.alpha.JavaFx.model.PhanLop;
-import com.example.alpha.JavaFx.model.SinhVien;
+import com.example.alpha.JavaFx.model.SinhVien.SinhVien;
 import com.example.alpha.Spring_boot.subject.DiemQTEntity;
+import jakarta.persistence.Table;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -14,11 +15,9 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Dimension2D;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
@@ -43,7 +42,6 @@ public class DiemQTController implements Initializable, setTable {
     private ObservableList<DiemQTEntity> data = FXCollections.observableArrayList();
 
     private FilteredList<DiemQTEntity> filteredList;
-    private SortedList<DiemQTEntity> sortedList;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -54,33 +52,47 @@ public class DiemQTController implements Initializable, setTable {
             filteredList = new FilteredList<>(data, b-> true);
             filteredList.setPredicate(diemQTEntity -> diemQTEntity.getMaHK().equals(newValue) &&
                     diemQTEntity.getMaNH().equals(Model.getInstant().getViewFactory().getNamHoc().get()));
-            sortedList = new SortedList<>(filteredList);
-            TableView_Diem.setItems(sortedList);
+            TableView_Diem.setItems(filteredList);
         });
 
         Model.getInstant().getViewFactory().getNamHoc().addListener((observable, oldValue, newValue) -> {
             filteredList = new FilteredList<>(data, b-> true);
             filteredList.setPredicate(diemQTEntity -> diemQTEntity.getMaNH().equals(newValue) &&
                     diemQTEntity.getMaHK().equals(Model.getInstant().getViewFactory().getHocky().get()));
-            sortedList = new SortedList<>(filteredList);
-            TableView_Diem.setItems(sortedList);
+            TableView_Diem.setItems(filteredList);
         });
 
-        Model.getInstant().getViewQuanLy().getLopSelected().addListener((observable, oldValue, newValue) -> {
+        Model.getInstant().getDiemQuaTrinh().getLopSelected().addListener((observable, oldValue, newValue) -> {
             filteredList = new FilteredList<>(data, b-> true);
-            filteredList.setPredicate(diemQTEntity ->{
-                System.out.println(diemQTEntity.getMaNH()+":"+Model.getInstant().getViewFactory().getNamHoc().get()+diemQTEntity.getMaNH().equals(Model.getInstant().getViewFactory().getNamHoc().get()));
-                System.out.println(diemQTEntity.getMaHK()+":"+Model.getInstant().getViewFactory().getHocky().get()+diemQTEntity.getMaHK().equals(Model.getInstant().getViewFactory().getHocky().get()));
-                System.out.println(PhanLop.getRepository().getLop(diemQTEntity.getMaSV())+":"+newValue+Objects.equals(PhanLop.getRepository().getLop(diemQTEntity.getMaSV()), newValue));
-                System.out.println(diemQTEntity.getMaMH()+":"+Model.getInstant().getViewQuanLy().getMaMHSelected().get()+diemQTEntity.getMaMH().equals(Model.getInstant().getViewQuanLy().getMaMHSelected().get()));
-                return diemQTEntity.getMaNH().equals(Model.getInstant().getViewFactory().getNamHoc().get()) &&
-                    diemQTEntity.getMaHK().equals(Model.getInstant().getViewFactory().getHocky().get()) &&
-                    Objects.equals(PhanLop.getRepository().getLop(diemQTEntity.getMaSV()), newValue) &&
-                    diemQTEntity.getMaMH().equals(Model.getInstant().getViewQuanLy().getMaMHSelected().get());
-            });
-            sortedList = new SortedList<>(filteredList);
-            TableView_Diem.setItems(sortedList);
+            filteredList.setPredicate(diemQTEntity -> diemQTEntity.getMaNH().equals(Model.getInstant().getViewFactory().getNamHoc().get()) &&
+                diemQTEntity.getMaHK().equals(Model.getInstant().getViewFactory().getHocky().get()) &&
+                Objects.equals(PhanLop.getRepository().getLop(diemQTEntity.getMaSV()), newValue) &&
+                diemQTEntity.getMaMH().equals(Model.getInstant().getDiemQuaTrinh().getMaMHSelected().get()));
+            TableView_Diem.setItems(filteredList);
         });
+
+        /*Model.getInstant().getDiemQuaTrinh().getIsUpdate().addListener((observable, oldValue, newValue) -> {
+            if(newValue.equals(true)){
+                DiemQTEntity diemQT = new DiemQTEntity(Model.getInstant().getDiemQuaTrinh().getMaSV().get(),
+                        Model.getInstant().getNhapDiemThi().getMonHocSelected().get(),
+                        Model.getInstant().getViewFactory().getHocky().get(),
+                        Model.getInstant().getViewFactory().getNamHoc().get(),
+                        Double.valueOf(Model.getInstant().getDiemQuaTrinh().getDiem().get()));
+
+                DiemQT.getRepository().updateDiemQT(diemQT.getMaSV(), Double.parseDouble(Model.getInstant().getDiemQuaTrinh().getDiem().get()));
+
+                data.removeIf(diemQTEntity -> diemQTEntity.getMaSV().equals(Model.getInstant().getDiemQuaTrinh().getMaSV().get()));
+                data.add(diemQT);
+
+//                filteredList = new FilteredList<>(data);
+//                filteredList.setPredicate(diemQTEntity -> diemQTEntity.getMaNH().equals(Model.getInstant().getViewFactory().getNamHoc().get()) &&
+//                        diemQTEntity.getMaHK().equals(Model.getInstant().getViewFactory().getHocky().get()) &&
+//                        Objects.equals(PhanLop.getRepository().getLop(diemQTEntity.getMaSV()), Model.getInstant().getDiemQuaTrinh().getLopSelected().get()) &&
+//                        diemQTEntity.getMaMH().equals(Model.getInstant().getDiemQuaTrinh().getMaMHSelected().get()));
+//                TableView_Diem.setItems(filteredList);
+                TableView_Diem.setItems(data);
+            }
+        });*/
     }
 
     @Override
@@ -102,9 +114,11 @@ public class DiemQTController implements Initializable, setTable {
     public void addListenerTableView() {
         TableView_Diem.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
             TableView_Diem.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-                DiemQTEntity diemQT = filteredList.get(TableView_Diem.getSelectionModel().getSelectedIndex());
-
-                Model.getInstant().getDiemQuaTrinh().getDiem().set(String.valueOf(diemQT.getDiemQT()));
+                if(TableView_Diem.getSelectionModel().getSelectedIndex() > -1) {
+                    DiemQTEntity diemQT = filteredList.get(TableView_Diem.getSelectionModel().getSelectedIndex());
+                    Model.getInstant().getDiemQuaTrinh().getDiem().set(String.valueOf(diemQT.getDiemQT()));
+                    Model.getInstant().getDiemQuaTrinh().getMaSV().set(diemQT.getMaSV());
+                }
             });
         });
     }

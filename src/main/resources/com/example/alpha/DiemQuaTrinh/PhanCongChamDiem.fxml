@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
@@ -15,16 +16,23 @@
    <Label layoutX="84.0" layoutY="67.0" text="MaGV" />
    <Label layoutX="172.0" layoutY="67.0" text="TenGV" />
    <Label layoutX="250.0" layoutY="67.0" text="MaMH" />
-   <Pane layoutX="544.0" layoutY="11.0" prefHeight="166.0" prefWidth="294.0">
+   <Pane layoutX="743.0" layoutY="16.0" prefHeight="166.0" prefWidth="294.0">
       <children>
          <fx:include source="GiaoVienInfor.fxml" />
       </children>
    </Pane>
-   <Pane layoutX="544.0" layoutY="199.0" prefHeight="353.0" prefWidth="294.0">
+   <Pane layoutX="526.0" layoutY="197.0" prefHeight="353.0" prefWidth="294.0">
       <children>
          <fx:include source="DiemQT.fxml" />
       </children>
    </Pane>
-   <Label layoutX="865.0" layoutY="537.0" text="Điểm:" />
-   <TextField fx:id="TextField_DiemQT" layoutX="904.0" layoutY="533.0" prefHeight="26.0" prefWidth="110.0" />
+   <Label layoutX="842.0" layoutY="236.0" text="Điểm:" />
+   <TextField fx:id="TextField_DiemQT" layoutX="881.0" layoutY="232.0" prefHeight="26.0" prefWidth="110.0" />
+   <Pane layoutX="526.0" layoutY="17.0" prefHeight="114.0" prefWidth="182.0">
+      <children>
+         <fx:include source="LopMHInnfor.fxml" />
+      </children>
+   </Pane>
+   <Button fx:id="Button_Update" layoutX="936.0" layoutY="276.0" mnemonicParsing="false" text="Update" />
+   <TextField layoutX="526.0" layoutY="140.0" prefHeight="26.0" prefWidth="207.0" promptText="search" />
 </AnchorPane>

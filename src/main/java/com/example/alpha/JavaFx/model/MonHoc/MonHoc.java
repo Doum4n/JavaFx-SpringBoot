@@ -1,10 +1,7 @@
-package com.example.alpha.JavaFx.model;
+package com.example.alpha.JavaFx.model.MonHoc;
 
 import com.example.alpha.repository.MonhocEntityRepository;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component

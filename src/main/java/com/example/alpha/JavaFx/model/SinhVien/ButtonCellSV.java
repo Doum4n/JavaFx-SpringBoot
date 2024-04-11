@@ -1,5 +1,6 @@
-package com.example.alpha.JavaFx.model;
+package com.example.alpha.JavaFx.model.SinhVien;
 
+import com.example.alpha.JavaFx.model.Model;
 import javafx.scene.control.*;
 import lombok.Getter;
 
