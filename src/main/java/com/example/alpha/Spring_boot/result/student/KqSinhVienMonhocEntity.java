@@ -43,22 +43,12 @@ public class KqSinhVienMonhocEntity {
     @Column(name = "DiemThi")
     private double diemThi;
 
-    @Id
-    @Basic
-    @Column(name = "LanThi")
-    private int lanThi;
-
-    @Basic
-    @Column(name = "DiemTBHK")
-    private double diemTbhk;
-
-    public KqSinhVienMonhocEntity(String maSinhVien, String maMonHoc, String maHocKy, String maNamHoc, double diemThi, int lanThi) {
+    public KqSinhVienMonhocEntity(String maSinhVien, String maMonHoc, String maHocKy, String maNamHoc, double diemThi) {
         this.maSinhVien = maSinhVien;
         this.maNamHoc = maNamHoc;
         this.maMonHoc = maMonHoc;
         this.maHocKy = maHocKy;
         this.diemThi = diemThi;
-        this.lanThi = lanThi;
     }
 
     @OneToOne
@@ -76,9 +66,4 @@ public class KqSinhVienMonhocEntity {
     @OneToOne
     @JoinColumn(name = "MaHocKy", updatable = false, insertable = false)
     private HockyEntity hockyEntity;
-
-    @OneToOne
-    @JoinColumn(name = "LanThi", insertable = false, updatable = false)
-    private LanThiEntity lanThiEntity;
-
 }

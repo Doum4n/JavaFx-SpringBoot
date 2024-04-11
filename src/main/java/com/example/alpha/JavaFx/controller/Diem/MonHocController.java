@@ -21,6 +21,7 @@ import org.springframework.stereotype.Controller;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 @Controller
 public class MonHocController implements Initializable, setTable {
@@ -46,7 +47,19 @@ public class MonHocController implements Initializable, setTable {
         Model.getInstant().getNhapDiemThi().getPhongThiProperty().addListener((observable, oldValue, newValue) -> {
             FilteredList<MonhocEntity> filteredList = new FilteredList<>(data,b -> true);
 
-            filteredList.setPredicate(monhocEntity -> Diem.getRepository().getPhongThiByMaMH(monhocEntity.getMaMonHoc()).equals(Model.getInstant().getNhapDiemThi().getPhongThiProperty().get()));
+            AtomicBoolean b = new AtomicBoolean(false);
+            filteredList.setPredicate(monhocEntity -> {
+                Diem.getRepository().getPhongThiByMaMH(monhocEntity.getMaMonHoc()).forEach(s -> {
+                    if(s.equals(newValue)){
+                        b.set(true);
+                    }
+//                    b.set(false);
+                });
+                return b.get();
+            });
+
+//            data.forEach(monhocEntity -> Diem.getRepository().getPhongThiByMaMH(monhocEntity.getMaMonHoc())
+//                    .forEach(s -> filteredList.setPredicate(monhocEntity1 -> s.equals(newValue))));
             TableView_MH.setItems(filteredList);
         });
     }

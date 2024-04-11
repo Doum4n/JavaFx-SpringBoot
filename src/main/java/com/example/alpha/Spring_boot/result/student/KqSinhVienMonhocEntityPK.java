@@ -10,5 +10,4 @@ public class KqSinhVienMonhocEntityPK implements Serializable {
     private String maNamHoc;
     private String maMonHoc;
     private String maHocKy;
-    private int lanThi;
 }

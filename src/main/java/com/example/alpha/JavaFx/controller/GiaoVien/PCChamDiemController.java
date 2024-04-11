@@ -24,6 +24,8 @@ public class PCChamDiemController implements Initializable{
     private ScrollPane ScrollPane_Main;
     @FXML
     private TextField textField_Search;
+    @FXML
+    private TextField TextField_DiemQT;
     private List<GiaovienEntity> giaovienEntities;
     private List<PhancongEntity> phanCongList;
     @Override
@@ -67,6 +69,10 @@ public class PCChamDiemController implements Initializable{
             }else{
                 addData(MaGV,MaMH);
             }
+        });
+
+        Model.getInstant().getDiemQuaTrinh().getDiem().addListener((observable, oldValue, newValue) -> {
+            TextField_DiemQT.setText(newValue);
         });
     }
 

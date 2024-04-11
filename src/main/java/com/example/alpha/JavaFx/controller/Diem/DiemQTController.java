@@ -18,7 +18,9 @@ import javafx.geometry.Dimension2D;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
 import java.util.List;
@@ -46,6 +48,7 @@ public class DiemQTController implements Initializable, setTable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setTableView();
+        addListenerTableView();
 
         Model.getInstant().getViewFactory().getHocky().addListener((observable, oldValue, newValue) -> {
             filteredList = new FilteredList<>(data, b-> true);
@@ -97,7 +100,13 @@ public class DiemQTController implements Initializable, setTable {
 
     @Override
     public void addListenerTableView() {
+        TableView_Diem.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+            TableView_Diem.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+                DiemQTEntity diemQT = filteredList.get(TableView_Diem.getSelectionModel().getSelectedIndex());
 
+                Model.getInstant().getDiemQuaTrinh().getDiem().set(String.valueOf(diemQT.getDiemQT()));
+            });
+        });
     }
 
     @Override

@@ -50,6 +50,9 @@ public class DiemEntity {
     @Column(name = "PhongThi")
     private String PhongThi;
 
+    @Column(name = "Diem")
+    private String Diem;
+
     @ToString.Exclude
     @OneToOne
     @JoinColumn(name = "MaNamHoc", insertable = false, updatable = false)
@@ -75,13 +78,14 @@ public class DiemEntity {
     @JoinColumn(name = "PhongThi", insertable = false, updatable = false)
     private PhongThiEntity phongThiEntity;
 
-    public DiemEntity(String maSinhVien, String maMonHoc, String maHocKy, String maNamHoc, int lanThi, String phongThi) {
+    public DiemEntity(String maSinhVien, String maMonHoc, String maHocKy, String maNamHoc, int lanThi, String Diem, String phongThi) {
         this.maSinhVien = maSinhVien;
         this.maMonHoc = maMonHoc;
         this.maHocKy = maHocKy;
         this.maNamHoc = maNamHoc;
         this.lanThi = lanThi;
         this.PhongThi = phongThi;
+        this.Diem = Diem;
     }
 
     @Override

@@ -11,8 +11,8 @@ public interface KqSVMonhocEntityRepository extends JpaRepository<KqSinhVienMonh
 //    @Query("select kq,diem from KqSinhVienMonhocEntity kq join DiemEntity diem on kq.maSinhVien=diem.maSinhVien")
 //    List<KqSinhVienMonhocEntity> findAll();
 
-    @Transactional
-    @Modifying
-    @Query("update KqSinhVienMonhocEntity a set a.diemThi=?2 where a.maSinhVien=?1")
-    void updateDiem(String maSinhVien, Double diem);
+//    @Transactional
+//    @Modifying
+//    @Query("update KqSinhVienMonhocEntity a set a.diemThi=?2 where a.maSinhVien=?1")
+//    void updateDiem(String maSinhVien, Double diem);
 }

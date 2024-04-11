@@ -12,12 +12,14 @@ public class Model {
     private final viewQuanLy viewQuanLy;
     private final CellGiaoVien cellGiaoVien;
     private final NhapDiemThi nhapDiemThi;
+    private final DiemQuaTrinh diemQuaTrinh;
 
     public Model(){
         this.viewQuanLy = new viewQuanLy();
         this.viewFactory = new viewFactory();
         this.cellGiaoVien = new CellGiaoVien();
         this.nhapDiemThi = new NhapDiemThi();
+        this.diemQuaTrinh = new DiemQuaTrinh();
     }
 
     public static synchronized Model getInstant(){

@@ -20,16 +20,13 @@
             <TableColumn fx:id="Column_Diem" prefWidth="104.79998779296875" text="DiemThi" />
         </columns>
       </TableView>
-      <TextField fx:id="TextField_MaSV" layoutX="305.0" layoutY="409.0" />
-      <TextField fx:id="TextField_MaMonHoc" layoutX="305.0" layoutY="449.0" />
-      <TextField fx:id="TextField_LanThi" layoutX="551.0" layoutY="409.0" />
-      <TextField fx:id="TextField_Diem" layoutX="551.0" layoutY="449.0" />
-      <Label layoutX="261.0" layoutY="413.0" text="MaSV" />
-      <Label layoutX="233.0" layoutY="453.0" text="MaMonHoc" />
-      <Label layoutX="511.0" layoutY="413.0" text="LanThi" />
-      <Label layoutX="515.0" layoutY="453.0" text="Diem" />
-      <Button fx:id="button_update" layoutX="554.0" layoutY="499.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="63.0" text="Update" />
-      <Button fx:id="button_delete" layoutX="650.0" layoutY="499.0" mnemonicParsing="false" text="Delete" />
+      <TextField fx:id="TextField_Diem" layoutX="618.0" layoutY="444.0" />
+      <Label layoutX="402.0" layoutY="407.0" text="Mã sinh viên:" />
+      <Label layoutX="402.0" layoutY="448.0" text="Mã môn học:" />
+      <Label layoutX="572.0" layoutY="408.0" text="Lần Thi:" />
+      <Label layoutX="582.0" layoutY="448.0" text="Điểm:" />
+      <Button fx:id="button_update" layoutX="621.0" layoutY="494.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="63.0" text="Update" />
+      <Button fx:id="button_delete" layoutX="717.0" layoutY="494.0" mnemonicParsing="false" text="Delete" />
       <TextField fx:id="textField_search" layoutX="398.0" layoutY="39.0" prefHeight="26.0" prefWidth="170.0" promptText="search" />
       <Button fx:id="buyyon_import" layoutX="63.0" layoutY="436.0" mnemonicParsing="false" text="Import" />
       <ComboBox fx:id="CombocBox_PhongThi" layoutX="89.0" layoutY="39.0" prefHeight="26.0" prefWidth="132.0" />
@@ -38,6 +35,8 @@
             <fx:include source="Monhoc.fxml" />
          </children>
       </Pane>
-      <ChoiceBox fx:id="ChoiceBox_LanThi" layoutX="728.0" layoutY="409.0" prefHeight="26.0" prefWidth="63.0" />
+      <ChoiceBox fx:id="ChoiceBox_LanThi" layoutX="620.0" layoutY="403.0" prefHeight="26.0" prefWidth="63.0" />
+      <Label fx:id="Label_MaSV" layoutX="487.0" layoutY="407.0" text="Label" />
+      <Label fx:id="Label_MaMH" layoutX="487.0" layoutY="448.0" text="Label" />
    </children>
 </AnchorPane>
