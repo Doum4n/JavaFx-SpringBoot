@@ -56,4 +56,5 @@ module com.example.alpha {
     exports com.example.alpha.JavaFx.model.GiaoVien;
     exports com.example.alpha.JavaFx.model.SinhVien;
     exports com.example.alpha.JavaFx.model.MonHoc;
+    exports com.example.alpha.Spring_boot.result.student;
 }

@@ -36,5 +36,5 @@ public interface DiemEntityRepository extends JpaRepository<DiemEntity, Integer>
     Double getDiem(String MaSV, String MaMH, String LanThi);
 
     @Query("select a.Diem from DiemEntity a where a.maSinhVien=?1 and a.maMonHoc=?2")
-    List<Double> getDiems(String MaSV, String MaMH);
+    List<Float> getDiems(String MaSV, String MaMH);
 }

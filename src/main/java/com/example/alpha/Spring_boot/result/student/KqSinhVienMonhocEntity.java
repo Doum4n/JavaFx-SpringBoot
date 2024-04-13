@@ -36,19 +36,19 @@ public class KqSinhVienMonhocEntity {
     @Basic
     @Nullable
     @Column(name = "DiemQuaTrinh")
-    private double diemQuaTrinh;
+    private Float diemQuaTrinh;
 
     @Basic
     @Nullable
     @Column(name = "DiemThi")
-    private double diemThi;
+    private Float diemThi;
 
-    public KqSinhVienMonhocEntity(String maSinhVien, String maMonHoc, String maHocKy, String maNamHoc, double diemThi) {
+    public KqSinhVienMonhocEntity(String maSinhVien, String maMonHoc, String maHocKy, String maNamHoc, Float diemQT) {
         this.maSinhVien = maSinhVien;
         this.maNamHoc = maNamHoc;
         this.maMonHoc = maMonHoc;
         this.maHocKy = maHocKy;
-        this.diemThi = diemThi;
+        this.diemQuaTrinh = diemQT/* != null ? diemQuaTrinh : 0.0f*/;
     }
 
     @OneToOne

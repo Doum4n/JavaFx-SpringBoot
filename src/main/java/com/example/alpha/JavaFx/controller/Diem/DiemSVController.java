@@ -2,22 +2,20 @@ package com.example.alpha.JavaFx.controller.Diem;
 
 import com.example.alpha.JavaFx.controller.setTable;
 import com.example.alpha.JavaFx.model.Diem.Diem;
-import com.example.alpha.JavaFx.model.Diem.DiemQT;
 import com.example.alpha.JavaFx.model.Model;
 import com.example.alpha.JavaFx.model.MonHoc.MonHoc;
+import com.example.alpha.JavaFx.model.SinhVien.KqMonHoc_SV;
+import com.example.alpha.Spring_boot.result.student.KqSVMonHoc;
 import com.example.alpha.Spring_boot.subject.DiemEntity;
-import com.example.alpha.Spring_boot.subject.MonhocEntity;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.Assert;
 
 import java.net.URL;
 import java.util.*;
@@ -34,10 +32,10 @@ public class DiemSVController implements Initializable, setTable {
     private TableColumn<DiemEntity, Integer> Column_TLthi;
 
     @FXML
-    private TableColumn<DiemEntity, Double> Column_DiemQT;
+    private TableColumn<Object, Float> Column_DiemQT;
 
     @FXML
-    private TableColumn<DiemEntity, Double> Column_DiemTK;
+    private TableColumn<Object, Float> Column_DiemTK;
 
     @FXML
     private TableColumn<DiemEntity, String> Column_Loai;
@@ -167,15 +165,22 @@ public class DiemSVController implements Initializable, setTable {
         Column_TenMH.setCellValueFactory(param -> new SimpleStringProperty(MonHoc.getRepository().getTenMH(param.getValue().getMaMonHoc())));
         Column_TLQT.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(MonHoc.getRepository().getTyLeDiemQT(param.getValue().getMaMonHoc())));
         Column_TLthi.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(100-MonHoc.getRepository().getTyLeDiemQT(param.getValue().getMaMonHoc())));
-        Column_DiemQT.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(DiemQT.getRepository().getDiemQT(param.getValue().getMaSinhVien(),param.getValue().getMaMonHoc())));
+        Column_DiemQT.setCellValueFactory( param -> new ReadOnlyObjectWrapper<>(KqMonHoc_SV.getRepository().getDiemQT(((DiemEntity)param.getValue()).getMaSinhVien(),((DiemEntity)param.getValue()).getMaMonHoc())));
+        Column_DiemQT.setCellFactory(new DiemQTController.NullHandlingCellFactory());
+
         Column_DiemTK.setCellValueFactory(param -> {
-            List<Double> diems = Diem.getRepository().getDiems(param.getValue().getMaSinhVien(),param.getValue().getMaMonHoc());
-            Double max = Collections.max(diems);
-            double TyLe = MonHoc.getRepository().getTyLeDiemQT(param.getValue().getMaMonHoc());
-            Double diemqt = (Double) param.getTableView().getColumns().get(4).getCellData(param.getTableView().getItems().indexOf(param.getValue()));
-//            System.out.println(param.getTableView().getColumns().get(4).getCellData(param.getTableView().getItems().indexOf(param.getValue())));
-            return new ReadOnlyObjectWrapper<>(diemqt*(Double)(TyLe/100) + max* ((100-TyLe) /100));
+            List<Float> diems = Diem.getRepository().getDiems(((DiemEntity)param.getValue()).getMaSinhVien(),((DiemEntity)param.getValue()).getMaMonHoc());
+            float max = Collections.max(diems);
+            float TyLe = MonHoc.getRepository().getTyLeDiemQT(((DiemEntity) param.getValue()).getMaMonHoc());
+            System.out.println(TyLe);
+            Float diemqt = (Float) param.getTableView().getColumns().get(4).getCellData(param.getTableView().getItems().indexOf(param.getValue()));
+            System.out.println(diemqt);
+            if(diemqt!=null) {
+                return new ReadOnlyObjectWrapper<>( diemqt * (TyLe / 100) + max *  ((100 - TyLe) / 100));
+            }
+            return new ReadOnlyObjectWrapper<>();
         });
+        Column_DiemTK.setCellFactory(new DiemQTController.NullHandlingCellFactory());
         Column_STC.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(MonHoc.getRepository().getSTC(param.getValue().getMaMonHoc())));
     }
 

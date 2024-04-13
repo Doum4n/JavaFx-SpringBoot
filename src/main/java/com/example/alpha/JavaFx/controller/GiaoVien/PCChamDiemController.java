@@ -4,6 +4,7 @@ import com.example.alpha.JavaFx.model.*;
 import com.example.alpha.JavaFx.model.Diem.DiemQT;
 import com.example.alpha.JavaFx.model.GiaoVien.GiaoVien;
 import com.example.alpha.JavaFx.model.GiaoVien.PhanCong;
+import com.example.alpha.JavaFx.model.SinhVien.KqMonHoc_SV;
 import com.example.alpha.Spring_boot.assignment.PhancongEntity;
 import com.example.alpha.Spring_boot.class_grade.GiaovienEntity;
 import javafx.fxml.FXML;
@@ -34,8 +35,11 @@ public class PCChamDiemController implements Initializable{
     private TextField TextField_SearchMaSV;
     @FXML
     private Button Button_Update;
+
     private List<GiaovienEntity> giaovienEntities;
+
     private List<PhancongEntity> phanCongList;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
         giaovienEntities = GiaoVien.getRepository().findAll();
@@ -65,9 +69,9 @@ public class PCChamDiemController implements Initializable{
         });
 
         Button_Update.setOnAction(event -> {
-            DiemQT.getRepository().updateDiemQT(Model.getInstant().getDiemQuaTrinh().getMaSV().get(),
+            KqMonHoc_SV.getRepository().updateDiem(Model.getInstant().getDiemQuaTrinh().getMaSV().get(),
                     Model.getInstant().getDiemQuaTrinh().getMaMHSelected().get(),
-                    Double.parseDouble(TextField_DiemQT.getText()));
+                    Float.valueOf(TextField_DiemQT.getText()));
             Model.getInstant().getDiemQuaTrinh().getDiem().set(TextField_DiemQT.getText());
             Model.getInstant().getDiemQuaTrinh().getIsUpdate().set(true);
             Model.getInstant().getDiemQuaTrinh().getIsUpdate().set(false);

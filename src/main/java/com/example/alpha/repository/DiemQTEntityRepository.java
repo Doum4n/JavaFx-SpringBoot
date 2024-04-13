@@ -8,8 +8,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.transaction.annotation.Transactional;
 
 public interface DiemQTEntityRepository extends JpaRepository<DiemQTEntity, DiemQTPK> {
-    @Query("select a.DiemQT from DiemQTEntity a where a.MaSV=?1 and a.MaMH=?2")
-    Double getDiemQT(String MaSV, String MaMH);
+//    @Query("select a.DiemQT from DiemQTEntity a where a.MaSV=?1 and a.MaMH=?2")
+//    Double getDiemQT(String MaSV, String MaMH);
 
     @Transactional
     @Modifying
