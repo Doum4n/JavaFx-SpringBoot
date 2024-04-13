@@ -53,10 +53,10 @@ public class DiemQTEntity {
     private NamhocEntity namhocEntity;
 
     public DiemQTEntity(String maSV, String maMH, String maHK, String maNH, Double diemQT) {
-        MaSV = maSV;
-        MaMH = maMH;
-        MaHK = maHK;
-        MaNH = maNH;
-        DiemQT = diemQT;
+        this.MaSV = maSV;
+        this.MaMH = maMH;
+        this.MaHK = maHK;
+        this.MaNH = maNH;
+        this.DiemQT = diemQT;
     }
 }

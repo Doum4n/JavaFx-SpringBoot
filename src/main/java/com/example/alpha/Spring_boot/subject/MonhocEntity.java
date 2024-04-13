@@ -23,4 +23,8 @@ public class MonhocEntity {
     @Basic
     @Column(name = "SoTC")
     private int SoTC;
+
+    @Basic
+    @Column(name = "TyLeDiemQT")
+    private int TyLeDiemQT;
 }

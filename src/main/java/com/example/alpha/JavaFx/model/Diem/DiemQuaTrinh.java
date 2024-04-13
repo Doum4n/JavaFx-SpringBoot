@@ -14,6 +14,7 @@ public class DiemQuaTrinh {
     private final StringProperty LopSelected;
     private final StringProperty MaGVSelected;
     private final StringProperty MaMHSelected;
+    private final StringProperty Search;
 
     public DiemQuaTrinh(){
         this.Diem = new SimpleStringProperty();
@@ -22,5 +23,6 @@ public class DiemQuaTrinh {
         this.LopSelected = new SimpleStringProperty();
         this.MaGVSelected = new SimpleStringProperty();
         this.MaMHSelected = new SimpleStringProperty();
+        this.Search = new SimpleStringProperty();
     }
 }

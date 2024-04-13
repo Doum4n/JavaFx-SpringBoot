@@ -2,24 +2,37 @@ package com.example.alpha.JavaFx.controller.Diem;
 
 import com.example.alpha.JavaFx.controller.setTable;
 import com.example.alpha.JavaFx.model.Diem.Diem;
+import com.example.alpha.JavaFx.model.Diem.DiemQT;
 import com.example.alpha.JavaFx.model.Model;
 import com.example.alpha.JavaFx.model.MonHoc.MonHoc;
 import com.example.alpha.Spring_boot.subject.DiemEntity;
+import com.example.alpha.Spring_boot.subject.MonhocEntity;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.Assert;
 
 import java.net.URL;
 import java.util.*;
 
 @Controller
 public class DiemSVController implements Initializable, setTable {
+    @FXML
+    private TableColumn<DiemEntity, Integer> Column_STC;
+
+    @FXML
+    private TableColumn<DiemEntity, Integer> Column_TLQT;
+
+    @FXML
+    private TableColumn<DiemEntity, Integer> Column_TLthi;
+
     @FXML
     private TableColumn<DiemEntity, Double> Column_DiemQT;
 
@@ -53,6 +66,8 @@ public class DiemSVController implements Initializable, setTable {
 
     private final ListProperty<String> MH = new SimpleListProperty<>(FXCollections.observableArrayList(""));
     private final ListProperty<String> SV = new SimpleListProperty<>(FXCollections.observableArrayList(""));
+
+    private final DoubleProperty MaxDiemThi = new SimpleDoubleProperty();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -148,16 +163,20 @@ public class DiemSVController implements Initializable, setTable {
 
     @Override
     public void setCellColumn() {
-//        Column_DiemQT.setCellValueFactory(param -> new SimpleObjectProperty<>(param.getValue().getDiemQuaTrinh()));
-//        Column_DiemTK.setCellValueFactory();
-//        Column_Loai;
-
         Column_MaMH.setCellValueFactory(param -> new SimpleObjectProperty<>(param.getValue().getMaMonHoc()));
         Column_TenMH.setCellValueFactory(param -> new SimpleStringProperty(MonHoc.getRepository().getTenMH(param.getValue().getMaMonHoc())));
-
-//        Column_ThiL1;
-//        Column_ThiL2;
-//        Column_ThiL3;
+        Column_TLQT.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(MonHoc.getRepository().getTyLeDiemQT(param.getValue().getMaMonHoc())));
+        Column_TLthi.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(100-MonHoc.getRepository().getTyLeDiemQT(param.getValue().getMaMonHoc())));
+        Column_DiemQT.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(DiemQT.getRepository().getDiemQT(param.getValue().getMaSinhVien(),param.getValue().getMaMonHoc())));
+        Column_DiemTK.setCellValueFactory(param -> {
+            List<Double> diems = Diem.getRepository().getDiems(param.getValue().getMaSinhVien(),param.getValue().getMaMonHoc());
+            Double max = Collections.max(diems);
+            double TyLe = MonHoc.getRepository().getTyLeDiemQT(param.getValue().getMaMonHoc());
+            Double diemqt = (Double) param.getTableView().getColumns().get(4).getCellData(param.getTableView().getItems().indexOf(param.getValue()));
+//            System.out.println(param.getTableView().getColumns().get(4).getCellData(param.getTableView().getItems().indexOf(param.getValue())));
+            return new ReadOnlyObjectWrapper<>(diemqt*(Double)(TyLe/100) + max* ((100-TyLe) /100));
+        });
+        Column_STC.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(MonHoc.getRepository().getSTC(param.getValue().getMaMonHoc())));
     }
 
     @Override

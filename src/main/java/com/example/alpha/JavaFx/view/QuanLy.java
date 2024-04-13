@@ -4,8 +4,7 @@ public enum QuanLy{
     QLSinhVien,
     KetQua,
     PhanLop,
-    QLGiaoVien,
-    PhanCong,
-    Diem,
+    DiemThi,
+    DiemQT,
     TaiKhoan
 }

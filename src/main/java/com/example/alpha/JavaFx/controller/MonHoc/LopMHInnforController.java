@@ -23,12 +23,12 @@ public class LopMHInnforController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        Model.getInstant().getDiemQuaTrinh().getMaMHSelected().addListener((observable, oldValue, newValue) -> {
+            Label_MaMH.setText(newValue);
+            Label_TenMH.setText(MonHoc.getRepository().getTenMH(newValue));
+        });
         Model.getInstant().getDiemQuaTrinh().getLopSelected().addListener((observable, oldValue, newValue) -> {
             Label_Lop.setText(newValue);
-            Label_MaMH.setText(Model.getInstant().getDiemQuaTrinh().getMaMHSelected().get());
-            Label_TenMH.setText(MonHoc.getRepository().getTenMH(Model.getInstant().getDiemQuaTrinh().getMaMHSelected().get()));
-            System.out.println(Label_MaMH);
-            System.out.println(Label_TenMH);
         });
     }
 }

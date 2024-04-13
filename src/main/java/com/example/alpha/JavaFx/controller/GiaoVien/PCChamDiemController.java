@@ -13,6 +13,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 
 import java.io.IOException;
@@ -26,9 +27,11 @@ public class PCChamDiemController implements Initializable{
     @FXML
     private ScrollPane ScrollPane_Main;
     @FXML
-    private TextField textField_Search;
+    private TextField textField_SearchMaGV;
     @FXML
     private TextField TextField_DiemQT;
+    @FXML
+    private TextField TextField_SearchMaSV;
     @FXML
     private Button Button_Update;
     private List<GiaovienEntity> giaovienEntities;
@@ -45,40 +48,32 @@ public class PCChamDiemController implements Initializable{
         Map<String, Pane> MaMH = new HashMap<>();
 
         addData(MaGV,MaMH);
+        addListenerSearchMaGV(MaGV,MaMH);
+        addListenerSearchMaSV();
 
+        //Khi năm, học kỳ thay đổi
         Model.getInstant().getViewFactory().getNamHoc().addListener((observable, oldValue, newValue) -> {
             addData(MaGV,MaMH);
         });
-
         Model.getInstant().getViewFactory().getHocky().addListener((observable, oldValue, newValue) -> {
             addData(MaGV,MaMH);
         });
 
-        //Tìm kiếm dựa trên MaGV và MaMH
-        textField_Search.textProperty().addListener((observable, oldValue, newValue) -> {
-            if(!newValue.isBlank()) {
-                phanCongList.stream().filter(phancongEntity -> phancongEntity.getMaNamHoc().equals(Model.getInstant().getViewFactory().getNamHoc().get())
-                        && phancongEntity.getMaHocKy().equals(Model.getInstant().getViewFactory().getHocky().get()))
-                        .forEach(phancongEntity -> MaGV.forEach((s, pane) -> {
-                            if (newValue.equals(s) && s.equals(phancongEntity.getMaGiaoVien())) {
-                                VBox_GV.getChildren().clear();
-                                VBox_GV.getChildren().add(pane);
-                            }
-                        }));
-            }else{
-                addData(MaGV,MaMH);
-            }
-        });
-
+        //Hiển thi điểm khi nhấn vào ô bảng DiemQT
         Model.getInstant().getDiemQuaTrinh().getDiem().addListener((observable, oldValue, newValue) -> {
             TextField_DiemQT.setText(newValue);
         });
 
         Button_Update.setOnAction(event -> {
-            DiemQT.getRepository().updateDiemQT(Model.getInstant().getDiemQuaTrinh().getMaSV().get(), Double.parseDouble(TextField_DiemQT.getText()));
+            DiemQT.getRepository().updateDiemQT(Model.getInstant().getDiemQuaTrinh().getMaSV().get(),
+                    Model.getInstant().getDiemQuaTrinh().getMaMHSelected().get(),
+                    Double.parseDouble(TextField_DiemQT.getText()));
+            Model.getInstant().getDiemQuaTrinh().getDiem().set(TextField_DiemQT.getText());
             Model.getInstant().getDiemQuaTrinh().getIsUpdate().set(true);
+            Model.getInstant().getDiemQuaTrinh().getIsUpdate().set(false);
         });
     }
+
 
     private void addData(Map<String,Pane> MaGV, Map<String,Pane> MaMH){
         /*Xóa dữ liệu cũ trước khi cập nhật*/
@@ -136,5 +131,33 @@ public class PCChamDiemController implements Initializable{
         }
         /*Reset lại MaGV khi thay đổi năm, học kỳ*/
         Model.getInstant().getCellGiaoVien().getMaGV().set("");
+    }
+
+    private void addListenerSearchMaGV(Map<String,Pane> MaGV, Map<String,Pane> MaMH){
+        //Tìm kiếm dựa trên MaGV và MaMH
+        textField_SearchMaGV.textProperty().addListener((observable, oldValue, newValue) -> {
+            if(!newValue.isBlank()) {
+                phanCongList.stream().filter(phancongEntity -> phancongEntity.getMaNamHoc().equals(Model.getInstant().getViewFactory().getNamHoc().get())
+                                && phancongEntity.getMaHocKy().equals(Model.getInstant().getViewFactory().getHocky().get()))
+                        .forEach(phancongEntity -> MaGV.forEach((s, pane) -> {
+                            if (newValue.equals(s) && s.equals(phancongEntity.getMaGiaoVien())) {
+                                VBox_GV.getChildren().clear();
+                                VBox_GV.getChildren().add(pane);
+                            }
+                        }));
+            }else{
+                addData(MaGV,MaMH);
+            }
+        });
+    }
+
+    private void addListenerSearchMaSV(){
+        TextField_SearchMaSV.textProperty().addListener((observable, oldValue, newValue) -> {
+            if(!TextField_SearchMaSV.getText().isBlank()){
+                Model.getInstant().getDiemQuaTrinh().getSearch().set(newValue);
+            }else {
+                Model.getInstant().getDiemQuaTrinh().getSearch().set("");
+            }
+        });
     }
 }

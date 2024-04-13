@@ -12,7 +12,7 @@
    <ScrollPane fx:id="ScrollPane_Main" layoutX="84.0" layoutY="94.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="459.0" prefWidth="424.0">
       <VBox fx:id="VBox_GV" prefHeight="484.0" prefWidth="407.0" />
    </ScrollPane>
-   <TextField fx:id="textField_Search" layoutX="84.0" layoutY="26.0" promptText="Search" />
+   <TextField fx:id="textField_SearchMaGV" layoutX="84.0" layoutY="26.0" promptText="Search" />
    <Label layoutX="84.0" layoutY="67.0" text="MaGV" />
    <Label layoutX="172.0" layoutY="67.0" text="TenGV" />
    <Label layoutX="250.0" layoutY="67.0" text="MaMH" />
@@ -34,5 +34,5 @@
       </children>
    </Pane>
    <Button fx:id="Button_Update" layoutX="936.0" layoutY="276.0" mnemonicParsing="false" text="Update" />
-   <TextField layoutX="526.0" layoutY="140.0" prefHeight="26.0" prefWidth="207.0" promptText="search" />
+   <TextField fx:id="TextField_SearchMaSV" layoutX="526.0" layoutY="140.0" prefHeight="26.0" prefWidth="207.0" promptText="search" />
 </AnchorPane>

@@ -60,17 +60,6 @@ public class viewQuanLy {
         return QLSinhVien;
     }
 
-    public AnchorPane getQLGiaoVien(){
-        try {
-            if (QLGiaoVien == null) {
-                QLGiaoVien = new FXMLLoader(getClass().getResource("/com/example/alpha/GiaoVien.fxml")).load();
-            }
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        return QLGiaoVien;
-    }
-
     public AnchorPane getTaiKhoan(){
         try {
             if (TaiKhoan == null) {
@@ -102,28 +91,6 @@ public class viewQuanLy {
             e.printStackTrace();
         }
         return scrollPane;
-    }
-
-    public AnchorPane getPhanLop(){
-        try {
-            if (PhanLop == null) {
-                PhanLop = new FXMLLoader(getClass().getResource("/com/example/alpha/PhanLop.fxml")).load();
-            }
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        return PhanLop;
-    }
-
-    public AnchorPane getPhanCong(){
-        try {
-            if (PhanCong == null) {
-                PhanCong = new FXMLLoader(getClass().getResource("/com/example/alpha/PhanCong.fxml")).load();
-            }
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        return PhanCong;
     }
 
     public TableView<NguoidungEntity> getTbView_TaiKhoan() {

@@ -7,4 +7,10 @@ import org.springframework.data.jpa.repository.Query;
 public interface MonhocEntityRepository extends JpaRepository<MonhocEntity, String> {
     @Query("select a.tenMonHoc from MonhocEntity a where a.maMonHoc=?1")
     String getTenMH(String MaMH);
+
+    @Query("select a.TyLeDiemQT from MonhocEntity a where a.maMonHoc=?1")
+    Integer getTyLeDiemQT(String maMonHoc);
+
+    @Query("select a.SoTC from MonhocEntity a where a.maMonHoc=?1")
+    Integer getSTC(String maMonHoc);
 }

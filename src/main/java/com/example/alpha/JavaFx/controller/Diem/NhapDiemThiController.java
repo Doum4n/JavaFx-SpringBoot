@@ -57,9 +57,8 @@ public class NhapDiemThiController implements Initializable, setTable {
     private ComboBox<String> CombocBox_PhongThi;
 
     private ObservableList<DiemEntity> data = FXCollections.observableArrayList();
-    private FilteredList<DiemEntity> filteredList;
 
-    private Map<String, Boolean> check = new HashMap<>();
+    private FilteredList<DiemEntity> filteredList;
 
     public void setCellColumn() {
         Column_MaSV.setCellValueFactory(new PropertyValueFactory<>("MaSinhVien"));
@@ -71,19 +70,8 @@ public class NhapDiemThiController implements Initializable, setTable {
     public void setTableView() {
         setCellColumn();
         List<DiemEntity> diemEntities = Diem.getRepository().findAll();
-
         data = FXCollections.observableArrayList(diemEntities);
-
         filteredList = new FilteredList<>(data, b -> true);
-
-//        filteredList.forEach(kqSinhVienMonhocEntity -> {
-//            System.out.println(kqSinhVienMonhocEntity.getMaSinhVien()+" "+kqSinhVienMonhocEntity.getMaMonHoc());
-//            System.out.println(Diem.getRepository().getPhongThi(kqSinhVienMonhocEntity.getMaSinhVien(),kqSinhVienMonhocEntity.getMaMonHoc()));
-//        });
-//        filteredList.setPredicate(diemEntity ->
-//                Diem.getRepository().getPhongThi(diemEntity.getMaSinhVien(),diemEntity.getMaMonHoc()).equals(Model.getInstant().getNhapDiemThi().getPhongThiProperty().get()) &&
-//                diemEntity.getMaNamHoc().equals(Model.getInstant().getViewFactory().getNamHoc().get()) &&
-//                diemEntity.getMaHocKy().equals(Model.getInstant().getViewFactory().getHocky().get()));
         TableView_Diem.setItems(filteredList);
     }
 
@@ -108,23 +96,7 @@ public class NhapDiemThiController implements Initializable, setTable {
             if(!newValue.isBlank()) {
                 filteredList.setPredicate(diem -> {
                     String id = newValue.toLowerCase();
-
-                    AtomicBoolean b = new AtomicBoolean(false);
-                    AtomicBoolean l = new AtomicBoolean(false);
-                    Diem.getRepository().getLanThi(diem.getMaSinhVien(), diem.getMaMonHoc()).forEach(s -> {
-                        System.out.println(s);
-                        if(s.equals(Model.getInstant().getNhapDiemThi().getLanThi().get())){
-                            b.set(true);
-                        }
-                    });
-
-                    Diem.getRepository().getPhongThi(diem.getMaSinhVien(), diem.getMaMonHoc()).forEach(s -> {
-                        if(s.equals(Model.getInstant().getNhapDiemThi().getPhongThiProperty().get())){
-                            l.set(true);
-                        }
-                    });
-
-                    return b.get() && l.get()
+                    return String.valueOf(diem.getLanThi()).equals(Model.getInstant().getNhapDiemThi().getLanThi().get())
                             && diem.getMaMonHoc().equals(Model.getInstant().getNhapDiemThi().getMonHocSelected().get())
                             && diem.getMaNamHoc().equals(Model.getInstant().getViewFactory().getNamHoc().get())
                             && diem.getMaHocKy().equals(Model.getInstant().getViewFactory().getHocky().get())
@@ -211,7 +183,7 @@ public class NhapDiemThiController implements Initializable, setTable {
             );
             Diem.getRepository().updateDiem(Label_MaSV.getText(), Label_MaMH.getText(), TextField_Diem.getText(), Integer.parseInt(Model.getInstant().getNhapDiemThi().getLanThi().get()));
 
-            data.removeIf(kqSinhVienMonhocEntity -> kqSinhVienMonhocEntity.getMaSinhVien().equals(Label_MaSV.getText()));
+            data.removeIf(kqSinhVienMonhocEntity -> kqSinhVienMonhocEntity.getMaSinhVien().equals(Label_MaSV.getText()) && kqSinhVienMonhocEntity.getLanThi()== kq.getLanThi());
             data.add(kq);
 
             defaultLoad();

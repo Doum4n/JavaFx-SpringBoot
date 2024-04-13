@@ -5,34 +5,25 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="843.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.alpha.JavaFx.controller.Menu.QuanLyController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="586.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.alpha.JavaFx.controller.Menu.QuanLyController">
    <children>
       <AnchorPane prefHeight="100.0" prefWidth="104.0" style="-fx-background-color: #338564; -fx-border-color: black;">
          <children>
-            <Button fx:id="button_QLSinhVien" layoutX="21.0" layoutY="45.0" mnemonicParsing="false" style="-fx-background-color: AFD663;" text="Sinh viên" />
+            <Button fx:id="button_QLSinhVien" layoutX="26.0" layoutY="48.0" mnemonicParsing="false" style="-fx-background-color: AFD663;" text="Sinh viên" />
             <Label alignment="CENTER" layoutX="3.0" layoutY="2.0" prefHeight="23.0" prefWidth="110.0" style="-fx-background-color: B0BC88;" text="Sinh viên" textAlignment="CENTER" />
          </children>
       </AnchorPane>
-      <AnchorPane prefHeight="100.0" prefWidth="311.0" style="-fx-background-color: #338564; -fx-border-color: black;">
+      <AnchorPane prefHeight="100.0" prefWidth="136.0" style="-fx-background-color: #338564; -fx-border-color: black;">
          <children>
-            <Button fx:id="button_KetQua" layoutX="20.0" layoutY="44.0" mnemonicParsing="false" prefWidth="70.0" style="-fx-background-color: AFD663;" text="Kết quả" />
-            <Label alignment="TOP_CENTER" layoutX="1.0" layoutY="2.0" prefHeight="22.0" prefWidth="308.0" style="-fx-background-color: B0BC88;" text="Kết quả" />
-            <Button fx:id="button_HocLuc" layoutX="103.0" layoutY="44.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="80.0" style="-fx-background-color: AFD663;" text="Học lục" />
-            <Button fx:id="button_Drl" layoutX="195.0" layoutY="44.0" mnemonicParsing="false" style="-fx-background-color: AFD663;" text="Điểm rèn luyện" />
+            <Button fx:id="button_KetQua" layoutX="35.0" layoutY="47.0" mnemonicParsing="false" prefWidth="70.0" style="-fx-background-color: AFD663;" text="Lớp" />
+            <Label alignment="CENTER" layoutX="1.0" layoutY="2.0" prefHeight="22.0" prefWidth="138.0" style="-fx-background-color: B0BC88;" text="Kết quả" textAlignment="JUSTIFY" />
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="172.0" style="-fx-background-color: #338564; -fx-border-color: black;">
+      <AnchorPane layoutX="492.0" layoutY="10.0" prefHeight="100.0" prefWidth="226.0" style="-fx-background-color: #338564; -fx-border-color: black;">
          <children>
-            <Button fx:id="button_QLGiaoVien" layoutX="14.0" layoutY="45.0" mnemonicParsing="false" style="-fx-background-color: AFD663;" text="Giáo viên" />
-            <Label alignment="CENTER" layoutX="3.0" layoutY="2.0" prefHeight="23.0" prefWidth="171.0" style="-fx-background-color: B0BC88;" text="Giáo viên" textAlignment="CENTER" />
-            <Button fx:id="button_PhanCong" layoutX="88.0" layoutY="45.0" mnemonicParsing="false" style="-fx-background-color: AFD663;" text="Phân công" />
-         </children>
-      </AnchorPane>
-      <AnchorPane layoutX="492.0" layoutY="10.0" prefHeight="100.0" prefWidth="142.0" style="-fx-background-color: #338564; -fx-border-color: black;">
-         <children>
-            <Button fx:id="button_QLGiaoVien1" layoutX="14.0" layoutY="45.0" mnemonicParsing="false" style="-fx-background-color: AFD663;" text="Môn học" />
-            <Label alignment="CENTER" layoutX="3.0" layoutY="2.0" prefHeight="23.0" prefWidth="138.0" style="-fx-background-color: B0BC88;" text="Môn học" textAlignment="CENTER" />
-            <Button fx:id="button_Diem" layoutX="88.0" layoutY="45.0" mnemonicParsing="false" style="-fx-background-color: AFD663;" text="Điểm" />
+            <Label alignment="CENTER" layoutX="3.0" layoutY="2.0" prefHeight="23.0" prefWidth="222.0" style="-fx-background-color: B0BC88;" text="Môn học" textAlignment="CENTER" />
+            <Button fx:id="button_Diem" layoutX="141.0" layoutY="46.0" mnemonicParsing="false" style="-fx-background-color: AFD663;" text="Điểm thi" />
+            <Button fx:id="button_PhanCong" layoutX="24.0" layoutY="46.0" mnemonicParsing="false" style="-fx-background-color: AFD663;" text="Điểm quá trình" />
          </children>
       </AnchorPane>
       <AnchorPane layoutX="844.0" layoutY="10.0" prefHeight="100.0" prefWidth="89.0" style="-fx-background-color: #338564; -fx-border-color: black;">

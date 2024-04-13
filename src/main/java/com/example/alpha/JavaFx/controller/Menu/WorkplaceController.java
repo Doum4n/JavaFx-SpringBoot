@@ -89,10 +89,10 @@ public class WorkplaceController implements Initializable{
                 case QLSinhVien -> {
                     borderPane.setRight(Model.getInstant().getViewQuanLy().getQLSinhVien());
                 }
-                case Diem -> borderPane.setRight(Model.getInstant().getViewQuanLy().getDiem());
+                case DiemThi -> borderPane.setRight(Model.getInstant().getViewQuanLy().getDiem());
 //                case PhanLop -> borderPane.setRight(Model.getInstant().getViewQuanLy().getPhanLop());
-                case QLGiaoVien -> borderPane.setRight(Model.getInstant().getViewQuanLy().getQLGiaoVien());
-                case PhanCong -> borderPane.setRight(Model.getInstant().getViewQuanLy().getPCChamDiem());
+//                case QLGiaoVien -> borderPane.setRight(Model.getInstant().getViewQuanLy().getQLGiaoVien());
+                case DiemQT -> borderPane.setRight(Model.getInstant().getViewQuanLy().getPCChamDiem());
                 case TaiKhoan -> borderPane.setRight(Model.getInstant().getViewQuanLy().getTaiKhoan());
             }
         });
