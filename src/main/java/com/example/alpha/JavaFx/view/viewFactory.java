@@ -21,6 +21,7 @@ public class viewFactory {
     private AccountType type;
     private HBox QuanLy;
     private AnchorPane dashboard;
+    private HBox ThongKe;
 
     private final ObjectProperty<Menu> menuProperty;
 
@@ -69,6 +70,17 @@ public class viewFactory {
 //        Stage stage = new Stage();
         stage.setScene(scene);
         stage.show();
+    }
+
+    public HBox getThongKe() {
+        try {
+            if (ThongKe == null) {
+                ThongKe = new FXMLLoader(getClass().getResource("/com/example/alpha/Workplace/ThongKe.fxml")).load();
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return ThongKe;
     }
 
     public void showWorkPlaceWindow(){

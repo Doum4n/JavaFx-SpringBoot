@@ -12,7 +12,6 @@ import lombok.Getter;
 @Data
 public class viewQuanLy {
     private AnchorPane PhanLop;
-    private AnchorPane QLSinhVien;
     private AnchorPane QLGiaoVien;
     private AnchorPane PhanCong;
     private AnchorPane Diem;
@@ -34,8 +33,6 @@ public class viewQuanLy {
     private ObjectProperty<AnchorPane> anchorPaneProperty;
     private ObjectProperty<Button> buttonProperty;
 
-    private StringProperty SvSelected;
-
     public viewQuanLy() {
         this.quanLyProperty = new SimpleObjectProperty<>();
         this.Tab_selected = new SimpleStringProperty();
@@ -43,21 +40,8 @@ public class viewQuanLy {
         this.Id = new SimpleStringProperty();
         this.MaMH = new SimpleStringProperty();
 
-        this.SvSelected = new SimpleStringProperty();
-
         this.anchorPaneProperty = new SimpleObjectProperty<>(new AnchorPane());
         this.buttonProperty = new SimpleObjectProperty<>(new Button("Xem"));
-    }
-
-    public AnchorPane getQLSinhVien(){
-        try {
-            if (QLSinhVien == null) {
-                QLSinhVien = new FXMLLoader(getClass().getResource("/com/example/alpha/DiemSinhVien/SinhVien.fxml")).load();
-            }
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        return QLSinhVien;
     }
 
     public AnchorPane getTaiKhoan(){

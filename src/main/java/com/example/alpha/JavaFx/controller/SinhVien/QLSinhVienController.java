@@ -101,9 +101,9 @@ public class QLSinhVienController implements Initializable, setTable {
     @Override
     public void addListenerTableView(){
         data = FXCollections.observableArrayList(sv);
-        Model.getInstant().getViewQuanLy().getSvSelected().addListener((observable, oldValue, newValue) -> {
+        Model.getInstant().getDiemSinhVien().getSvSelected().addListener((observable, oldValue, newValue) -> {
             data.stream().filter(sinhVienEntity ->
-                    sinhVienEntity.getMaSinhVien().equals(Model.getInstant().getViewQuanLy().getSvSelected().get())
+                    sinhVienEntity.getMaSinhVien().equals(Model.getInstant().getDiemSinhVien().getSvSelected().get())
             ).findFirst().ifPresent(sinhVienEntity -> {
                 TextField_HoTen.setText(sinhVienEntity.getHoTen());
                 TextField_Email.setText(sinhVienEntity.getEmail());

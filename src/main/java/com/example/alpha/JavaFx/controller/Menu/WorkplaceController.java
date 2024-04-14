@@ -34,6 +34,7 @@ import java.util.Objects;
 import java.util.ResourceBundle;
 
 import static com.example.alpha.JavaFx.view.Menu.QuanLy;
+import static com.example.alpha.JavaFx.view.Menu.ThongKe;
 
 @Controller
 public class WorkplaceController implements Initializable{
@@ -44,6 +45,7 @@ public class WorkplaceController implements Initializable{
     @FXML
     @Getter
     private ChoiceBox<String> ChoiceBox_Nam;
+
     public BorderPane borderPane;
 
     @FXML
@@ -71,6 +73,13 @@ public class WorkplaceController implements Initializable{
                     AnchorPane_HBox.getChildren().clear();
                     borderPane.setRight(Model.getInstant().getViewFactory().getDashboard());
                 }
+                case ThongKe -> {
+                    if(!Objects.equals(oldValue, newValue)) {
+                        AnchorPane_HBox.getChildren().clear();
+                        AnchorPane_HBox.getChildren().add(Model.getInstant().getViewFactory().getThongKe());
+                    }
+                    addListenerThongKe();
+                }
             }
         });
         ChoiceBox_HocKy.setValue(HocKy.getRepository().getHocKy().get(0));
@@ -87,13 +96,21 @@ public class WorkplaceController implements Initializable{
         Model.getInstant().getViewQuanLy().getQuanLyProperty().addListener((observable, oldValue, newValue) -> {
             switch (newValue){
                 case QLSinhVien -> {
-                    borderPane.setRight(Model.getInstant().getViewQuanLy().getQLSinhVien());
+//                    borderPane.setRight(Model.getInstant().getViewQuanLy().getQLSinhVien());
                 }
                 case DiemThi -> borderPane.setRight(Model.getInstant().getViewQuanLy().getDiem());
-//                case PhanLop -> borderPane.setRight(Model.getInstant().getViewQuanLy().getPhanLop());
-//                case QLGiaoVien -> borderPane.setRight(Model.getInstant().getViewQuanLy().getQLGiaoVien());
                 case DiemQT -> borderPane.setRight(Model.getInstant().getViewQuanLy().getPCChamDiem());
                 case TaiKhoan -> borderPane.setRight(Model.getInstant().getViewQuanLy().getTaiKhoan());
+            }
+        });
+    }
+
+    private void addListenerThongKe(){
+        Model.getInstant().getViewThongKe().getThongKeProperty().addListener((observable, oldValue, newValue) -> {
+            switch (newValue){
+                case TK_DiemSV_MH -> borderPane.setRight(Model.getInstant().getViewThongKe().getTK_DiemSV_MH());
+                case TK_DiemLop_MonHoc -> borderPane.setRight(Model.getInstant().getViewThongKe().getTK_DiemLop_MonHoc());
+                case TK_DiemLop_HocKy -> borderPane.setRight(Model.getInstant().getViewThongKe().getTK_DiemLop_HocKy());
             }
         });
     }

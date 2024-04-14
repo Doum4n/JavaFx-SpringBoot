@@ -43,6 +43,10 @@ public class KqSinhVienMonhocEntity {
     @Column(name = "DiemThi")
     private Float diemThi;
 
+    @Basic
+    @Column(name = "DiemTongKet")
+    private Float DiemTK;
+
     public KqSinhVienMonhocEntity(String maSinhVien, String maMonHoc, String maHocKy, String maNamHoc, Float diemQT) {
         this.maSinhVien = maSinhVien;
         this.maNamHoc = maNamHoc;

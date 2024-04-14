@@ -93,7 +93,7 @@ public class DiemSVController implements Initializable, setTable {
             }
         });
 
-        Model.getInstant().getViewQuanLy().getSvSelected().addListener((observable, oldValue, newValue) -> {
+        Model.getInstant().getDiemSinhVien().getSvSelected().addListener((observable, oldValue, newValue) -> {
             filteredList.setPredicate(diemEntity -> {
                 if(!MH.get().contains(diemEntity.getMaMonHoc()) && diemEntity.getMaSinhVien().equals(newValue)){
                     MH.add(diemEntity.getMaMonHoc());
@@ -109,12 +109,12 @@ public class DiemSVController implements Initializable, setTable {
 
         Model.getInstant().getViewFactory().getHocky().addListener((observable, oldValue, newValue) -> {
             filteredList.setPredicate(diemEntity -> {
-                if (!MH.get().contains(diemEntity.getMaMonHoc()) && diemEntity.getMaSinhVien().equals(Model.getInstant().getViewQuanLy().getSvSelected().get())) {
+                if (!MH.get().contains(diemEntity.getMaMonHoc()) && diemEntity.getMaSinhVien().equals(Model.getInstant().getDiemSinhVien().getSvSelected().get())) {
                     MH.add(diemEntity.getMaMonHoc());
                     SV.add(diemEntity.getMaSinhVien());
                     return diemEntity.getMaHocKy().equals(newValue)
                             && diemEntity.getMaNamHoc().equals(Model.getInstant().getViewFactory().getNamHoc().get())
-                            && diemEntity.getMaSinhVien().equals(Model.getInstant().getViewQuanLy().getSvSelected().get());
+                            && diemEntity.getMaSinhVien().equals(Model.getInstant().getDiemSinhVien().getSvSelected().get());
                 }
                 return false;
             });
@@ -124,17 +124,30 @@ public class DiemSVController implements Initializable, setTable {
 
         Model.getInstant().getViewFactory().getNamHoc().addListener((observable, oldValue, newValue) -> {
             filteredList.setPredicate(diemEntity -> {
-                if (!MH.get().contains(diemEntity.getMaMonHoc()) && diemEntity.getMaSinhVien().equals(Model.getInstant().getViewQuanLy().getSvSelected().get())) {
+                if (!MH.get().contains(diemEntity.getMaMonHoc()) && diemEntity.getMaSinhVien().equals(Model.getInstant().getDiemSinhVien().getSvSelected().get())) {
                     MH.add(diemEntity.getMaMonHoc());
                     SV.add(diemEntity.getMaSinhVien());
                     return diemEntity.getMaHocKy().equals(Model.getInstant().getViewFactory().getHocky().get())
                             && diemEntity.getMaNamHoc().equals(newValue)
-                            && diemEntity.getMaSinhVien().equals(Model.getInstant().getViewQuanLy().getSvSelected().get());
+                            && diemEntity.getMaSinhVien().equals(Model.getInstant().getDiemSinhVien().getSvSelected().get());
                 }
                 return false;
             });
             MH.clear();
             TableView_DiemSV.setItems(filteredList);
+        });
+
+        Model.getInstant().getDiemSinhVien().getSvSelected().addListener((observable, oldValue, newValue) -> {
+
+            double TongDiemTK = 0;
+            double TongTC = 0;
+            for(int i=0;i<TableView_DiemSV.getItems().size();i++) {
+
+                TongDiemTK += Double.parseDouble(TableView_DiemSV.getColumns().get(6).getCellData(i).toString());
+                TongTC += Double.parseDouble(TableView_DiemSV.getColumns().get(2).getCellData(i).toString());
+            }
+            Model.getInstant().getDiemSinhVien().getDiemTK().set(Math.round(TongDiemTK/TongTC * 100.0) / 100.0);
+            Model.getInstant().getDiemSinhVien().getSoTC().set(TongTC);
         });
     }
 
@@ -171,14 +184,21 @@ public class DiemSVController implements Initializable, setTable {
         Column_DiemTK.setCellValueFactory(param -> {
             List<Float> diems = Diem.getRepository().getDiems(((DiemEntity)param.getValue()).getMaSinhVien(),((DiemEntity)param.getValue()).getMaMonHoc());
             float max = Collections.max(diems);
-            float TyLe = MonHoc.getRepository().getTyLeDiemQT(((DiemEntity) param.getValue()).getMaMonHoc());
-            System.out.println(TyLe);
-            Float diemqt = (Float) param.getTableView().getColumns().get(4).getCellData(param.getTableView().getItems().indexOf(param.getValue()));
-            System.out.println(diemqt);
-            if(diemqt!=null) {
-                return new ReadOnlyObjectWrapper<>( diemqt * (TyLe / 100) + max *  ((100 - TyLe) / 100));
+
+            //Lấy điểm thi lớn nhất lưu vào database
+//            Model.getInstant().getDiemSinhVien().getDiemThi().set(max);
+            if(KqMonHoc_SV.getRepository().getDiemThi(((DiemEntity) param.getValue()).getMaSinhVien(),((DiemEntity) param.getValue()).getMaMonHoc())==null){
+                KqMonHoc_SV.getRepository().UpdateDiemThi(((DiemEntity) param.getValue()).getMaSinhVien(),((DiemEntity) param.getValue()).getMaMonHoc(),max);
             }
-            return new ReadOnlyObjectWrapper<>();
+
+            float TyLe = MonHoc.getRepository().getTyLeDiemQT(((DiemEntity) param.getValue()).getMaMonHoc());
+            Float diemqt = (Float) param.getTableView().getColumns().get(4).getCellData(param.getTableView().getItems().indexOf(param.getValue()));
+            Float DiemTongKet = diemqt * (TyLe / 100) + max *  ((100 - TyLe) / 100);
+
+            if(KqMonHoc_SV.getRepository().getDiemTK(((DiemEntity) param.getValue()).getMaSinhVien(), ((DiemEntity) param.getValue()).getMaMonHoc())==null){
+                KqMonHoc_SV.getRepository().UpdateDiemTK(((DiemEntity) param.getValue()).getMaSinhVien(),((DiemEntity) param.getValue()).getMaMonHoc(), DiemTongKet);
+            }
+            return new ReadOnlyObjectWrapper<>(Math.round(DiemTongKet * 100.0f) / 100.0f);
         });
         Column_DiemTK.setCellFactory(new DiemQTController.NullHandlingCellFactory());
         Column_STC.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(MonHoc.getRepository().getSTC(param.getValue().getMaMonHoc())));

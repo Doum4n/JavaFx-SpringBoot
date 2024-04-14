@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.alpha.JavaFx.controller.ThongKe.TKDiemSVMonHoc">
+   <children>
+      <TableView fx:id="TableView_TKDiemLop" layoutX="110.0" layoutY="113.0" prefHeight="226.0" prefWidth="379.0">
+        <columns>
+          <TableColumn fx:id="Coulum_MaSV" prefWidth="75.0" text="MaSV" />
+          <TableColumn fx:id="Colum_TenSV" prefWidth="75.0" text="TenSV" />
+            <TableColumn fx:id="Colum_DiemQT" prefWidth="75.0" text="DiemQT" />
+            <TableColumn fx:id="Colum_DiemThi" prefWidth="75.0" text="Diem Thi" />
+            <TableColumn fx:id="Colum_DiemTK" prefWidth="75.0" text="DiemTK" />
+        </columns>
+      </TableView>
+      <ChoiceBox fx:id="ChoiceBox_Lop" layoutX="110.0" layoutY="63.0" prefWidth="150.0" />
+      <ChoiceBox fx:id="ChoiceBox_MonHoc" layoutX="338.0" layoutY="63.0" prefWidth="150.0" />
+   </children>
+</AnchorPane>

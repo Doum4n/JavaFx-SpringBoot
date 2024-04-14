@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane prefHeight="226.0" prefWidth="270.0" style="-fx-background-color: #555555; -fx-border-color: black;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.alpha.JavaFx.controller.Diem.DiemTKHKCotroller">
+   <children>
+      <Label layoutX="69.0" layoutY="61.0" text="Điểm TB học kỳ:" textFill="WHITE" />
+      <Label layoutX="69.0" layoutY="105.0" text="Số tín chỉ đạt:" textFill="WHITE" />
+      <Label layoutX="69.0" layoutY="148.0" text="Xếp loại:" textFill="WHITE" />
+      <Label fx:id="Label_DiemTBHK" layoutX="164.0" layoutY="61.0" prefHeight="17.0" prefWidth="72.0" textFill="WHITE" />
+      <Label fx:id="Label_SoTC" layoutX="155.0" layoutY="105.0" prefHeight="17.0" prefWidth="62.0" textFill="WHITE" />
+      <Label fx:id="Label_XepLoai" layoutX="127.0" layoutY="148.0" prefHeight="17.0" prefWidth="62.0" textFill="WHITE" />
+   </children>
+</Pane>

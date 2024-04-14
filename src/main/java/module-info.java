@@ -52,9 +52,11 @@ module com.example.alpha {
     opens com.example.alpha.JavaFx.controller.GiaoVien;
     opens com.example.alpha.JavaFx.controller.TaiKhoan;
     opens com.example.alpha.JavaFx.controller.Menu;
+    opens com.example.alpha.JavaFx.controller.ThongKe;
     exports com.example.alpha.JavaFx.model.Diem;
     exports com.example.alpha.JavaFx.model.GiaoVien;
     exports com.example.alpha.JavaFx.model.SinhVien;
     exports com.example.alpha.JavaFx.model.MonHoc;
     exports com.example.alpha.Spring_boot.result.student;
+    exports com.example.alpha.JavaFx.controller.ThongKe;
 }

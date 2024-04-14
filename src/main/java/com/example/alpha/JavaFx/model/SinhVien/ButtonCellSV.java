@@ -13,7 +13,7 @@ public class ButtonCellSV {
         this.button = new Button("Xem");
         button.setOnAction(event -> {
             TableCell tableCell = (TableCell) button.getParent().getParent().lookup("#Column_MaSV");
-            Model.getInstant().getViewQuanLy().getSvSelected().set(tableCell.getItem().toString());
+            Model.getInstant().getDiemSinhVien().getSvSelected().set(tableCell.getItem().toString());
         });
     }
 

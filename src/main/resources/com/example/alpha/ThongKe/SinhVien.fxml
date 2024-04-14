@@ -42,5 +42,10 @@
             <fx:include source="DiemSV.fxml" />
          </children>
       </Pane>
+      <Pane layoutX="771.0" layoutY="330.0" prefHeight="226.0" prefWidth="270.0">
+         <children>
+            <fx:include source="../DiemSinhVien/DiemTKHK.fxml" />
+         </children>
+      </Pane>
    </children>
 </AnchorPane>

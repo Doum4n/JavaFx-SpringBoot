@@ -21,4 +21,20 @@ public interface KqSVMonhocEntityRepository extends JpaRepository<KqSinhVienMonh
 
     @Query("select a.diemQuaTrinh from KqSinhVienMonhocEntity a where a.maSinhVien=?1 and a.maMonHoc=?2")
     Float getDiemQT(String MaSV, String MaMH);
+
+    @Transactional
+    @Modifying
+    @Query("update KqSinhVienMonhocEntity a set a.diemThi=?3 where a.maSinhVien=?1 and a.maMonHoc=?2")
+    void UpdateDiemThi(String maSinhVien, String MaMH, Float diem);
+
+    @Query("select a.diemThi from KqSinhVienMonhocEntity a where a.maSinhVien=?1 and a.maMonHoc=?2")
+    Float getDiemThi(String MaSV, String MaMH);
+
+    @Transactional
+    @Modifying
+    @Query("update KqSinhVienMonhocEntity a set a.DiemTK=?3 where a.maSinhVien=?1 and a.maMonHoc=?2")
+    void UpdateDiemTK(String maSinhVien, String MaMH, Float diem);
+
+    @Query("select a.DiemTK from KqSinhVienMonhocEntity a where a.maSinhVien=?1 and a.maMonHoc=?2")
+    Float getDiemTK(String MaSV, String MaMH);
 }
