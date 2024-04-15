@@ -1,4 +1,5 @@
 package com.example.alpha.Spring_boot.student;
+import com.example.alpha.Spring_boot.result.student.KqSinnhVienHocKy;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import javafx.scene.control.Button;

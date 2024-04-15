@@ -143,7 +143,7 @@ public class DiemSVController implements Initializable, setTable {
             double TongTC = 0;
             for(int i=0;i<TableView_DiemSV.getItems().size();i++) {
 
-                TongDiemTK += Double.parseDouble(TableView_DiemSV.getColumns().get(6).getCellData(i).toString());
+                TongDiemTK += Double.parseDouble(TableView_DiemSV.getColumns().get(6).getCellData(i).toString()) * Double.parseDouble(TableView_DiemSV.getColumns().get(2).getCellData(i).toString());
                 TongTC += Double.parseDouble(TableView_DiemSV.getColumns().get(2).getCellData(i).toString());
             }
             Model.getInstant().getDiemSinhVien().getDiemTK().set(Math.round(TongDiemTK/TongTC * 100.0) / 100.0);
@@ -193,7 +193,7 @@ public class DiemSVController implements Initializable, setTable {
 
             float TyLe = MonHoc.getRepository().getTyLeDiemQT(((DiemEntity) param.getValue()).getMaMonHoc());
             Float diemqt = (Float) param.getTableView().getColumns().get(4).getCellData(param.getTableView().getItems().indexOf(param.getValue()));
-            Float DiemTongKet = diemqt * (TyLe / 100) + max *  ((100 - TyLe) / 100);
+            float DiemTongKet = diemqt * (TyLe / 100) + max *  ((100 - TyLe) / 100);
 
             if(KqMonHoc_SV.getRepository().getDiemTK(((DiemEntity) param.getValue()).getMaSinhVien(), ((DiemEntity) param.getValue()).getMaMonHoc())==null){
                 KqMonHoc_SV.getRepository().UpdateDiemTK(((DiemEntity) param.getValue()).getMaSinhVien(),((DiemEntity) param.getValue()).getMaMonHoc(), DiemTongKet);

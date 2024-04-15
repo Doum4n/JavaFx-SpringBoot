@@ -1,5 +1,6 @@
 package com.example.alpha.JavaFx.controller.ThongKe;
 
+import com.example.alpha.JavaFx.controller.Diem.DiemQTController;
 import com.example.alpha.JavaFx.controller.setTable;
 import com.example.alpha.JavaFx.model.MonHoc.MonHoc;
 import com.example.alpha.JavaFx.model.PhanLop;
@@ -14,14 +15,23 @@ import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class TKDiemLopMonHoc implements Initializable, setTable {
+
+    @FXML
+    private Label Label_TenMH;
+
+
+    @FXML
+    private Label Label_SiSo;
 
     @FXML
     private ChoiceBox<String> ChoiceBox_Lop;
@@ -30,13 +40,13 @@ public class TKDiemLopMonHoc implements Initializable, setTable {
     private ChoiceBox<String> ChoiceBox_MonHoc;
 
     @FXML
-    private TableColumn<KqSinhVienMonhocEntity, Float> Colum_DiemQT;
+    private TableColumn<Object, Float> Colum_DiemQT;
 
     @FXML
-    private TableColumn<KqSinhVienMonhocEntity, Float> Colum_DiemTK;
+    private TableColumn<Object, Float> Colum_DiemTK;
 
     @FXML
-    private TableColumn<KqSinhVienMonhocEntity, Float> Colum_DiemThi;
+    private TableColumn<Object, Float> Colum_DiemThi;
 
     @FXML
     private TableColumn<KqSinhVienMonhocEntity, String> Colum_TenSV;
@@ -57,7 +67,6 @@ public class TKDiemLopMonHoc implements Initializable, setTable {
 
         ChoiceBox_Lop.setItems(FXCollections.observableArrayList(PhanLop.getRepository().getAllLop()));
         ChoiceBox_MonHoc.setItems(FXCollections.observableArrayList(MonHoc.getRepository().getAllMonHoc()));
-        filteredList = new FilteredList<>(data, b -> true);
 
         ChoiceBox_Lop.valueProperty().addListener((observable, oldValue, newValue) -> {
             filteredList.setPredicate(kq -> PhanLop.getRepository().getLop(kq.getMaSinhVien()).equals(newValue) &&
@@ -68,14 +77,23 @@ public class TKDiemLopMonHoc implements Initializable, setTable {
         });
 
         ChoiceBox_MonHoc.valueProperty().addListener((observable, oldValue, newValue) -> {
-            AtomicBoolean dk = new AtomicBoolean(false);
+            Label_TenMH.setText(MonHoc.getRepository().getTenMH(newValue));
             filteredList.setPredicate(kq -> {
-                DKHocPhan.getRepository().getMonhocDK(kq.getMaSinhVien()).forEach(DkHP -> {
-                    dk.set(DkHP.equals(newValue) && DkHP.equals(kq.getMaMonHoc()));
-                });
-                return dk.get() && PhanLop.getRepository().getLop(kq.getMaSinhVien()).equals(ChoiceBox_Lop.getValue()0);
+                AtomicBoolean dk = new AtomicBoolean(false);
+                List<String> DkHP = DKHocPhan.getRepository().getMonhocDK(kq.getMaSinhVien());
+                for(int i=0;i<DKHocPhan.getRepository().getMonhocDK(kq.getMaSinhVien()).size();i++){
+                    if(DkHP.get(i).equals(newValue) && DkHP.get(i).equals(kq.getMaMonHoc())){
+                        dk.set(true);
+                        break;
+                    }/*else {
+                        dk.set(false);
+                    }*/
+                }
+                return dk.get() && PhanLop.getRepository().getLop(kq.getMaSinhVien()).equals(ChoiceBox_Lop.getValue());
             });
+            Label_SiSo.setText(String.valueOf(filteredList.size()));
             TableView_TKDiemLop.setItems(filteredList);
+            System.out.println(newValue);
         });
     }
 
@@ -83,15 +101,19 @@ public class TKDiemLopMonHoc implements Initializable, setTable {
     public void setTableView() {
         setCellColumn();
         data = FXCollections.observableArrayList(KqMonHoc_SV.getRepository().findAll());
+        filteredList = new FilteredList<>(data, b -> true);
         TableView_TKDiemLop.setItems(data);
     }
 
     @Override
     public void setCellColumn() {
         Coulum_MaSV.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue().getMaSinhVien()));
-        Colum_DiemTK.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue().getDiemTK()));
-        Colum_DiemQT.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue().getDiemQuaTrinh()));
-        Colum_DiemThi.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue().getDiemThi()));
+        Colum_DiemTK.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(((KqSinhVienMonhocEntity)param.getValue()).getDiemTK()));
+        Colum_DiemTK.setCellFactory(new DiemQTController.NullHandlingCellFactory());
+        Colum_DiemQT.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(((KqSinhVienMonhocEntity)param.getValue()).getDiemQuaTrinh()));
+        Colum_DiemQT.setCellFactory(new DiemQTController.NullHandlingCellFactory());
+        Colum_DiemThi.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(((KqSinhVienMonhocEntity)param.getValue()).getDiemThi()));
+        Colum_DiemThi.setCellFactory(new DiemQTController.NullHandlingCellFactory());
         Colum_TenSV.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(SinhVien.getRepository().getByHoTen(param.getValue().getMaSinhVien())));
     }
 
