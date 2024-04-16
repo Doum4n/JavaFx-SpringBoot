@@ -6,5 +6,6 @@ public enum QuanLy{
     PhanLop,
     DiemThi,
     DiemQT,
-    TaiKhoan
+    TaiKhoan,
+    TinhDiemTB
 }

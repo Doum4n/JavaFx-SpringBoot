@@ -5,11 +5,13 @@ import com.example.alpha.Spring_boot.class_grade.NamhocEntity;
 import com.example.alpha.Spring_boot.student.SinhVienEntity;
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Getter
 @Table(name = "kq_sinhvien_hocky")
 @IdClass(KqSinhVienHocKyPK.class)
+@NoArgsConstructor
 public class KqSinnhVienHocKy {
     @Id
     @Column(
@@ -42,4 +44,10 @@ public class KqSinnhVienHocKy {
     @ManyToOne
     @JoinColumn(name = "MaNamHoc", insertable = false, updatable = false)
     private NamhocEntity namhocEntity;
+
+    public KqSinnhVienHocKy(String maSinhVien, String maHocKy, String maNamHoc) {
+        MaSinhVien = maSinhVien;
+        MaHocKy = maHocKy;
+        MaNamHoc = maNamHoc;
+    }
 }

@@ -1,25 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.alpha.JavaFx.controller.ThongKe.TKDiemLopHocKy">
    <children>
-      <TableView fx:id="TableView_TKDiemLopHK" layoutX="110.0" layoutY="120.0" prefHeight="226.0" prefWidth="331.0">
+      <TableView fx:id="TableView_TKDiemLopHK" layoutX="110.0" layoutY="120.0" prefHeight="226.0" prefWidth="406.0">
          <columns>
             <TableColumn fx:id="Colum_MaSV" prefWidth="85.5999755859375" text="MaSV" />
             <TableColumn fx:id="Colum_TenSV" prefWidth="183.199951171875" text="TenSV" />
             <TableColumn fx:id="Colum_DiemTK" prefWidth="60.800048828125" text="DiemTK" />
+            <TableColumn fx:id="Column_SoTC" prefWidth="75.0" text="SoTC" />
          </columns>
       </TableView>
-      <ChoiceBox fx:id="ChoiceBox_Lop" layoutX="110.0" layoutY="73.0" prefWidth="150.0" />
       <Label layoutX="110.0" layoutY="41.0" text="Sĩ số:" />
-      <Label fx:id="Label_SiSo" layoutX="185.0" layoutY="32.0" prefHeight="18.0" prefWidth="47.0" />
-      <ComboBox fx:id="ComboBox_Lop" layoutX="290.0" layoutY="73.0" prefWidth="150.0" />
+      <Label fx:id="Label_SiSo" layoutX="148.0" layoutY="40.0" prefHeight="18.0" prefWidth="47.0" />
+      <ComboBox fx:id="ComboBox_Lop" layoutX="110.0" layoutY="76.0" prefWidth="150.0" />
    </children>
 </AnchorPane>

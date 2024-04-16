@@ -1,14 +1,20 @@
 package com.example.alpha.JavaFx.controller.Menu;
 
 import com.example.alpha.JavaFx.Load.LoadScence;
+import com.example.alpha.JavaFx.model.Diem.Diem;
 import com.example.alpha.JavaFx.model.HocKy;
 import com.example.alpha.JavaFx.model.Model;
+import com.example.alpha.JavaFx.model.MonHoc.MonHoc;
 import com.example.alpha.JavaFx.model.NamHoc;
+import com.example.alpha.JavaFx.model.SinhVien.KqMonHoc_SV;
 import com.example.alpha.JavaFx.view.Menu;
+import com.example.alpha.Spring_boot.result.student.KqSinhVienMonhocEntity;
+import com.example.alpha.Spring_boot.subject.DiemEntity;
 import com.example.alpha.repository.HockyEntityRepository;
 import com.example.alpha.repository.NamhocEntityRepository;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -29,9 +35,7 @@ import org.springframework.stereotype.Controller;
 import javax.crypto.spec.PSource;
 import java.io.IOException;
 import java.net.URL;
-import java.util.Arrays;
-import java.util.Objects;
-import java.util.ResourceBundle;
+import java.util.*;
 
 import static com.example.alpha.JavaFx.view.Menu.QuanLy;
 import static com.example.alpha.JavaFx.view.Menu.ThongKe;

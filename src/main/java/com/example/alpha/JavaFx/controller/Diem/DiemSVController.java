@@ -181,25 +181,7 @@ public class DiemSVController implements Initializable, setTable {
         Column_DiemQT.setCellValueFactory( param -> new ReadOnlyObjectWrapper<>(KqMonHoc_SV.getRepository().getDiemQT(((DiemEntity)param.getValue()).getMaSinhVien(),((DiemEntity)param.getValue()).getMaMonHoc())));
         Column_DiemQT.setCellFactory(new DiemQTController.NullHandlingCellFactory());
 
-        Column_DiemTK.setCellValueFactory(param -> {
-            List<Float> diems = Diem.getRepository().getDiems(((DiemEntity)param.getValue()).getMaSinhVien(),((DiemEntity)param.getValue()).getMaMonHoc());
-            float max = Collections.max(diems);
-
-            //Lấy điểm thi lớn nhất lưu vào database
-//            Model.getInstant().getDiemSinhVien().getDiemThi().set(max);
-            if(KqMonHoc_SV.getRepository().getDiemThi(((DiemEntity) param.getValue()).getMaSinhVien(),((DiemEntity) param.getValue()).getMaMonHoc())==null){
-                KqMonHoc_SV.getRepository().UpdateDiemThi(((DiemEntity) param.getValue()).getMaSinhVien(),((DiemEntity) param.getValue()).getMaMonHoc(),max);
-            }
-
-            float TyLe = MonHoc.getRepository().getTyLeDiemQT(((DiemEntity) param.getValue()).getMaMonHoc());
-            Float diemqt = (Float) param.getTableView().getColumns().get(4).getCellData(param.getTableView().getItems().indexOf(param.getValue()));
-            float DiemTongKet = diemqt * (TyLe / 100) + max *  ((100 - TyLe) / 100);
-
-            if(KqMonHoc_SV.getRepository().getDiemTK(((DiemEntity) param.getValue()).getMaSinhVien(), ((DiemEntity) param.getValue()).getMaMonHoc())==null){
-                KqMonHoc_SV.getRepository().UpdateDiemTK(((DiemEntity) param.getValue()).getMaSinhVien(),((DiemEntity) param.getValue()).getMaMonHoc(), DiemTongKet);
-            }
-            return new ReadOnlyObjectWrapper<>(Math.round(DiemTongKet * 100.0f) / 100.0f);
-        });
+        Column_DiemTK.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(KqMonHoc_SV.getRepository().getDiemTK(((DiemEntity) param.getValue()).getMaSinhVien(), ((DiemEntity) param.getValue()).getMaMonHoc())));
         Column_DiemTK.setCellFactory(new DiemQTController.NullHandlingCellFactory());
         Column_STC.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(MonHoc.getRepository().getSTC(param.getValue().getMaMonHoc())));
     }

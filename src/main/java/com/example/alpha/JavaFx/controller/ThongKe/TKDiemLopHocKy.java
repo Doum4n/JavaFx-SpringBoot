@@ -1,12 +1,14 @@
 package com.example.alpha.JavaFx.controller.ThongKe;
 
 import com.example.alpha.JavaFx.controller.setTable;
+import com.example.alpha.JavaFx.model.Diem.DiemSV_HocKy;
 import com.example.alpha.JavaFx.model.Diem.PhongThi;
 import com.example.alpha.JavaFx.model.Lop;
 import com.example.alpha.JavaFx.model.PhanLop;
 import com.example.alpha.JavaFx.model.SinhVien.KqMonHoc_SV;
 import com.example.alpha.JavaFx.model.SinhVien.SinhVien;
 import com.example.alpha.Spring_boot.result.student.KqSinhVienMonhocEntity;
+import com.example.alpha.Spring_boot.result.student.KqSinnhVienHocKy;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -32,23 +34,26 @@ public class TKDiemLopHocKy implements Initializable, setTable {
     private ComboBox<String> ComboBox_Lop;
 
     @FXML
-    private TableColumn<KqSinhVienMonhocEntity, Float> Colum_DiemTK;
+    private TableColumn<KqSinnhVienHocKy, Float> Colum_DiemTK;
 
     @FXML
-    private TableColumn<KqSinhVienMonhocEntity, String> Colum_TenSV;
+    private TableColumn<KqSinnhVienHocKy, String> Colum_TenSV;
 
     @FXML
-    private TableColumn<KqSinhVienMonhocEntity, String> Colum_MaSV;
+    private TableColumn<KqSinnhVienHocKy, String> Colum_MaSV;
+
+    @FXML
+    private TableColumn<KqSinnhVienHocKy, Integer> Column_SoTC;
 
     @FXML
     private Label Label_SiSo;
 
     @FXML
-    private TableView<KqSinhVienMonhocEntity> TableView_TKDiemLopHK;
+    private TableView<KqSinnhVienHocKy> TableView_TKDiemLopHK;
 
-    private FilteredList<KqSinhVienMonhocEntity> filteredList;
+    private FilteredList<KqSinnhVienHocKy> filteredList;
 
-    private ObservableList<KqSinhVienMonhocEntity> data = FXCollections.observableArrayList();
+    private ObservableList<KqSinnhVienHocKy> data = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -81,7 +86,7 @@ public class TKDiemLopHocKy implements Initializable, setTable {
     @Override
     public void setTableView() {
         setCellColumn();
-        data = FXCollections.observableArrayList(KqMonHoc_SV.getRepository().findAll());
+        data = FXCollections.observableArrayList(DiemSV_HocKy.getRepository().findAll());
         filteredList = new FilteredList<>(data);
         TableView_TKDiemLopHK.setItems(data);
     }
@@ -90,7 +95,8 @@ public class TKDiemLopHocKy implements Initializable, setTable {
     public void setCellColumn() {
         Colum_MaSV.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue().getMaSinhVien()));
         Colum_TenSV.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(SinhVien.getRepository().getByHoTen(param.getValue().getMaSinhVien())));
-        Colum_DiemTK.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>());
+        Colum_DiemTK.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue().getDiemTkHocKy()));
+        Column_SoTC.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue().getDoTC()));
     }
 
     @Override
