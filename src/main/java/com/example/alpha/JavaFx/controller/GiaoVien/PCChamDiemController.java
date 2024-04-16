@@ -87,12 +87,14 @@ public class PCChamDiemController implements Initializable{
         for (PhancongEntity phancongEntity : phanCongList) {
             // Lấy MaGV xuất hiện lần đầu trong MaGV của CellGiaoVien
             if (!Model.getInstant().getCellGiaoVien().getMaGV().get().contains(phancongEntity.getMaGiaoVien())
+                    && !Model.getInstant().getCellGiaoVien().getMaMH().get().contains(phancongEntity.getMaMonHoc())
                     && Objects.equals(Model.getInstant().getViewFactory().getHocky().get(), phancongEntity.getMaHocKy())
                     && Objects.equals(phancongEntity.getMaNamHoc(), Model.getInstant().getViewFactory().getNamHoc().get())) {
 
                 //Cập nhật thông tin trước khi tải CellGiaoVien
                 // Thiết lập MaGV cho CellGiaoVien trước vì Model.getInstant().getCellGiaoVien().getMaGV().get = ""
                 Model.getInstant().getCellGiaoVien().getMaGV().set(phancongEntity.getMaGiaoVien());
+                Model.getInstant().getCellGiaoVien().getMaMH().set(phancongEntity.getMaMonHoc());
                 for (GiaovienEntity giaovienEntity : giaovienEntities) {
                     if (phancongEntity.getMaGiaoVien().equals(giaovienEntity.getMaGiaoVien())) {
                         Model.getInstant().getCellGiaoVien().getMaMH().set(phancongEntity.getMaMonHoc());
@@ -135,6 +137,7 @@ public class PCChamDiemController implements Initializable{
         }
         /*Reset lại MaGV khi thay đổi năm, học kỳ*/
         Model.getInstant().getCellGiaoVien().getMaGV().set("");
+        Model.getInstant().getCellGiaoVien().getMaMH().set("");
     }
 
     private void addListenerSearchMaGV(Map<String,Pane> MaGV, Map<String,Pane> MaMH){

@@ -5,14 +5,8 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="791.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.alpha.JavaFx.controller.Menu.QuanLyController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="672.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.alpha.JavaFx.controller.Menu.QuanLyController">
    <children>
-      <AnchorPane prefHeight="100.0" prefWidth="104.0" style="-fx-background-color: #338564; -fx-border-color: black;">
-         <children>
-            <Button fx:id="button_QLSinhVien" layoutX="26.0" layoutY="48.0" mnemonicParsing="false" style="-fx-background-color: AFD663;" text="Sinh viên" />
-            <Label alignment="CENTER" layoutX="3.0" layoutY="2.0" prefHeight="23.0" prefWidth="110.0" style="-fx-background-color: B0BC88;" text="Sinh viên" textAlignment="CENTER" />
-         </children>
-      </AnchorPane>
       <AnchorPane prefHeight="100.0" prefWidth="136.0" style="-fx-background-color: #338564; -fx-border-color: black;">
          <children>
             <Button fx:id="button_KetQua" layoutX="35.0" layoutY="47.0" mnemonicParsing="false" prefWidth="70.0" style="-fx-background-color: AFD663;" text="Lớp" />
@@ -26,15 +20,15 @@
             <Button fx:id="button_PhanCong" layoutX="24.0" layoutY="46.0" mnemonicParsing="false" style="-fx-background-color: AFD663;" text="Điểm quá trình" />
          </children>
       </AnchorPane>
+      <AnchorPane prefHeight="100.0" prefWidth="201.0" style="-fx-background-color: #9EC655;">
+         <children>
+            <Button fx:id="Button_TinhDiemTB" layoutX="37.0" layoutY="37.0" mnemonicParsing="false" style="-fx-background-color: AA6E00; -fx-border-color: C69E55;" text="Tính điểm trung bình" textFill="#e2ff07" />
+         </children>
+      </AnchorPane>
       <AnchorPane layoutX="844.0" layoutY="10.0" prefHeight="100.0" prefWidth="102.0" style="-fx-background-color: #338564; -fx-border-color: black;">
          <children>
             <Button fx:id="button_TaiKhoan" layoutX="18.0" layoutY="44.0" mnemonicParsing="false" style="-fx-background-color: AFD663;" text="Tài khoản" />
             <Label alignment="CENTER" layoutX="3.0" layoutY="2.0" prefHeight="23.0" prefWidth="97.0" style="-fx-background-color: B0BC88;" text="Tài khoản" textAlignment="CENTER" />
-         </children>
-      </AnchorPane>
-      <AnchorPane prefHeight="100.0" prefWidth="201.0">
-         <children>
-            <Button fx:id="Button_TinhDiemTB" layoutX="37.0" layoutY="37.0" mnemonicParsing="false" text="Tính điểm trung bình" />
          </children>
       </AnchorPane>
    </children>

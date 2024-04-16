@@ -29,4 +29,7 @@ public interface KqSinnhVienHocKyRepository extends JpaRepository<KqSinnhVienHoc
     @Modifying
     @Query("update KqSinnhVienHocKy a set a.DoTC=?4 where a.MaSinhVien=?1 and a.MaHocKy=?2 and a.MaNamHoc=?3")
     void updateTongTC(String MaSV, String MaHocKy, String MaNamHoc, int SoTC);
+
+    @Query("select a from KqSinnhVienHocKy a join DiemRLSinhVien b on a.MaSinhVien=b.MaSinhVien where a.DiemTkHocKy>=7.0 and b.DiemRL>=65")
+    List<KqSinnhVienHocKy> findAllSV_HocBong();
 }

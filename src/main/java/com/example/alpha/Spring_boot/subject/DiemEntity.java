@@ -8,6 +8,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.Check;
 import org.hibernate.proxy.HibernateProxy;
+import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 
 @Entity
@@ -50,8 +51,9 @@ public class DiemEntity {
     @Column(name = "PhongThi")
     private String PhongThi;
 
+    @Nullable
     @Column(name = "Diem")
-    private String Diem;
+    private Float Diem;
 
     @ToString.Exclude
     @OneToOne
@@ -78,7 +80,7 @@ public class DiemEntity {
     @JoinColumn(name = "PhongThi", insertable = false, updatable = false)
     private PhongThiEntity phongThiEntity;
 
-    public DiemEntity(String maSinhVien, String maMonHoc, String maHocKy, String maNamHoc, int lanThi, String Diem, String phongThi) {
+    public DiemEntity(String maSinhVien, String maMonHoc, String maHocKy, String maNamHoc, int lanThi, Float Diem, String phongThi) {
         this.maSinhVien = maSinhVien;
         this.maMonHoc = maMonHoc;
         this.maHocKy = maHocKy;

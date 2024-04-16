@@ -2,6 +2,7 @@ package com.example.alpha.JavaFx.controller.Diem;
 
 import com.example.alpha.JavaFx.controller.setTable;
 import com.example.alpha.JavaFx.model.Diem.Diem;
+import com.example.alpha.JavaFx.model.Diem.DiemSV_HocKy;
 import com.example.alpha.JavaFx.model.Model;
 import com.example.alpha.JavaFx.model.MonHoc.MonHoc;
 import com.example.alpha.JavaFx.model.SinhVien.KqMonHoc_SV;
@@ -65,33 +66,54 @@ public class DiemSVController implements Initializable, setTable {
     private final ListProperty<String> MH = new SimpleListProperty<>(FXCollections.observableArrayList(""));
     private final ListProperty<String> SV = new SimpleListProperty<>(FXCollections.observableArrayList(""));
 
-    private final DoubleProperty MaxDiemThi = new SimpleDoubleProperty();
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setTableView();
 
-        filteredList.forEach(diemEntity -> {
-            Double diem = Diem.getRepository().getDiem(diemEntity.getMaSinhVien(),diemEntity.getMaMonHoc(), String.valueOf(diemEntity.getLanThi()));
-            if(diem!=null){
-                List<String> LanThi = Diem.getRepository().getLanThi(diemEntity.getMaSinhVien(),diemEntity.getMaMonHoc());
-                LanThi.forEach(s -> {
-                    switch (s) {
-                        case "1": {
-                            Column_ThiL1.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(Diem.getRepository().getDiem(param.getValue().getMaSinhVien(), param.getValue().getMaMonHoc(), "1")));
-                            break;
+        Model.getInstant().getDiemSinhVien().getSvSelected().addListener((observable, oldValue, newValue) -> {
+                    filteredList.forEach(diemEntity -> {
+                        Double diem = Diem.getRepository().getDiem(diemEntity.getMaSinhVien(),
+                                diemEntity.getMaMonHoc(), String.valueOf(diemEntity.getLanThi()),
+                                Model.getInstant().getViewFactory().getHocky().get(),
+                                Model.getInstant().getViewFactory().getNamHoc().get()
+                        );
+                        if (diem != null) {
+                            List<String> LanThi = Diem.getRepository().getLanThi(diemEntity.getMaSinhVien(), diemEntity.getMaMonHoc());
+                            LanThi.forEach(s -> {
+                                switch (s) {
+                                    case "1": {
+                                        Column_ThiL1.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(
+                                                Diem.getRepository().getDiem(param.getValue().getMaSinhVien(),
+                                                        param.getValue().getMaMonHoc(),
+                                                        "1",
+                                                        Model.getInstant().getViewFactory().getHocky().get(),
+                                                        Model.getInstant().getViewFactory().getNamHoc().get()))
+                                        );
+                                        break;
+                                    }
+                                    case "2": {
+                                        Column_ThiL2.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(
+                                                Diem.getRepository().getDiem(param.getValue().getMaSinhVien(),
+                                                        param.getValue().getMaMonHoc(),
+                                                        "2",
+                                                        Model.getInstant().getViewFactory().getHocky().get(),
+                                                        Model.getInstant().getViewFactory().getNamHoc().get()))
+                                        );
+                                        break;
+                                    }
+                                    case "3":
+                                        Column_ThiL3.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(Diem.getRepository().getDiem(param.getValue().getMaSinhVien(),
+                                                param.getValue().getMaMonHoc(),
+                                                "3",
+                                                Model.getInstant().getViewFactory().getHocky().get(),
+                                                Model.getInstant().getViewFactory().getNamHoc().get()))
+                                        );
+                                        break;
+                                }
+                            });
                         }
-                        case "2": {
-                            Column_ThiL2.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(Diem.getRepository().getDiem(param.getValue().getMaSinhVien(), param.getValue().getMaMonHoc(), "2")));
-                            break;
-                        }
-                        case "3":
-                            Column_ThiL3.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(Diem.getRepository().getDiem(param.getValue().getMaSinhVien(), param.getValue().getMaMonHoc(), "3")));
-                            break;
-                    }
+                    });
                 });
-            }
-        });
 
         Model.getInstant().getDiemSinhVien().getSvSelected().addListener((observable, oldValue, newValue) -> {
             filteredList.setPredicate(diemEntity -> {
@@ -139,15 +161,15 @@ public class DiemSVController implements Initializable, setTable {
 
         Model.getInstant().getDiemSinhVien().getSvSelected().addListener((observable, oldValue, newValue) -> {
 
-            double TongDiemTK = 0;
-            double TongTC = 0;
-            for(int i=0;i<TableView_DiemSV.getItems().size();i++) {
-
-                TongDiemTK += Double.parseDouble(TableView_DiemSV.getColumns().get(6).getCellData(i).toString()) * Double.parseDouble(TableView_DiemSV.getColumns().get(2).getCellData(i).toString());
-                TongTC += Double.parseDouble(TableView_DiemSV.getColumns().get(2).getCellData(i).toString());
-            }
-            Model.getInstant().getDiemSinhVien().getDiemTK().set(Math.round(TongDiemTK/TongTC * 100.0) / 100.0);
-            Model.getInstant().getDiemSinhVien().getSoTC().set(TongTC);
+//            double TongDiemTK = 0;
+//            double TongTC = 0;
+//            for(int i=0;i<TableView_DiemSV.getItems().size();i++) {
+//
+//                TongDiemTK += Double.parseDouble(TableView_DiemSV.getColumns().get(6).getCellData(i).toString()) * Double.parseDouble(TableView_DiemSV.getColumns().get(2).getCellData(i).toString());
+//                TongTC += Double.parseDouble(TableView_DiemSV.getColumns().get(2).getCellData(i).toString());
+//            }
+            Model.getInstant().getDiemSinhVien().getDiemTK().set(DiemSV_HocKy.getRepository().getDiemTK(Model.getInstant().getDiemSinhVien().getSvSelected().get(),Model.getInstant().getViewFactory().getHocky().get(),Model.getInstant().getViewFactory().getNamHoc().get()));
+            Model.getInstant().getDiemSinhVien().getSoTC().set(DiemSV_HocKy.getRepository().getTongTC(Model.getInstant().getDiemSinhVien().getSvSelected().get(),Model.getInstant().getViewFactory().getHocky().get(),Model.getInstant().getViewFactory().getNamHoc().get()));
         });
     }
 
@@ -181,7 +203,12 @@ public class DiemSVController implements Initializable, setTable {
         Column_DiemQT.setCellValueFactory( param -> new ReadOnlyObjectWrapper<>(KqMonHoc_SV.getRepository().getDiemQT(((DiemEntity)param.getValue()).getMaSinhVien(),((DiemEntity)param.getValue()).getMaMonHoc())));
         Column_DiemQT.setCellFactory(new DiemQTController.NullHandlingCellFactory());
 
-        Column_DiemTK.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(KqMonHoc_SV.getRepository().getDiemTK(((DiemEntity) param.getValue()).getMaSinhVien(), ((DiemEntity) param.getValue()).getMaMonHoc())));
+        Column_DiemTK.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(
+                KqMonHoc_SV.getRepository().getDiemTK(((DiemEntity) param.getValue()).getMaSinhVien(),
+                ((DiemEntity) param.getValue()).getMaMonHoc(),
+                ((DiemEntity) param.getValue()).getMaHocKy(),
+                ((DiemEntity) param.getValue()).getMaNamHoc())
+        ));
         Column_DiemTK.setCellFactory(new DiemQTController.NullHandlingCellFactory());
         Column_STC.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(MonHoc.getRepository().getSTC(param.getValue().getMaMonHoc())));
     }

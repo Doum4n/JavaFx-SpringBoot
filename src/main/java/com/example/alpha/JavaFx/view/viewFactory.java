@@ -20,7 +20,7 @@ import java.util.Objects;
 public class viewFactory {
     private AccountType type;
     private HBox QuanLy;
-    private AnchorPane dashboard;
+    private HBox DanhGia;
     private HBox ThongKe;
 
     private final ObjectProperty<Menu> menuProperty;
@@ -47,15 +47,17 @@ public class viewFactory {
         return QuanLy;
     }
 
-    public AnchorPane getDashboard(){
+
+
+    public HBox getDanhGia(){
         try {
-            if (dashboard == null) {
-                dashboard = new FXMLLoader(getClass().getResource("/com/example/alpha/Workplace/TongQuan.fxml")).load();
+            if (DanhGia == null) {
+                DanhGia = new FXMLLoader(getClass().getResource("/com/example/alpha/Workplace/DanhGia.fxml")).load();
             }
         }catch (Exception e){
             e.printStackTrace();
         }
-        return dashboard;
+        return DanhGia;
     }
 
 

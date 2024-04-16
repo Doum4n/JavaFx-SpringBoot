@@ -18,6 +18,7 @@ module com.example.alpha {
     requires jakarta.validation;
     requires spring.tx;
     requires javafx.base;
+    requires java.desktop;
 
     opens com.example.alpha.JavaFx.model;
     opens com.example.alpha.JavaFx.controller;
@@ -29,7 +30,7 @@ module com.example.alpha {
     opens com.example.alpha.JavaFx.model.GiaoVien;
     opens com.example.alpha.JavaFx.model.SinhVien;
     opens com.example.alpha.JavaFx.controller.MonHoc;
-
+    opens com.example.alpha.JavaFx.controller.DanhGia;
 
     opens com.example.alpha.Spring_boot.result;
     opens com.example.alpha.Spring_boot.result.student;
@@ -59,4 +60,5 @@ module com.example.alpha {
     exports com.example.alpha.JavaFx.model.MonHoc;
     exports com.example.alpha.Spring_boot.result.student;
     exports com.example.alpha.JavaFx.controller.ThongKe;
+    exports com.example.alpha.JavaFx.controller.DanhGia;
 }

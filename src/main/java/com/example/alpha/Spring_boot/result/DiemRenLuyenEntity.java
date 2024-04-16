@@ -1,9 +1,7 @@
 package com.example.alpha.Spring_boot.result;
 
-import jakarta.persistence.Basic;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import com.example.alpha.Spring_boot.student.SinhVienEntity;
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity

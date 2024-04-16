@@ -57,8 +57,6 @@ public class TKDiemLopMonHoc implements Initializable, setTable {
     @FXML
     private TableView<KqSinhVienMonhocEntity> TableView_TKDiemLop;
 
-    private ObservableList<KqSinhVienMonhocEntity> data = FXCollections.observableArrayList();
-
     private FilteredList<KqSinhVienMonhocEntity> filteredList;
 
     @Override
@@ -66,7 +64,9 @@ public class TKDiemLopMonHoc implements Initializable, setTable {
         setTableView();
 
         ChoiceBox_Lop.setItems(FXCollections.observableArrayList(PhanLop.getRepository().getAllLop()));
+        ChoiceBox_Lop.setValue(PhanLop.getRepository().findAll().get(0).toString());
         ChoiceBox_MonHoc.setItems(FXCollections.observableArrayList(MonHoc.getRepository().getAllMonHoc()));
+        ChoiceBox_MonHoc.setValue(MonHoc.getRepository().findAll().get(0).toString());
 
         ChoiceBox_Lop.valueProperty().addListener((observable, oldValue, newValue) -> {
             filteredList.setPredicate(kq -> PhanLop.getRepository().getLop(kq.getMaSinhVien()).equals(newValue) &&
@@ -85,9 +85,7 @@ public class TKDiemLopMonHoc implements Initializable, setTable {
                     if(DkHP.get(i).equals(newValue) && DkHP.get(i).equals(kq.getMaMonHoc())){
                         dk.set(true);
                         break;
-                    }/*else {
-                        dk.set(false);
-                    }*/
+                    }
                 }
                 return dk.get() && PhanLop.getRepository().getLop(kq.getMaSinhVien()).equals(ChoiceBox_Lop.getValue());
             });
@@ -100,7 +98,7 @@ public class TKDiemLopMonHoc implements Initializable, setTable {
     @Override
     public void setTableView() {
         setCellColumn();
-        data = FXCollections.observableArrayList(KqMonHoc_SV.getRepository().findAll());
+        ObservableList<KqSinhVienMonhocEntity> data = FXCollections.observableArrayList(KqMonHoc_SV.getRepository().findAll());
         filteredList = new FilteredList<>(data, b -> true);
         TableView_TKDiemLop.setItems(data);
     }

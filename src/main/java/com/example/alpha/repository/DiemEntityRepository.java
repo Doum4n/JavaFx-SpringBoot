@@ -29,12 +29,15 @@ public interface DiemEntityRepository extends JpaRepository<DiemEntity, Integer>
 
     @Transactional
     @Modifying
-    @Query("update DiemEntity a set a.Diem=?3 where a.maSinhVien=?1 and a.maMonHoc=?2 and a.lanThi=?4")
-    void updateDiem(String maSinhVien, String MaMH, String diem, int LanThi);
+    @Query("update DiemEntity a set a.Diem=?3 where a.maSinhVien=?1 and a.maMonHoc=?2 and a.lanThi=?4 and a.maHocKy=?5 and a.maNamHoc=?6")
+    void updateDiem(String maSinhVien, String MaMH, String diem, int LanThi, String MaHocKy, String MaNamHoc);
 
-    @Query("select a.Diem from DiemEntity a where a.maSinhVien=?1 and a.maMonHoc=?2 and a.lanThi=?3")
-    Double getDiem(String MaSV, String MaMH, String LanThi);
+    @Query("select a.Diem from DiemEntity a where a.maSinhVien=?1 and a.maMonHoc=?2 and a.lanThi=?3 and a.maHocKy=?4 and a.maNamHoc=?5")
+    Double getDiem(String MaSV, String MaMH, String LanThi, String MaHocKy, String MaNamHoc);
 
     @Query("select a.Diem from DiemEntity a where a.maSinhVien=?1 and a.maMonHoc=?2")
     List<Float> getDiems(String MaSV, String MaMH);
+
+    @Query("select a.Diem from DiemEntity a where a.maSinhVien=?1 and a.maMonHoc=?2 and a.maHocKy=?3 and a.maNamHoc=?4 and a.lanThi=1")
+    Float getDiemThiL1(String MaSV, String MaMH, String HocKy, String NamHoc);
 }

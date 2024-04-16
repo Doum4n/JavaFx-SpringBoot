@@ -21,14 +21,14 @@ import javafx.stage.FileChooser;
 import javafx.stage.PopupWindow;
 import javafx.stage.Window;
 import org.springframework.stereotype.Controller;
+
 import java.net.URL;
 import java.util.*;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 @Controller
 public class NhapDiemThiController implements Initializable, setTable {
     @FXML
-    private TableColumn<DiemEntity, Double> Column_Diem;
+    private TableColumn<Object, Float> Column_Diem;
     @FXML
     private TableColumn<DiemEntity, String> Column_LanThi;
     @FXML
@@ -63,7 +63,8 @@ public class NhapDiemThiController implements Initializable, setTable {
     public void setCellColumn() {
         Column_MaSV.setCellValueFactory(new PropertyValueFactory<>("MaSinhVien"));
         Column_LanThi.setCellValueFactory(param -> new SimpleObjectProperty<>(param.getValue().getLanThi()).asString());
-        Column_Diem.setCellValueFactory(param -> new SimpleObjectProperty<>(Double.valueOf(param.getValue().getDiem())));
+        Column_Diem.setCellValueFactory(param -> new SimpleObjectProperty<>(((DiemEntity)param.getValue()).getDiem()));
+        Column_Diem.setCellFactory(new DiemQTController.NullHandlingCellFactory());
         Column_MaMonHoc.setCellValueFactory(new PropertyValueFactory<>("MaMonHoc"));
     }
     @Override
@@ -178,12 +179,22 @@ public class NhapDiemThiController implements Initializable, setTable {
                     Model.getInstant().getViewFactory().getHocky().get(),
                     Model.getInstant().getViewFactory().getNamHoc().get(),
                     Integer.parseInt(Model.getInstant().getNhapDiemThi().getLanThi().get()),
-                    TextField_Diem.getText(),
+                    Float.parseFloat(TextField_Diem.getText()),
                     Model.getInstant().getNhapDiemThi().getPhongThiProperty().get()
             );
-            Diem.getRepository().updateDiem(Label_MaSV.getText(), Label_MaMH.getText(), TextField_Diem.getText(), Integer.parseInt(Model.getInstant().getNhapDiemThi().getLanThi().get()));
+            Diem.getRepository().updateDiem(
+                    Label_MaSV.getText(), Label_MaMH.getText(),
+                    TextField_Diem.getText(),
+                    Integer.parseInt(Model.getInstant().getNhapDiemThi().getLanThi().get()),
+                    Model.getInstant().getViewFactory().getHocky().get(),
+                    Model.getInstant().getViewFactory().getNamHoc().get()
+            );
 
-            data.removeIf(kqSinhVienMonhocEntity -> kqSinhVienMonhocEntity.getMaSinhVien().equals(Label_MaSV.getText()) && kqSinhVienMonhocEntity.getLanThi()== kq.getLanThi());
+            data.removeIf(kqSinhVienMonhocEntity ->
+                    kqSinhVienMonhocEntity.getMaSinhVien().equals(Label_MaSV.getText()) &&
+                    kqSinhVienMonhocEntity.getLanThi()== kq.getLanThi() &&
+                    kqSinhVienMonhocEntity.getMaHocKy().equals(Model.getInstant().getViewFactory().getHocky().get()) &&
+                    kqSinhVienMonhocEntity.getMaNamHoc().equals(Model.getInstant().getViewFactory().getNamHoc().get()));
             data.add(kq);
 
             defaultLoad();

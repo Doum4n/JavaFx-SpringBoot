@@ -24,8 +24,8 @@ public interface KqSVMonhocEntityRepository extends JpaRepository<KqSinhVienMonh
 
     @Transactional
     @Modifying
-    @Query("update KqSinhVienMonhocEntity a set a.diemThi=?3 where a.maSinhVien=?1 and a.maMonHoc=?2")
-    void UpdateDiemThi(String maSinhVien, String MaMH, Float diem);
+    @Query("update KqSinhVienMonhocEntity a set a.diemThi=?3 where a.maSinhVien=?1 and a.maMonHoc=?2 and a.maHocKy=?4 and a.maNamHoc=?5")
+    void UpdateDiemThi(String maSinhVien, String MaMH, Float diem, String MaHocKy, String MaNamHoc);
 
     @Query("select a.diemThi from KqSinhVienMonhocEntity a where a.maSinhVien=?1 and a.maMonHoc=?2")
     Float getDiemThi(String MaSV, String MaMH);
@@ -35,6 +35,6 @@ public interface KqSVMonhocEntityRepository extends JpaRepository<KqSinhVienMonh
     @Query("update KqSinhVienMonhocEntity a set a.DiemTK=?3 where a.maSinhVien=?1 and a.maMonHoc=?2")
     void UpdateDiemTK(String maSinhVien, String MaMH, Float diem);
 
-    @Query("select a.DiemTK from KqSinhVienMonhocEntity a where a.maSinhVien=?1 and a.maMonHoc=?2")
-    Float getDiemTK(String MaSV, String MaMH);
+    @Query("select a.DiemTK from KqSinhVienMonhocEntity a where a.maSinhVien=?1 and a.maMonHoc=?2 and a.maHocKy=?3 and a.maNamHoc=?4")
+    Float getDiemTK(String MaSV, String MaMH, String MaHocKy, String MaNamHoc);
 }

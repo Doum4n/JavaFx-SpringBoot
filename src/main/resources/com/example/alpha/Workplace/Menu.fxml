@@ -8,7 +8,7 @@
    <children>
       <VBox layoutX="14.0" layoutY="30.0" prefHeight="267.0" prefWidth="118.0">
          <children>
-            <Button fx:id="button_TongQuan" mnemonicParsing="false" prefHeight="36.0" prefWidth="90.0" style="-fx-background-color: #879A2E; -fx-border-color: black;" styleClass="button_TongQuan" stylesheets="@../css/TongQuan.css" text="Tổng quan" />
+            <Button fx:id="button_DanhGia" mnemonicParsing="false" prefHeight="36.0" prefWidth="90.0" style="-fx-background-color: #879A2E; -fx-border-color: black;" styleClass="button_TongQuan" stylesheets="@../css/TongQuan.css" text="Đánh giá" />
             <Button fx:id="button_QuanLy" mnemonicParsing="false" prefHeight="35.0" prefWidth="70.0" style="-fx-background-color: #879A2E; -fx-border-color: black;" text="Quản lý" />
             <Button fx:id="button_TongKe" mnemonicParsing="false" prefHeight="43.0" prefWidth="78.0" style="-fx-background-color: #879A2E; -fx-border-color: black;" text="Thống kê" />
          </children>
