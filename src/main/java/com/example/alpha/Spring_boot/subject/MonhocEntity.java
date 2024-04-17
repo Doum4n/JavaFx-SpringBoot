@@ -3,6 +3,7 @@ package com.example.alpha.Spring_boot.subject;
 import com.example.alpha.Spring_boot.class_grade.GiaovienEntity;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
 
 @Entity
 @Data
@@ -27,4 +28,12 @@ public class MonhocEntity {
     @Basic
     @Column(name = "TyLeDiemQT")
     private int TyLeDiemQT;
+
+    @Basic
+    @Column(name = "Nam")
+    private Nam nam;
+
+    enum Nam{
+        Nam1, Nam2, Nam3, Nam4
+    }
 }

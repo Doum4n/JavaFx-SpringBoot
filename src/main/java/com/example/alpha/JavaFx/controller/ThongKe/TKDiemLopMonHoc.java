@@ -2,6 +2,7 @@ package com.example.alpha.JavaFx.controller.ThongKe;
 
 import com.example.alpha.JavaFx.controller.Diem.DiemQTController;
 import com.example.alpha.JavaFx.controller.setTable;
+import com.example.alpha.JavaFx.model.Lop;
 import com.example.alpha.JavaFx.model.MonHoc.MonHoc;
 import com.example.alpha.JavaFx.model.PhanLop;
 import com.example.alpha.JavaFx.model.SinhVien.DKHocPhan;
@@ -63,7 +64,7 @@ public class TKDiemLopMonHoc implements Initializable, setTable {
     public void initialize(URL url, ResourceBundle resourceBundle)  {
         setTableView();
 
-        ChoiceBox_Lop.setItems(FXCollections.observableArrayList(PhanLop.getRepository().getAllLop()));
+        ChoiceBox_Lop.setItems(FXCollections.observableArrayList(Lop.getRepository().getAllLop()));
         ChoiceBox_Lop.setValue(PhanLop.getRepository().findAll().get(0).toString());
         ChoiceBox_MonHoc.setItems(FXCollections.observableArrayList(MonHoc.getRepository().getAllMonHoc()));
         ChoiceBox_MonHoc.setValue(MonHoc.getRepository().findAll().get(0).toString());

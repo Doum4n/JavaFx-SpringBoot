@@ -72,10 +72,14 @@ public class DiemQTController implements Initializable, setTable {
         //Khi nhấn vào xem, cập nhật lớp và môn học
         Model.getInstant().getDiemQuaTrinh().getLopSelected().addListener((observable, oldValue, newValue) -> {
             filteredList = new FilteredList<>(data, b-> true);
-            filteredList.setPredicate(kq -> kq.MaNamHoc().equals(Model.getInstant().getViewFactory().getNamHoc().get()) &&
-                    kq.MaHocKy().equals(Model.getInstant().getViewFactory().getHocky().get()) &&
-                    Objects.equals(PhanLop.getRepository().getLop(kq.MaSinhVien()), newValue) &&
-                    kq.MaMonHoc().equals(Model.getInstant().getDiemQuaTrinh().getMaMHSelected().get()));
+            filteredList.setPredicate(kq -> {
+                System.out.println(PhanLop.getRepository().getLop(kq.MaSinhVien())+" "+ newValue);
+                System.out.println(kq.MaMonHoc() +" "+ Model.getInstant().getDiemQuaTrinh().getMaMHSelected().get());
+                return kq.MaNamHoc().equals(Model.getInstant().getViewFactory().getNamHoc().get()) &&
+                        kq.MaHocKy().equals(Model.getInstant().getViewFactory().getHocky().get()) &&
+                        Objects.equals(PhanLop.getRepository().getLop(kq.MaSinhVien()), newValue) &&
+                        kq.MaMonHoc().equals(Model.getInstant().getDiemQuaTrinh().getMaMHSelected().get());
+            });
             TableView_Diem.setItems(filteredList);
         });
 

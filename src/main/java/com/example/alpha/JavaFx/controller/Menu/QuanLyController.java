@@ -7,6 +7,8 @@ import com.example.alpha.JavaFx.model.MonHoc.MonHoc;
 import com.example.alpha.JavaFx.model.SinhVien.DKHocPhan;
 import com.example.alpha.JavaFx.model.SinhVien.KqMonHoc_SV;
 import com.example.alpha.JavaFx.view.QuanLy;
+import com.example.alpha.Spring_boot.result.student.KqSVMonHoc;
+import com.example.alpha.Spring_boot.result.student.KqSinhVienHocKyPK;
 import com.example.alpha.Spring_boot.result.student.KqSinhVienMonhocEntity;
 import com.example.alpha.Spring_boot.result.student.KqSinnhVienHocKy;
 import com.example.alpha.Spring_boot.student.DKHocPhanEntity;
@@ -39,6 +41,9 @@ public class QuanLyController implements Initializable {
     @FXML
     private Button Button_TinhDiemTB;
 
+    @FXML
+    private Button Button_AutoNhapDuLieu;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         button_Diem.setOnAction(event -> Model.getInstant().getViewQuanLy().getQuanLyProperty().set(QuanLy.DiemThi));
@@ -48,6 +53,16 @@ public class QuanLyController implements Initializable {
             TinhDiemTB_MonHoc();
             TinhDiemTB_HocKy();
         });
+        Button_AutoNhapDuLieu.setOnAction(event -> {
+            addDataKqSV_MonHoc();
+        });
+    }
+
+    private void addDataKqSV_MonHoc() {
+        for(DKHocPhanEntity dkHocPhan : DKHocPhan.getRepository().findAll()){
+            KqMonHoc_SV.getRepository().save(new KqSinhVienMonhocEntity(dkHocPhan.getMaSV(),dkHocPhan.getMaMH(),dkHocPhan.getHocKy(), dkHocPhan.getNamHoc()));
+            DiemSV_HocKy.getRepository().save(new KqSinnhVienHocKy(dkHocPhan.getMaSV(), dkHocPhan.getHocKy(), dkHocPhan.getNamHoc()));
+        }
     }
 
     private void TinhDiemTB_HocKy() {
@@ -86,6 +101,8 @@ public class QuanLyController implements Initializable {
                         float TyLe = MonHoc.getRepository().getTyLeDiemQT(kq.getMaMonHoc());
                         Float diemqt = KqMonHoc_SV.getRepository().getDiemQT(kq.getMaSinhVien(), kq.getMaMonHoc());
                         float DiemTongKet = diemqt * (TyLe / 100) + max * ((100 - TyLe) / 100);
+
+                        KqMonHoc_SV.getRepository().UpdateDiemThi(kq.getMaSinhVien(), kq.getMaMonHoc(), max, kq.getMaHocKy(), kq.getMaNamHoc());
                         KqMonHoc_SV.getRepository().UpdateDiemTK(kq.getMaSinhVien(),
                                 kq.getMaMonHoc(),
                                 (float) (Math.round(DiemTongKet * 100.0)/100.0)

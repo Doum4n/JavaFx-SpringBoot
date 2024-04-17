@@ -19,10 +19,6 @@ public class KqSinhVienCanamEntity {
     private String maSinhVien;
 
     @Id
-    @Column(name = "MaLop")
-    private String maLop;
-
-    @Id
     @Column(name = "MaNamHoc")
     private String maNamHoc;
 
@@ -39,28 +35,12 @@ public class KqSinhVienCanamEntity {
     private double diemTbcn;
 
 
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "MaHocLuc")
-    private HoclucEntity hoclucEntity;
-
-    @OneToOne(orphanRemoval = true)
-    @JoinColumn(name = "MaHanhKiem")
-    private DiemRenLuyenEntity hanhkiemEntity;
-
-    @OneToOne(orphanRemoval = true)
-    @JoinColumn(name = "MaKetQua")
-    private KetquaEntity ketquaEntity;
-
-    @OneToOne(orphanRemoval = true)
+    @OneToOne
     @JoinColumn(name = "MaNamHoc", updatable = false, insertable = false)
     private NamhocEntity namhocEntity;
 
-    @OneToOne(orphanRemoval = true)
-    @JoinColumn(name = "MaLop", insertable = false, updatable = false)
-    private LopEntity lopEntity;
 
-    @OneToOne(orphanRemoval = true)
+    @OneToOne
     @JoinColumn(name = "MaSinhVien", updatable = false, insertable = false)
     private SinhVienEntity hocsinhEntity;
 }

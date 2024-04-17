@@ -71,6 +71,7 @@ public class DiemSVController implements Initializable, setTable {
         setTableView();
 
         Model.getInstant().getDiemSinhVien().getSvSelected().addListener((observable, oldValue, newValue) -> {
+            setTableView();
                     filteredList.forEach(diemEntity -> {
                         Double diem = Diem.getRepository().getDiem(diemEntity.getMaSinhVien(),
                                 diemEntity.getMaMonHoc(), String.valueOf(diemEntity.getLanThi()),

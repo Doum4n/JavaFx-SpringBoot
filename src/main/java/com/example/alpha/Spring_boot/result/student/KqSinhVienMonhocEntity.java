@@ -55,6 +55,13 @@ public class KqSinhVienMonhocEntity {
         this.diemQuaTrinh = diemQT/* != null ? diemQuaTrinh : 0.0f*/;
     }
 
+    public KqSinhVienMonhocEntity(String maSinhVien,String maMonHoc, String maHocKy, String maNamHoc) {
+        this.maSinhVien = maSinhVien;
+        this.maNamHoc = maNamHoc;
+        this.maMonHoc = maMonHoc;
+        this.maHocKy = maHocKy;
+    }
+
     @OneToOne
     @JoinColumn(name = "MaSinhVien", updatable = false, insertable = false)
     private SinhVienEntity hocsinhEntity;

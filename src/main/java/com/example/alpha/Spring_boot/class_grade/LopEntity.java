@@ -15,7 +15,7 @@ public class LopEntity {
     private String tenLop;
     @Basic
     @Column(name = "MaNamHoc")
-    private String maNamHoc;
+    private Integer maNamHoc;
     @Basic
     @Column(name = "SiSo")
     private int siSo;
