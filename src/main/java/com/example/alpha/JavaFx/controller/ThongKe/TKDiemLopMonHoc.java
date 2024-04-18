@@ -3,6 +3,7 @@ package com.example.alpha.JavaFx.controller.ThongKe;
 import com.example.alpha.JavaFx.controller.Diem.DiemQTController;
 import com.example.alpha.JavaFx.controller.setTable;
 import com.example.alpha.JavaFx.model.Lop;
+import com.example.alpha.JavaFx.model.Model;
 import com.example.alpha.JavaFx.model.MonHoc.MonHoc;
 import com.example.alpha.JavaFx.model.PhanLop;
 import com.example.alpha.JavaFx.model.SinhVien.DKHocPhan;
@@ -73,8 +74,6 @@ public class TKDiemLopMonHoc implements Initializable, setTable {
             filteredList.setPredicate(kq -> PhanLop.getRepository().getLop(kq.getMaSinhVien()).equals(newValue) &&
                     ChoiceBox_MonHoc.getValue().equals(kq.getMaMonHoc()));
             TableView_TKDiemLop.setItems(filteredList);
-            filteredList.forEach(System.out::println);
-            System.out.println(newValue);
         });
 
         ChoiceBox_MonHoc.valueProperty().addListener((observable, oldValue, newValue) -> {
@@ -92,7 +91,24 @@ public class TKDiemLopMonHoc implements Initializable, setTable {
             });
             Label_SiSo.setText(String.valueOf(filteredList.size()));
             TableView_TKDiemLop.setItems(filteredList);
-            System.out.println(newValue);
+        });
+
+        Model.getInstant().getThongKe().getSearch().addListener((observable, oldValue, newValue) -> {
+            if(!newValue.isBlank()) {
+                filteredList.setPredicate(kq -> {
+                    System.out.println(kq.getMaSinhVien()+" "+(newValue));
+                    System.out.println(kq.getMaHocKy()+" "+(Model.getInstant().getViewFactory().getHocky().get()));
+                    System.out.println(kq.getMaHocKy()+" "+(Model.getInstant().getViewFactory().getHocky().get()));
+                    return kq.getMaSinhVien().equals(newValue) &&
+                            PhanLop.getRepository().getLop(kq.getMaSinhVien()).equals(ChoiceBox_Lop.getValue()) &&
+                            kq.getMaMonHoc().equals(ChoiceBox_MonHoc.getValue());
+                });
+                TableView_TKDiemLop.setItems(filteredList);
+            }else {
+                filteredList.setPredicate(kq -> PhanLop.getRepository().getLop(kq.getMaSinhVien()).equals(ChoiceBox_Lop.getValue()) &&
+                        ChoiceBox_MonHoc.getValue().equals(kq.getMaMonHoc()));
+                TableView_TKDiemLop.setItems(filteredList);
+            }
         });
     }
 

@@ -3,6 +3,7 @@ package com.example.alpha.JavaFx.model;
 import com.example.alpha.JavaFx.model.Diem.DiemQuaTrinh;
 import com.example.alpha.JavaFx.model.Diem.DiemSinhVien;
 import com.example.alpha.JavaFx.model.Diem.NhapDiemThi;
+import com.example.alpha.JavaFx.model.Diem.ThongKe;
 import com.example.alpha.JavaFx.model.GiaoVien.CellGiaoVien;
 import com.example.alpha.JavaFx.view.viewFactory;
 import com.example.alpha.JavaFx.view.viewQuanLy;
@@ -19,6 +20,7 @@ public class Model {
     private final viewThongKe viewThongKe;
     private final viewDanhGia viewDanhGia;
 
+    private final ThongKe thongKe;
     private final CellGiaoVien cellGiaoVien;
     private final NhapDiemThi nhapDiemThi;
     private final DiemQuaTrinh diemQuaTrinh;
@@ -31,6 +33,7 @@ public class Model {
         this.viewFactory = new viewFactory();
         this.viewThongKe = new viewThongKe();
 
+        this.thongKe = new ThongKe();
         this.cellGiaoVien = new CellGiaoVien();
         this.nhapDiemThi = new NhapDiemThi();
         this.diemQuaTrinh = new DiemQuaTrinh();

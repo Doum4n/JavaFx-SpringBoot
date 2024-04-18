@@ -47,13 +47,31 @@ public class DSTop10percentController implements Initializable, setTable {
             sortedList = new SortedList<>(filteredList);
             TableView_DS.setItems(sortedList);
         });
+
+        Model.getInstant().getViewFactory().getHocky().addListener((observable, oldValue, newValue) -> {
+            filteredList.setPredicate(sv -> PhanLop.getRepository().getLop(sv.getMaSinhVien()).equals(Model.getInstant().getDsTop10percentSVLop().getLop().get()) &&
+                    sv.getMaHocKy().equals(newValue) &&
+                    sv.getMaNamHoc().equals(Model.getInstant().getViewFactory().getNamHoc().get()));
+            sortedList = new SortedList<>(filteredList);
+            TableView_DS.setItems(sortedList);
+        });
+
+        Model.getInstant().getViewFactory().getNamHoc().addListener((observable, oldValue, newValue) -> {
+            filteredList.setPredicate(sv -> PhanLop.getRepository().getLop(sv.getMaSinhVien()).equals(Model.getInstant().getDsTop10percentSVLop().getLop().get()) &&
+                    sv.getMaHocKy().equals(Model.getInstant().getViewFactory().getHocky().get()) &&
+                    sv.getMaNamHoc().equals(newValue));
+            sortedList = new SortedList<>(filteredList);
+            TableView_DS.setItems(sortedList);
+        });
     }
 
     @Override
     public void setTableView() {
         setCellColumn();
         filteredList = new FilteredList<>(FXCollections.observableArrayList(DiemSV_HocKy.getRepository().findAll()));
-        filteredList.setPredicate(sv -> PhanLop.getRepository().getLop(sv.getMaSinhVien()).equals(Model.getInstant().getDsTop10percentSVLop().getLop().get()));
+        filteredList.setPredicate(sv -> PhanLop.getRepository().getLop(sv.getMaSinhVien()).equals(Model.getInstant().getDsTop10percentSVLop().getLop().get()) &&
+                sv.getMaHocKy().equals(Model.getInstant().getViewFactory().getHocky().get()) &&
+                sv.getMaNamHoc().equals(Model.getInstant().getViewFactory().getNamHoc().get()));
         sortedList = new SortedList<>(filteredList);
         sortedList.comparatorProperty().bind(TableView_DS.comparatorProperty());
         TableView_DS.setItems(sortedList);

@@ -7,6 +7,8 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Transactional
 public interface KqSVCanamEntityRepository extends JpaRepository<KqSinhVienCanamEntity, KqSinhVienCanamEntityPK> {
     @Modifying
@@ -20,4 +22,7 @@ public interface KqSVCanamEntityRepository extends JpaRepository<KqSinhVienCanam
     @Modifying
     @Query("update KqSinhVienCanamEntity a set a.diemTbcn=?2 where a.maSinhVien=?1 and a.maNamHoc=?3")
     void UpdateDiemCaNam(String MaSV, Float DiemTBCaNam, String MaNamHoc);
+
+    @Query("select a.diemTbcn from KqSinhVienCanamEntity a where a.maSinhVien=?1")
+    List<Float> getAllDiemNamHoc(String MaSV);
 }

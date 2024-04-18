@@ -3,6 +3,7 @@ package com.example.alpha.JavaFx.controller.Menu;
 import com.example.alpha.JavaFx.model.HocKy;
 import com.example.alpha.JavaFx.model.Model;
 import com.example.alpha.JavaFx.model.NamHoc;
+import com.example.alpha.JavaFx.model.Status;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -38,6 +39,9 @@ public class WorkplaceController implements Initializable{
     private AnchorPane AnchorPane_HBox;
 
     @FXML
+    private Label Label_Status;
+
+    @FXML
     private HBox HBox_Main;
 
     @Override
@@ -54,6 +58,7 @@ public class WorkplaceController implements Initializable{
                         AnchorPane_HBox.getChildren().add(Model.getInstant().getViewFactory().getQuanLyView());
                     }
                     addListenerQuanLy();
+                    Model.getInstant().getViewFactory().getStatus().set(Status.EDIT);
                 }
                 case DanhGia -> {
                     if(!Objects.equals(oldValue, newValue)) {
@@ -61,6 +66,7 @@ public class WorkplaceController implements Initializable{
                         AnchorPane_HBox.getChildren().add(Model.getInstant().getViewFactory().getDanhGia());
                     }
                     addListenerDanhGia();
+                    Model.getInstant().getViewFactory().getStatus().set(Status.INFO);
                 }
                 case ThongKe -> {
                     if(!Objects.equals(oldValue, newValue)) {
@@ -68,6 +74,7 @@ public class WorkplaceController implements Initializable{
                         AnchorPane_HBox.getChildren().add(Model.getInstant().getViewFactory().getThongKe());
                     }
                     addListenerThongKe();
+                    Model.getInstant().getViewFactory().getStatus().set(Status.INFO);
                 }
             }
         });
@@ -80,9 +87,8 @@ public class WorkplaceController implements Initializable{
         ChoiceBox_Nam.valueProperty().addListener((observable, oldValue, newValue) -> addListenerChoiceBoc_Nam());
         ChoiceBox_HocKy.valueProperty().addListener((observable, oldValue, newValue) -> addListenerChoiceBoc_HocKy());
 
-        Model.getInstant().getViewFactory().getLog().addListener((observable, oldValue, newValue) -> {
-
-        });
+        Label_Status.setText(Model.getInstant().getViewFactory().getStatus().get().toString());
+        Label_Status.textProperty().bind(Model.getInstant().getViewFactory().getStatus().asString());
     }
 
     private void addListenerQuanLy(){
@@ -101,6 +107,7 @@ public class WorkplaceController implements Initializable{
                 case TK_DiemSV_MH -> borderPane.setRight(Model.getInstant().getViewThongKe().getTK_DiemSV_MH());
                 case TK_DiemLop_MonHoc -> borderPane.setRight(Model.getInstant().getViewThongKe().getTK_DiemLop_MonHoc());
                 case TK_DiemLop_HocKy -> borderPane.setRight(Model.getInstant().getViewThongKe().getTK_DiemLop_HocKy());
+                case TK_DiemLop_NamHoc -> borderPane.setRight(Model.getInstant().getViewThongKe().getTK_DiemLop_NamHoc());
             }
         });
     }

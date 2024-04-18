@@ -10,9 +10,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 
-<AnchorPane fx:id="AnchorPane_QLSinhVien" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="578.0" prefWidth="1052.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.alpha.JavaFx.controller.SinhVien.QLSinhVienController">
+<AnchorPane fx:id="AnchorPane_QLSinhVien" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="578.0" prefWidth="1052.0" style="-fx-background-color: EEEEEE;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.alpha.JavaFx.controller.SinhVien.QLSinhVienController">
    <children>
-      <TableView fx:id="TableView_SinhVien" layoutX="54.0" layoutY="67.0" prefHeight="242.0" prefWidth="718.0">
+      <TableView fx:id="TableView_SinhVien" layoutX="54.0" layoutY="67.0" prefHeight="242.0" prefWidth="718.0" style="-fx-background-color: DDDDDD;">
          <columns>
             <TableColumn fx:id="Column_MaSV" prefWidth="114.39989471435547" text="MaSV" />
             <TableColumn fx:id="Column_HoTen" prefWidth="111.20006561279297" text="HoTen" />

@@ -7,6 +7,7 @@ import com.example.alpha.JavaFx.model.Model;
 import com.example.alpha.JavaFx.model.MonHoc.MonHoc;
 import com.example.alpha.JavaFx.model.SinhVien.DKHocPhan;
 import com.example.alpha.JavaFx.model.SinhVien.KqMonHoc_SV;
+import com.example.alpha.JavaFx.model.Status;
 import com.example.alpha.JavaFx.view.QuanLy;
 import com.example.alpha.Spring_boot.result.student.KqSinhVienCanamEntity;
 import com.example.alpha.Spring_boot.result.student.KqSinhVienMonhocEntity;
@@ -115,8 +116,8 @@ public class QuanLyController implements Initializable {
                         float TyLe = MonHoc.getRepository().getTyLeDiemQT(kq.getMaMonHoc());
                         Float diemqt = KqMonHoc_SV.getRepository().getDiemQT(kq.getMaSinhVien(), kq.getMaMonHoc());
                         if(diemqt==null) {
-                            Model.getInstant().getViewFactory().getLog().set("Bạn chưa nhập điểm quá trình cho Sinh viên:" +"\nMaSV: " + kq.getMaSinhVien() +"\nMaMonHoc: "+ kq.getMaMonHoc() +"\nHocKy:  "+ kq.getMaHocKy() +"\nNamHoc: "+ kq.getMaNamHoc());
-                            Model.getInstant().getViewFactory().showLog();
+                            Model.getInstant().getViewFactory().showLog("Bạn chưa nhập điểm quá trình cho Sinh viên:" +"\nMaSV: " + kq.getMaSinhVien() +"\nMaMonHoc: "+ kq.getMaMonHoc() +"\nHocKy:  "+ kq.getMaHocKy() +"\nNamHoc: "+ kq.getMaNamHoc());
+                            Model.getInstant().getViewFactory().getStatus().set(Status.ERROR);
                         }else {
                             float DiemTongKet = diemqt * (TyLe / 100) + max * ((100 - TyLe) / 100);
 
@@ -125,6 +126,8 @@ public class QuanLyController implements Initializable {
                                     kq.getMaMonHoc(),
                                     (float) (Math.round(DiemTongKet * 100.0)/100.0)
                             );
+
+                            Model.getInstant().getViewFactory().getStatus().set(Status.OK);
                         }
                     }
 //                }

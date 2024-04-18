@@ -3,6 +3,8 @@ package com.example.alpha.JavaFx.view;
 import com.example.alpha.JavaFx.controller.TaiKhoan.AccountType;
 import com.example.alpha.JavaFx.controller.Menu.LoginController;
 import com.example.alpha.JavaFx.model.HocKy;
+import com.example.alpha.JavaFx.model.Model;
+import com.example.alpha.JavaFx.model.Status;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -27,6 +29,7 @@ public class viewFactory {
     private final StringProperty NamHoc;
     private final StringProperty Hocky;
     private final StringProperty log;
+    private final ObjectProperty<Status> status;
     private Stage stage = new Stage();
 
     public viewFactory(){
@@ -35,6 +38,7 @@ public class viewFactory {
         this.NamHoc = new SimpleStringProperty(com.example.alpha.JavaFx.model.NamHoc.getRepository().getNamHoc().get(0));
         this.Hocky = new SimpleStringProperty(HocKy.getRepository().getHocKy().get(0));
         this.log = new SimpleStringProperty();
+        this.status = new SimpleObjectProperty<>(Status.OK);
     }
 
     public HBox getQuanLyView(){
@@ -99,7 +103,7 @@ public class viewFactory {
         stage.show();
     }
 
-    public void showLog(){
+    public void showLog(String log){
 //        Popup popup = new Popup();
 //        Label text = new Label(getLog().get());
 //        text.setStyle(" -fx-background-color: white;");
@@ -113,6 +117,7 @@ public class viewFactory {
         }catch(Exception e){
             e.printStackTrace();
         }
+        Model.getInstant().getViewFactory().getLog().set(log);
         Stage stage = new Stage();
         stage.setScene(scene);
         stage.show();

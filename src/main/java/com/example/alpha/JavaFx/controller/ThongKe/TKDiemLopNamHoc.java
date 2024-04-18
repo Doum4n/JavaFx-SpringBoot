@@ -1,4 +1,4 @@
-package com.example.alpha.JavaFx.controller.DanhGia;
+package com.example.alpha.JavaFx.controller.ThongKe;
 
 import com.example.alpha.JavaFx.controller.setTable;
 import com.example.alpha.JavaFx.model.Diem.DiemSV_CaNam;
@@ -7,7 +7,6 @@ import com.example.alpha.JavaFx.model.Lop;
 import com.example.alpha.JavaFx.model.Model;
 import com.example.alpha.JavaFx.model.PhanLop;
 import com.example.alpha.JavaFx.model.SinhVien.SinhVien;
-import com.example.alpha.Spring_boot.class_grade.LopEntity;
 import com.example.alpha.Spring_boot.result.student.KqSinhVienCanamEntity;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
@@ -21,14 +20,12 @@ import javafx.scene.control.TableView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.net.URL;
 import java.time.LocalDate;
-import java.util.Date;
-import java.util.List;
 import java.util.ResourceBundle;
 
-public class DSKhoaLuanController implements Initializable, setTable {
-
+public class TKDiemLopNamHoc implements Initializable, setTable {
     @FXML
     private TableView<KqSinhVienCanamEntity> Table_DSKhoaLuan;
 
@@ -42,7 +39,7 @@ public class DSKhoaLuanController implements Initializable, setTable {
     private TableColumn<KqSinhVienCanamEntity, String> Column_TenSV;
 
     @FXML
-    private ComboBox<String> ComboBox_LopNamCuoi;
+    private ComboBox<String> ComboBox_Lop;
 
     private FilteredList<KqSinhVienCanamEntity> filteredList;
 
@@ -50,30 +47,35 @@ public class DSKhoaLuanController implements Initializable, setTable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setTableView();
 
-        ComboBox_LopNamCuoi.setEditable(true);
-        ComboBox_LopNamCuoi.setItems(FXCollections.observableArrayList(Lop.getRepository().getNamCuoi(LocalDate.now().getYear())));
+        ComboBox_Lop.setItems(FXCollections.observableArrayList(Lop.getRepository().getAllLop()));
         System.out.println(filteredList);
-        ComboBox_LopNamCuoi.valueProperty().addListener((observable, oldValue, newValue) -> {
+        ComboBox_Lop.valueProperty().addListener((observable, oldValue, newValue) -> {
             filteredList.setPredicate(kq -> PhanLop.getRepository().getLop(kq.getMaSinhVien()).equals(newValue) &&
                     kq.getMaNamHoc().equals(Model.getInstant().getViewFactory().getNamHoc().get()));
             Table_DSKhoaLuan.setItems(filteredList);
         });
 
-        ComboBox_LopNamCuoi.getEditor().addEventHandler(KeyEvent.KEY_RELEASED, event -> {
+        ComboBox_Lop.getEditor().addEventHandler(KeyEvent.KEY_RELEASED, event -> {
             var suggestion = FXCollections.observableArrayList(PhongThi.getRepository().getMa());
 
             ObservableList<String> S = FXCollections.observableArrayList();
             for (String s : suggestion) {
-                if (!s.equals(ComboBox_LopNamCuoi.getEditor().getText())) {
-                    if (s.contains(ComboBox_LopNamCuoi.getEditor().getText())) {
+                if (!s.equals(ComboBox_Lop.getEditor().getText())) {
+                    if (s.contains(ComboBox_Lop.getEditor().getText())) {
                         S.add(s);
                     }
                 }
             }
             if(!event.getCode().equals(KeyCode.ENTER)) {
-                ComboBox_LopNamCuoi.setItems(S);
-                ComboBox_LopNamCuoi.show();
+                ComboBox_Lop.setItems(S);
+                ComboBox_Lop.show();
             }
+        });
+
+        Model.getInstant().getViewFactory().getNamHoc().addListener((observable, oldValue, newValue) -> {
+            filteredList.setPredicate(kq -> PhanLop.getRepository().getLop(kq.getMaSinhVien()).equals(newValue) &&
+                    kq.getMaNamHoc().equals(newValue));
+            Table_DSKhoaLuan.setItems(filteredList);
         });
     }
 
@@ -89,15 +91,7 @@ public class DSKhoaLuanController implements Initializable, setTable {
     public void setCellColumn() {
         Column_MaSV.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue().getMaSinhVien()));
         Column_TenSV.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(SinhVien.getRepository().getByHoTen(param.getValue().getMaSinhVien())));
-        Column_DiemTK.setCellValueFactory(param -> {
-            float DiemTK = 0;
-            List<Float> diems = DiemSV_CaNam.getRepository().getAllDiemNamHoc(param.getValue().getMaSinhVien());
-            for(Float diem : diems){
-                DiemTK += diem;
-            }
-            DiemTK = DiemTK/diems.size();
-            return new ReadOnlyObjectWrapper<>(DiemTK);
-        });
+        Column_DiemTK.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue().getDiemTbcn()));
     }
 
     @Override

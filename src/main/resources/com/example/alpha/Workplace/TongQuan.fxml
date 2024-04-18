@@ -1,32 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.chart.AreaChart?>
-<?import javafx.scene.chart.CategoryAxis?>
-<?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="546.0" prefWidth="623.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.alpha.JavaFx.controller.Menu.TongQuanController">
+<AnchorPane prefHeight="556.0" prefWidth="751.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.alpha.JavaFx.controller.Menu.TongQuanController">
    <children>
-      <AreaChart fx:id="Chart_TongQuan" layoutX="54.0" layoutY="180.0" prefHeight="318.0" prefWidth="514.0">
-         <xAxis>
-            <CategoryAxis side="BOTTOM" />
-         </xAxis>
-         <yAxis>
-            <NumberAxis side="LEFT" />
-         </yAxis>
-      </AreaChart>
-      <Label layoutX="32.0" layoutY="29.0" text="Số lượng mặt hàng:">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
-      <Label layoutX="336.0" layoutY="29.0" text="Số lượng khách hàng:">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
       <Label fx:id="Label_SLMatHang" layoutX="217.0" layoutY="29.0" prefHeight="30.0" prefWidth="31.0" textFill="#2b95ff">
          <font>
             <Font size="20.0" />
@@ -35,6 +14,11 @@
       <Label fx:id="Label_SLKhachHang" layoutX="541.0" layoutY="29.0" prefHeight="30.0" prefWidth="24.0" textFill="#2b95ff">
          <font>
             <Font size="20.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="157.0" layoutY="192.0" prefHeight="172.0" prefWidth="437.0" text="Welcome">
+         <font>
+            <Font size="96.0" />
          </font>
       </Label>
    </children>

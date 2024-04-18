@@ -14,6 +14,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import org.springframework.stereotype.Controller;
@@ -69,7 +70,7 @@ public class DiemSVController implements Initializable, setTable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setTableView();
-
+        
         Model.getInstant().getDiemSinhVien().getSvSelected().addListener((observable, oldValue, newValue) -> {
             setTableView();
                     filteredList.forEach(diemEntity -> {

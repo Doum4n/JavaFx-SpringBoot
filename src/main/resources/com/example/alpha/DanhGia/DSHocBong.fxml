@@ -19,7 +19,7 @@
       <ComboBox fx:id="ComboBox_Lop" layoutX="72.0" layoutY="120.0" prefWidth="150.0" />
       <Pane layoutX="72.0" layoutY="167.0" prefHeight="270.0" prefWidth="200.0">
          <children>
-            <fx:include source="DSTop10%25.fxml" />
+            <fx:include source="DSTop10percent.fxml" />
          </children>
       </Pane>
    </children>

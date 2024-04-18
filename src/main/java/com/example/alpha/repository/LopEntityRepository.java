@@ -10,6 +10,6 @@ public interface LopEntityRepository extends JpaRepository<LopEntity, String> {
     @Query("select a.maLop from LopEntity a")
     List<String> getAllLop();
 
-    @Query("select a.maLop from LopEntity a where year(:currentDate) - a.maNamHoc = 4")
-    List<String> getNamCuoi();
+    @Query("select a.maLop from LopEntity a where :CurrentYear - a.maNamHoc = 4")
+    List<String> getNamCuoi(int CurrentYear);
 }

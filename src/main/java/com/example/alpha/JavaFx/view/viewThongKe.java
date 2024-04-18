@@ -6,6 +6,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 import lombok.Getter;
 
+import java.util.Objects;
+
 @Getter
 public class viewThongKe {
     private final ObjectProperty<ThongKe> thongKeProperty;
@@ -13,6 +15,7 @@ public class viewThongKe {
     private AnchorPane TK_DiemSV_MH;
     private AnchorPane TK_DiemLop_MonHoc;
     private AnchorPane TK_DiemLop_HocKy;
+    private AnchorPane TK_DiemLop_NamHoc;
 
     public viewThongKe() {
         thongKeProperty = new SimpleObjectProperty<>();
@@ -49,5 +52,16 @@ public class viewThongKe {
             e.printStackTrace();
         }
         return TK_DiemLop_HocKy;
+    }
+
+    public AnchorPane getTK_DiemLop_NamHoc() {
+        try {
+            if (TK_DiemLop_NamHoc == null) {
+                TK_DiemLop_NamHoc = new FXMLLoader(getClass().getResource("/com/example/alpha/ThongKe/TK_DiemLop_NamHoc.fxml")).load();
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return TK_DiemLop_NamHoc;
     }
 }
