@@ -1,15 +1,12 @@
 package com.example.alpha.JavaFx.controller.Diem;
 
 import com.example.alpha.JavaFx.controller.setTable;
-import com.example.alpha.JavaFx.model.Diem.DiemQT;
 import com.example.alpha.JavaFx.model.Model;
 import com.example.alpha.JavaFx.model.PhanLop;
 import com.example.alpha.JavaFx.model.SinhVien.KqMonHoc_SV;
 import com.example.alpha.JavaFx.model.SinhVien.SinhVien;
 import com.example.alpha.Spring_boot.result.student.KqSVMonHoc;
 import com.example.alpha.Spring_boot.result.student.KqSinhVienMonhocEntity;
-import com.example.alpha.Spring_boot.result.student.KqSinhVienMonhocEntityPK;
-import com.example.alpha.Spring_boot.subject.DiemQTEntity;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.property.SimpleObjectProperty;
@@ -22,7 +19,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
 

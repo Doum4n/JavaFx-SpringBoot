@@ -1,6 +1,5 @@
 package com.example.alpha.repository;
 
-import com.example.alpha.Spring_boot.result.student.KqSinhVienMonhocEntity;
 import com.example.alpha.Spring_boot.result.student.KqSinnhVienHocKy;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -32,4 +31,10 @@ public interface KqSinnhVienHocKyRepository extends JpaRepository<KqSinnhVienHoc
 
     @Query("select a from KqSinnhVienHocKy a join DiemRLSinhVien b on a.MaSinhVien=b.MaSinhVien where a.DiemTkHocKy>=7.0 and b.DiemRL>=65")
     List<KqSinnhVienHocKy> findAllSV_HocBong();
+
+    @Query("select a.DiemTkHocKy from KqSinnhVienHocKy a where a.MaSinhVien=?1 and a.MaHocKy='1' and a.MaNamHoc=?2")
+    Float getDiemTKHK1(String MaSV, String MaNamHoc);
+
+    @Query("select a.DiemTkHocKy from KqSinnhVienHocKy a where a.MaSinhVien=?1 and a.MaHocKy='2' and a.MaNamHoc=?2")
+    Float getDiemTKHK2(String MaSV, String MaNamHoc);
 }

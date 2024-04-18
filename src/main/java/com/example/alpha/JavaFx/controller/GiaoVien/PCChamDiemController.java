@@ -1,7 +1,6 @@
 package com.example.alpha.JavaFx.controller.GiaoVien;
 
 import com.example.alpha.JavaFx.model.*;
-import com.example.alpha.JavaFx.model.Diem.DiemQT;
 import com.example.alpha.JavaFx.model.GiaoVien.GiaoVien;
 import com.example.alpha.JavaFx.model.GiaoVien.PhanCong;
 import com.example.alpha.JavaFx.model.SinhVien.KqMonHoc_SV;
@@ -14,7 +13,6 @@ import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 
 import java.io.IOException;

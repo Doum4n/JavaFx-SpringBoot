@@ -1,21 +1,23 @@
 package com.example.alpha.JavaFx.controller.Menu;
 
 import com.example.alpha.JavaFx.model.Diem.Diem;
+import com.example.alpha.JavaFx.model.Diem.DiemSV_CaNam;
 import com.example.alpha.JavaFx.model.Diem.DiemSV_HocKy;
 import com.example.alpha.JavaFx.model.Model;
 import com.example.alpha.JavaFx.model.MonHoc.MonHoc;
 import com.example.alpha.JavaFx.model.SinhVien.DKHocPhan;
 import com.example.alpha.JavaFx.model.SinhVien.KqMonHoc_SV;
 import com.example.alpha.JavaFx.view.QuanLy;
-import com.example.alpha.Spring_boot.result.student.KqSVMonHoc;
-import com.example.alpha.Spring_boot.result.student.KqSinhVienHocKyPK;
+import com.example.alpha.Spring_boot.result.student.KqSinhVienCanamEntity;
 import com.example.alpha.Spring_boot.result.student.KqSinhVienMonhocEntity;
 import com.example.alpha.Spring_boot.result.student.KqSinnhVienHocKy;
 import com.example.alpha.Spring_boot.student.DKHocPhanEntity;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import org.springframework.stereotype.Component;
+import javafx.scene.text.Text;
+import javafx.stage.Popup;
+import javafx.stage.Stage;
 import org.springframework.stereotype.Controller;
 
 import java.net.URL;
@@ -52,16 +54,30 @@ public class QuanLyController implements Initializable {
         Button_TinhDiemTB.setOnAction(event -> {
             TinhDiemTB_MonHoc();
             TinhDiemTB_HocKy();
+            TinhDiemTB_NamHoc();
         });
         Button_AutoNhapDuLieu.setOnAction(event -> {
-            addDataKqSV_MonHoc();
+            addDataKqSV();
         });
     }
 
-    private void addDataKqSV_MonHoc() {
+    private void addDataKqSV() {
         for(DKHocPhanEntity dkHocPhan : DKHocPhan.getRepository().findAll()){
             KqMonHoc_SV.getRepository().save(new KqSinhVienMonhocEntity(dkHocPhan.getMaSV(),dkHocPhan.getMaMH(),dkHocPhan.getHocKy(), dkHocPhan.getNamHoc()));
             DiemSV_HocKy.getRepository().save(new KqSinnhVienHocKy(dkHocPhan.getMaSV(), dkHocPhan.getHocKy(), dkHocPhan.getNamHoc()));
+            DiemSV_CaNam.getRepository().save(new KqSinhVienCanamEntity(dkHocPhan.getMaSV(), dkHocPhan.getNamHoc()));
+        }
+    }
+
+    private void TinhDiemTB_NamHoc() {
+        for(KqSinnhVienHocKy kq : DiemSV_HocKy.getRepository().findAllExceptDiem()) {
+            float TBhk1 = DiemSV_HocKy.getRepository().getDiemTKHK1(kq.getMaSinhVien(), kq.getMaNamHoc());
+            float TBhk2 = DiemSV_HocKy.getRepository().getDiemTKHK2(kq.getMaSinhVien(), kq.getMaNamHoc());
+            float TbCaNam = (TBhk1+TBhk2) /2;
+
+            DiemSV_CaNam.getRepository().UpdateDiemHK1(kq.getMaSinhVien(), TBhk1, kq.getMaNamHoc());
+            DiemSV_CaNam.getRepository().UpdateDiemHK2(kq.getMaSinhVien(),TBhk2, kq.getMaNamHoc());
+            DiemSV_CaNam.getRepository().UpdateDiemCaNam(kq.getMaSinhVien(), (float) (Math.round(TbCaNam * 100.0)/100.0), kq.getMaNamHoc());
         }
     }
 
@@ -83,8 +99,6 @@ public class QuanLyController implements Initializable {
                         TongTC += MonHoc.getRepository().getSTC(MH);
                     }
                 }
-                System.out.println("diem: "+TongDiemTK);
-                System.out.println("Tc: "+TongTC);
                 DiemSV_HocKy.getRepository().updateDiemTK(kq.getMaSinhVien(),kq.getMaHocKy(),kq.getMaNamHoc(), (float) (Math.round(TongDiemTK/TongTC * 100.0)/100.0));
                 DiemSV_HocKy.getRepository().updateTongTC(kq.getMaSinhVien(),kq.getMaHocKy(),kq.getMaNamHoc(), (int) TongTC);
 //            }
@@ -100,16 +114,22 @@ public class QuanLyController implements Initializable {
                         float max = Collections.max(diems);
                         float TyLe = MonHoc.getRepository().getTyLeDiemQT(kq.getMaMonHoc());
                         Float diemqt = KqMonHoc_SV.getRepository().getDiemQT(kq.getMaSinhVien(), kq.getMaMonHoc());
-                        float DiemTongKet = diemqt * (TyLe / 100) + max * ((100 - TyLe) / 100);
+                        if(diemqt==null) {
+                            Model.getInstant().getViewFactory().getLog().set("Bạn chưa nhập điểm quá trình cho Sinh viên:" +"\nMaSV: " + kq.getMaSinhVien() +"\nMaMonHoc: "+ kq.getMaMonHoc() +"\nHocKy:  "+ kq.getMaHocKy() +"\nNamHoc: "+ kq.getMaNamHoc());
+                            Model.getInstant().getViewFactory().showLog();
+                        }else {
+                            float DiemTongKet = diemqt * (TyLe / 100) + max * ((100 - TyLe) / 100);
 
-                        KqMonHoc_SV.getRepository().UpdateDiemThi(kq.getMaSinhVien(), kq.getMaMonHoc(), max, kq.getMaHocKy(), kq.getMaNamHoc());
-                        KqMonHoc_SV.getRepository().UpdateDiemTK(kq.getMaSinhVien(),
-                                kq.getMaMonHoc(),
-                                (float) (Math.round(DiemTongKet * 100.0)/100.0)
-                        );
+                            KqMonHoc_SV.getRepository().UpdateDiemThi(kq.getMaSinhVien(), kq.getMaMonHoc(), max, kq.getMaHocKy(), kq.getMaNamHoc());
+                            KqMonHoc_SV.getRepository().UpdateDiemTK(kq.getMaSinhVien(),
+                                    kq.getMaMonHoc(),
+                                    (float) (Math.round(DiemTongKet * 100.0)/100.0)
+                            );
+                        }
                     }
 //                }
             }
+            Model.getInstant().getViewFactory().getLog().set("OK");
         }catch (NoSuchElementException e){
             e.printStackTrace();
         }

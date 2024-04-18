@@ -200,12 +200,12 @@ public class NhapDiemThiController implements Initializable, setTable {
             defaultLoad();
         });
 
-        button_delete.setOnAction(event -> {
-            Diem.getRepository().deleteByMaSinhVien(Label_MaSV.getText());
-            data.removeIf(entity -> entity.getMaSinhVien().equals(Label_MaMH.getText()));
-            filteredList.removeIf(entity -> entity.getMaSinhVien().equals(Label_MaSV.getText()));
-            defaultLoad();
-        });
+//        button_delete.setOnAction(event -> {
+//            Diem.getRepository().deleteByMaSinhVien(Label_MaSV.getText());
+//            data.removeIf(entity -> entity.getMaSinhVien().equals(Label_MaMH.getText()));
+//            filteredList.removeIf(entity -> entity.getMaSinhVien().equals(Label_MaSV.getText()));
+//            defaultLoad();
+//        });
 
         //Khi Năm thay đổi
         Model.getInstant().getViewFactory().getNamHoc().addListener((observable, oldValue, newValue) -> {

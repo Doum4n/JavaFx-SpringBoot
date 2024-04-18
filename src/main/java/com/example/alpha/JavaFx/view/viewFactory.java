@@ -9,7 +9,6 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import lombok.Data;
@@ -27,6 +26,7 @@ public class viewFactory {
 
     private final StringProperty NamHoc;
     private final StringProperty Hocky;
+    private final StringProperty log;
     private Stage stage = new Stage();
 
     public viewFactory(){
@@ -34,6 +34,7 @@ public class viewFactory {
         this.menuProperty = new SimpleObjectProperty<>();
         this.NamHoc = new SimpleStringProperty(com.example.alpha.JavaFx.model.NamHoc.getRepository().getNamHoc().get(0));
         this.Hocky = new SimpleStringProperty(HocKy.getRepository().getHocKy().get(0));
+        this.log = new SimpleStringProperty();
     }
 
     public HBox getQuanLyView(){
@@ -94,6 +95,25 @@ public class viewFactory {
             e.printStackTrace();
         }
 //        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void showLog(){
+//        Popup popup = new Popup();
+//        Label text = new Label(getLog().get());
+//        text.setStyle(" -fx-background-color: white;");
+//        popup.getContent().add(text);
+//        popup.show(stage);
+
+        FXMLLoader loader = new FXMLLoader((Objects.requireNonNull(LoginController.class.getResource("/com/example/alpha/Log.fxml"))));
+        Scene scene = null;
+        try{
+            scene = new Scene(loader.load());
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        Stage stage = new Stage();
         stage.setScene(scene);
         stage.show();
     }

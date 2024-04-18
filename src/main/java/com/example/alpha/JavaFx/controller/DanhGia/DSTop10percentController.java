@@ -41,7 +41,9 @@ public class DSTop10percentController implements Initializable, setTable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setTableView();
         Model.getInstant().getDsTop10percentSVLop().getLop().addListener((observable, oldValue, newValue) -> {
-            filteredList.setPredicate(sv -> PhanLop.getRepository().getLop(sv.getMaSinhVien()).equals(newValue));
+            filteredList.setPredicate(sv -> PhanLop.getRepository().getLop(sv.getMaSinhVien()).equals(newValue) &&
+                    sv.getMaHocKy().equals(Model.getInstant().getViewFactory().getHocky().get()) &&
+                    sv.getMaNamHoc().equals(Model.getInstant().getViewFactory().getNamHoc().get()));
             sortedList = new SortedList<>(filteredList);
             TableView_DS.setItems(sortedList);
         });

@@ -7,9 +7,15 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
+import javafx.scene.text.TextFlow;
 import lombok.Getter;
 import org.springframework.stereotype.Controller;
 
@@ -73,6 +79,10 @@ public class WorkplaceController implements Initializable{
 
         ChoiceBox_Nam.valueProperty().addListener((observable, oldValue, newValue) -> addListenerChoiceBoc_Nam());
         ChoiceBox_HocKy.valueProperty().addListener((observable, oldValue, newValue) -> addListenerChoiceBoc_HocKy());
+
+        Model.getInstant().getViewFactory().getLog().addListener((observable, oldValue, newValue) -> {
+
+        });
     }
 
     private void addListenerQuanLy(){

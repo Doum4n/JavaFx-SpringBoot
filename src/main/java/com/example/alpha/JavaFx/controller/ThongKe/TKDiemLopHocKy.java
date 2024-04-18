@@ -62,7 +62,9 @@ public class TKDiemLopHocKy implements Initializable, setTable {
 
         ComboBox_Lop.setEditable(true);
         ComboBox_Lop.valueProperty().addListener((observable, oldValue, newValue) -> {
-            filteredList.setPredicate(kq -> PhanLop.getRepository().getLop(kq.getMaSinhVien()).equals(ComboBox_Lop.getValue()));
+            filteredList.setPredicate(kq -> PhanLop.getRepository().getLop(kq.getMaSinhVien()).equals(newValue) &&
+                    kq.getMaHocKy().equals(Model.getInstant().getViewFactory().getHocky().get()) &&
+                    kq.getMaNamHoc().equals(Model.getInstant().getViewFactory().getNamHoc().get()));
             Label_SiSo.setText(String.valueOf(filteredList.size()));
             TableView_TKDiemLopHK.setItems(filteredList);
         });
@@ -81,6 +83,21 @@ public class TKDiemLopHocKy implements Initializable, setTable {
                 ComboBox_Lop.setItems(S);
                 ComboBox_Lop.show();
             }
+        });
+
+        Model.getInstant().getViewFactory().getHocky().addListener((observable, oldValue, newValue) -> {
+            filteredList.setPredicate(kq -> PhanLop.getRepository().getLop(kq.getMaSinhVien()).equals(ComboBox_Lop.getValue()) &&
+                    kq.getMaHocKy().equals(newValue) &&
+                    kq.getMaNamHoc().equals(Model.getInstant().getViewFactory().getNamHoc().get()));
+            Label_SiSo.setText(String.valueOf(filteredList.size()));
+            TableView_TKDiemLopHK.setItems(filteredList);
+        });
+        Model.getInstant().getViewFactory().getNamHoc().addListener((observable, oldValue, newValue) -> {
+            filteredList.setPredicate(kq -> PhanLop.getRepository().getLop(kq.getMaSinhVien()).equals(ComboBox_Lop.getValue()) &&
+                    kq.getMaHocKy().equals(Model.getInstant().getViewFactory().getHocky().get()) &&
+                    kq.getMaNamHoc().equals(newValue));
+            Label_SiSo.setText(String.valueOf(filteredList.size()));
+            TableView_TKDiemLopHK.setItems(filteredList);
         });
     }
 
