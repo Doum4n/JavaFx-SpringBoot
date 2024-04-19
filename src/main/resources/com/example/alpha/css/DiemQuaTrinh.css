@@ -1,0 +1,13 @@
+.text-field{
+    -fx-border-radius: 14;
+    -fx-background-radius: 14;
+}
+
+#scrollpane{
+    -fx-background-color: #DDDDDD;
+    -fx-border-color: #76885B;
+}
+
+.root{
+    -fx-background-color: #EEEEEE;
+}

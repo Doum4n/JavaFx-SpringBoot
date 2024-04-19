@@ -7,6 +7,6 @@
    <columns>
       <TableColumn fx:id="Column_MaMH" prefWidth="75.0" text="MaMH" />
       <TableColumn fx:id="Column_TenMH" prefWidth="130.40003051757813" text="TenMH" />
-      <TableColumn fx:id="ColumnX" prefWidth="59.20001220703125" text="Column X" />
+      <TableColumn fx:id="ColumnX" prefWidth="59.20001220703125" />
    </columns>
 </TableView>

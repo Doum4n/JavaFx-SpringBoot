@@ -27,12 +27,6 @@ public class QLSinhVienController implements Initializable, setTable {
     private AnchorPane AnchorPane_QLSinhVien;
 
     @FXML
-    private CheckBox CheckBox_Nam;
-
-    @FXML
-    private CheckBox CheckBox_Nu;
-
-    @FXML
     private TableColumn<?, ?> Column_DiaChi;
 
     @FXML
@@ -54,30 +48,13 @@ public class QLSinhVienController implements Initializable, setTable {
     private TableColumn<SinhVienEntity, Button> ColumnX;
 
     @FXML
-    private DatePicker DataPicker_NgaySinh;
-
-    @FXML
     private TableView<SinhVienEntity> TableView_SinhVien;
-
-    @FXML
-    private TextArea TextArea_DiaChi;
-
-
-    @FXML
-    private TextField TextField_Email;
-
-    @FXML
-    private TextField TextField_HoTen;
-
-    @FXML
-    private TextField TextField_MaSV;
 
     @FXML
     private TextField TextField_Search;
 
     private SinhVienEntity sinhVien;
     private ObservableList<SinhVienEntity> data = FXCollections.observableArrayList();
-    private List<SinhVienEntity> sv;
     private final SimpleBooleanProperty isFemale = new SimpleBooleanProperty();
 
     private SortedList<SinhVienEntity> sortedList;
@@ -85,13 +62,14 @@ public class QLSinhVienController implements Initializable, setTable {
     @Override
     public void setTableView() {
         setCellColumn();
-        sv = SinhVien.getRepository().findAll();
-        TableView_SinhVien.setItems(FXCollections.observableArrayList(sv));
+        List<SinhVienEntity> sv = SinhVien.getRepository().findAll();
+        data = FXCollections.observableArrayList(sv);
+        TableView_SinhVien.setItems(FXCollections.observableArrayList(data));
     }
 
     @Override
     public void addListenerTableView(){
-        data = FXCollections.observableArrayList(sv);
+        /*data = FXCollections.observableArrayList(sv);
         Model.getInstant().getDiemSinhVien().getSvSelected().addListener((observable, oldValue, newValue) -> {
             data.stream().filter(sinhVienEntity ->
                     sinhVienEntity.getMaSinhVien().equals(Model.getInstant().getDiemSinhVien().getSvSelected().get())
@@ -106,7 +84,7 @@ public class QLSinhVienController implements Initializable, setTable {
                 if (sinhVienEntity.getGioiTinh()) {
                     CheckBox_Nu.selectedProperty().set(true);
                     CheckBox_Nam.selectedProperty().set(false);
-                    
+
                     CheckBox_Nam.setDisable(true);
                     CheckBox_Nu.setDisable(false);
                 } else {
@@ -120,7 +98,7 @@ public class QLSinhVienController implements Initializable, setTable {
                 DataPicker_NgaySinh.setValue(sinhVienEntity.getNgaySinh().toLocalDate());
             });
         });
-        addListenerSearch();
+        addListenerSearch();*/
     }
 
     @Override
@@ -159,6 +137,7 @@ public class QLSinhVienController implements Initializable, setTable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         setTableView();
-        addListenerTableView();
+//        addListenerTableView();
+        addListenerSearch();
     }
 }

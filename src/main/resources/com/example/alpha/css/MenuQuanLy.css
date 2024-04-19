@@ -1,0 +1,31 @@
+#MonHoc, #tk{
+    -fx-background-color: #627254;
+    -fx-border-radius: 14;
+    -fx-background-radius: 14;
+    -fx-border-color: #FBFADA;
+}
+
+.button {
+    -fx-background-color: #ADBC9F;
+    -fx-background-radius: 14;
+    -fx-border-radius: 14;
+}
+
+.label{
+    -fx-background-color: #FBFADA;
+    -fx-border-radius: 14;
+    -fx-background-radius: 14;
+}
+
+#Nhap, #TinhTB{
+    -fx-background-color: #ADBC9F;
+    -fx-background-radius: 14;
+    -fx-border-radius: 14;
+    -fx-border-color: #12372A;
+}
+
+#button_nhap, #button_tinhtb{
+    -fx-background-color: #12372A;
+    -fx-text-fill: white;
+    -fx-border-color: #FBFADA;
+}

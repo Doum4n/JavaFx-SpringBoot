@@ -13,6 +13,10 @@ public class ButtonCellSV {
         this.button = new Button("Xem");
         button.setOnAction(event -> {
             TableCell tableCell = (TableCell) button.getParent().getParent().lookup("#Column_MaSV");
+            System.out.println(button.getParent().getParent().lookup("#Column_MaSV"));
+            System.out.println(button.getParent().getParent());
+            System.out.println(button.getParent());
+            System.out.println(button);
             Model.getInstant().getDiemSinhVien().getSvSelected().set(tableCell.getItem().toString());
         });
     }

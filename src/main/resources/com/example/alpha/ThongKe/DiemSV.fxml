@@ -3,25 +3,25 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 
-<TableView fx:id="TableView_DiemSV" prefHeight="226.0" prefWidth="655.0" style="-fx-background-color: DDDDDD;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.alpha.JavaFx.controller.Diem.DiemSVController">
+<TableView fx:id="TableView_DiemSV" prefHeight="226.0" prefWidth="726.0" style="-fx-background-color: DDDDDD;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.alpha.JavaFx.controller.Diem.DiemSVController">
    <columns>
-      <TableColumn fx:id="Column_MaMH" prefWidth="62.39999467134476" text="MaMH" />
-      <TableColumn fx:id="Column_TenMH" prefWidth="94.39999008178711" text="TenMH" />
-      <TableColumn fx:id="Column_STC" prefWidth="36.000030517578125" text="STC" />
-      <TableColumn prefWidth="183.9999542236328" text="Tỷ lệ">
+      <TableColumn fx:id="Column_MaMH" prefWidth="65.0" text="MaMH" />
+      <TableColumn fx:id="Column_TenMH" prefWidth="200.0" text="TenMH" />
+      <TableColumn fx:id="Column_STC" prefWidth="35.0" text="STC" />
+      <TableColumn prefWidth="164.0" text="Tỷ lệ">
          <columns>
-            <TableColumn fx:id="Column_TLthi" prefWidth="75.0" text="Điểm thi" />
-            <TableColumn fx:id="Column_TLQT" prefWidth="75.0" text="Điểm QT" />
+            <TableColumn fx:id="Column_TLthi" prefWidth="60.0" text="Điểm thi" />
+            <TableColumn fx:id="Column_TLQT" prefWidth="60.0" text="Điểm QT" />
          </columns>
       </TableColumn>
-      <TableColumn fx:id="Column_DiemQT" prefWidth="60.79998779296875" text="DiemQT" />
-      <TableColumn prefWidth="240.0" text="Điểm thi">
+      <TableColumn fx:id="Column_DiemQT" prefWidth="60.0" text="DiemQT" />
+      <TableColumn prefWidth="190.39993286132812" text="Điểm thi">
          <columns>
-            <TableColumn fx:id="Column_ThiL1" prefWidth="56.0" text="Thi L1" />
-            <TableColumn fx:id="Column_ThiL2" prefWidth="64.800048828125" text="Thi L2" />
-            <TableColumn fx:id="Column_ThiL3" prefWidth="63.199951171875" text="Thi L3" />
+            <TableColumn fx:id="Column_ThiL1" prefWidth="60.0" text="Thi L1" />
+            <TableColumn fx:id="Column_ThiL2" prefWidth="60.0" text="Thi L2" />
+            <TableColumn fx:id="Column_ThiL3" prefWidth="60.0" text="Thi L3" />
          </columns>
       </TableColumn>
-      <TableColumn fx:id="Column_DiemTK" prefWidth="63.199951171875" text="ĐiểmTK" />
+      <TableColumn fx:id="Column_DiemTK" prefWidth="60.0" text="ĐiểmTK" />
    </columns>
 </TableView>

@@ -10,9 +10,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="578.0" prefWidth="933.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.alpha.JavaFx.controller.Diem.NhapDiemThiController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="578.0" prefWidth="933.0" stylesheets="@../css/NhapDiemThi.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.alpha.JavaFx.controller.Diem.NhapDiemThiController">
    <children>
-      <TableView fx:id="TableView_Diem" layoutX="402.0" layoutY="86.0" prefHeight="274.0" prefWidth="366.0">
+      <TableView id="Diem" fx:id="TableView_Diem" layoutX="402.0" layoutY="86.0" prefHeight="274.0" prefWidth="370.0">
         <columns>
           <TableColumn fx:id="Column_MaSV" prefWidth="103.199951171875" text="MaSV" />
             <TableColumn fx:id="Column_MaMonHoc" prefWidth="82.4000244140625" text="MaMonHoc" />
@@ -20,23 +20,22 @@
             <TableColumn fx:id="Column_Diem" prefWidth="104.79998779296875" text="DiemThi" />
         </columns>
       </TableView>
-      <TextField fx:id="TextField_Diem" layoutX="618.0" layoutY="444.0" />
+      <TextField fx:id="TextField_Diem" layoutX="630.0" layoutY="444.0" />
       <Label layoutX="402.0" layoutY="407.0" text="Mã sinh viên:" />
       <Label layoutX="402.0" layoutY="448.0" text="Mã môn học:" />
       <Label layoutX="572.0" layoutY="408.0" text="Lần Thi:" />
       <Label layoutX="582.0" layoutY="448.0" text="Điểm:" />
-      <Button fx:id="button_update" layoutX="621.0" layoutY="494.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="63.0" text="Update" />
-      <Button fx:id="button_delete" layoutX="717.0" layoutY="494.0" mnemonicParsing="false" text="Delete" />
+      <Button fx:id="button_update" layoutX="717.0" layoutY="481.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="63.0" text="Update" />
       <TextField fx:id="textField_search" layoutX="398.0" layoutY="39.0" prefHeight="26.0" prefWidth="170.0" promptText="search" />
-      <Button fx:id="buyyon_import" layoutX="63.0" layoutY="436.0" mnemonicParsing="false" text="Import" />
+      <Button fx:id="buyyon_import" layoutX="89.0" layoutY="428.0" mnemonicParsing="false" text="Import" />
       <ComboBox fx:id="CombocBox_PhongThi" layoutX="89.0" layoutY="39.0" prefHeight="26.0" prefWidth="132.0" />
       <Pane layoutX="89.0" layoutY="86.0" prefHeight="200.0" prefWidth="200.0">
          <children>
             <fx:include source="Monhoc.fxml" />
          </children>
       </Pane>
-      <ChoiceBox fx:id="ChoiceBox_LanThi" layoutX="620.0" layoutY="403.0" prefHeight="26.0" prefWidth="63.0" />
-      <Label fx:id="Label_MaSV" layoutX="487.0" layoutY="407.0" text="Label" />
-      <Label fx:id="Label_MaMH" layoutX="487.0" layoutY="448.0" text="Label" />
+      <ChoiceBox fx:id="ChoiceBox_LanThi" layoutX="630.0" layoutY="402.0" prefHeight="26.0" prefWidth="63.0" />
+      <Label fx:id="Label_MaSV" layoutX="487.0" layoutY="407.0" prefHeight="20.0" prefWidth="47.0" />
+      <Label fx:id="Label_MaMH" layoutX="487.0" layoutY="448.0" prefHeight="20.0" prefWidth="30.0" />
    </children>
 </AnchorPane>

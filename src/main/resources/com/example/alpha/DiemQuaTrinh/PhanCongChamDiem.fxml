@@ -8,14 +8,14 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="578.0" prefWidth="1052.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.alpha.JavaFx.controller.GiaoVien.PCChamDiemController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="578.0" prefWidth="1052.0" stylesheets="@../css/DiemQuaTrinh.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.alpha.JavaFx.controller.GiaoVien.PCChamDiemController">
    <ScrollPane fx:id="ScrollPane_Main" layoutX="84.0" layoutY="94.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="459.0" prefWidth="424.0">
-      <VBox fx:id="VBox_GV" prefHeight="484.0" prefWidth="407.0" />
+      <VBox id="scrollpane" fx:id="VBox_GV" prefHeight="484.0" prefWidth="407.0" />
    </ScrollPane>
    <TextField fx:id="textField_SearchMaGV" layoutX="84.0" layoutY="26.0" promptText="Search" />
    <Label layoutX="84.0" layoutY="67.0" text="MaGV" />
    <Label layoutX="172.0" layoutY="67.0" text="TenGV" />
-   <Label layoutX="250.0" layoutY="67.0" text="MaMH" />
+   <Label layoutX="329.0" layoutY="65.0" text="MaMH" />
    <Pane layoutX="743.0" layoutY="16.0" prefHeight="166.0" prefWidth="294.0">
       <children>
          <fx:include source="GiaoVienInfor.fxml" />

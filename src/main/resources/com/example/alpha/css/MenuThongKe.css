@@ -1,0 +1,36 @@
+#KqSV, #KqLop, #search{
+    -fx-background-color: #627254;
+    -fx-border-radius: 14;
+    -fx-background-radius: 14;
+    -fx-border-color: #FBFADA;
+}
+
+.button {
+    -fx-background-color: #ADBC9F;
+    -fx-background-radius: 14;
+    /*-fx-border-color: #627254;*/
+    -fx-border-radius: 14;
+    /*-fx-text-fill: #627254;*/
+
+}
+
+.label{
+    -fx-background-color: #FBFADA;
+    -fx-border-radius: 14;
+    -fx-background-radius: 14;
+}
+
+#label_search{
+    -fx-background-color: #FBFADA;
+}
+
+#search{
+    -fx-background-color: #436850;
+}
+
+.text-field{
+    -fx-border-radius: 14;
+    -fx-background-radius: 14;
+    -fx-background-color: #ADBC9F;
+    -fx-prompt-text-fill: black;
+}

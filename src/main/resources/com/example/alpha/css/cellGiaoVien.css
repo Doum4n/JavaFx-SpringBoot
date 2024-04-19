@@ -1,0 +1,26 @@
+.cellGV{
+    -fx-background-color: #ADBC9F;
+    -fx-border-radius: 14;
+    -fx-background-radius: 14;
+    -fx-border-color: #12372A;
+}
+
+.cellGV .label{
+    -fx-background-color: #FBFADA;
+    -fx-background-radius: 14;
+    -fx-border-radius: 14;
+}
+
+.cellLop{
+    -fx-background-radius: 14;
+    -fx-background-color: #436850;
+    -fx-border-radius: 14;
+    -fx-border-color: black;
+}
+
+.cellLop .button{
+    -fx-background-color: #ADBC9F;
+    -fx-border-radius: 14;
+    -fx-background-radius: 14;
+    -fx-border-color: black;
+}

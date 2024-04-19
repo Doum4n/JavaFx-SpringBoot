@@ -1,0 +1,46 @@
+.table-view{
+    -fx-background-color: #DDDDDD;
+    -fx-background-radius: 14;
+    -fx-border-radius: 14;
+    -fx-border-color: #76885B;
+}
+.table-view .column-header-background{
+    -fx-background-color: #76885B;
+    -fx-background-radius: 14;
+}
+.table-view .column-header .label{
+    -fx-text-fill: EEEEEE;
+    -fx-border-radius: 14;
+}
+.table-view .table-column{
+    -fx-background-color: #76885B;
+    -fx-background-radius: 14;
+}
+
+.table-view .cell{
+    -fx-background-color: transparent;
+    -fx-background-radius: 1;
+    -fx-border-radius: 1;
+}
+
+.text-field{
+    -fx-border-radius: 14;
+    -fx-background-radius: 14;
+    -fx-border-color: #76885B;
+}
+
+.table-view .cell:hover{
+    -fx-background-color: #76885B;
+    -fx-border-radius: 14;
+    -fx-background-radius: 14;
+    -fx-border-color: #EEEEEE;
+    -fx-text-fill: #EEEEEE;
+}
+
+.table-view .cell:selected{
+    -fx-background-color: #627254;
+    -fx-border-radius: 14;
+    -fx-background-radius: 14;
+    -fx-border-color: #EEEEEE;
+    -fx-text-fill: #EEEEEE;
+}
