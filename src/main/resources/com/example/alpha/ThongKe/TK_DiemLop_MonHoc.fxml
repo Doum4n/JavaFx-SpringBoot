@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -17,11 +18,11 @@
             <TableColumn fx:id="Colum_DiemTK" prefWidth="75.0" text="DiemTK" />
          </columns>
       </TableView>
-      <ChoiceBox fx:id="ChoiceBox_Lop" layoutX="110.0" layoutY="62.0" prefWidth="150.0" />
       <ChoiceBox fx:id="ChoiceBox_MonHoc" layoutX="338.0" layoutY="62.0" prefWidth="150.0" />
       <Label layoutX="338.0" layoutY="27.0" text="Tên môn học:" />
       <Label fx:id="Label_TenMH" layoutX="426.0" layoutY="27.0" prefHeight="18.0" prefWidth="47.0" />
       <Label layoutX="110.0" layoutY="28.0" text="Sĩ số:" />
       <Label fx:id="Label_SiSo" layoutX="148.0" layoutY="28.0" prefHeight="18.0" prefWidth="47.0" />
+      <ComboBox fx:id="ComboBox_Lop" layoutX="110.0" layoutY="62.0" prefWidth="150.0" />
    </children>
 </AnchorPane>

@@ -18,6 +18,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.Assert;
 
 import java.net.URL;
 import java.util.*;
@@ -104,7 +105,8 @@ public class DiemSVController implements Initializable, setTable {
                                         break;
                                     }
                                     case "3":
-                                        Column_ThiL3.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(Diem.getRepository().getDiem(param.getValue().getMaSinhVien(),
+                                        Column_ThiL3.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(
+                                                Diem.getRepository().getDiem(param.getValue().getMaSinhVien(),
                                                 param.getValue().getMaMonHoc(),
                                                 "3",
                                                 Model.getInstant().getViewFactory().getHocky().get(),
@@ -162,16 +164,20 @@ public class DiemSVController implements Initializable, setTable {
         });
 
         Model.getInstant().getDiemSinhVien().getSvSelected().addListener((observable, oldValue, newValue) -> {
-
-//            double TongDiemTK = 0;
-//            double TongTC = 0;
-//            for(int i=0;i<TableView_DiemSV.getItems().size();i++) {
-//
-//                TongDiemTK += Double.parseDouble(TableView_DiemSV.getColumns().get(6).getCellData(i).toString()) * Double.parseDouble(TableView_DiemSV.getColumns().get(2).getCellData(i).toString());
-//                TongTC += Double.parseDouble(TableView_DiemSV.getColumns().get(2).getCellData(i).toString());
-//            }
-            Model.getInstant().getDiemSinhVien().getDiemTK().set(DiemSV_HocKy.getRepository().getDiemTK(Model.getInstant().getDiemSinhVien().getSvSelected().get(),Model.getInstant().getViewFactory().getHocky().get(),Model.getInstant().getViewFactory().getNamHoc().get()));
-            Model.getInstant().getDiemSinhVien().getSoTC().set(DiemSV_HocKy.getRepository().getTongTC(Model.getInstant().getDiemSinhVien().getSvSelected().get(),Model.getInstant().getViewFactory().getHocky().get(),Model.getInstant().getViewFactory().getNamHoc().get()));
+            var diemTK = DiemSV_HocKy.getRepository().getDiemTK(
+                    Model.getInstant().getDiemSinhVien().getSvSelected().get(),
+                    Model.getInstant().getViewFactory().getHocky().get(),
+                    Model.getInstant().getViewFactory().getNamHoc().get());
+            var TongTC = DiemSV_HocKy.getRepository().getTongTC(
+                    Model.getInstant().getDiemSinhVien().getSvSelected().get(),
+                    Model.getInstant().getViewFactory().getHocky().get(),
+                    Model.getInstant().getViewFactory().getNamHoc().get());
+            if(diemTK != null && TongTC != null) {
+                Model.getInstant().getDiemSinhVien().getDiemTK().set(diemTK);
+                Model.getInstant().getDiemSinhVien().getSoTC().set(TongTC);
+            } else {
+                Model.getInstant().getViewFactory().showLog("Chưa nhập dữ liệu cho sinh viên "+Model.getInstant().getDiemSinhVien().getSvSelected().get());
+            }
         });
     }
 

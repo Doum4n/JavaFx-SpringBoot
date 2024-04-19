@@ -25,7 +25,10 @@ public class ThongKeController implements Initializable {
     private Button Butoon_TKNamHoc;
 
     @FXML
-    private TextField TextFiled_Search;
+    private TextField TextFiled_Search_SV;
+
+    @FXML
+    private TextField TextField_Search_Lop;
 
 
     @Override
@@ -46,8 +49,12 @@ public class ThongKeController implements Initializable {
             Model.getInstant().getViewThongKe().getThongKeProperty().set(ThongKe.TK_DiemLop_NamHoc);
         });
 
-        TextFiled_Search.textProperty().addListener((observable, oldValue, newValue) -> {
-            Model.getInstant().getThongKe().getSearch().set(newValue);
+        TextFiled_Search_SV.textProperty().addListener((observable, oldValue, newValue) -> {
+            Model.getInstant().getThongKe().getSearch_SV().set(newValue);
+        });
+
+        TextField_Search_Lop.textProperty().addListener((observable, oldValue, newValue) -> {
+            Model.getInstant().getThongKe().getSearch_Lop().set(newValue);
         });
     }
 }

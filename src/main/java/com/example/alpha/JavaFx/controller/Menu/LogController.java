@@ -15,9 +15,7 @@ public class LogController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        Model.getInstant().getViewFactory().getLog().addListener((observable, oldValue, newValue) -> {
-            TextFlow_Log.getChildren().clear();
-        });
+        TextFlow_Log.getChildren().clear();
         TextFlow_Log.getChildren().add(new Text(Model.getInstant().getViewFactory().getLog().get()));
     }
 }

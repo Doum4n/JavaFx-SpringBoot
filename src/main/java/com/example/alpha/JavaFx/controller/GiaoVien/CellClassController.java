@@ -33,8 +33,6 @@ public class CellClassController implements Initializable {
             Label MaGV = (Label) buttonn_Xem.getParent().getParent().getParent().lookup("#Label_MaGV");
             Model.getInstant().getDiemQuaTrinh().getMaGVSelected().set(MaGV.getText());
 
-            System.out.println(Model.getInstant().getDiemQuaTrinh().getMaMHSelected().get());
-
             // Get references to all labels in one step using getChildList()
 
            /* Model.getInstant().getDiemQuaTrinh().getLopSelected().set(Label_Lop.getText());

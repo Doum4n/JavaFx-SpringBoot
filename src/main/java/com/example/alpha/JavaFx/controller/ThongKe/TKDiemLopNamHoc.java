@@ -47,8 +47,8 @@ public class TKDiemLopNamHoc implements Initializable, setTable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setTableView();
 
+        ComboBox_Lop.setEditable(true);
         ComboBox_Lop.setItems(FXCollections.observableArrayList(Lop.getRepository().getAllLop()));
-        System.out.println(filteredList);
         ComboBox_Lop.valueProperty().addListener((observable, oldValue, newValue) -> {
             filteredList.setPredicate(kq -> PhanLop.getRepository().getLop(kq.getMaSinhVien()).equals(newValue) &&
                     kq.getMaNamHoc().equals(Model.getInstant().getViewFactory().getNamHoc().get()));
@@ -73,9 +73,20 @@ public class TKDiemLopNamHoc implements Initializable, setTable {
         });
 
         Model.getInstant().getViewFactory().getNamHoc().addListener((observable, oldValue, newValue) -> {
-            filteredList.setPredicate(kq -> PhanLop.getRepository().getLop(kq.getMaSinhVien()).equals(newValue) &&
+            filteredList.setPredicate(kq -> PhanLop.getRepository().getLop(kq.getMaSinhVien()).equals(ComboBox_Lop.getValue()) &&
                     kq.getMaNamHoc().equals(newValue));
             Table_DSKhoaLuan.setItems(filteredList);
+        });
+
+        Model.getInstant().getThongKe().getSearch_SV().addListener((observable, oldValue, newValue) -> {
+            filteredList.setPredicate(kq -> kq.getMaSinhVien().equals(newValue) &&
+                    PhanLop.getRepository().getLop(kq.getMaSinhVien()).equals(ComboBox_Lop.getValue()) &&
+                    kq.getMaNamHoc().equals(Model.getInstant().getViewFactory().getNamHoc().get()));
+            Table_DSKhoaLuan.setItems(filteredList);
+        });
+
+        Model.getInstant().getThongKe().getSearch_Lop().addListener((observable, oldValue, newValue) -> {
+            ComboBox_Lop.setValue(newValue);
         });
     }
 
@@ -83,7 +94,6 @@ public class TKDiemLopNamHoc implements Initializable, setTable {
     public void setTableView() {
         setCellColumn();
         filteredList = new FilteredList<>(FXCollections.observableArrayList(DiemSV_CaNam.getRepository().findAll()));
-        System.out.println(filteredList);
         Table_DSKhoaLuan.setItems(filteredList);
     }
 

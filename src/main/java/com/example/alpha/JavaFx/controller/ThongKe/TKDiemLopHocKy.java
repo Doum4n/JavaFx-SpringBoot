@@ -2,13 +2,10 @@ package com.example.alpha.JavaFx.controller.ThongKe;
 
 import com.example.alpha.JavaFx.controller.setTable;
 import com.example.alpha.JavaFx.model.Diem.DiemSV_HocKy;
-import com.example.alpha.JavaFx.model.Diem.PhongThi;
 import com.example.alpha.JavaFx.model.Lop;
 import com.example.alpha.JavaFx.model.Model;
 import com.example.alpha.JavaFx.model.PhanLop;
-import com.example.alpha.JavaFx.model.SinhVien.KqMonHoc_SV;
 import com.example.alpha.JavaFx.model.SinhVien.SinhVien;
-import com.example.alpha.Spring_boot.result.student.KqSinhVienMonhocEntity;
 import com.example.alpha.Spring_boot.result.student.KqSinnhVienHocKy;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
@@ -17,19 +14,13 @@ import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
-import javax.persistence.Column;
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class TKDiemLopHocKy implements Initializable, setTable {
-
-    @FXML
-    private ChoiceBox<String> ChoiceBox_Lop;
 
     @FXML
     private ComboBox<String> ComboBox_Lop;
@@ -62,9 +53,7 @@ public class TKDiemLopHocKy implements Initializable, setTable {
 
         ComboBox_Lop.setEditable(true);
         ComboBox_Lop.valueProperty().addListener((observable, oldValue, newValue) -> {
-            filteredList.setPredicate(kq -> PhanLop.getRepository().getLop(kq.getMaSinhVien()).equals(newValue) &&
-                    kq.getMaHocKy().equals(Model.getInstant().getViewFactory().getHocky().get()) &&
-                    kq.getMaNamHoc().equals(Model.getInstant().getViewFactory().getNamHoc().get()));
+            load();
             Label_SiSo.setText(String.valueOf(filteredList.size()));
             TableView_TKDiemLopHK.setItems(filteredList);
         });
@@ -86,18 +75,30 @@ public class TKDiemLopHocKy implements Initializable, setTable {
         });
 
         Model.getInstant().getViewFactory().getHocky().addListener((observable, oldValue, newValue) -> {
-            filteredList.setPredicate(kq -> PhanLop.getRepository().getLop(kq.getMaSinhVien()).equals(ComboBox_Lop.getValue()) &&
-                    kq.getMaHocKy().equals(newValue) &&
-                    kq.getMaNamHoc().equals(Model.getInstant().getViewFactory().getNamHoc().get()));
+            load();
             Label_SiSo.setText(String.valueOf(filteredList.size()));
             TableView_TKDiemLopHK.setItems(filteredList);
         });
         Model.getInstant().getViewFactory().getNamHoc().addListener((observable, oldValue, newValue) -> {
-            filteredList.setPredicate(kq -> PhanLop.getRepository().getLop(kq.getMaSinhVien()).equals(ComboBox_Lop.getValue()) &&
-                    kq.getMaHocKy().equals(Model.getInstant().getViewFactory().getHocky().get()) &&
-                    kq.getMaNamHoc().equals(newValue));
+            load();
             Label_SiSo.setText(String.valueOf(filteredList.size()));
             TableView_TKDiemLopHK.setItems(filteredList);
+        });
+
+        Model.getInstant().getThongKe().getSearch_SV().addListener((observable, oldValue, newValue) -> {
+            if(!newValue.isBlank() || !newValue.isEmpty()) {
+                filteredList.setPredicate(kq -> kq.getMaSinhVien().equals(newValue) &&
+                        PhanLop.getRepository().getLop(kq.getMaSinhVien()).equals(ComboBox_Lop.getValue()) &&
+                        kq.getMaHocKy().equals(Model.getInstant().getViewFactory().getHocky().get()) &&
+                        kq.getMaNamHoc().equals(Model.getInstant().getViewFactory().getNamHoc().get()));
+                TableView_TKDiemLopHK.setItems(filteredList);
+            }else {
+                load();
+            }
+        });
+
+        Model.getInstant().getThongKe().getSearch_Lop().addListener((observable, oldValue, newValue) -> {
+            ComboBox_Lop.setValue(newValue);
         });
     }
 
@@ -125,5 +126,12 @@ public class TKDiemLopHocKy implements Initializable, setTable {
     @Override
     public void addListenerSearch() {
 
+    }
+
+    private void load (){
+        filteredList.setPredicate(kq -> PhanLop.getRepository().getLop(kq.getMaSinhVien()).equals(ComboBox_Lop.getValue()) &&
+                kq.getMaHocKy().equals(Model.getInstant().getViewFactory().getHocky().get()) &&
+                kq.getMaNamHoc().equals(Model.getInstant().getViewFactory().getNamHoc().get()));
+        TableView_TKDiemLopHK.setItems(filteredList);
     }
 }

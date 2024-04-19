@@ -119,7 +119,7 @@ public class NhapDiemThiController implements Initializable, setTable {
 
             load(Model.getInstant().getNhapDiemThi().getMonHocSelected().get(),
                     newValue,
-                    Model.getInstant().getNhapDiemThi().getLanThi().get(),
+                    String.valueOf(Model.getInstant().getNhapDiemThi().getLanThi().get()),
                     Model.getInstant().getViewFactory().getNamHoc().get(),
                     Model.getInstant().getViewFactory().getHocky().get());
         });

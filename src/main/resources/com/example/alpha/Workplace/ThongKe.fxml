@@ -17,12 +17,13 @@
       </AnchorPane>
       <AnchorPane prefHeight="86.0" prefWidth="177.0" style="-fx-background-color: #4C5B1C;">
          <children>
-            <TextField fx:id="TextFiled_Search" layoutX="17.0" layoutY="49.0" prefHeight="26.0" prefWidth="142.0" style="-fx-background-color: #72892B;">
+            <TextField fx:id="TextFiled_Search_SV" layoutX="17.0" layoutY="30.0" prefHeight="26.0" prefWidth="142.0" promptText="Mã sinh viên" style="-fx-background-color: #72892B;">
                <font>
                   <Font size="14.0" />
                </font>
             </TextField>
-            <Label layoutX="17.0" layoutY="22.0" text="Tìm kiếm" textFill="#00fff9" />
+            <Label layoutX="14.0" layoutY="5.0" text="Tìm kiếm" textFill="#00fff9" />
+            <TextField fx:id="TextField_Search_Lop" layoutX="17.0" layoutY="66.0" prefHeight="26.0" prefWidth="142.0" promptText="Mã lớp" style="-fx-background-color: #72892B;" />
          </children>
       </AnchorPane>
       <AnchorPane prefHeight="94.0" prefWidth="486.0" style="-fx-background-color: #338564; -fx-border-color: black;">

@@ -1,10 +1,12 @@
 package com.example.alpha.JavaFx.controller.Diem;
 
+import com.example.alpha.JavaFx.model.HocKy;
 import com.example.alpha.JavaFx.model.MonHoc.ButtonCellMH;
 import com.example.alpha.JavaFx.controller.setTable;
 import com.example.alpha.JavaFx.model.Diem.Diem;
 import com.example.alpha.JavaFx.model.Model;
 import com.example.alpha.JavaFx.model.MonHoc.MonHoc;
+import com.example.alpha.Spring_boot.subject.DiemEntity;
 import com.example.alpha.Spring_boot.subject.MonhocEntity;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.property.SimpleObjectProperty;
@@ -27,56 +29,64 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public class MonHocController implements Initializable, setTable {
 
     @FXML
-    private TableColumn<MonhocEntity, Button> ColumnX;
+    private TableColumn<DiemEntity, Button> ColumnX;
 
     @FXML
-    private TableColumn<MonhocEntity, String> Column_MaMH;
+    private TableColumn<DiemEntity, String> Column_MaMH;
 
     @FXML
-    private TableColumn<MonhocEntity, String> Column_TenMH;
+    private TableColumn<DiemEntity, String> Column_TenMH;
 
     @FXML
-    private TableView<MonhocEntity> TableView_MH;
+    private TableView<DiemEntity> TableView_MH;
 
-    private ObservableList<MonhocEntity> data = FXCollections.observableArrayList();
+    private FilteredList<DiemEntity> filteredList;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setTableView();
 
         Model.getInstant().getNhapDiemThi().getPhongThiProperty().addListener((observable, oldValue, newValue) -> {
-            FilteredList<MonhocEntity> filteredList = new FilteredList<>(data,b -> true);
+            load(newValue,
+                    Model.getInstant().getNhapDiemThi().getLanThi().get(),
+                    Model.getInstant().getViewFactory().getHocky().get(),
+                    Model.getInstant().getViewFactory().getNamHoc().get());
+        });
 
-            AtomicBoolean b = new AtomicBoolean(false);
-            filteredList.setPredicate(monhocEntity -> {
-                Diem.getRepository().getPhongThiByMaMH(monhocEntity.getMaMonHoc()).forEach(s -> {
-                    if(s.equals(newValue)){
-                        b.set(true);
-                    }
-//                    b.set(false);
-                });
-                return b.get();
-            });
+        Model.getInstant().getNhapDiemThi().getLanThi().addListener((observable, oldValue, newValue) -> {
+            load(Model.getInstant().getNhapDiemThi().getPhongThiProperty().get(),
+                    newValue,
+                    Model.getInstant().getViewFactory().getHocky().get(),
+                    Model.getInstant().getViewFactory().getNamHoc().get());
+        });
 
-//            data.forEach(monhocEntity -> Diem.getRepository().getPhongThiByMaMH(monhocEntity.getMaMonHoc())
-//                    .forEach(s -> filteredList.setPredicate(monhocEntity1 -> s.equals(newValue))));
-            TableView_MH.setItems(filteredList);
+        Model.getInstant().getViewFactory().getHocky().addListener((observable, oldValue, newValue) -> {
+            load(Model.getInstant().getNhapDiemThi().getPhongThiProperty().get(),
+                    Model.getInstant().getNhapDiemThi().getLanThi().get(),
+                    newValue,
+                    Model.getInstant().getViewFactory().getNamHoc().get());
+        });
+
+        Model.getInstant().getViewFactory().getNamHoc().addListener((observable, oldValue, newValue) -> {
+            load(Model.getInstant().getNhapDiemThi().getPhongThiProperty().get(),
+                    Model.getInstant().getNhapDiemThi().getLanThi().get(),
+                    Model.getInstant().getViewFactory().getHocky().get(),
+                    newValue);
         });
     }
 
     @Override
     public void setTableView() {
         setCellColumn();
-        List<MonhocEntity> monhocEntities = MonHoc.getRepository().findAll();
-        data = FXCollections.observableArrayList(monhocEntities);
-        TableView_MH.setItems(data);
+        filteredList = new FilteredList<>(FXCollections.observableArrayList(Diem.getRepository().findAll()), b -> true);
+        TableView_MH.setItems(filteredList);
     }
 
     @Override
     public void setCellColumn() {
         ColumnX.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(new ButtonCellMH().getButton()));
         Column_MaMH.setCellValueFactory(param -> new SimpleObjectProperty<>(param.getValue().getMaMonHoc()));
-        Column_TenMH.setCellValueFactory(param -> new SimpleObjectProperty<>(param.getValue().getTenMonHoc()));
+        Column_TenMH.setCellValueFactory(param -> new SimpleObjectProperty<>(MonHoc.getRepository().getTenMH(param.getValue().getMaMonHoc())));
     }
 
     @Override
@@ -87,5 +97,23 @@ public class MonHocController implements Initializable, setTable {
     @Override
     public void addListenerSearch() {
 
+    }
+
+    private void load(String PhongThi, String LanThi, String MaHocKy, String MaNamHoc){
+        filteredList.setPredicate(kq -> {
+            AtomicBoolean b = new AtomicBoolean(false);
+            for(String phongthi : Diem.getRepository().getPhongThiByMaMH(kq.getMaMonHoc())) {
+                if(phongthi.equals(PhongThi) &&
+                        String.valueOf(kq.getLanThi()).equals(LanThi) &&
+                        kq.getMaHocKy().equals(MaHocKy) &&
+                        kq.getMaNamHoc().equals(MaNamHoc))
+                {
+                    b.set(true);
+                    break;
+                }
+            }
+            return b.get();
+        });
+        TableView_MH.setItems(filteredList);
     }
 }

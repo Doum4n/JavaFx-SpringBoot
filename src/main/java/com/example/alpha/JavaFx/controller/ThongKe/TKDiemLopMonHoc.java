@@ -16,10 +16,9 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 
 import java.net.URL;
 import java.util.List;
@@ -36,7 +35,7 @@ public class TKDiemLopMonHoc implements Initializable, setTable {
     private Label Label_SiSo;
 
     @FXML
-    private ChoiceBox<String> ChoiceBox_Lop;
+    private ComboBox<String> ComboBox_Lop;
 
     @FXML
     private ChoiceBox<String> ChoiceBox_MonHoc;
@@ -64,17 +63,10 @@ public class TKDiemLopMonHoc implements Initializable, setTable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)  {
         setTableView();
+        addListenerComboBox_Lop();
 
-        ChoiceBox_Lop.setItems(FXCollections.observableArrayList(Lop.getRepository().getAllLop()));
-        ChoiceBox_Lop.setValue(PhanLop.getRepository().findAll().get(0).toString());
         ChoiceBox_MonHoc.setItems(FXCollections.observableArrayList(MonHoc.getRepository().getAllMonHoc()));
         ChoiceBox_MonHoc.setValue(MonHoc.getRepository().findAll().get(0).toString());
-
-        ChoiceBox_Lop.valueProperty().addListener((observable, oldValue, newValue) -> {
-            filteredList.setPredicate(kq -> PhanLop.getRepository().getLop(kq.getMaSinhVien()).equals(newValue) &&
-                    ChoiceBox_MonHoc.getValue().equals(kq.getMaMonHoc()));
-            TableView_TKDiemLop.setItems(filteredList);
-        });
 
         ChoiceBox_MonHoc.valueProperty().addListener((observable, oldValue, newValue) -> {
             Label_TenMH.setText(MonHoc.getRepository().getTenMH(newValue));
@@ -87,28 +79,27 @@ public class TKDiemLopMonHoc implements Initializable, setTable {
                         break;
                     }
                 }
-                return dk.get() && PhanLop.getRepository().getLop(kq.getMaSinhVien()).equals(ChoiceBox_Lop.getValue());
+                return dk.get() && PhanLop.getRepository().getLop(kq.getMaSinhVien()).equals(ComboBox_Lop.getValue());
             });
             Label_SiSo.setText(String.valueOf(filteredList.size()));
             TableView_TKDiemLop.setItems(filteredList);
         });
 
-        Model.getInstant().getThongKe().getSearch().addListener((observable, oldValue, newValue) -> {
+        Model.getInstant().getThongKe().getSearch_SV().addListener((observable, oldValue, newValue) -> {
             if(!newValue.isBlank()) {
-                filteredList.setPredicate(kq -> {
-                    System.out.println(kq.getMaSinhVien()+" "+(newValue));
-                    System.out.println(kq.getMaHocKy()+" "+(Model.getInstant().getViewFactory().getHocky().get()));
-                    System.out.println(kq.getMaHocKy()+" "+(Model.getInstant().getViewFactory().getHocky().get()));
-                    return kq.getMaSinhVien().equals(newValue) &&
-                            PhanLop.getRepository().getLop(kq.getMaSinhVien()).equals(ChoiceBox_Lop.getValue()) &&
-                            kq.getMaMonHoc().equals(ChoiceBox_MonHoc.getValue());
-                });
+                filteredList.setPredicate(kq -> kq.getMaSinhVien().equals(newValue) &&
+                        PhanLop.getRepository().getLop(kq.getMaSinhVien()).equals(ComboBox_Lop.getValue()) &&
+                        kq.getMaMonHoc().equals(ChoiceBox_MonHoc.getValue()));
                 TableView_TKDiemLop.setItems(filteredList);
             }else {
-                filteredList.setPredicate(kq -> PhanLop.getRepository().getLop(kq.getMaSinhVien()).equals(ChoiceBox_Lop.getValue()) &&
+                filteredList.setPredicate(kq -> PhanLop.getRepository().getLop(kq.getMaSinhVien()).equals(ComboBox_Lop.getValue()) &&
                         ChoiceBox_MonHoc.getValue().equals(kq.getMaMonHoc()));
                 TableView_TKDiemLop.setItems(filteredList);
             }
+        });
+
+        Model.getInstant().getThongKe().getSearch_Lop().addListener((observable, oldValue, newValue) -> {
+            ComboBox_Lop.setValue(newValue);
         });
     }
 
@@ -140,5 +131,33 @@ public class TKDiemLopMonHoc implements Initializable, setTable {
     @Override
     public void addListenerSearch() {
 
+    }
+
+    private void addListenerComboBox_Lop(){
+        ComboBox_Lop.setEditable(true);
+        ComboBox_Lop.setItems(FXCollections.observableArrayList(Lop.getRepository().getAllLop()));
+        ComboBox_Lop.setValue(PhanLop.getRepository().findAll().get(0).toString());
+
+        ComboBox_Lop.valueProperty().addListener((observable, oldValue, newValue) -> {
+            filteredList.setPredicate(kq -> PhanLop.getRepository().getLop(kq.getMaSinhVien()).equals(newValue) &&
+                    ChoiceBox_MonHoc.getValue().equals(kq.getMaMonHoc()));
+            TableView_TKDiemLop.setItems(filteredList);
+        });
+        ComboBox_Lop.getEditor().addEventHandler(KeyEvent.KEY_RELEASED, event -> {
+            var suggestion = FXCollections.observableArrayList(Lop.getRepository().getAllLop());
+
+            ObservableList<String> S = FXCollections.observableArrayList();
+            for (String s : suggestion) {
+                if (!s.equals(ComboBox_Lop.getEditor().getText())) {
+                    if (s.contains(ComboBox_Lop.getEditor().getText())) {
+                        S.add(s);
+                    }
+                }
+            }
+            if(!event.getCode().equals(KeyCode.ENTER)) {
+                ComboBox_Lop.setItems(S);
+                ComboBox_Lop.show();
+            }
+        });
     }
 }

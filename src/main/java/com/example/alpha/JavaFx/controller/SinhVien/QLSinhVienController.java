@@ -27,15 +27,6 @@ public class QLSinhVienController implements Initializable, setTable {
     private AnchorPane AnchorPane_QLSinhVien;
 
     @FXML
-    private Button Button_Add;
-
-    @FXML
-    private Button Button_Delete;
-
-    @FXML
-    private Button Button_Update;
-
-    @FXML
     private CheckBox CheckBox_Nam;
 
     @FXML
@@ -48,7 +39,7 @@ public class QLSinhVienController implements Initializable, setTable {
     private TableColumn<?, ?> Column_Email;
 
     @FXML
-    private TableColumn<?, ?> Column_GioiTinh;
+    private TableColumn<SinhVienEntity, String> Column_GioiTinh;
 
     @FXML
     private TableColumn<?, ?> Column_HoTen;
@@ -136,7 +127,12 @@ public class QLSinhVienController implements Initializable, setTable {
     public void setCellColumn() {
         Column_DiaChi.setCellValueFactory(new PropertyValueFactory<>("DiaChi"));
         Column_Email.setCellValueFactory(new PropertyValueFactory<>("Email"));
-        Column_GioiTinh.setCellValueFactory(new PropertyValueFactory<>("GioiTinh"));
+        Column_GioiTinh.setCellValueFactory(param -> {
+            if(param.getValue().getGioiTinh()) {
+                return new ReadOnlyObjectWrapper<>("Nữ");
+            }
+            return new ReadOnlyObjectWrapper<>("Nam");
+        });
         Column_HoTen.setCellValueFactory(new PropertyValueFactory<>("HoTen"));
         Column_MaSV.setCellValueFactory(new PropertyValueFactory<>("MaSinhVien"));
         Column_NgaySinh.setCellValueFactory(new PropertyValueFactory<>("NgaySinh"));
@@ -152,10 +148,7 @@ public class QLSinhVienController implements Initializable, setTable {
                     return true;
                 }
                 String id = newValue.toLowerCase();
-                return sinhVienEntity.getMaSinhVien().toLowerCase().contains(id) ||
-                        sinhVienEntity.getHoTen().toLowerCase().contains(id) ||
-                        sinhVienEntity.getDiaChi().toLowerCase().contains(id) ||
-                        sinhVienEntity.getNgaySinh().toString().toLowerCase().contains(id);
+                return sinhVienEntity.getMaSinhVien().toLowerCase().equals(id);
             });
             sortedList = new SortedList<>(FXCollections.observableArrayList(filteredList));
             sortedList.comparatorProperty().bind(TableView_SinhVien.comparatorProperty());

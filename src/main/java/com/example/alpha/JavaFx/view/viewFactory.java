@@ -104,12 +104,8 @@ public class viewFactory {
     }
 
     public void showLog(String log){
-//        Popup popup = new Popup();
-//        Label text = new Label(getLog().get());
-//        text.setStyle(" -fx-background-color: white;");
-//        popup.getContent().add(text);
-//        popup.show(stage);
 
+        Model.getInstant().getViewFactory().getLog().set(log);
         FXMLLoader loader = new FXMLLoader((Objects.requireNonNull(LoginController.class.getResource("/com/example/alpha/Log.fxml"))));
         Scene scene = null;
         try{
@@ -117,7 +113,6 @@ public class viewFactory {
         }catch(Exception e){
             e.printStackTrace();
         }
-        Model.getInstant().getViewFactory().getLog().set(log);
         Stage stage = new Stage();
         stage.setScene(scene);
         stage.show();

@@ -126,7 +126,6 @@ public class QuanLyController implements Initializable {
                                     kq.getMaMonHoc(),
                                     (float) (Math.round(DiemTongKet * 100.0)/100.0)
                             );
-
                             Model.getInstant().getViewFactory().getStatus().set(Status.OK);
                         }
                     }

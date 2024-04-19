@@ -6,9 +6,11 @@ import lombok.Getter;
 
 @Getter
 public class ThongKe {
-    private final StringProperty search;
+    private final StringProperty search_SV;
+    private final StringProperty search_Lop;
 
     public ThongKe() {
-        this.search = new SimpleStringProperty();
+        this.search_SV = new SimpleStringProperty();
+        this.search_Lop = new SimpleStringProperty();
     }
 }
