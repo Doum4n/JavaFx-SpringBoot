@@ -40,4 +40,13 @@ public interface DiemEntityRepository extends JpaRepository<DiemEntity, Integer>
 
     @Query("select a.Diem from DiemEntity a where a.maSinhVien=?1 and a.maMonHoc=?2 and a.maHocKy=?3 and a.maNamHoc=?4 and a.lanThi=1")
     Float getDiemThiL1(String MaSV, String MaMH, String HocKy, String NamHoc);
+
+    @Query("select a from DiemEntity a where a.maSinhVien=?1")
+    List<DiemEntity> findAllbyMaSV(String MaSV);
+
+    @Query("select a.maHocKy from DiemEntity a where a.maSinhVien=?1")
+    List<String> getHocKyByMaSV(String MaSV);
+
+    @Query("select a.maNamHoc from DiemEntity a where a.maSinhVien=?1")
+    List<String> getNamHocByMaSV(String MaSV);
 }

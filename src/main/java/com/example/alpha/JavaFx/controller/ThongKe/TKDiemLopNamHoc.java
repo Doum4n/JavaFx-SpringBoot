@@ -4,7 +4,7 @@ import com.example.alpha.JavaFx.controller.setTable;
 import com.example.alpha.JavaFx.model.Diem.DiemSV_CaNam;
 import com.example.alpha.JavaFx.model.Diem.PhongThi;
 import com.example.alpha.JavaFx.model.Lop;
-import com.example.alpha.JavaFx.model.Model;
+import com.example.alpha.JavaFx.model.Singleton;
 import com.example.alpha.JavaFx.model.PhanLop;
 import com.example.alpha.JavaFx.model.SinhVien.SinhVien;
 import com.example.alpha.Spring_boot.result.student.KqSinhVienCanamEntity;
@@ -20,9 +20,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
-import javax.persistence.criteria.CriteriaBuilder;
 import java.net.URL;
-import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class TKDiemLopNamHoc implements Initializable, setTable {
@@ -51,7 +49,7 @@ public class TKDiemLopNamHoc implements Initializable, setTable {
         ComboBox_Lop.setItems(FXCollections.observableArrayList(Lop.getRepository().getAllLop()));
         ComboBox_Lop.valueProperty().addListener((observable, oldValue, newValue) -> {
             filteredList.setPredicate(kq -> PhanLop.getRepository().getLop(kq.getMaSinhVien()).equals(newValue) &&
-                    kq.getMaNamHoc().equals(Model.getInstant().getViewFactory().getNamHoc().get()));
+                    kq.getMaNamHoc().equals(Singleton.getInstant().getViewFactory().getNamHoc().get()));
             Table_DSKhoaLuan.setItems(filteredList);
         });
 
@@ -72,20 +70,20 @@ public class TKDiemLopNamHoc implements Initializable, setTable {
             }
         });
 
-        Model.getInstant().getViewFactory().getNamHoc().addListener((observable, oldValue, newValue) -> {
+        Singleton.getInstant().getViewFactory().getNamHoc().addListener((observable, oldValue, newValue) -> {
             filteredList.setPredicate(kq -> PhanLop.getRepository().getLop(kq.getMaSinhVien()).equals(ComboBox_Lop.getValue()) &&
                     kq.getMaNamHoc().equals(newValue));
             Table_DSKhoaLuan.setItems(filteredList);
         });
 
-        Model.getInstant().getThongKe().getSearch_SV().addListener((observable, oldValue, newValue) -> {
+        Singleton.getInstant().getThongKe().getSearch_SV().addListener((observable, oldValue, newValue) -> {
             filteredList.setPredicate(kq -> kq.getMaSinhVien().equals(newValue) &&
                     PhanLop.getRepository().getLop(kq.getMaSinhVien()).equals(ComboBox_Lop.getValue()) &&
-                    kq.getMaNamHoc().equals(Model.getInstant().getViewFactory().getNamHoc().get()));
+                    kq.getMaNamHoc().equals(Singleton.getInstant().getViewFactory().getNamHoc().get()));
             Table_DSKhoaLuan.setItems(filteredList);
         });
 
-        Model.getInstant().getThongKe().getSearch_Lop().addListener((observable, oldValue, newValue) -> {
+        Singleton.getInstant().getThongKe().getSearch_Lop().addListener((observable, oldValue, newValue) -> {
             ComboBox_Lop.setValue(newValue);
         });
     }

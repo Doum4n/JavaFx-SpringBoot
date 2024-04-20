@@ -3,7 +3,7 @@ package com.example.alpha.JavaFx.controller.Menu;
 import com.example.alpha.JavaFx.model.Diem.Diem;
 import com.example.alpha.JavaFx.model.Diem.DiemSV_CaNam;
 import com.example.alpha.JavaFx.model.Diem.DiemSV_HocKy;
-import com.example.alpha.JavaFx.model.Model;
+import com.example.alpha.JavaFx.model.Singleton;
 import com.example.alpha.JavaFx.model.MonHoc.MonHoc;
 import com.example.alpha.JavaFx.model.SinhVien.DKHocPhan;
 import com.example.alpha.JavaFx.model.SinhVien.KqMonHoc_SV;
@@ -16,9 +16,6 @@ import com.example.alpha.Spring_boot.student.DKHocPhanEntity;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.text.Text;
-import javafx.stage.Popup;
-import javafx.stage.Stage;
 import org.springframework.stereotype.Controller;
 
 import java.net.URL;
@@ -49,9 +46,9 @@ public class QuanLyController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        button_Diem.setOnAction(event -> Model.getInstant().getViewQuanLy().getQuanLyProperty().set(QuanLy.DiemThi));
-        button_PhanCong.setOnAction(event -> Model.getInstant().getViewQuanLy().getQuanLyProperty().set(QuanLy.DiemQT));
-        button_TaiKhoan.setOnAction(event -> Model.getInstant().getViewQuanLy().getQuanLyProperty().set(QuanLy.TaiKhoan));
+        button_Diem.setOnAction(event -> Singleton.getInstant().getViewQuanLy().getQuanLyProperty().set(QuanLy.DiemThi));
+        button_PhanCong.setOnAction(event -> Singleton.getInstant().getViewQuanLy().getQuanLyProperty().set(QuanLy.DiemQT));
+        button_TaiKhoan.setOnAction(event -> Singleton.getInstant().getViewQuanLy().getQuanLyProperty().set(QuanLy.TaiKhoan));
         Button_TinhDiemTB.setOnAction(event -> {
             TinhDiemTB_MonHoc();
             TinhDiemTB_HocKy();
@@ -116,8 +113,8 @@ public class QuanLyController implements Initializable {
                         float TyLe = MonHoc.getRepository().getTyLeDiemQT(kq.getMaMonHoc());
                         Float diemqt = KqMonHoc_SV.getRepository().getDiemQT(kq.getMaSinhVien(), kq.getMaMonHoc());
                         if(diemqt==null) {
-                            Model.getInstant().getViewFactory().showLog("Bạn chưa nhập điểm quá trình cho Sinh viên:" +"\nMaSV: " + kq.getMaSinhVien() +"\nMaMonHoc: "+ kq.getMaMonHoc() +"\nHocKy:  "+ kq.getMaHocKy() +"\nNamHoc: "+ kq.getMaNamHoc());
-                            Model.getInstant().getViewFactory().getStatus().set(Status.ERROR);
+                            Singleton.getInstant().getViewFactory().showLog("Bạn chưa nhập điểm quá trình cho Sinh viên:" +"\nMaSV: " + kq.getMaSinhVien() +"\nMaMonHoc: "+ kq.getMaMonHoc() +"\nHocKy:  "+ kq.getMaHocKy() +"\nNamHoc: "+ kq.getMaNamHoc());
+                            Singleton.getInstant().getViewFactory().getStatus().set(Status.ERROR);
                         }else {
                             float DiemTongKet = diemqt * (TyLe / 100) + max * ((100 - TyLe) / 100);
 
@@ -126,12 +123,12 @@ public class QuanLyController implements Initializable {
                                     kq.getMaMonHoc(),
                                     (float) (Math.round(DiemTongKet * 100.0)/100.0)
                             );
-                            Model.getInstant().getViewFactory().getStatus().set(Status.OK);
+                            Singleton.getInstant().getViewFactory().getStatus().set(Status.OK);
                         }
                     }
 //                }
             }
-            Model.getInstant().getViewFactory().getLog().set("OK");
+            Singleton.getInstant().getViewFactory().getLog().set("OK");
         }catch (NoSuchElementException e){
             e.printStackTrace();
         }

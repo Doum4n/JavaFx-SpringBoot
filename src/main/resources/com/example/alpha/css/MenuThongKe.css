@@ -1,36 +1,36 @@
 #KqSV, #KqLop, #search{
-    -fx-background-color: #627254;
+    -fx-background-color: #88304E;
     -fx-border-radius: 14;
     -fx-background-radius: 14;
     -fx-border-color: #FBFADA;
 }
 
 .button {
-    -fx-background-color: #ADBC9F;
+    -fx-background-color: #522546;
     -fx-background-radius: 14;
     /*-fx-border-color: #627254;*/
     -fx-border-radius: 14;
-    /*-fx-text-fill: #627254;*/
-
+    -fx-text-fill: white;
 }
 
 .label{
-    -fx-background-color: #FBFADA;
+    -fx-background-color: #E23E57;
     -fx-border-radius: 14;
     -fx-background-radius: 14;
 }
 
 #label_search{
-    -fx-background-color: #FBFADA;
+    -fx-background-color: #E23E57;
 }
 
 #search{
-    -fx-background-color: #436850;
+    -fx-background-color: #522546;
 }
 
 .text-field{
     -fx-border-radius: 14;
     -fx-background-radius: 14;
-    -fx-background-color: #ADBC9F;
-    -fx-prompt-text-fill: black;
+    -fx-background-color: #88304E;
+    -fx-prompt-text-fill: white;
+    -fx-text-fill: white;
 }

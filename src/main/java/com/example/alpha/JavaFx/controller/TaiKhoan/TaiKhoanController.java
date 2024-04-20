@@ -1,23 +1,18 @@
 package com.example.alpha.JavaFx.controller.TaiKhoan;
 
-import com.example.alpha.JavaFx.model.Model;
-import com.example.alpha.JavaFx.model.TaiKhoan;
+import com.example.alpha.JavaFx.model.Singleton;
 import com.example.alpha.Spring_boot.user.NguoidungEntity;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import org.springframework.stereotype.Controller;
 
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 
 @Controller
@@ -63,9 +58,9 @@ public class TaiKhoanController implements Initializable{
         System.out.println(Tabpane_TaiKhoan.getTabs().get(0).getContent());
         Tabpane_TaiKhoan.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if(newValue.getText().equals("Sinh viên")){
-                Model.getInstant().getViewQuanLy().getTab_selected().set("Sinh viên");
+                Singleton.getInstant().getViewQuanLy().getTab_selected().set("Sinh viên");
             }else {
-                Model.getInstant().getViewQuanLy().getTab_selected().set("Giáo viên");
+                Singleton.getInstant().getViewQuanLy().getTab_selected().set("Giáo viên");
             }
         });
     }

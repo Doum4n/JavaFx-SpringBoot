@@ -3,7 +3,7 @@ package com.example.alpha.JavaFx.view;
 import com.example.alpha.JavaFx.controller.TaiKhoan.AccountType;
 import com.example.alpha.JavaFx.controller.Menu.LoginController;
 import com.example.alpha.JavaFx.model.HocKy;
-import com.example.alpha.JavaFx.model.Model;
+import com.example.alpha.JavaFx.model.Singleton;
 import com.example.alpha.JavaFx.model.Status;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -105,7 +105,7 @@ public class viewFactory {
 
     public void showLog(String log){
 
-        Model.getInstant().getViewFactory().getLog().set(log);
+        Singleton.getInstant().getViewFactory().getLog().set(log);
         FXMLLoader loader = new FXMLLoader((Objects.requireNonNull(LoginController.class.getResource("/com/example/alpha/Log.fxml"))));
         Scene scene = null;
         try{
@@ -118,8 +118,8 @@ public class viewFactory {
         stage.show();
     }
 
-    public void showAdminWindow(){
-        FXMLLoader loader = new FXMLLoader((Objects.requireNonNull(LoginController.class.getResource("/com/example/alpha/Admin.fxml"))));
+    public void showStudentWindow(){
+        FXMLLoader loader = new FXMLLoader((Objects.requireNonNull(LoginController.class.getResource("/com/example/alpha/Student.fxml"))));
         Scene scene = null;
         try{
             scene = new Scene(loader.load());

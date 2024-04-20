@@ -1,7 +1,7 @@
 package com.example.alpha.JavaFx.controller.Menu;
 
 import com.example.alpha.JavaFx.controller.TaiKhoan.AccountType;
-import com.example.alpha.JavaFx.model.Model;
+import com.example.alpha.JavaFx.model.Singleton;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -55,15 +55,15 @@ public class LoginController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         button_login.setOnAction(event -> onLogin());
         ChoiceBox.setItems(FXCollections.observableArrayList(AccountType.Admin,AccountType.Teacher,AccountType.Student));
-        ChoiceBox.setValue(Model.getInstant().getViewFactory().getType());
-        ChoiceBox.valueProperty().addListener(observable -> Model.getInstant().getViewFactory().setType(ChoiceBox.getValue()));
+        ChoiceBox.setValue(Singleton.getInstant().getViewFactory().getType());
+        ChoiceBox.valueProperty().addListener(observable -> Singleton.getInstant().getViewFactory().setType(ChoiceBox.getValue()));
     }
 
     public void onLogin(){
-        if(Model.getInstant().getViewFactory().getType() == AccountType.Admin){
-            Model.getInstant().getViewFactory().showWorkPlaceWindow();
-        }else if(Model.getInstant().getViewFactory().getType() == AccountType.Student){
-            Model.getInstant().getViewFactory().showAdminWindow();
+        if(Singleton.getInstant().getViewFactory().getType() == AccountType.Admin){
+            Singleton.getInstant().getViewFactory().showWorkPlaceWindow();
+        }else if(Singleton.getInstant().getViewFactory().getType() == AccountType.Student){
+            Singleton.getInstant().getViewFactory().showStudentWindow();
         }
     }
 }

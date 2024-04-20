@@ -97,10 +97,10 @@ public class NhapDiemThiController implements Initializable, setTable {
             if(!newValue.isBlank()) {
                 filteredList.setPredicate(diem -> {
                     String id = newValue.toLowerCase();
-                    return String.valueOf(diem.getLanThi()).equals(Model.getInstant().getNhapDiemThi().getLanThi().get())
-                            && diem.getMaMonHoc().equals(Model.getInstant().getNhapDiemThi().getMonHocSelected().get())
-                            && diem.getMaNamHoc().equals(Model.getInstant().getViewFactory().getNamHoc().get())
-                            && diem.getMaHocKy().equals(Model.getInstant().getViewFactory().getHocky().get())
+                    return String.valueOf(diem.getLanThi()).equals(Singleton.getInstant().getNhapDiemThi().getLanThi().get())
+                            && diem.getMaMonHoc().equals(Singleton.getInstant().getNhapDiemThi().getMonHocSelected().get())
+                            && diem.getMaNamHoc().equals(Singleton.getInstant().getViewFactory().getNamHoc().get())
+                            && diem.getMaHocKy().equals(Singleton.getInstant().getViewFactory().getHocky().get())
                             && diem.getMaSinhVien().equals(id);
                 });
                 TableView_Diem.setItems(filteredList);
@@ -115,13 +115,13 @@ public class NhapDiemThiController implements Initializable, setTable {
         CombocBox_PhongThi.setItems(FXCollections.observableArrayList(PhongThi.getRepository().getMa()));
         //Lọc dữ liệu
         CombocBox_PhongThi.valueProperty().addListener((observable, oldValue, newValue) -> {
-            Model.getInstant().getNhapDiemThi().getPhongThiProperty().set(CombocBox_PhongThi.getValue());
+            Singleton.getInstant().getNhapDiemThi().getPhongThiProperty().set(CombocBox_PhongThi.getValue());
 
-            load(Model.getInstant().getNhapDiemThi().getMonHocSelected().get(),
+            load(Singleton.getInstant().getNhapDiemThi().getMonHocSelected().get(),
                     newValue,
-                    String.valueOf(Model.getInstant().getNhapDiemThi().getLanThi().get()),
-                    Model.getInstant().getViewFactory().getNamHoc().get(),
-                    Model.getInstant().getViewFactory().getHocky().get());
+                    String.valueOf(Singleton.getInstant().getNhapDiemThi().getLanThi().get()),
+                    Singleton.getInstant().getViewFactory().getNamHoc().get(),
+                    Singleton.getInstant().getViewFactory().getHocky().get());
         });
         //Hiện đề xuất
         CombocBox_PhongThi.getEditor().addEventHandler(KeyEvent.KEY_RELEASED,event -> {
@@ -141,28 +141,28 @@ public class NhapDiemThiController implements Initializable, setTable {
             }
         });
 
-        Model.getInstant().getNhapDiemThi().getPhongThiProperty().bindBidirectional(CombocBox_PhongThi.valueProperty());
+        Singleton.getInstant().getNhapDiemThi().getPhongThiProperty().bindBidirectional(CombocBox_PhongThi.valueProperty());
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ChoiceBox_LanThi.setItems(FXCollections.observableArrayList(LanThi.getRepository().getLanThi()));
         ChoiceBox_LanThi.valueProperty().addListener((observable, oldValue, newValue) -> {
-            Model.getInstant().getNhapDiemThi().getLanThi().set(ChoiceBox_LanThi.getValue());
+            Singleton.getInstant().getNhapDiemThi().getLanThi().set(ChoiceBox_LanThi.getValue());
 
-            load(Model.getInstant().getNhapDiemThi().getMonHocSelected().get(),
-                    Model.getInstant().getNhapDiemThi().getPhongThiProperty().get(),
+            load(Singleton.getInstant().getNhapDiemThi().getMonHocSelected().get(),
+                    Singleton.getInstant().getNhapDiemThi().getPhongThiProperty().get(),
                     newValue,
-                    Model.getInstant().getViewFactory().getNamHoc().get(),
-                    Model.getInstant().getViewFactory().getHocky().get());
+                    Singleton.getInstant().getViewFactory().getNamHoc().get(),
+                    Singleton.getInstant().getViewFactory().getHocky().get());
         });
-        Model.getInstant().getNhapDiemThi().getLanThi().bindBidirectional(ChoiceBox_LanThi.valueProperty());
+        Singleton.getInstant().getNhapDiemThi().getLanThi().bindBidirectional(ChoiceBox_LanThi.valueProperty());
 
-        Model.getInstant().getNhapDiemThi().getMonHocSelected().addListener((observable, oldValue, newValue) -> {
-            load(newValue, Model.getInstant().getNhapDiemThi().getPhongThiProperty().get(),
-                    Model.getInstant().getNhapDiemThi().getLanThi().get(),
-                    Model.getInstant().getViewFactory().getNamHoc().get(),
-                    Model.getInstant().getViewFactory().getHocky().get());
+        Singleton.getInstant().getNhapDiemThi().getMonHocSelected().addListener((observable, oldValue, newValue) -> {
+            load(newValue, Singleton.getInstant().getNhapDiemThi().getPhongThiProperty().get(),
+                    Singleton.getInstant().getNhapDiemThi().getLanThi().get(),
+                    Singleton.getInstant().getViewFactory().getNamHoc().get(),
+                    Singleton.getInstant().getViewFactory().getHocky().get());
         });
 
         //Tải dữ liệu cho bảng
@@ -176,25 +176,25 @@ public class NhapDiemThiController implements Initializable, setTable {
             DiemEntity kq = new DiemEntity(
                     Label_MaSV.getText(),
                     Label_MaMH.getText(),
-                    Model.getInstant().getViewFactory().getHocky().get(),
-                    Model.getInstant().getViewFactory().getNamHoc().get(),
-                    Integer.parseInt(Model.getInstant().getNhapDiemThi().getLanThi().get()),
+                    Singleton.getInstant().getViewFactory().getHocky().get(),
+                    Singleton.getInstant().getViewFactory().getNamHoc().get(),
+                    Integer.parseInt(Singleton.getInstant().getNhapDiemThi().getLanThi().get()),
                     Float.parseFloat(TextField_Diem.getText()),
-                    Model.getInstant().getNhapDiemThi().getPhongThiProperty().get()
+                    Singleton.getInstant().getNhapDiemThi().getPhongThiProperty().get()
             );
             Diem.getRepository().updateDiem(
                     Label_MaSV.getText(), Label_MaMH.getText(),
                     TextField_Diem.getText(),
-                    Integer.parseInt(Model.getInstant().getNhapDiemThi().getLanThi().get()),
-                    Model.getInstant().getViewFactory().getHocky().get(),
-                    Model.getInstant().getViewFactory().getNamHoc().get()
+                    Integer.parseInt(Singleton.getInstant().getNhapDiemThi().getLanThi().get()),
+                    Singleton.getInstant().getViewFactory().getHocky().get(),
+                    Singleton.getInstant().getViewFactory().getNamHoc().get()
             );
 
             data.removeIf(kqSinhVienMonhocEntity ->
                     kqSinhVienMonhocEntity.getMaSinhVien().equals(Label_MaSV.getText()) &&
                     kqSinhVienMonhocEntity.getLanThi()== kq.getLanThi() &&
-                    kqSinhVienMonhocEntity.getMaHocKy().equals(Model.getInstant().getViewFactory().getHocky().get()) &&
-                    kqSinhVienMonhocEntity.getMaNamHoc().equals(Model.getInstant().getViewFactory().getNamHoc().get()));
+                    kqSinhVienMonhocEntity.getMaHocKy().equals(Singleton.getInstant().getViewFactory().getHocky().get()) &&
+                    kqSinhVienMonhocEntity.getMaNamHoc().equals(Singleton.getInstant().getViewFactory().getNamHoc().get()));
             data.add(kq);
 
             defaultLoad();
@@ -208,23 +208,23 @@ public class NhapDiemThiController implements Initializable, setTable {
 //        });
 
         //Khi Năm thay đổi
-        Model.getInstant().getViewFactory().getNamHoc().addListener((observable, oldValue, newValue) -> {
+        Singleton.getInstant().getViewFactory().getNamHoc().addListener((observable, oldValue, newValue) -> {
             filteredList.setPredicate(diemEntity -> diemEntity.getMaNamHoc().equals(newValue) &&
-                    Diem.getRepository().getPhongThi(diemEntity.getMaSinhVien(),diemEntity.getMaMonHoc()).equals(Model.getInstant().getNhapDiemThi().getPhongThiProperty().get()) &&
-                    diemEntity.getMaHocKy().equals(Model.getInstant().getViewFactory().getHocky().get()));
-            load(Model.getInstant().getNhapDiemThi().getMonHocSelected().get(),
-                    Model.getInstant().getNhapDiemThi().getPhongThiProperty().get(),
-                    Model.getInstant().getNhapDiemThi().getLanThi().get(),
+                    Diem.getRepository().getPhongThi(diemEntity.getMaSinhVien(),diemEntity.getMaMonHoc()).equals(Singleton.getInstant().getNhapDiemThi().getPhongThiProperty().get()) &&
+                    diemEntity.getMaHocKy().equals(Singleton.getInstant().getViewFactory().getHocky().get()));
+            load(Singleton.getInstant().getNhapDiemThi().getMonHocSelected().get(),
+                    Singleton.getInstant().getNhapDiemThi().getPhongThiProperty().get(),
+                    Singleton.getInstant().getNhapDiemThi().getLanThi().get(),
                     newValue,
-                    Model.getInstant().getViewFactory().getHocky().get());
+                    Singleton.getInstant().getViewFactory().getHocky().get());
         });
 
         //Khi học kỳ thay đổi
-        Model.getInstant().getViewFactory().getHocky().addListener((observable, oldValue, newValue) -> {
-            load(Model.getInstant().getNhapDiemThi().getMonHocSelected().get(),
-                    Model.getInstant().getNhapDiemThi().getPhongThiProperty().get(),
-                    Model.getInstant().getNhapDiemThi().getLanThi().get(),
-                    Model.getInstant().getViewFactory().getNamHoc().get(),
+        Singleton.getInstant().getViewFactory().getHocky().addListener((observable, oldValue, newValue) -> {
+            load(Singleton.getInstant().getNhapDiemThi().getMonHocSelected().get(),
+                    Singleton.getInstant().getNhapDiemThi().getPhongThiProperty().get(),
+                    Singleton.getInstant().getNhapDiemThi().getLanThi().get(),
+                    Singleton.getInstant().getViewFactory().getNamHoc().get(),
                     newValue);
         });
 
@@ -240,11 +240,11 @@ public class NhapDiemThiController implements Initializable, setTable {
     }
 
     private void defaultLoad() {
-        load(Model.getInstant().getNhapDiemThi().getMonHocSelected().get(),
-                Model.getInstant().getNhapDiemThi().getPhongThiProperty().get(),
-                Model.getInstant().getNhapDiemThi().getLanThi().get(),
-                Model.getInstant().getViewFactory().getNamHoc().get(),
-                Model.getInstant().getViewFactory().getHocky().get());
+        load(Singleton.getInstant().getNhapDiemThi().getMonHocSelected().get(),
+                Singleton.getInstant().getNhapDiemThi().getPhongThiProperty().get(),
+                Singleton.getInstant().getNhapDiemThi().getLanThi().get(),
+                Singleton.getInstant().getViewFactory().getNamHoc().get(),
+                Singleton.getInstant().getViewFactory().getHocky().get());
         TableView_Diem.setItems(filteredList);
     }
 

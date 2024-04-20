@@ -1,7 +1,7 @@
 package com.example.alpha.JavaFx.controller.Menu;
 
 import com.example.alpha.JavaFx.controller.setTable;
-import com.example.alpha.JavaFx.model.Model;
+import com.example.alpha.JavaFx.model.Singleton;
 import com.example.alpha.JavaFx.view.DanhGia;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -19,8 +19,8 @@ public class DanhGiaController implements Initializable, setTable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        button_DSHocBong.setOnAction(event -> Model.getInstant().getViewDanhGia().getDanhGiaProperty().set(DanhGia.DSHocBong));
-        button_DSKhoaLuan.setOnAction(event -> Model.getInstant().getViewDanhGia().getDanhGiaProperty().set(DanhGia.DSKhoaLuan));
+        button_DSHocBong.setOnAction(event -> Singleton.getInstant().getViewDanhGia().getDanhGiaProperty().set(DanhGia.DSHocBong));
+        button_DSKhoaLuan.setOnAction(event -> Singleton.getInstant().getViewDanhGia().getDanhGiaProperty().set(DanhGia.DSKhoaLuan));
     }
 
     @Override

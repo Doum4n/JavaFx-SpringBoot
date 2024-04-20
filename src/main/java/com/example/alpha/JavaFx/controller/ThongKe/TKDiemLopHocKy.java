@@ -3,7 +3,7 @@ package com.example.alpha.JavaFx.controller.ThongKe;
 import com.example.alpha.JavaFx.controller.setTable;
 import com.example.alpha.JavaFx.model.Diem.DiemSV_HocKy;
 import com.example.alpha.JavaFx.model.Lop;
-import com.example.alpha.JavaFx.model.Model;
+import com.example.alpha.JavaFx.model.Singleton;
 import com.example.alpha.JavaFx.model.PhanLop;
 import com.example.alpha.JavaFx.model.SinhVien.SinhVien;
 import com.example.alpha.Spring_boot.result.student.KqSinnhVienHocKy;
@@ -74,30 +74,30 @@ public class TKDiemLopHocKy implements Initializable, setTable {
             }
         });
 
-        Model.getInstant().getViewFactory().getHocky().addListener((observable, oldValue, newValue) -> {
+        Singleton.getInstant().getViewFactory().getHocky().addListener((observable, oldValue, newValue) -> {
             load();
             Label_SiSo.setText(String.valueOf(filteredList.size()));
             TableView_TKDiemLopHK.setItems(filteredList);
         });
-        Model.getInstant().getViewFactory().getNamHoc().addListener((observable, oldValue, newValue) -> {
+        Singleton.getInstant().getViewFactory().getNamHoc().addListener((observable, oldValue, newValue) -> {
             load();
             Label_SiSo.setText(String.valueOf(filteredList.size()));
             TableView_TKDiemLopHK.setItems(filteredList);
         });
 
-        Model.getInstant().getThongKe().getSearch_SV().addListener((observable, oldValue, newValue) -> {
+        Singleton.getInstant().getThongKe().getSearch_SV().addListener((observable, oldValue, newValue) -> {
             if(!newValue.isBlank() || !newValue.isEmpty()) {
                 filteredList.setPredicate(kq -> kq.getMaSinhVien().equals(newValue) &&
                         PhanLop.getRepository().getLop(kq.getMaSinhVien()).equals(ComboBox_Lop.getValue()) &&
-                        kq.getMaHocKy().equals(Model.getInstant().getViewFactory().getHocky().get()) &&
-                        kq.getMaNamHoc().equals(Model.getInstant().getViewFactory().getNamHoc().get()));
+                        kq.getMaHocKy().equals(Singleton.getInstant().getViewFactory().getHocky().get()) &&
+                        kq.getMaNamHoc().equals(Singleton.getInstant().getViewFactory().getNamHoc().get()));
                 TableView_TKDiemLopHK.setItems(filteredList);
             }else {
                 load();
             }
         });
 
-        Model.getInstant().getThongKe().getSearch_Lop().addListener((observable, oldValue, newValue) -> {
+        Singleton.getInstant().getThongKe().getSearch_Lop().addListener((observable, oldValue, newValue) -> {
             ComboBox_Lop.setValue(newValue);
         });
     }
@@ -130,8 +130,8 @@ public class TKDiemLopHocKy implements Initializable, setTable {
 
     private void load (){
         filteredList.setPredicate(kq -> PhanLop.getRepository().getLop(kq.getMaSinhVien()).equals(ComboBox_Lop.getValue()) &&
-                kq.getMaHocKy().equals(Model.getInstant().getViewFactory().getHocky().get()) &&
-                kq.getMaNamHoc().equals(Model.getInstant().getViewFactory().getNamHoc().get()));
+                kq.getMaHocKy().equals(Singleton.getInstant().getViewFactory().getHocky().get()) &&
+                kq.getMaNamHoc().equals(Singleton.getInstant().getViewFactory().getNamHoc().get()));
         TableView_TKDiemLopHK.setItems(filteredList);
     }
 }

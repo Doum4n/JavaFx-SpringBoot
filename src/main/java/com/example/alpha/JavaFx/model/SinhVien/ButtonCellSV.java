@@ -1,6 +1,6 @@
 package com.example.alpha.JavaFx.model.SinhVien;
 
-import com.example.alpha.JavaFx.model.Model;
+import com.example.alpha.JavaFx.model.Singleton;
 import javafx.scene.control.*;
 import lombok.Getter;
 
@@ -17,7 +17,7 @@ public class ButtonCellSV {
             System.out.println(button.getParent().getParent());
             System.out.println(button.getParent());
             System.out.println(button);
-            Model.getInstant().getDiemSinhVien().getSvSelected().set(tableCell.getItem().toString());
+            Singleton.getInstant().getDiemSinhVien().getSvSelected().set(tableCell.getItem().toString());
         });
     }
 

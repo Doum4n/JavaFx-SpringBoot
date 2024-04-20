@@ -1,0 +1,14 @@
+.pane{
+    -fx-background-color: #522546;
+    -fx-background-radius: 14;
+    -fx-border-radius: 14;
+}
+
+.label{
+    -fx-background-color: #88304E;
+    -fx-background-radius: 14;
+    -fx-border-radius: 14;
+    -fx-text-fill: white;
+    -fx-text-alignment: CENTER;
+    -fx-label-padding: 4;
+}

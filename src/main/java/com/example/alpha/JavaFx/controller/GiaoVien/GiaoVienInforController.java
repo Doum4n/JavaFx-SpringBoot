@@ -1,7 +1,7 @@
 package com.example.alpha.JavaFx.controller.GiaoVien;
 
 import com.example.alpha.JavaFx.model.GiaoVien.GiaoVien;
-import com.example.alpha.JavaFx.model.Model;
+import com.example.alpha.JavaFx.model.Singleton;
 import com.example.alpha.Spring_boot.class_grade.GiaovienEntity;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -31,7 +31,7 @@ public class GiaoVienInforController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         List<GiaovienEntity> giaovienEntities = GiaoVien.getRepository().findAll();
 
-        Model.getInstant().getDiemQuaTrinh().getMaGVSelected().addListener((observable, oldValue, newValue) -> {
+        Singleton.getInstant().getDiemQuaTrinh().getMaGVSelected().addListener((observable, oldValue, newValue) -> {
             giaovienEntities.stream().filter(giaovienEntity -> Objects.equals(giaovienEntity.getMaGiaoVien(), newValue))
                     .findFirst().ifPresent(giaovienEntity -> {
                         Label_DiaChi.setText(giaovienEntity.getDiaChi());

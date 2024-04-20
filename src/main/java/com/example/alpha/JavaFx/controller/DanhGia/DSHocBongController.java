@@ -5,7 +5,7 @@ import com.example.alpha.JavaFx.model.Diem.Diem;
 import com.example.alpha.JavaFx.model.Diem.DiemRenLuyen;
 import com.example.alpha.JavaFx.model.Diem.DiemSV_HocKy;
 import com.example.alpha.JavaFx.model.Lop;
-import com.example.alpha.JavaFx.model.Model;
+import com.example.alpha.JavaFx.model.Singleton;
 import com.example.alpha.JavaFx.model.PhanLop;
 import com.example.alpha.JavaFx.model.SinhVien.DKHocPhan;
 import com.example.alpha.JavaFx.model.SinhVien.SinhVien;
@@ -53,16 +53,16 @@ public class DSHocBongController implements Initializable, setTable {
         setTableView();
         addListenerComboBox();
 
-        Model.getInstant().getViewFactory().getHocky().addListener((observable, oldValue, newValue) -> {
+        Singleton.getInstant().getViewFactory().getHocky().addListener((observable, oldValue, newValue) -> {
             filteredList.setPredicate(kq -> PhanLop.getRepository().getLop(kq.getMaSinhVien()).equals(ComboBox_Lop.getValue()) &&
                     kq.getMaHocKy().equals(newValue) &&
-                    kq.getMaNamHoc().equals(Model.getInstant().getViewFactory().getNamHoc().get()));
+                    kq.getMaNamHoc().equals(Singleton.getInstant().getViewFactory().getNamHoc().get()));
             TableView_DS.setItems(filteredList);
         });
 
-        Model.getInstant().getViewFactory().getNamHoc().addListener((observable, oldValue, newValue) -> {
+        Singleton.getInstant().getViewFactory().getNamHoc().addListener((observable, oldValue, newValue) -> {
             filteredList.setPredicate(kq -> PhanLop.getRepository().getLop(kq.getMaSinhVien()).equals(ComboBox_Lop.getValue()) &&
-                    kq.getMaHocKy().equals(Model.getInstant().getViewFactory().getHocky().get()) &&
+                    kq.getMaHocKy().equals(Singleton.getInstant().getViewFactory().getHocky().get()) &&
                     kq.getMaNamHoc().equals(newValue));
             TableView_DS.setItems(filteredList);
         });
@@ -74,10 +74,10 @@ public class DSHocBongController implements Initializable, setTable {
         ComboBox_Lop.setValue(Lop.getRepository().getAllLop().get(0));
 
         ComboBox_Lop.valueProperty().addListener((observable, oldValue, newValue) -> {
-            Model.getInstant().getDsTop10percentSVLop().getLop().set(newValue);
+            Singleton.getInstant().getDsTop10percentSVLop().getLop().set(newValue);
             filteredList.setPredicate(kq -> PhanLop.getRepository().getLop(kq.getMaSinhVien()).equals(newValue) &&
-                    kq.getMaHocKy().equals(Model.getInstant().getViewFactory().getHocky().get()) &&
-                    kq.getMaNamHoc().equals(Model.getInstant().getViewFactory().getNamHoc().get()));
+                    kq.getMaHocKy().equals(Singleton.getInstant().getViewFactory().getHocky().get()) &&
+                    kq.getMaNamHoc().equals(Singleton.getInstant().getViewFactory().getNamHoc().get()));
             TableView_DS.setItems(filteredList);
         });
 

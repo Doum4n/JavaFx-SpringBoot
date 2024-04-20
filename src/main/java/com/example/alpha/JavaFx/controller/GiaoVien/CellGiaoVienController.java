@@ -1,6 +1,6 @@
 package com.example.alpha.JavaFx.controller.GiaoVien;
 
-import com.example.alpha.JavaFx.model.Model;
+import com.example.alpha.JavaFx.model.Singleton;
 import com.example.alpha.JavaFx.model.GiaoVien.PhanCong;
 import com.example.alpha.Spring_boot.assignment.PhancongEntity;
 import javafx.fxml.FXML;
@@ -32,22 +32,22 @@ public class CellGiaoVienController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         int i=0; //Số lần xuất hiện của MaGV trong bảng phân công
         List<PhancongEntity> phancongEntities = PhanCong.getRepository().findAll();
-        Label_MaGV.setText(Model.getInstant().getCellGiaoVien().getMaGV().get());
-        Label_tenGV.setText(Model.getInstant().getCellGiaoVien().getTenGV().get());
-        Label_MaMH.setText(Model.getInstant().getCellGiaoVien().getMaMH().get());
+        Label_MaGV.setText(Singleton.getInstant().getCellGiaoVien().getMaGV().get());
+        Label_tenGV.setText(Singleton.getInstant().getCellGiaoVien().getTenGV().get());
+        Label_MaMH.setText(Singleton.getInstant().getCellGiaoVien().getMaMH().get());
 
         //lưu MaGV, MaMH để tìm kiếm
-        Model.getInstant().getViewQuanLy().getId().set(Model.getInstant().getCellGiaoVien().getMaGV().get());
-        Model.getInstant().getViewQuanLy().getMaMH().set(Model.getInstant().getCellGiaoVien().getMaMH().get());
+        Singleton.getInstant().getViewQuanLy().getId().set(Singleton.getInstant().getCellGiaoVien().getMaGV().get());
+        Singleton.getInstant().getViewQuanLy().getMaMH().set(Singleton.getInstant().getCellGiaoVien().getMaMH().get());
 
         Map<String, Integer> SL = new HashMap<>();
 
         // Tải CellClass.fxml cho mỗi PhanCong khớp
         for (PhancongEntity phanCong : phancongEntities) {
-            if (Objects.equals(phanCong.getMaGiaoVien(), Model.getInstant().getCellGiaoVien().getMaGV().get())
-                    && Objects.equals(phanCong.getMaNamHoc(), Model.getInstant().getViewFactory().getNamHoc().get())
-                    && Objects.equals(phanCong.getMaHocKy(),Model.getInstant().getViewFactory().getHocky().get())) {
-                Model.getInstant().getCellGiaoVien().getMaLop().set(phanCong.getMaLop());
+            if (Objects.equals(phanCong.getMaGiaoVien(), Singleton.getInstant().getCellGiaoVien().getMaGV().get())
+                    && Objects.equals(phanCong.getMaNamHoc(), Singleton.getInstant().getViewFactory().getNamHoc().get())
+                    && Objects.equals(phanCong.getMaHocKy(), Singleton.getInstant().getViewFactory().getHocky().get())) {
+                Singleton.getInstant().getCellGiaoVien().getMaLop().set(phanCong.getMaLop());
 
                 FXMLLoader loaderClass = new FXMLLoader();
                 loaderClass.setLocation(getClass().getResource("/com/example/alpha/DiemQuaTrinh/CellClass.fxml"));
@@ -59,14 +59,14 @@ public class CellGiaoVienController implements Initializable {
                 }
                 VBox_LopHoc.getChildren().add(anchorPaneClass);
 
-                SL.put(Model.getInstant().getCellGiaoVien().getMaGV().get(),++i);
+                SL.put(Singleton.getInstant().getCellGiaoVien().getMaGV().get(),++i);
             }
         }
 
         //Lấy số lần xuất hiện của MaGV trong bảng phân công
         SL.forEach((s, integer) -> {
             if(integer>=2){
-                Model.getInstant().getViewQuanLy().getSlMH().set(integer);
+                Singleton.getInstant().getViewQuanLy().getSlMH().set(integer);
             }
         });
     }

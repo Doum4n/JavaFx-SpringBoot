@@ -1,17 +1,14 @@
 package com.example.alpha.JavaFx.controller.Diem;
 
-import com.example.alpha.JavaFx.model.HocKy;
 import com.example.alpha.JavaFx.model.MonHoc.ButtonCellMH;
 import com.example.alpha.JavaFx.controller.setTable;
 import com.example.alpha.JavaFx.model.Diem.Diem;
-import com.example.alpha.JavaFx.model.Model;
+import com.example.alpha.JavaFx.model.Singleton;
 import com.example.alpha.JavaFx.model.MonHoc.MonHoc;
 import com.example.alpha.Spring_boot.subject.DiemEntity;
-import com.example.alpha.Spring_boot.subject.MonhocEntity;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -21,7 +18,6 @@ import javafx.scene.control.TableView;
 import org.springframework.stereotype.Controller;
 
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -46,31 +42,31 @@ public class MonHocController implements Initializable, setTable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setTableView();
 
-        Model.getInstant().getNhapDiemThi().getPhongThiProperty().addListener((observable, oldValue, newValue) -> {
+        Singleton.getInstant().getNhapDiemThi().getPhongThiProperty().addListener((observable, oldValue, newValue) -> {
             load(newValue,
-                    Model.getInstant().getNhapDiemThi().getLanThi().get(),
-                    Model.getInstant().getViewFactory().getHocky().get(),
-                    Model.getInstant().getViewFactory().getNamHoc().get());
+                    Singleton.getInstant().getNhapDiemThi().getLanThi().get(),
+                    Singleton.getInstant().getViewFactory().getHocky().get(),
+                    Singleton.getInstant().getViewFactory().getNamHoc().get());
         });
 
-        Model.getInstant().getNhapDiemThi().getLanThi().addListener((observable, oldValue, newValue) -> {
-            load(Model.getInstant().getNhapDiemThi().getPhongThiProperty().get(),
+        Singleton.getInstant().getNhapDiemThi().getLanThi().addListener((observable, oldValue, newValue) -> {
+            load(Singleton.getInstant().getNhapDiemThi().getPhongThiProperty().get(),
                     newValue,
-                    Model.getInstant().getViewFactory().getHocky().get(),
-                    Model.getInstant().getViewFactory().getNamHoc().get());
+                    Singleton.getInstant().getViewFactory().getHocky().get(),
+                    Singleton.getInstant().getViewFactory().getNamHoc().get());
         });
 
-        Model.getInstant().getViewFactory().getHocky().addListener((observable, oldValue, newValue) -> {
-            load(Model.getInstant().getNhapDiemThi().getPhongThiProperty().get(),
-                    Model.getInstant().getNhapDiemThi().getLanThi().get(),
+        Singleton.getInstant().getViewFactory().getHocky().addListener((observable, oldValue, newValue) -> {
+            load(Singleton.getInstant().getNhapDiemThi().getPhongThiProperty().get(),
+                    Singleton.getInstant().getNhapDiemThi().getLanThi().get(),
                     newValue,
-                    Model.getInstant().getViewFactory().getNamHoc().get());
+                    Singleton.getInstant().getViewFactory().getNamHoc().get());
         });
 
-        Model.getInstant().getViewFactory().getNamHoc().addListener((observable, oldValue, newValue) -> {
-            load(Model.getInstant().getNhapDiemThi().getPhongThiProperty().get(),
-                    Model.getInstant().getNhapDiemThi().getLanThi().get(),
-                    Model.getInstant().getViewFactory().getHocky().get(),
+        Singleton.getInstant().getViewFactory().getNamHoc().addListener((observable, oldValue, newValue) -> {
+            load(Singleton.getInstant().getNhapDiemThi().getPhongThiProperty().get(),
+                    Singleton.getInstant().getNhapDiemThi().getLanThi().get(),
+                    Singleton.getInstant().getViewFactory().getHocky().get(),
                     newValue);
         });
     }

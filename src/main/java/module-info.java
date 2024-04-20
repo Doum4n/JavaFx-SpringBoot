@@ -41,6 +41,7 @@ module com.example.alpha {
     opens com.example.alpha.Spring_boot.user;
     opens com.example.alpha.Spring_boot.subject;
     opens com.example.alpha.Spring_boot.assignment;
+    opens com.example.alpha.JavaFx.Student;
 //    opens com.example.alpha.Spring_boot.regulations;
     exports com.example.alpha;
     exports com.example.alpha.Spring_boot.student;
@@ -61,4 +62,6 @@ module com.example.alpha {
     exports com.example.alpha.Spring_boot.result.student;
     exports com.example.alpha.JavaFx.controller.ThongKe;
     exports com.example.alpha.JavaFx.controller.DanhGia;
+
+    exports com.example.alpha.JavaFx.Student;
 }

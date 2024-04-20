@@ -1,13 +1,37 @@
 .text-field{
     -fx-border-radius: 14;
     -fx-background-radius: 14;
+    -fx-background-color: #E23E57;
+    -fx-border-color: #436850;
+    -fx-text-fill: white;
+    -fx-prompt-text-fill: white;
 }
 
-#scrollpane{
+.scrollpane{
     -fx-background-color: #DDDDDD;
     -fx-border-color: #76885B;
 }
 
 .root{
-    -fx-background-color: #EEEEEE;
+    -fx-background-color: #311D3F;
+    -fx-border-color: #E23E57;
+    -fx-border-width: 2;
+}
+
+.button{
+    -fx-border-radius: 14;
+    -fx-background-radius: 14;
+    -fx-background-color: #522546;
+    -fx-text-fill: white;
+    -fx-border-color: #E23E57;
+}
+
+#label{
+    -fx-background-color: #88304E;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-text-fill: white;
+    -fx-text-alignment: center;
+    -fx-content-display: center;
+    -fx-label-padding: 4;
 }

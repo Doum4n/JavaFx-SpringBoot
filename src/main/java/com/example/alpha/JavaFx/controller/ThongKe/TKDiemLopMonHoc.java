@@ -3,7 +3,7 @@ package com.example.alpha.JavaFx.controller.ThongKe;
 import com.example.alpha.JavaFx.controller.Diem.DiemQTController;
 import com.example.alpha.JavaFx.controller.setTable;
 import com.example.alpha.JavaFx.model.Lop;
-import com.example.alpha.JavaFx.model.Model;
+import com.example.alpha.JavaFx.model.Singleton;
 import com.example.alpha.JavaFx.model.MonHoc.MonHoc;
 import com.example.alpha.JavaFx.model.PhanLop;
 import com.example.alpha.JavaFx.model.SinhVien.DKHocPhan;
@@ -85,7 +85,7 @@ public class TKDiemLopMonHoc implements Initializable, setTable {
             TableView_TKDiemLop.setItems(filteredList);
         });
 
-        Model.getInstant().getThongKe().getSearch_SV().addListener((observable, oldValue, newValue) -> {
+        Singleton.getInstant().getThongKe().getSearch_SV().addListener((observable, oldValue, newValue) -> {
             if(!newValue.isBlank()) {
                 filteredList.setPredicate(kq -> kq.getMaSinhVien().equals(newValue) &&
                         PhanLop.getRepository().getLop(kq.getMaSinhVien()).equals(ComboBox_Lop.getValue()) &&
@@ -98,7 +98,7 @@ public class TKDiemLopMonHoc implements Initializable, setTable {
             }
         });
 
-        Model.getInstant().getThongKe().getSearch_Lop().addListener((observable, oldValue, newValue) -> {
+        Singleton.getInstant().getThongKe().getSearch_Lop().addListener((observable, oldValue, newValue) -> {
             ComboBox_Lop.setValue(newValue);
         });
     }

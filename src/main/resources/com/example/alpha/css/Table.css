@@ -5,7 +5,7 @@
     -fx-border-color: #76885B;
 }
 .table-view .column-header-background{
-    -fx-background-color: #76885B;
+    -fx-background-color: #522546;
     -fx-background-radius: 14;
 }
 .table-view .column-header .label{
@@ -13,7 +13,7 @@
     -fx-border-radius: 14;
 }
 .table-view .table-column{
-    -fx-background-color: #76885B;
+    -fx-background-color: #522546;
     -fx-background-radius: 14;
 }
 
@@ -30,7 +30,7 @@
 }
 
 .table-view .cell:hover{
-    -fx-background-color: #76885B;
+    -fx-background-color: #88304E;
     -fx-border-radius: 14;
     -fx-background-radius: 14;
     -fx-border-color: #EEEEEE;
@@ -38,7 +38,7 @@
 }
 
 .table-view .cell:selected{
-    -fx-background-color: #627254;
+    -fx-background-color: #E23E57;
     -fx-border-radius: 14;
     -fx-background-radius: 14;
     -fx-border-color: #EEEEEE;

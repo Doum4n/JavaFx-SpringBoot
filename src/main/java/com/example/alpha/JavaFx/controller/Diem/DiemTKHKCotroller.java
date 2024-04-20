@@ -1,6 +1,6 @@
 package com.example.alpha.JavaFx.controller.Diem;
 
-import com.example.alpha.JavaFx.model.Model;
+import com.example.alpha.JavaFx.model.Singleton;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -20,9 +20,9 @@ public class DiemTKHKCotroller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        Model.getInstant().getDiemSinhVien().getSvSelected().addListener((observable, oldValue, newValue) -> {
-            Label_DiemTBHK.setText(String.valueOf(Model.getInstant().getDiemSinhVien().getDiemTK().get()));
-            Label_SoTC.setText(String.valueOf(Model.getInstant().getDiemSinhVien().getSoTC().get()));
+        Singleton.getInstant().getDiemSinhVien().getSvSelected().addListener((observable, oldValue, newValue) -> {
+            Label_DiemTBHK.setText(String.valueOf(Singleton.getInstant().getDiemSinhVien().getDiemTK().get()));
+            Label_SoTC.setText(String.valueOf(Singleton.getInstant().getDiemSinhVien().getSoTC().get()));
             double diem = Double.parseDouble(Label_DiemTBHK.getText());
             if(!Label_DiemTBHK.getText().equals("0.0") && !Label_SoTC.getText().equals("0.0")) {
                 if (diem >= 9) {

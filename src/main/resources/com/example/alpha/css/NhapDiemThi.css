@@ -43,18 +43,24 @@
     -fx-border-radius: 14;
     -fx-background-radius: 14;
     -fx-border-color: #76885B;
+    -fx-background-color: #E23E57;
+    -fx-text-fill: white;
+    -fx-prompt-text-fill: white;
 }
 
 .combo-box{
     -fx-border-radius: 14;
     -fx-background-radius: 14;
     -fx-border-color: #76885B;
+    -fx-background-color: #E23E57;
 }
 
 .choice-box{
     -fx-border-radius: 14;
     -fx-background-radius: 14;
     -fx-border-color: #76885B;
+    -fx-background-color: #E23E57;
+    -fx-text-fill: white;
 }
 
 .button{
@@ -62,9 +68,21 @@
     -fx-background-radius: 14;
     -fx-border-color: #76885B;
     -fx-border-width: 2;
+    -fx-background-color: #522546;
+    -fx-text-fill: white;
 }
 
-.label{
-    -fx-text-fill: #627254;
-    -fx-font-size: 14;
+#label{
+    -fx-background-color: #88304E;
+    -fx-background-radius: 14;
+    -fx-border-radius: 14;
+    -fx-text-fill: white;
+    -fx-text-alignment: CENTER;
+    -fx-label-padding: 4;
+}
+
+.root{
+    -fx-background-color: #311D3F;
+    -fx-border-color: #E23E57;
+    -fx-border-width: 2;
 }

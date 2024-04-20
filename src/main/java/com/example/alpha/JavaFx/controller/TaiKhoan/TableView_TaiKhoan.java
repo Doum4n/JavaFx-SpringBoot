@@ -1,7 +1,7 @@
 package com.example.alpha.JavaFx.controller.TaiKhoan;
 
 import com.example.alpha.JavaFx.controller.setTable;
-import com.example.alpha.JavaFx.model.Model;
+import com.example.alpha.JavaFx.model.Singleton;
 import com.example.alpha.JavaFx.model.TaiKhoan;
 import com.example.alpha.Spring_boot.user.NguoidungEntity;
 import javafx.collections.FXCollections;
@@ -80,7 +80,7 @@ public class TableView_TaiKhoan implements Initializable, setTable {
             }
         });
 
-        Model.getInstant().getViewQuanLy().getTab_selected().addListener((observable, oldValue, newValue) -> {
+        Singleton.getInstant().getViewQuanLy().getTab_selected().addListener((observable, oldValue, newValue) -> {
             if(Objects.equals(newValue, "Sinh viên")){
                 list = TaiKhoan.getRepository().getSV();
                 TableView_TaiKhoan.setItems(FXCollections.observableArrayList(list));

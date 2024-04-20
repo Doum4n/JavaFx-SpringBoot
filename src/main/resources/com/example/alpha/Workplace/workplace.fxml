@@ -15,7 +15,7 @@
       <fx:include source="TongQuan.fxml" />
    </right>
    <top>
-      <AnchorPane prefHeight="100.0" prefWidth="1048.0" style="-fx-background-color: #819830;" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="100.0" prefWidth="1048.0" styleClass="pane" stylesheets="@../css/workplace.css" BorderPane.alignment="CENTER">
          <AnchorPane fx:id="AnchorPane_HBox" layoutX="139.0" prefWidth="458.0">
             <children>
                <HBox fx:id="HBox_Main" layoutX="-2.0" prefHeight="92.0" prefWidth="180.0" />

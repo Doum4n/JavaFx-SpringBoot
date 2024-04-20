@@ -4,10 +4,9 @@ import com.example.alpha.JavaFx.controller.setTable;
 import com.example.alpha.JavaFx.model.Diem.DiemSV_CaNam;
 import com.example.alpha.JavaFx.model.Diem.PhongThi;
 import com.example.alpha.JavaFx.model.Lop;
-import com.example.alpha.JavaFx.model.Model;
+import com.example.alpha.JavaFx.model.Singleton;
 import com.example.alpha.JavaFx.model.PhanLop;
 import com.example.alpha.JavaFx.model.SinhVien.SinhVien;
-import com.example.alpha.Spring_boot.class_grade.LopEntity;
 import com.example.alpha.Spring_boot.result.student.KqSinhVienCanamEntity;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
@@ -23,7 +22,6 @@ import javafx.scene.input.KeyEvent;
 
 import java.net.URL;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -52,10 +50,9 @@ public class DSKhoaLuanController implements Initializable, setTable {
 
         ComboBox_LopNamCuoi.setEditable(true);
         ComboBox_LopNamCuoi.setItems(FXCollections.observableArrayList(Lop.getRepository().getNamCuoi(LocalDate.now().getYear())));
-        System.out.println(filteredList);
         ComboBox_LopNamCuoi.valueProperty().addListener((observable, oldValue, newValue) -> {
             filteredList.setPredicate(kq -> PhanLop.getRepository().getLop(kq.getMaSinhVien()).equals(newValue) &&
-                    kq.getMaNamHoc().equals(Model.getInstant().getViewFactory().getNamHoc().get()));
+                    kq.getMaNamHoc().equals(Singleton.getInstant().getViewFactory().getNamHoc().get()));
             Table_DSKhoaLuan.setItems(filteredList);
         });
 

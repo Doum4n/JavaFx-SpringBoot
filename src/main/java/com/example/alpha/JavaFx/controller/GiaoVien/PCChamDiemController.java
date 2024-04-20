@@ -54,25 +54,25 @@ public class PCChamDiemController implements Initializable{
         addListenerSearchMaSV();
 
         //Khi năm, học kỳ thay đổi
-        Model.getInstant().getViewFactory().getNamHoc().addListener((observable, oldValue, newValue) -> {
+        Singleton.getInstant().getViewFactory().getNamHoc().addListener((observable, oldValue, newValue) -> {
             addData(MaGV,MaMH);
         });
-        Model.getInstant().getViewFactory().getHocky().addListener((observable, oldValue, newValue) -> {
+        Singleton.getInstant().getViewFactory().getHocky().addListener((observable, oldValue, newValue) -> {
             addData(MaGV,MaMH);
         });
 
         //Hiển thi điểm khi nhấn vào ô bảng DiemQT
-        Model.getInstant().getDiemQuaTrinh().getDiem().addListener((observable, oldValue, newValue) -> {
+        Singleton.getInstant().getDiemQuaTrinh().getDiem().addListener((observable, oldValue, newValue) -> {
             TextField_DiemQT.setText(newValue);
         });
 
         Button_Update.setOnAction(event -> {
-            KqMonHoc_SV.getRepository().updateDiem(Model.getInstant().getDiemQuaTrinh().getMaSV().get(),
-                    Model.getInstant().getDiemQuaTrinh().getMaMHSelected().get(),
+            KqMonHoc_SV.getRepository().updateDiem(Singleton.getInstant().getDiemQuaTrinh().getMaSV().get(),
+                    Singleton.getInstant().getDiemQuaTrinh().getMaMHSelected().get(),
                     Float.valueOf(TextField_DiemQT.getText()));
-            Model.getInstant().getDiemQuaTrinh().getDiem().set(TextField_DiemQT.getText());
-            Model.getInstant().getDiemQuaTrinh().getIsUpdate().set(true);
-            Model.getInstant().getDiemQuaTrinh().getIsUpdate().set(false);
+            Singleton.getInstant().getDiemQuaTrinh().getDiem().set(TextField_DiemQT.getText());
+            Singleton.getInstant().getDiemQuaTrinh().getIsUpdate().set(true);
+            Singleton.getInstant().getDiemQuaTrinh().getIsUpdate().set(false);
         });
     }
 
@@ -84,21 +84,21 @@ public class PCChamDiemController implements Initializable{
         // Tải CellGiaoVien cho mỗi Giáo viên được phân công
         for (PhancongEntity phancongEntity : phanCongList) {
             // Lấy MaGV xuất hiện lần đầu trong MaGV của CellGiaoVien
-            if (!Model.getInstant().getCellGiaoVien().getMaGV().get().contains(phancongEntity.getMaGiaoVien())
-                    && !Model.getInstant().getCellGiaoVien().getMaMH().get().contains(phancongEntity.getMaMonHoc())
-                    && Objects.equals(Model.getInstant().getViewFactory().getHocky().get(), phancongEntity.getMaHocKy())
-                    && Objects.equals(phancongEntity.getMaNamHoc(), Model.getInstant().getViewFactory().getNamHoc().get())) {
+            if (!Singleton.getInstant().getCellGiaoVien().getMaGV().get().contains(phancongEntity.getMaGiaoVien())
+                    && !Singleton.getInstant().getCellGiaoVien().getMaMH().get().contains(phancongEntity.getMaMonHoc())
+                    && Objects.equals(Singleton.getInstant().getViewFactory().getHocky().get(), phancongEntity.getMaHocKy())
+                    && Objects.equals(phancongEntity.getMaNamHoc(), Singleton.getInstant().getViewFactory().getNamHoc().get())) {
 
                 //Cập nhật thông tin trước khi tải CellGiaoVien
                 // Thiết lập MaGV cho CellGiaoVien trước vì Model.getInstant().getCellGiaoVien().getMaGV().get = ""
-                Model.getInstant().getCellGiaoVien().getMaGV().set(phancongEntity.getMaGiaoVien());
-                Model.getInstant().getCellGiaoVien().getMaMH().set(phancongEntity.getMaMonHoc());
+                Singleton.getInstant().getCellGiaoVien().getMaGV().set(phancongEntity.getMaGiaoVien());
+                Singleton.getInstant().getCellGiaoVien().getMaMH().set(phancongEntity.getMaMonHoc());
                 for (GiaovienEntity giaovienEntity : giaovienEntities) {
                     if (phancongEntity.getMaGiaoVien().equals(giaovienEntity.getMaGiaoVien())) {
-                        Model.getInstant().getCellGiaoVien().getMaMH().set(phancongEntity.getMaMonHoc());
-                        Model.getInstant().getCellGiaoVien().getTenGV().set(giaovienEntity.getTenGiaoVien());
-                        Model.getInstant().getCellGiaoVien().getDiaChi().set(giaovienEntity.getDiaChi());
-                        Model.getInstant().getCellGiaoVien().getSDT().set(giaovienEntity.getDienThoai());
+                        Singleton.getInstant().getCellGiaoVien().getMaMH().set(phancongEntity.getMaMonHoc());
+                        Singleton.getInstant().getCellGiaoVien().getTenGV().set(giaovienEntity.getTenGiaoVien());
+                        Singleton.getInstant().getCellGiaoVien().getDiaChi().set(giaovienEntity.getDiaChi());
+                        Singleton.getInstant().getCellGiaoVien().getSDT().set(giaovienEntity.getDienThoai());
                     }
                 }
 
@@ -114,14 +114,14 @@ public class PCChamDiemController implements Initializable{
 
                 //Tính độ cao của CellGiaovien
                 double height = pane.getHeight();
-                if (Model.getInstant().getViewQuanLy().getSlMH().get() >= 2) {
-                    for (int k = 0; k < Model.getInstant().getViewQuanLy().getSlMH().get(); k++) {
+                if (Singleton.getInstant().getViewQuanLy().getSlMH().get() >= 2) {
+                    for (int k = 0; k < Singleton.getInstant().getViewQuanLy().getSlMH().get(); k++) {
                         pane.setPrefHeight(height + 33);
                         pane.setMinHeight(height + 33);
                         pane.setMaxHeight(height + 33);
                         height += 33;
                     }
-                    Model.getInstant().getViewQuanLy().getSlMH().set(1);
+                    Singleton.getInstant().getViewQuanLy().getSlMH().set(1);
                 }
 
                 Label MaGVn = (Label) pane.lookup("#Label_MaGV");
@@ -134,16 +134,16 @@ public class PCChamDiemController implements Initializable{
             }
         }
         /*Reset lại MaGV khi thay đổi năm, học kỳ*/
-        Model.getInstant().getCellGiaoVien().getMaGV().set("");
-        Model.getInstant().getCellGiaoVien().getMaMH().set("");
+        Singleton.getInstant().getCellGiaoVien().getMaGV().set("");
+        Singleton.getInstant().getCellGiaoVien().getMaMH().set("");
     }
 
     private void addListenerSearchMaGV(Map<String,Pane> MaGV, Map<String,Pane> MaMH){
         //Tìm kiếm dựa trên MaGV và MaMH
         textField_SearchMaGV.textProperty().addListener((observable, oldValue, newValue) -> {
             if(!newValue.isBlank()) {
-                phanCongList.stream().filter(phancongEntity -> phancongEntity.getMaNamHoc().equals(Model.getInstant().getViewFactory().getNamHoc().get())
-                                && phancongEntity.getMaHocKy().equals(Model.getInstant().getViewFactory().getHocky().get()))
+                phanCongList.stream().filter(phancongEntity -> phancongEntity.getMaNamHoc().equals(Singleton.getInstant().getViewFactory().getNamHoc().get())
+                                && phancongEntity.getMaHocKy().equals(Singleton.getInstant().getViewFactory().getHocky().get()))
                         .forEach(phancongEntity -> MaGV.forEach((s, pane) -> {
                             if (newValue.equals(s) && s.equals(phancongEntity.getMaGiaoVien())) {
                                 VBox_GV.getChildren().clear();
@@ -159,9 +159,9 @@ public class PCChamDiemController implements Initializable{
     private void addListenerSearchMaSV(){
         TextField_SearchMaSV.textProperty().addListener((observable, oldValue, newValue) -> {
             if(!TextField_SearchMaSV.getText().isBlank()){
-                Model.getInstant().getDiemQuaTrinh().getSearch().set(newValue);
+                Singleton.getInstant().getDiemQuaTrinh().getSearch().set(newValue);
             }else {
-                Model.getInstant().getDiemQuaTrinh().getSearch().set("");
+                Singleton.getInstant().getDiemQuaTrinh().getSearch().set("");
             }
         });
     }

@@ -1,6 +1,6 @@
 package com.example.alpha.JavaFx.model.MonHoc;
 
-import com.example.alpha.JavaFx.model.Model;
+import com.example.alpha.JavaFx.model.Singleton;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableCell;
 import lombok.Getter;
@@ -13,7 +13,7 @@ public class ButtonCellMH {
         this.button = new Button("Xem");
         button.setOnAction(event -> {
             TableCell tableCell = (TableCell) button.getParent().getParent().lookup("#Column_MaMH");
-            Model.getInstant().getNhapDiemThi().getMonHocSelected().set(tableCell.getItem().toString());
+            Singleton.getInstant().getNhapDiemThi().getMonHocSelected().set(tableCell.getItem().toString());
         });
     }
 }

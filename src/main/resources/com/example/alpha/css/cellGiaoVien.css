@@ -1,26 +1,29 @@
-.cellGV{
-    -fx-background-color: #ADBC9F;
+#cellGV{
+    -fx-background-color: #522546;
     -fx-border-radius: 14;
     -fx-background-radius: 14;
     -fx-border-color: #12372A;
 }
 
-.cellGV .label{
-    -fx-background-color: #FBFADA;
+#cellGV .label{
+    -fx-background-color: #88304E;
     -fx-background-radius: 14;
     -fx-border-radius: 14;
+    -fx-text-fill: white;
 }
 
-.cellLop{
+#cellLop{
     -fx-background-radius: 14;
-    -fx-background-color: #436850;
+    -fx-background-color: #88304E;
     -fx-border-radius: 14;
-    -fx-border-color: black;
+    /*-fx-border-color: black;*/
+    -fx-text-fill: white;
 }
 
-.cellLop .button{
-    -fx-background-color: #ADBC9F;
+#cellLop .button{
+    -fx-background-color: #1E1F22;
     -fx-border-radius: 14;
     -fx-background-radius: 14;
-    -fx-border-color: black;
+    -fx-border-color: #1E1F22;
+    -fx-text-fill: white;
 }

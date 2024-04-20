@@ -1,0 +1,22 @@
+.label{
+    -fx-background-color: #88304E;
+    -fx-background-radius: 14;
+    -fx-border-radius: 14;
+    -fx-text-fill: white;
+    -fx-label-padding: 4;
+    -fx-content-display: center;
+}
+
+#pane{
+    -fx-background-color: #522546;
+    -fx-background-radius: 14;
+    -fx-border-radius: 14;
+}
+
+.button{
+    -fx-background-color: #88304E;
+    -fx-border-color: #E23E57;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-text-fill: white;
+}

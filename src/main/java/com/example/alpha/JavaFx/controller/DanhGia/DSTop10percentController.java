@@ -2,11 +2,10 @@ package com.example.alpha.JavaFx.controller.DanhGia;
 
 import com.example.alpha.JavaFx.controller.setTable;
 import com.example.alpha.JavaFx.model.Diem.DiemSV_HocKy;
-import com.example.alpha.JavaFx.model.Model;
+import com.example.alpha.JavaFx.model.Singleton;
 import com.example.alpha.JavaFx.model.PhanLop;
 import com.example.alpha.JavaFx.model.SinhVien.SinhVien;
 import com.example.alpha.Spring_boot.result.student.KqSinnhVienHocKy;
-import com.example.alpha.Spring_boot.student.SinhVienEntity;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.transformation.FilteredList;
@@ -17,11 +16,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
 import java.net.URL;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.ResourceBundle;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class DSTop10percentController implements Initializable, setTable {
     @FXML
@@ -40,25 +35,25 @@ public class DSTop10percentController implements Initializable, setTable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setTableView();
-        Model.getInstant().getDsTop10percentSVLop().getLop().addListener((observable, oldValue, newValue) -> {
+        Singleton.getInstant().getDsTop10percentSVLop().getLop().addListener((observable, oldValue, newValue) -> {
             filteredList.setPredicate(sv -> PhanLop.getRepository().getLop(sv.getMaSinhVien()).equals(newValue) &&
-                    sv.getMaHocKy().equals(Model.getInstant().getViewFactory().getHocky().get()) &&
-                    sv.getMaNamHoc().equals(Model.getInstant().getViewFactory().getNamHoc().get()));
+                    sv.getMaHocKy().equals(Singleton.getInstant().getViewFactory().getHocky().get()) &&
+                    sv.getMaNamHoc().equals(Singleton.getInstant().getViewFactory().getNamHoc().get()));
             sortedList = new SortedList<>(filteredList);
             TableView_DS.setItems(sortedList);
         });
 
-        Model.getInstant().getViewFactory().getHocky().addListener((observable, oldValue, newValue) -> {
-            filteredList.setPredicate(sv -> PhanLop.getRepository().getLop(sv.getMaSinhVien()).equals(Model.getInstant().getDsTop10percentSVLop().getLop().get()) &&
+        Singleton.getInstant().getViewFactory().getHocky().addListener((observable, oldValue, newValue) -> {
+            filteredList.setPredicate(sv -> PhanLop.getRepository().getLop(sv.getMaSinhVien()).equals(Singleton.getInstant().getDsTop10percentSVLop().getLop().get()) &&
                     sv.getMaHocKy().equals(newValue) &&
-                    sv.getMaNamHoc().equals(Model.getInstant().getViewFactory().getNamHoc().get()));
+                    sv.getMaNamHoc().equals(Singleton.getInstant().getViewFactory().getNamHoc().get()));
             sortedList = new SortedList<>(filteredList);
             TableView_DS.setItems(sortedList);
         });
 
-        Model.getInstant().getViewFactory().getNamHoc().addListener((observable, oldValue, newValue) -> {
-            filteredList.setPredicate(sv -> PhanLop.getRepository().getLop(sv.getMaSinhVien()).equals(Model.getInstant().getDsTop10percentSVLop().getLop().get()) &&
-                    sv.getMaHocKy().equals(Model.getInstant().getViewFactory().getHocky().get()) &&
+        Singleton.getInstant().getViewFactory().getNamHoc().addListener((observable, oldValue, newValue) -> {
+            filteredList.setPredicate(sv -> PhanLop.getRepository().getLop(sv.getMaSinhVien()).equals(Singleton.getInstant().getDsTop10percentSVLop().getLop().get()) &&
+                    sv.getMaHocKy().equals(Singleton.getInstant().getViewFactory().getHocky().get()) &&
                     sv.getMaNamHoc().equals(newValue));
             sortedList = new SortedList<>(filteredList);
             TableView_DS.setItems(sortedList);
@@ -69,9 +64,9 @@ public class DSTop10percentController implements Initializable, setTable {
     public void setTableView() {
         setCellColumn();
         filteredList = new FilteredList<>(FXCollections.observableArrayList(DiemSV_HocKy.getRepository().findAll()));
-        filteredList.setPredicate(sv -> PhanLop.getRepository().getLop(sv.getMaSinhVien()).equals(Model.getInstant().getDsTop10percentSVLop().getLop().get()) &&
-                sv.getMaHocKy().equals(Model.getInstant().getViewFactory().getHocky().get()) &&
-                sv.getMaNamHoc().equals(Model.getInstant().getViewFactory().getNamHoc().get()));
+        filteredList.setPredicate(sv -> PhanLop.getRepository().getLop(sv.getMaSinhVien()).equals(Singleton.getInstant().getDsTop10percentSVLop().getLop().get()) &&
+                sv.getMaHocKy().equals(Singleton.getInstant().getViewFactory().getHocky().get()) &&
+                sv.getMaNamHoc().equals(Singleton.getInstant().getViewFactory().getNamHoc().get()));
         sortedList = new SortedList<>(filteredList);
         sortedList.comparatorProperty().bind(TableView_DS.comparatorProperty());
         TableView_DS.setItems(sortedList);

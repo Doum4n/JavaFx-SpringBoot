@@ -4,29 +4,29 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane prefHeight="166.0" prefWidth="220.0" style="-fx-background-color: #76885B; -fx-background-radius: 14; -fx-border-radius: 14;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.alpha.JavaFx.controller.Diem.DiemTKHKCotroller">
+<Pane prefHeight="147.0" prefWidth="226.0" styleClass="pane" stylesheets="@../css/pane.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.alpha.JavaFx.controller.Diem.DiemTKHKCotroller">
    <children>
-      <Label layoutX="27.0" layoutY="26.0" text="Điểm TB học kỳ:" textFill="#dddddd">
+      <Label layoutX="9.0" layoutY="13.0" text="Điểm TB học kỳ:" textFill="#dddddd">
          <font>
             <Font size="18.0" />
          </font></Label>
-      <Label layoutX="27.0" layoutY="70.0" text="Số tín chỉ đạt:" textFill="#dddddd">
+      <Label layoutX="9.0" layoutY="57.0" text="Số tín chỉ đạt:" textFill="#dddddd">
          <font>
             <Font size="18.0" />
          </font></Label>
-      <Label layoutX="27.0" layoutY="113.0" text="Xếp loại:" textFill="#dddddd">
+      <Label layoutX="9.0" layoutY="100.0" prefHeight="35.0" prefWidth="76.0" text="Xếp loại:" textFill="#dddddd">
          <font>
             <Font size="18.0" />
          </font></Label>
-      <Label fx:id="Label_DiemTBHK" layoutX="162.0" layoutY="26.0" prefHeight="27.0" prefWidth="47.0" textFill="#dddddd">
+      <Label fx:id="Label_DiemTBHK" layoutX="156.0" layoutY="13.0" prefHeight="35.0" prefWidth="62.0" textFill="#dddddd">
          <font>
             <Font size="18.0" />
          </font></Label>
-      <Label fx:id="Label_SoTC" layoutX="147.0" layoutY="70.0" prefHeight="17.0" prefWidth="62.0" textFill="#dddddd">
+      <Label fx:id="Label_SoTC" layoutX="137.0" layoutY="57.0" prefHeight="35.0" prefWidth="62.0" textFill="#dddddd">
          <font>
             <Font size="18.0" />
          </font></Label>
-      <Label fx:id="Label_XepLoai" layoutX="104.0" layoutY="113.0" prefHeight="17.0" prefWidth="62.0" textFill="#dddddd">
+      <Label fx:id="Label_XepLoai" layoutX="94.0" layoutY="100.0" prefHeight="35.0" prefWidth="62.0" textFill="#dddddd">
          <font>
             <Font size="18.0" />
          </font></Label>

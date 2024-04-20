@@ -1,0 +1,13 @@
+.button{
+    -fx-background-color: #E23E57;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-border-color: white;
+    -fx-border-width: 2;
+    -fx-text-fill: white;
+    -fx-font-size: 14;
+}
+
+.pane{
+    -fx-background-color: #522546;
+}

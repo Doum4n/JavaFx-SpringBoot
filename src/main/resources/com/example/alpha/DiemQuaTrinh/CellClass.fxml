@@ -6,8 +6,8 @@
 
 <AnchorPane id="cellLop" prefHeight="33.0" prefWidth="148.0" styleClass="cellLop" stylesheets="@../css/cellGiaoVien.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.alpha.JavaFx.controller.GiaoVien.CellClassController">
    <children>
-      <Label layoutX="14.0" layoutY="8.0" text="Lớp:" />
-      <Label fx:id="Label_Lop" layoutX="46.0" layoutY="8.0" prefHeight="18.0" prefWidth="54.0" />
+      <Label alignment="CENTER" layoutX="14.0" layoutY="8.0" prefHeight="18.0" prefWidth="28.0" text="Lớp:" textFill="WHITE" />
+      <Label fx:id="Label_Lop" alignment="CENTER" layoutX="46.0" layoutY="8.0" prefHeight="18.0" prefWidth="54.0" styleClass="cellLop" stylesheets="@../css/cellGiaoVien.css" textFill="WHITE" />
       <Button fx:id="buttonn_Xem" layoutX="105.0" layoutY="3.0" mnemonicParsing="false" text="Xem" />
    </children>
 </AnchorPane>

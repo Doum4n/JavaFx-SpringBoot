@@ -1,6 +1,6 @@
 package com.example.alpha.JavaFx.controller.Menu;
 
-import com.example.alpha.JavaFx.model.Model;
+import com.example.alpha.JavaFx.model.Singleton;
 import com.example.alpha.JavaFx.view.ThongKe;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -34,27 +34,27 @@ public class ThongKeController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Button_KqSV_MH.setOnAction(event -> {
-            Model.getInstant().getViewThongKe().getThongKeProperty().set(ThongKe.TK_DiemSV_MH);
+            Singleton.getInstant().getViewThongKe().getThongKeProperty().set(ThongKe.TK_DiemSV_MH);
         });
 
         Butoon_TKMonHoc.setOnAction(event -> {
-            Model.getInstant().getViewThongKe().getThongKeProperty().set(ThongKe.TK_DiemLop_MonHoc);
+            Singleton.getInstant().getViewThongKe().getThongKeProperty().set(ThongKe.TK_DiemLop_MonHoc);
         });
 
         Butoon_TKHocKy.setOnAction(event -> {
-            Model.getInstant().getViewThongKe().getThongKeProperty().set(ThongKe.TK_DiemLop_HocKy);
+            Singleton.getInstant().getViewThongKe().getThongKeProperty().set(ThongKe.TK_DiemLop_HocKy);
         });
 
         Butoon_TKNamHoc.setOnAction(event -> {
-            Model.getInstant().getViewThongKe().getThongKeProperty().set(ThongKe.TK_DiemLop_NamHoc);
+            Singleton.getInstant().getViewThongKe().getThongKeProperty().set(ThongKe.TK_DiemLop_NamHoc);
         });
 
         TextFiled_Search_SV.textProperty().addListener((observable, oldValue, newValue) -> {
-            Model.getInstant().getThongKe().getSearch_SV().set(newValue);
+            Singleton.getInstant().getThongKe().getSearch_SV().set(newValue);
         });
 
         TextField_Search_Lop.textProperty().addListener((observable, oldValue, newValue) -> {
-            Model.getInstant().getThongKe().getSearch_Lop().set(newValue);
+            Singleton.getInstant().getThongKe().getSearch_Lop().set(newValue);
         });
     }
 }

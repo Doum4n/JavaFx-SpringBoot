@@ -1,6 +1,6 @@
 package com.example.alpha.JavaFx.controller.Menu;
 
-import com.example.alpha.JavaFx.model.Model;
+import com.example.alpha.JavaFx.model.Singleton;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.text.Text;
@@ -16,6 +16,6 @@ public class LogController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         TextFlow_Log.getChildren().clear();
-        TextFlow_Log.getChildren().add(new Text(Model.getInstant().getViewFactory().getLog().get()));
+        TextFlow_Log.getChildren().add(new Text(Singleton.getInstant().getViewFactory().getLog().get()));
     }
 }

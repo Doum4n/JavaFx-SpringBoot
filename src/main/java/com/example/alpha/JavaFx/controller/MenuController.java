@@ -1,16 +1,14 @@
 package com.example.alpha.JavaFx.controller;
 
-import com.example.alpha.JavaFx.model.Model;
+import com.example.alpha.JavaFx.model.Singleton;
 import com.example.alpha.JavaFx.view.Menu;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 
 import java.net.URL;
-import java.util.Objects;
 import java.util.ResourceBundle;
 
 @Controller
@@ -34,19 +32,19 @@ public class MenuController implements Initializable {
         button_QuanLy.setOnAction(event -> addListenerQuanLy());
         button_DanhGia.setOnAction(event -> addListenerTongQuan());
         button_TongKe.setOnAction(event -> addListenerThongKe());
-        Button_LogOut.setOnAction(event -> Model.getInstant().getViewFactory().showLoginWindow());
+        Button_LogOut.setOnAction(event -> Singleton.getInstant().getViewFactory().showLoginWindow());
     }
 
     private void addListenerQuanLy(){
-        Model.getInstant().getViewFactory().getMenuProperty().set(Menu.QuanLy);
+        Singleton.getInstant().getViewFactory().getMenuProperty().set(Menu.QuanLy);
     }
 
     private void addListenerTongQuan(){
-        Model.getInstant().getViewFactory().getMenuProperty().set(Menu.DanhGia);
+        Singleton.getInstant().getViewFactory().getMenuProperty().set(Menu.DanhGia);
     }
 
     private void addListenerThongKe(){
-        Model.getInstant().getViewFactory().getMenuProperty().set(Menu.ThongKe);
+        Singleton.getInstant().getViewFactory().getMenuProperty().set(Menu.ThongKe);
     }
 
 }
