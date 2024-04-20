@@ -19,7 +19,6 @@ import javafx.scene.layout.VBox;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class XemDiemController implements Initializable {
 
@@ -67,7 +66,7 @@ public class XemDiemController implements Initializable {
 
             FXMLLoader loader1 = new FXMLLoader();
             AnchorPane pane;
-            loader1.setLocation(getClass().getResource("/com/example/alpha/DiemTKSinhVien.fxml"));
+            loader1.setLocation(getClass().getResource("/com/example/alpha/SinhVienRole/DiemTKSinhVien.fxml"));
             try {
                 pane = loader1.load();
             } catch (IOException e) {

@@ -64,6 +64,8 @@ public class LoginController implements Initializable {
             Singleton.getInstant().getViewFactory().showWorkPlaceWindow();
         }else if(Singleton.getInstant().getViewFactory().getType() == AccountType.Student){
             Singleton.getInstant().getViewFactory().showStudentWindow();
+        }else {
+            Singleton.getInstant().getViewFactory().showTeacherWindow();
         }
     }
 }

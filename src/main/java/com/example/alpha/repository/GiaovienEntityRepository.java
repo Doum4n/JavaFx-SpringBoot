@@ -5,6 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 public interface GiaovienEntityRepository extends JpaRepository<GiaovienEntity, String> {
-    @Query("select a.tenGiaoVien from GiaovienEntity a where a.tenGiaoVien=?1")
+    @Query("select a.tenGiaoVien from GiaovienEntity a where a.maGiaoVien=?1")
     String getTenGV(String TenGV);
 }

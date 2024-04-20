@@ -1,0 +1,37 @@
+#pane{
+    -fx-background-color: #88304E;
+}
+
+#label{
+    -fx-text-fill: white;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-background-color: #E23E57;
+    -fx-label-padding: 4;
+}
+
+#paneRight{
+    -fx-background-color: #522546;
+}
+
+.choice-box{
+    -fx-border-radius: 14;
+    -fx-background-radius: 14;
+    -fx-background-color: #88304E;
+    -fx-border-color: #E23E57;
+}
+
+.text-field{
+    -fx-border-radius: 14;
+    -fx-background-radius: 14;
+    -fx-background-color: #E23E57;
+    -fx-text-fill: white;
+}
+
+.button{
+    -fx-border-radius: 14;
+    -fx-background-radius: 14;
+    -fx-background-color: #522546;
+    -fx-text-fill: white;
+    -fx-border-color: #E23E57;
+}

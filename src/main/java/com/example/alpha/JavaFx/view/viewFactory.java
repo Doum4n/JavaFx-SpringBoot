@@ -52,8 +52,6 @@ public class viewFactory {
         return QuanLy;
     }
 
-
-
     public HBox getDanhGia(){
         try {
             if (DanhGia == null) {
@@ -119,7 +117,20 @@ public class viewFactory {
     }
 
     public void showStudentWindow(){
-        FXMLLoader loader = new FXMLLoader((Objects.requireNonNull(LoginController.class.getResource("/com/example/alpha/Student.fxml"))));
+        FXMLLoader loader = new FXMLLoader((Objects.requireNonNull(LoginController.class.getResource("/com/example/alpha/SinhVienRole/Student.fxml"))));
+        Scene scene = null;
+        try{
+            scene = new Scene(loader.load());
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+//        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void showTeacherWindow(){
+        FXMLLoader loader = new FXMLLoader((Objects.requireNonNull(LoginController.class.getResource("/com/example/alpha/GiaoVienRole/Teacher.fxml"))));
         Scene scene = null;
         try{
             scene = new Scene(loader.load());

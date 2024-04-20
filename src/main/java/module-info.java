@@ -32,6 +32,7 @@ module com.example.alpha {
     opens com.example.alpha.JavaFx.controller.MonHoc;
     opens com.example.alpha.JavaFx.controller.DanhGia;
 
+    opens com.example.alpha.JavaFx.Teacher;
     opens com.example.alpha.Spring_boot.result;
     opens com.example.alpha.Spring_boot.result.student;
     opens com.example.alpha.Spring_boot.result.grade;
@@ -63,5 +64,6 @@ module com.example.alpha {
     exports com.example.alpha.JavaFx.controller.ThongKe;
     exports com.example.alpha.JavaFx.controller.DanhGia;
 
+    exports com.example.alpha.JavaFx.Teacher;
     exports com.example.alpha.JavaFx.Student;
 }
