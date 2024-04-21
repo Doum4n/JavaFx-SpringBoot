@@ -61,9 +61,11 @@ public class QuanLyController implements Initializable {
 
     private void addDataKqSV() {
         for(DKHocPhanEntity dkHocPhan : DKHocPhan.getRepository().findAll()){
-            KqMonHoc_SV.getRepository().save(new KqSinhVienMonhocEntity(dkHocPhan.getMaSV(),dkHocPhan.getMaMH(),dkHocPhan.getHocKy(), dkHocPhan.getNamHoc()));
-            DiemSV_HocKy.getRepository().save(new KqSinnhVienHocKy(dkHocPhan.getMaSV(), dkHocPhan.getHocKy(), dkHocPhan.getNamHoc()));
-            DiemSV_CaNam.getRepository().save(new KqSinhVienCanamEntity(dkHocPhan.getMaSV(), dkHocPhan.getNamHoc()));
+            if(DiemSV_HocKy.getRepository().getDiemTK(dkHocPhan.getMaSV(),dkHocPhan.getHocKy(), dkHocPhan.getNamHoc())==null && DiemSV_HocKy.getRepository().getTongTC(dkHocPhan.getMaSV(),dkHocPhan.getHocKy(),dkHocPhan.getNamHoc())==null) {
+                KqMonHoc_SV.getRepository().save(new KqSinhVienMonhocEntity(dkHocPhan.getMaSV(), dkHocPhan.getMaMH(), dkHocPhan.getHocKy(), dkHocPhan.getNamHoc()));
+                DiemSV_HocKy.getRepository().save(new KqSinnhVienHocKy(dkHocPhan.getMaSV(), dkHocPhan.getHocKy(), dkHocPhan.getNamHoc()));
+                DiemSV_CaNam.getRepository().save(new KqSinhVienCanamEntity(dkHocPhan.getMaSV(), dkHocPhan.getNamHoc()));
+            }
         }
     }
 

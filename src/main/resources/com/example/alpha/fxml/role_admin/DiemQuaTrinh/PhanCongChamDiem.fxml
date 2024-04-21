@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="578.0" prefWidth="1036.0" styleClass="root" stylesheets="@../../../css/role_admin/quan_ly/DiemQuaTrinh.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.alpha.JavaFx.controller.GiaoVien.PCChamDiemController">
+   <ScrollPane fx:id="ScrollPane_Main" layoutX="84.0" layoutY="94.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="464.0" prefWidth="424.0" styleClass="pane_main">
+      <VBox fx:id="VBox_GV" prefHeight="490.0" prefWidth="407.0" styleClass="pane_main" />
+   </ScrollPane>
+   <TextField fx:id="textField_SearchMaGV" layoutX="84.0" layoutY="22.0" promptText="Search" />
+   <Label id="label" layoutX="84.0" layoutY="65.0" text="MaGV" />
+   <Label id="label" layoutX="172.0" layoutY="65.0" text="TenGV" />
+   <Label id="label" layoutX="297.0" layoutY="65.0" text="MaMH" />
+   <Pane layoutX="743.0" layoutY="16.0" prefHeight="166.0" prefWidth="294.0">
+      <children>
+         <fx:include source="GiaoVienInfor.fxml" />
+      </children>
+   </Pane>
+   <Pane layoutX="526.0" layoutY="197.0" prefHeight="354.0" prefWidth="294.0">
+      <children>
+         <fx:include source="DiemQT.fxml" />
+      </children>
+   </Pane>
+   <Label id="label" layoutX="840.0" layoutY="201.0" text="Điểm:" />
+   <TextField fx:id="TextField_DiemQT" layoutX="882.0" layoutY="200.0" prefHeight="26.0" prefWidth="110.0" />
+   <Pane layoutX="526.0" layoutY="17.0" prefHeight="114.0" prefWidth="182.0">
+      <children>
+         <fx:include source="LopMHInnfor.fxml" />
+      </children>
+   </Pane>
+   <Button fx:id="Button_Update" layoutX="934.0" layoutY="239.0" mnemonicParsing="false" text="Update" />
+   <TextField fx:id="TextField_SearchMaSV" layoutX="526.0" layoutY="140.0" prefHeight="26.0" prefWidth="207.0" promptText="search" />
+</AnchorPane>

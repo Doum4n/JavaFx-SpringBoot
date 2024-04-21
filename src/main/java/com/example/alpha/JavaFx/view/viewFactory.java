@@ -15,6 +15,7 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import lombok.Data;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Data
@@ -32,19 +33,27 @@ public class viewFactory {
     private final ObjectProperty<Status> status;
     private Stage stage = new Stage();
 
+    private final StringProperty username;
+    private final StringProperty password;
+
     public viewFactory(){
         this.type = AccountType.Student;
         this.menuProperty = new SimpleObjectProperty<>();
-        this.NamHoc = new SimpleStringProperty(com.example.alpha.JavaFx.model.NamHoc.getRepository().getNamHoc().get(0));
-        this.Hocky = new SimpleStringProperty(HocKy.getRepository().getHocKy().get(0));
+
+        LocalDateTime currentTime = LocalDateTime.now();
+        this.NamHoc = new SimpleStringProperty(String.valueOf(currentTime.getYear()));
+        this.Hocky = new SimpleStringProperty(currentTime.getMonthValue()<7?"1":"2");
         this.log = new SimpleStringProperty();
         this.status = new SimpleObjectProperty<>(Status.OK);
+
+        this.username = new SimpleStringProperty();
+        this.password = new SimpleStringProperty();
     }
 
     public HBox getQuanLyView(){
         try {
             if (QuanLy == null) {
-                QuanLy = new FXMLLoader(getClass().getResource("/com/example/alpha/Workplace/QuanLy.fxml")).load();
+                QuanLy = new FXMLLoader(getClass().getResource("/com/example/alpha/fxml/role_admin/Workplace/QuanLy.fxml")).load();
             }
         }catch (Exception e){
             e.printStackTrace();
@@ -55,7 +64,7 @@ public class viewFactory {
     public HBox getDanhGia(){
         try {
             if (DanhGia == null) {
-                DanhGia = new FXMLLoader(getClass().getResource("/com/example/alpha/Workplace/DanhGia.fxml")).load();
+                DanhGia = new FXMLLoader(getClass().getResource("/com/example/alpha/fxml/role_admin/Workplace/DanhGia.fxml")).load();
             }
         }catch (Exception e){
             e.printStackTrace();
@@ -65,7 +74,7 @@ public class viewFactory {
 
 
     public void showLoginWindow(){
-        FXMLLoader loader = new FXMLLoader((Objects.requireNonNull(LoginController.class.getResource("/com/example/alpha/login.fxml"))));
+        FXMLLoader loader = new FXMLLoader((Objects.requireNonNull(LoginController.class.getResource("/com/example/alpha/fxml/role_admin/login.fxml"))));
         Scene scene = null;
         try{
             scene = new Scene(loader.load());
@@ -80,7 +89,7 @@ public class viewFactory {
     public HBox getThongKe() {
         try {
             if (ThongKe == null) {
-                ThongKe = new FXMLLoader(getClass().getResource("/com/example/alpha/Workplace/ThongKe.fxml")).load();
+                ThongKe = new FXMLLoader(getClass().getResource("/com/example/alpha/fxml/role_admin/Workplace/ThongKe.fxml")).load();
             }
         }catch (Exception e){
             e.printStackTrace();
@@ -89,7 +98,7 @@ public class viewFactory {
     }
 
     public void showWorkPlaceWindow(){
-        FXMLLoader loader = new FXMLLoader((Objects.requireNonNull(LoginController.class.getResource("/com/example/alpha/Workplace/workplace.fxml"))));
+        FXMLLoader loader = new FXMLLoader((Objects.requireNonNull(LoginController.class.getResource("/com/example/alpha/fxml/role_admin/Workplace/workplace.fxml"))));
         Scene scene = null;
         try{
             scene = new Scene(loader.load());
@@ -104,7 +113,7 @@ public class viewFactory {
     public void showLog(String log){
 
         Singleton.getInstant().getViewFactory().getLog().set(log);
-        FXMLLoader loader = new FXMLLoader((Objects.requireNonNull(LoginController.class.getResource("/com/example/alpha/Log.fxml"))));
+        FXMLLoader loader = new FXMLLoader((Objects.requireNonNull(LoginController.class.getResource("/com/example/alpha/fxml/role_admin/Log.fxml"))));
         Scene scene = null;
         try{
             scene = new Scene(loader.load());
@@ -117,7 +126,7 @@ public class viewFactory {
     }
 
     public void showStudentWindow(){
-        FXMLLoader loader = new FXMLLoader((Objects.requireNonNull(LoginController.class.getResource("/com/example/alpha/SinhVienRole/Student.fxml"))));
+        FXMLLoader loader = new FXMLLoader((Objects.requireNonNull(LoginController.class.getResource("/com/example/alpha/fxml/SinhVienRole/Student.fxml"))));
         Scene scene = null;
         try{
             scene = new Scene(loader.load());
@@ -130,7 +139,7 @@ public class viewFactory {
     }
 
     public void showTeacherWindow(){
-        FXMLLoader loader = new FXMLLoader((Objects.requireNonNull(LoginController.class.getResource("/com/example/alpha/GiaoVienRole/Teacher.fxml"))));
+        FXMLLoader loader = new FXMLLoader((Objects.requireNonNull(LoginController.class.getResource("/com/example/alpha/fxml/GiaoVienRole/Teacher.fxml"))));
         Scene scene = null;
         try{
             scene = new Scene(loader.load());

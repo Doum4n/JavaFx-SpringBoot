@@ -6,8 +6,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 import lombok.Getter;
 
-import java.util.Objects;
-
 @Getter
 public class viewThongKe {
     private final ObjectProperty<ThongKe> thongKeProperty;
@@ -24,7 +22,7 @@ public class viewThongKe {
     public AnchorPane getTK_DiemSV_MH(){
         try {
             if (TK_DiemSV_MH == null) {
-                TK_DiemSV_MH = new FXMLLoader(getClass().getResource("/com/example/alpha/ThongKe/SinhVien.fxml")).load();
+                TK_DiemSV_MH = new FXMLLoader(getClass().getResource("/com/example/alpha/fxml/role_admin/ThongKe/SinhVien.fxml")).load();
             }
         }catch (Exception e){
             e.printStackTrace();
@@ -35,7 +33,7 @@ public class viewThongKe {
     public AnchorPane getTK_DiemLop_MonHoc(){
         try {
             if (TK_DiemLop_MonHoc == null) {
-                TK_DiemLop_MonHoc = new FXMLLoader(getClass().getResource("/com/example/alpha/ThongKe/TK_DiemLop_MonHoc.fxml")).load();
+                TK_DiemLop_MonHoc = new FXMLLoader(getClass().getResource("/com/example/alpha/fxml/role_admin/ThongKe/TK_DiemLop_MonHoc.fxml")).load();
             }
         }catch (Exception e){
             e.printStackTrace();
@@ -46,7 +44,7 @@ public class viewThongKe {
     public AnchorPane getTK_DiemLop_HocKy(){
         try {
             if (TK_DiemLop_HocKy == null) {
-                TK_DiemLop_HocKy = new FXMLLoader(getClass().getResource("/com/example/alpha/ThongKe/TK_DiemLop_HocKy.fxml")).load();
+                TK_DiemLop_HocKy = new FXMLLoader(getClass().getResource("/com/example/alpha/fxml/role_admin/ThongKe/TK_DiemLop_HocKy.fxml")).load();
             }
         }catch (Exception e){
             e.printStackTrace();
@@ -57,7 +55,7 @@ public class viewThongKe {
     public AnchorPane getTK_DiemLop_NamHoc() {
         try {
             if (TK_DiemLop_NamHoc == null) {
-                TK_DiemLop_NamHoc = new FXMLLoader(getClass().getResource("/com/example/alpha/ThongKe/TK_DiemLop_NamHoc.fxml")).load();
+                TK_DiemLop_NamHoc = new FXMLLoader(getClass().getResource("/com/example/alpha/fxml/role_admin/ThongKe/TK_DiemLop_NamHoc.fxml")).load();
             }
         }catch (Exception e){
             e.printStackTrace();

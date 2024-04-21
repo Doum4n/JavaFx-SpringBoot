@@ -20,7 +20,7 @@ public class viewDanhGia {
     public AnchorPane getDSHocBong() {
         try {
             if (DSHocBong == null) {
-                DSHocBong = new FXMLLoader(getClass().getResource("/com/example/alpha/DanhGia/DSHocBong.fxml")).load();
+                DSHocBong = new FXMLLoader(getClass().getResource("/com/example/alpha/fxml/role_admin/DanhGia/DSHocBong.fxml")).load();
             }
         }catch (Exception e){
             e.printStackTrace();
@@ -31,7 +31,7 @@ public class viewDanhGia {
     public AnchorPane getDSKhoaLuan() {;
         try {
             if (DSKhoaLuan == null) {
-                DSKhoaLuan = new FXMLLoader(getClass().getResource("/com/example/alpha/DanhGia/DSKhoaLuan.fxml")).load();
+                DSKhoaLuan = new FXMLLoader(getClass().getResource("/com/example/alpha/fxml/role_admin/DanhGia/DSKhoaLuan.fxml")).load();
             }
         }catch (Exception e){
             e.printStackTrace();

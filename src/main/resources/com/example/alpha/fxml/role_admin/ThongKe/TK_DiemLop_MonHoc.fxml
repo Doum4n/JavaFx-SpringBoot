@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="578.0" prefWidth="1036.0" styleClass="root" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.alpha.JavaFx.controller.ThongKe.TKDiemLopMonHoc">
+   <children>
+      <TableView fx:id="TableView_TKDiemLop" layoutX="328.0" layoutY="138.0" prefHeight="400.0" prefWidth="379.0" stylesheets="@../../../css/component/Table.css">
+         <columns>
+            <TableColumn fx:id="Coulum_MaSV" prefWidth="75.0" text="MaSV" />
+            <TableColumn fx:id="Colum_TenSV" prefWidth="75.0" text="TenSV" />
+            <TableColumn fx:id="Colum_DiemQT" prefWidth="75.0" text="DiemQT" />
+            <TableColumn fx:id="Colum_DiemThi" prefWidth="75.0" text="Diem Thi" />
+            <TableColumn fx:id="Colum_DiemTK" prefWidth="75.0" text="DiemTK" />
+         </columns>
+      </TableView>
+      <ChoiceBox fx:id="ChoiceBox_MonHoc" layoutX="556.0" layoutY="88.0" prefWidth="150.0" stylesheets="@../../../css/component/ChoiceBox.css" />
+      <Label id="label" layoutX="556.0" layoutY="41.0" text="Tên môn học:" />
+      <Label id="label" fx:id="Label_TenMH" layoutX="647.0" layoutY="41.0" prefHeight="26.0" prefWidth="60.0" />
+      <Label id="label" layoutX="328.0" layoutY="41.0" text="Sĩ số:" />
+      <Label id="label" fx:id="Label_SiSo" layoutX="370.0" layoutY="41.0" prefHeight="26.0" prefWidth="47.0" />
+      <ComboBox fx:id="ComboBox_Lop" layoutX="328.0" layoutY="88.0" prefWidth="150.0" stylesheets="@../../../css/component/ComboBox.css" />
+   </children>
+   <stylesheets>
+      <URL value="@../../../css/role_admin/thong_ke/diem_lop_hocky.css" />
+      <URL value="@../../../css/component/Label.css" />
+   </stylesheets>
+</AnchorPane>

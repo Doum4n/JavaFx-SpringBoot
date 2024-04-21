@@ -56,32 +56,43 @@ public class TeacherController implements Initializable, setTable {
     private Label Label_TenSV;
 
     @FXML
+    private Button button_logOut;
+
+    @FXML
     private TextField textField_DiemQT;
+
+    String id = Singleton.getInstant().getViewFactory().getUsername().get();
+    String hocky = Singleton.getInstant().getViewFactory().getHocky().get();
+    String namhoc = Singleton.getInstant().getViewFactory().getNamHoc().get();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setTableView();
         addListenerTableView();
 
-        ChoiceBox_Lop.setItems(FXCollections.observableArrayList(PhanCong.getRepository().getLopByMaGV("1", "1", "2024")));
+        ChoiceBox_Lop.setItems(FXCollections.observableArrayList(PhanCong.getRepository().getLopByMaGV(id, hocky, namhoc)));
         ChoiceBox_Lop.valueProperty().addListener((observable, oldValue, newValue) -> {
             filteredList.setPredicate(kq -> PhanLop.getRepository().getLop(kq.getMaSinhVien()).equals(newValue) &&
-                    kq.getMaMonHoc().equals(PhanCong.getRepository().getMonHoc("1", "1","2024")));
+                    kq.getMaMonHoc().equals(PhanCong.getRepository().getMonHoc(id, hocky,namhoc)));
             TableView_DiemQT.setItems(filteredList);
         });
 
-        Label_MaGV.setText("1");
-        Label_TenGV.setText(GiaoVien.getRepository().getTenGV("1"));
+        Label_MaGV.setText(id);
+        Label_TenGV.setText(GiaoVien.getRepository().getTenGV(id));
 
         Buton_Update.setOnAction(event -> {
             KqMonHoc_SV.getRepository().updateDiem(Label_MaSV.getText(),
-                    PhanCong.getRepository().getMonHoc("1", "1","2024"),
+                    PhanCong.getRepository().getMonHoc(id, hocky,namhoc),
                     Float.valueOf(textField_DiemQT.getText()));
             filteredList = new FilteredList<>(FXCollections.observableArrayList(KqMonHoc_SV.getRepository().findAll()));
 
             filteredList.setPredicate(kq -> PhanLop.getRepository().getLop(kq.getMaSinhVien()).equals(ChoiceBox_Lop.getValue()) &&
-                    kq.getMaMonHoc().equals(PhanCong.getRepository().getMonHoc("1", "1","2024")));
+                    kq.getMaMonHoc().equals(PhanCong.getRepository().getMonHoc(id, hocky,namhoc)));
             TableView_DiemQT.setItems(filteredList);
+        });
+
+        button_logOut.setOnAction(event -> {
+            Singleton.getInstant().getViewFactory().showLoginWindow();
         });
     }
 
@@ -89,7 +100,7 @@ public class TeacherController implements Initializable, setTable {
     public void setTableView() {
         setCellColumn();
         filteredList = new FilteredList<>(FXCollections.observableArrayList(KqMonHoc_SV.getRepository().findAll()));
-        filteredList.setPredicate(kq -> kq.getMaMonHoc().equals(PhanCong.getRepository().getMonHoc("1", "1", "2024")) &&
+        filteredList.setPredicate(kq -> kq.getMaMonHoc().equals(PhanCong.getRepository().getMonHoc(id, hocky, namhoc)) &&
                 PhanLop.getRepository().getLop(kq.getMaSinhVien()).equals(ChoiceBox_Lop.getValue()));
         TableView_DiemQT.setItems(filteredList);
     }

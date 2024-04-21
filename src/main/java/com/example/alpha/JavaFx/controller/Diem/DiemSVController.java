@@ -180,7 +180,7 @@ public class DiemSVController implements Initializable, setTable {
             TableView_DiemSV.setItems(filteredList);
         }else if(Singleton.getInstant().getViewFactory().getType().equals(AccountType.Student)) {
             setCellColumn();
-            data = FXCollections.observableArrayList(Diem.getRepository().findAllbyMaSV("1"));
+            data = FXCollections.observableArrayList(Diem.getRepository().findAllbyMaSV(Singleton.getInstant().getViewFactory().getUsername().get()));
             filteredList = new FilteredList<>(data, b -> true);
             TableView_DiemSV.setItems(filteredList);
         }

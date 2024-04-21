@@ -104,7 +104,7 @@ public class PCChamDiemController implements Initializable{
 
                 //Tải CellGiaoVien
                 FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getResource("/com/example/alpha/DiemQuaTrinh/CellGiaoVien.fxml"));
+                loader.setLocation(getClass().getResource("/com/example/alpha/fxml/role_admin/DiemQuaTrinh/CellGiaoVien.fxml"));
                 Pane pane;
                 try {
                     pane = loader.load();

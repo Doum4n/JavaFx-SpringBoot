@@ -27,7 +27,8 @@ public class NguoidungEntity {
     @Column(name = "MatKhau")
     private String matKhau;
 
-    private enum Loai{
-        Admin, Teacher, Student
-    }
+    @ManyToOne
+    @JoinColumn(name = "MaLoai", insertable = false, updatable = false)
+    private LoainguoidungEntity loainguoidungEntity;
+
 }

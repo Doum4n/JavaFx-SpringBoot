@@ -1,0 +1,19 @@
+#hb, #kl{
+    -fx-background-color: #88304E;
+    -fx-border-radius: 14;
+    -fx-background-radius: 14;
+    -fx-border-color: #FBFADA;
+}
+
+.button {
+    -fx-background-color: #522546;
+    -fx-background-radius: 14;
+    -fx-border-radius: 14;
+    -fx-text-fill: white;
+}
+
+.label{
+    -fx-background-color: #E23E57;
+    -fx-border-radius: 14;
+    -fx-background-radius: 14;
+}

@@ -71,10 +71,10 @@ public class TableView_TaiKhoan implements Initializable, setTable {
         setTableView();
         list = TaiKhoan.getRepository().findAll();
         list.forEach(user -> {
-            if(Objects.equals(user.getMaLoai(), "2")){
+            if(Objects.equals(user.getMaLoai(), "3")){
                 SinhVien.add(user);
                 TableView_TaiKhoan.setItems(FXCollections.observableArrayList(SinhVien));
-            }else if(Objects.equals(user.getMaLoai(),"3")){
+            }else if(Objects.equals(user.getMaLoai(),"2")){
                 GiaoVien.add(user);
                 TableView_TaiKhoan.setItems(FXCollections.observableArrayList(GiaoVien));
             }

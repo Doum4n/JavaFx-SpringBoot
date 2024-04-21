@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<Pane id="cellGV" prefHeight="33.0" prefWidth="407.0" styleClass="cellGV" stylesheets="@../../../css/role_admin/quan_ly/cellGiaoVien.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.alpha.JavaFx.controller.GiaoVien.CellGiaoVienController">
+   <children>
+      <VBox fx:id="VBox_LopHoc" layoutX="259.0" prefHeight="43.0" prefWidth="148.0" />
+      <Label fx:id="Label_tenGV" alignment="CENTER" layoutX="92.0" layoutY="8.0" prefHeight="17.0" prefWidth="38.0" text="Label" />
+      <Label fx:id="Label_MaGV" alignment="CENTER" layoutX="12.0" layoutY="8.0" prefHeight="17.0" prefWidth="38.0" text="Label" />
+      <Label fx:id="Label_MaMH" alignment="CENTER" layoutX="204.0" layoutY="8.0" prefHeight="17.0" prefWidth="38.0" text="Label" />
+   </children>
+</Pane>

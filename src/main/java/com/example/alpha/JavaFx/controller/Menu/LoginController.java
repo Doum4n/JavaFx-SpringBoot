@@ -53,13 +53,18 @@ public class LoginController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        button_login.setOnAction(event -> onLogin());
+        Textfield_username.textProperty().addListener((observable, oldValue, newValue) -> {
+            System.out.println(newValue);
+        });
         ChoiceBox.setItems(FXCollections.observableArrayList(AccountType.Admin,AccountType.Teacher,AccountType.Student));
         ChoiceBox.setValue(Singleton.getInstant().getViewFactory().getType());
         ChoiceBox.valueProperty().addListener(observable -> Singleton.getInstant().getViewFactory().setType(ChoiceBox.getValue()));
+        button_login.setOnAction(event -> onLogin());
     }
 
     public void onLogin(){
+        Singleton.getInstant().getViewFactory().getUsername().set(Textfield_username.getText());
+        Singleton.getInstant().getViewFactory().getPassword().set(Textfield_password.getText());
         if(Singleton.getInstant().getViewFactory().getType() == AccountType.Admin){
             Singleton.getInstant().getViewFactory().showWorkPlaceWindow();
         }else if(Singleton.getInstant().getViewFactory().getType() == AccountType.Student){

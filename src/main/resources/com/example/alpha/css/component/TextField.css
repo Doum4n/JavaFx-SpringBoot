@@ -1,0 +1,8 @@
+#text-field{
+    -fx-border-radius: 14;
+    -fx-background-radius: 14;
+    -fx-border-color: #76885B;
+    -fx-background-color: #E23E57;
+    -fx-text-fill: white;
+    -fx-prompt-text-fill: white;
+}

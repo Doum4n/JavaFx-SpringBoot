@@ -19,6 +19,7 @@ import javafx.scene.layout.VBox;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class XemDiemController implements Initializable {
 
@@ -50,13 +51,17 @@ public class XemDiemController implements Initializable {
         ScrollPane_main.setHbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
         AnchorPane_main.setPrefHeight(Region.USE_COMPUTED_SIZE);
         VBox_Diem.setPrefHeight(Region.USE_COMPUTED_SIZE);
-        Diem.getRepository().getNamHocByMaSV("1").stream().distinct().forEach(NamHoc -> Diem.getRepository().getHocKyByMaSV("1").forEach(HocKy -> {
+        AtomicInteger count = new AtomicInteger(0);
+        Diem.getRepository().getNamHocByMaSV(Singleton.getInstant().getViewFactory().getUsername().get()).stream().distinct().forEach(NamHoc ->
+                Diem.getRepository().getHocKyByMaSV(Singleton.getInstant().getViewFactory().getUsername().get()).stream().distinct().forEach(HocKy -> {
             Singleton.getInstant().getDiemSinnVienStudent().getHocKy().set(HocKy);
             Singleton.getInstant().getDiemSinnVienStudent().getNamHoc().set(NamHoc);
-            Singleton.getInstant().getDiemSinnVienStudent().getMaSV().set("1");
+            Singleton.getInstant().getDiemSinnVienStudent().getMaSV().set(Singleton.getInstant().getViewFactory().getUsername().get());
+
+                    System.out.println(count.getAndIncrement());
 
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/com/example/alpha/ThongKe/DiemSV.fxml"));
+            loader.setLocation(getClass().getResource("/com/example/alpha/fxml/role_admin/ThongKe/DiemSV.fxml"));
             TableView<DiemEntity> tableView;
             try {
                 tableView = loader.load();
@@ -66,7 +71,7 @@ public class XemDiemController implements Initializable {
 
             FXMLLoader loader1 = new FXMLLoader();
             AnchorPane pane;
-            loader1.setLocation(getClass().getResource("/com/example/alpha/SinhVienRole/DiemTKSinhVien.fxml"));
+            loader1.setLocation(getClass().getResource("/com/example/alpha/fxml/SinhVienRole/DiemTKSinhVien.fxml"));
             try {
                 pane = loader1.load();
             } catch (IOException e) {

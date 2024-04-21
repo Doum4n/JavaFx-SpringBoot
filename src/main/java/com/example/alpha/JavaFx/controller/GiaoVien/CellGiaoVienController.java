@@ -50,7 +50,7 @@ public class CellGiaoVienController implements Initializable {
                 Singleton.getInstant().getCellGiaoVien().getMaLop().set(phanCong.getMaLop());
 
                 FXMLLoader loaderClass = new FXMLLoader();
-                loaderClass.setLocation(getClass().getResource("/com/example/alpha/DiemQuaTrinh/CellClass.fxml"));
+                loaderClass.setLocation(getClass().getResource("/com/example/alpha/fxml/role_admin/DiemQuaTrinh/CellClass.fxml"));
                 AnchorPane anchorPaneClass;
                 try {
                     anchorPaneClass = loaderClass.load();

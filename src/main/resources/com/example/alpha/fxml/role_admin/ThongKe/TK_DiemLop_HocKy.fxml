@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="578.0" prefWidth="1036.0" styleClass="root" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.alpha.JavaFx.controller.ThongKe.TKDiemLopHocKy">
+   <children>
+      <TableView fx:id="TableView_TKDiemLopHK" layoutX="313.0" layoutY="142.0" prefHeight="400.0" prefWidth="411.0" stylesheets="@../../../css/component/Table.css">
+         <columns>
+            <TableColumn fx:id="Colum_MaSV" prefWidth="85.5999755859375" text="MaSV" />
+            <TableColumn fx:id="Colum_TenSV" prefWidth="183.199951171875" text="TenSV" />
+            <TableColumn fx:id="Colum_DiemTK" prefWidth="60.800048828125" text="DiemTK" />
+            <TableColumn fx:id="Column_SoTC" prefWidth="75.0" text="SoTC" />
+         </columns>
+      </TableView>
+      <Label id="label" layoutX="313.0" layoutY="37.0" text="Sĩ số:" />
+      <Label id="label" fx:id="Label_SiSo" layoutX="364.0" layoutY="36.0" prefHeight="27.0" prefWidth="47.0" />
+      <ComboBox fx:id="ComboBox_Lop" layoutX="312.0" layoutY="83.0" prefWidth="150.0" stylesheets="@../../../css/component/ComboBox.css" />
+   </children>
+   <stylesheets>
+      <URL value="@../../../css/role_admin/thong_ke/diem_lop_hocky.css" />
+      <URL value="@../../../css/component/Label.css" />
+   </stylesheets>
+</AnchorPane>

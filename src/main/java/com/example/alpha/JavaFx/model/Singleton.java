@@ -1,7 +1,6 @@
 package com.example.alpha.JavaFx.model;
 
 import com.example.alpha.JavaFx.Student.view.viewDiemSinhVien;
-import com.example.alpha.JavaFx.Teacher.viewTeacher;
 import com.example.alpha.JavaFx.model.Diem.DiemQuaTrinh;
 import com.example.alpha.JavaFx.model.Diem.DiemSinhVien;
 import com.example.alpha.JavaFx.model.Diem.NhapDiemThi;
@@ -23,8 +22,6 @@ public class Singleton {
     private final viewThongKe viewThongKe;
     private final viewDanhGia viewDanhGia;
 
-    private final viewTeacher viewTeacher;
-
     private final viewDiemSinhVien viewDiemSinhVien;
     private final DiemSinnVien diemSinnVienStudent;
 
@@ -40,8 +37,6 @@ public class Singleton {
         this.viewQuanLy = new viewQuanLy();
         this.viewFactory = new viewFactory();
         this.viewThongKe = new viewThongKe();
-
-        this.viewTeacher = new viewTeacher();
 
         this.viewDiemSinhVien = new viewDiemSinhVien();
         this.diemSinnVienStudent = new DiemSinnVien();

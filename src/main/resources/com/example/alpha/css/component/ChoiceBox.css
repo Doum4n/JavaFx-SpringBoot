@@ -1,0 +1,31 @@
+.choice-box{
+    -fx-border-radius: 14;
+    -fx-background-radius: 14;
+    -fx-border-color: #E23E57;
+    -fx-background-color: #522546;
+    -fx-text-fill: white;
+}
+
+.choice-box .open-button .arrow{
+    -fx-background-color: white;
+    -fx-border-color: white;
+}
+
+.choice-box .menu-item:hover{
+    -fx-border-radius: 14;
+    -fx-background-radius: 14;
+    -fx-border-color: #76885B;
+    -fx-background-color: #E23E57;
+    -fx-text-fill: white;
+}
+
+.choice-box .label .text{
+    -fx-fill: white;
+}
+
+.choice-box .label{
+    -fx-background-color: #522546;
+    -fx-border-color: 14;
+    -fx-background-radius: 14;
+    -fx-padding: 4;
+}

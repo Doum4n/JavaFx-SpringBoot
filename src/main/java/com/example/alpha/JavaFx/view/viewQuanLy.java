@@ -7,7 +7,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
 import lombok.Data;
-import lombok.Getter;
 
 @Data
 public class viewQuanLy {
@@ -47,7 +46,7 @@ public class viewQuanLy {
     public AnchorPane getTaiKhoan(){
         try {
             if (TaiKhoan == null) {
-                TaiKhoan = new FXMLLoader(getClass().getResource("/com/example/alpha/QuanLyTaiKhoan/TaiKhoan.fxml")).load();
+                TaiKhoan = new FXMLLoader(getClass().getResource("/com/example/alpha/fxml/role_admin/QuanLyTaiKhoan/TaiKhoan.fxml")).load();
             }
         }catch (Exception e){
             e.printStackTrace();
@@ -58,7 +57,7 @@ public class viewQuanLy {
     public AnchorPane getDiem(){
         try {
             if (Diem == null) {
-                Diem = new FXMLLoader(getClass().getResource("/com/example/alpha/NhapDiemThi/Diem.fxml")).load();
+                Diem = new FXMLLoader(getClass().getResource("/com/example/alpha/fxml/role_admin/NhapDiemThi/Diem.fxml")).load();
             }
         }catch (Exception e){
             e.printStackTrace();
@@ -69,7 +68,7 @@ public class viewQuanLy {
     public AnchorPane getPCChamDiem() {
         try {
             if (scrollPane == null) {
-                scrollPane = new FXMLLoader(getClass().getResource("/com/example/alpha/DiemQuaTrinh/PhanCongChamDiem.fxml")).load();
+                scrollPane = new FXMLLoader(getClass().getResource("/com/example/alpha/fxml/role_admin/DiemQuaTrinh/PhanCongChamDiem.fxml")).load();
             }
         }catch (Exception e){
             e.printStackTrace();
@@ -80,7 +79,7 @@ public class viewQuanLy {
     public TableView<NguoidungEntity> getTbView_TaiKhoan() {
         try {
             if (tbView_TaiKhoan == null) {
-                tbView_TaiKhoan = new FXMLLoader(getClass().getResource("/com/example/alpha/QuanLyTaiKhoan/TableView_TaiKhoan.fxml")).load();
+                tbView_TaiKhoan = new FXMLLoader(getClass().getResource("/com/example/alpha/fxml/role_admin/QuanLyTaiKhoan/TableView_TaiKhoan.fxml")).load();
             }
         }catch (Exception e){
             e.printStackTrace();

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="578.0" prefWidth="1036.0" styleClass="root" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.alpha.JavaFx.controller.DanhGia.DSHocBongController">
+   <children>
+      <TableView fx:id="TableView_DS" layoutX="465.0" layoutY="113.0" prefHeight="400.0" prefWidth="448.0">
+        <columns>
+          <TableColumn fx:id="Column_MaSV" prefWidth="81.60003662109375" text="MaSV" />
+            <TableColumn fx:id="Column_Ten" prefWidth="184.79998779296875" text="TenSV" />
+            <TableColumn fx:id="Column_DiemTK" prefWidth="76.00006103515625" text="DiemTK" />
+            <TableColumn fx:id="Column_DiemRL" prefWidth="99.99990844726562" text="DiemRL" />
+        </columns>
+      </TableView>
+      <ComboBox fx:id="ComboBox_Lop" layoutX="128.0" layoutY="66.0" prefWidth="150.0" stylesheets="@../../../css/component/ComboBox.css" />
+      <Pane layoutX="128.0" layoutY="113.0" prefHeight="279.0" prefWidth="200.0">
+         <children>
+            <fx:include source="DSTop10percent.fxml" />
+         </children>
+      </Pane>
+   </children>
+   <stylesheets>
+      <URL value="@../../../css/role_admin/thong_ke/diem_lop_hocky.css" />
+      <URL value="@../../../css/component/Table.css" />
+   </stylesheets>
+</AnchorPane>

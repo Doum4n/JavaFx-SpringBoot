@@ -10,7 +10,7 @@ public class viewDiemSinhVien {
     public TableView<DiemEntity> getTableViewDiemSV() {
         try {
             if (TableViewDiemSV == null) {
-                TableViewDiemSV = new FXMLLoader(getClass().getResource("/com/example/alpha/ThongKe/DiemSV.fxml")).load();
+                TableViewDiemSV = new FXMLLoader(getClass().getResource("/com/example/alpha/fxml/role_admin/ThongKe/DiemSV.fxml")).load();
             }
         }catch (Exception e){
             e.printStackTrace();
