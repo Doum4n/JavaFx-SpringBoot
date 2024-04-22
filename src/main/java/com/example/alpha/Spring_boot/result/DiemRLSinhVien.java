@@ -18,11 +18,6 @@ public class DiemRLSinhVien {
     @Column(name = "DiemRL")
     private int DiemRL;
 
-//    @Id
-//    @Basic
-//    @Column(name = "MaDRL")
-//    private String MaRL;
-
     @Id
     @Column(name = "MaHocKy")
     private String MaHocKy;

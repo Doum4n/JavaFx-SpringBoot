@@ -61,6 +61,9 @@ public class TeacherController implements Initializable, setTable {
     @FXML
     private TextField textField_DiemQT;
 
+    @FXML
+    private Button Button_edit;
+
     String id = Singleton.getInstant().getViewFactory().getUsername().get();
     String hocky = Singleton.getInstant().getViewFactory().getHocky().get();
     String namhoc = Singleton.getInstant().getViewFactory().getNamHoc().get();
@@ -94,6 +97,10 @@ public class TeacherController implements Initializable, setTable {
         button_logOut.setOnAction(event -> {
             Singleton.getInstant().getViewFactory().showLoginWindow();
         });
+
+        Button_edit.setOnAction(event -> {
+            Singleton.getInstant().getViewFactory().showChangePasswordWindow();
+        });
     }
 
     @Override
@@ -114,15 +121,18 @@ public class TeacherController implements Initializable, setTable {
 
     @Override
     public void addListenerTableView() {
+//        TableView_DiemQT.setSelectionModel(TableView_DiemQT.getSelectionModel());
         TableView_DiemQT.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-            TableView_DiemQT.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-                if(TableView_DiemQT.getSelectionModel().getSelectedIndex()  > -1) {
-                    KqSinhVienMonhocEntity diemQT = filteredList.get(TableView_DiemQT.getSelectionModel().getSelectedIndex());
-                    Label_MaSV.setText(diemQT.getMaSinhVien());
-                    Label_TenSV.setText(SinhVien.getRepository().getByHoTen(diemQT.getMaSinhVien()));
-                    textField_DiemQT.setText(KqMonHoc_SV.getRepository().getDiemQT(diemQT.getMaSinhVien(), diemQT.getMaMonHoc()).toString());
-                }
-            });
+            if(event.getClickCount() == 1) {
+//                TableView_DiemQT.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+                    if(TableView_DiemQT.getSelectionModel().getSelectedIndex()  > -1) {
+                        KqSinhVienMonhocEntity diemQT = filteredList.get(TableView_DiemQT.getSelectionModel().getSelectedIndex());
+                        Label_MaSV.setText(diemQT.getMaSinhVien());
+                        Label_TenSV.setText(SinhVien.getRepository().getByHoTen(diemQT.getMaSinhVien()));
+                        textField_DiemQT.setText(KqMonHoc_SV.getRepository().getDiemQT(diemQT.getMaSinhVien(), diemQT.getMaMonHoc()).toString());
+                    }
+//                });
+            }
         });
     }
 

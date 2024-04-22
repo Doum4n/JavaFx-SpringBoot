@@ -144,13 +144,15 @@ public class DiemQTController implements Initializable, setTable {
     public void addListenerTableView() {
         TableView_Diem.setSelectionModel(TableView_Diem.getSelectionModel());
         TableView_Diem.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-            TableView_Diem.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-                if(TableView_Diem.getSelectionModel().getSelectedIndex()  > -1) {
+            if(event.getClickCount() == 1) {
+//            TableView_Diem.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+                if (TableView_Diem.getSelectionModel().getSelectedIndex() > -1) {
                     KqSVMonHoc diemQT = filteredList.get(TableView_Diem.getSelectionModel().getSelectedIndex());
                     Singleton.getInstant().getDiemQuaTrinh().getDiem().set(String.valueOf(diemQT.diemQT()));
                     Singleton.getInstant().getDiemQuaTrinh().getMaSV().set(diemQT.MaSinhVien());
                 }
-            });
+//            });
+            }
         });
     }
 

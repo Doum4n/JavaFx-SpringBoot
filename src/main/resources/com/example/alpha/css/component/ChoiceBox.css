@@ -25,7 +25,6 @@
 
 .choice-box .label{
     -fx-background-color: #522546;
-    -fx-border-color: 14;
     -fx-background-radius: 14;
     -fx-padding: 4;
 }

@@ -1,6 +1,8 @@
 package com.example.alpha.JavaFx.controller.Menu;
 
 import com.example.alpha.JavaFx.controller.TaiKhoan.AccountType;
+import com.example.alpha.JavaFx.model.LoaiNguoiDung;
+import com.example.alpha.JavaFx.model.NguoiDung;
 import com.example.alpha.JavaFx.model.Singleton;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -53,9 +55,6 @@ public class LoginController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        Textfield_username.textProperty().addListener((observable, oldValue, newValue) -> {
-            System.out.println(newValue);
-        });
         ChoiceBox.setItems(FXCollections.observableArrayList(AccountType.Admin,AccountType.Teacher,AccountType.Student));
         ChoiceBox.setValue(Singleton.getInstant().getViewFactory().getType());
         ChoiceBox.valueProperty().addListener(observable -> Singleton.getInstant().getViewFactory().setType(ChoiceBox.getValue()));
@@ -68,10 +67,18 @@ public class LoginController implements Initializable {
         if(Singleton.getInstant().getViewFactory().getType() == AccountType.Admin){
             Singleton.getInstant().getViewFactory().showWorkPlaceWindow();
         }else if(Singleton.getInstant().getViewFactory().getType() == AccountType.Student){
-            Singleton.getInstant().getViewFactory().showStudentWindow();
+            if(isValidAccount(Textfield_username.getText(),Textfield_password.getText(), LoaiNguoiDung.getRepository().getMaLoai(Singleton.getInstant().getViewFactory().getType().name())))
+                Singleton.getInstant().getViewFactory().showStudentWindow();
         }else {
-            Singleton.getInstant().getViewFactory().showTeacherWindow();
+            if(isValidAccount(Textfield_username.getText(),Textfield_password.getText(), LoaiNguoiDung.getRepository().getMaLoai(Singleton.getInstant().getViewFactory().getType().name())))
+                Singleton.getInstant().getViewFactory().showTeacherWindow();
         }
+    }
+
+    private boolean isValidAccount(String username, String password, String AccountType){
+        System.out.println(AccountType);
+        return username.equals(NguoiDung.getRepository().getUsername(username)) &&
+                password.equals(NguoiDung.getRepository().getPassword(username ,password, AccountType)) ;
     }
 }
 

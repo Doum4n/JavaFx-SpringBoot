@@ -9,6 +9,7 @@ import lombok.Data;
 public class NguoidungEntity {
     @Id
     @Column(name = "MaNguoiDung")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String maNguoiDung;
 
     @Basic
@@ -16,11 +17,7 @@ public class NguoidungEntity {
     private String maLoai;
 
     @Basic
-    @Column(name = "TenNguoiDung")
-    private String tenNguoiDung;
-
-    @Basic
-    @Column(name = "TenDangNhap")
+    @Column(name = "TenDangNhap") //MaSV || MaGV
     private String tenDangNhap;
 
     @Basic

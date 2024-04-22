@@ -12,12 +12,12 @@
    <left>
       <AnchorPane id="pane" prefHeight="574.0" prefWidth="191.0" stylesheets="@../../css/role_student/StudentView.css" BorderPane.alignment="CENTER">
          <children>
-            <Label id="label" layoutX="15.0" layoutY="22.0" text="MSSV:" />
-            <Label id="label" layoutX="14.0" layoutY="53.0" text="Lớp" />
-            <Label id="label" layoutX="14.0" layoutY="86.0" text="Tên:" />
-            <Label id="label" fx:id="Label_MaSV" layoutX="60.0" layoutY="22.0" prefHeight="26.0" prefWidth="56.0" text="Label" />
-            <Label id="label" fx:id="Label_Lop" layoutX="46.0" layoutY="52.0" prefHeight="26.0" prefWidth="48.0" text="Label" />
-            <Label id="label" fx:id="Label_TenSV" layoutX="46.0" layoutY="85.0" prefHeight="26.0" prefWidth="49.0" text="Label" />
+            <Label id="label" layoutX="17.0" layoutY="22.0" text="MSSV:" />
+            <Label id="label" layoutX="17.0" layoutY="64.0" text="Lớp" />
+            <Label id="label" layoutX="18.0" layoutY="107.0" text="Tên:" />
+            <Label id="label" fx:id="Label_MaSV" layoutX="62.0" layoutY="22.0" prefHeight="26.0" prefWidth="56.0" text="Label" />
+            <Label id="label" fx:id="Label_Lop" layoutX="49.0" layoutY="63.0" prefHeight="26.0" prefWidth="48.0" text="Label" />
+            <Label id="label" fx:id="Label_TenSV" layoutX="50.0" layoutY="106.0" prefHeight="26.0" prefWidth="49.0" text="Label" />
             <Button fx:id="Button_logOut" layoutX="49.0" layoutY="504.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="93.0" text="Đăng xuất" />
          </children>
       </AnchorPane>

@@ -125,6 +125,19 @@ public class viewFactory {
         stage.show();
     }
 
+    public void showChangePasswordWindow(){
+        FXMLLoader loader = new FXMLLoader((Objects.requireNonNull(LoginController.class.getResource("/com/example/alpha/fxml/ChangePassword.fxml"))));
+        Scene scene = null;
+        try{
+            scene = new Scene(loader.load());
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.show();
+    }
+
     public void showStudentWindow(){
         FXMLLoader loader = new FXMLLoader((Objects.requireNonNull(LoginController.class.getResource("/com/example/alpha/fxml/SinhVienRole/Student.fxml"))));
         Scene scene = null;
