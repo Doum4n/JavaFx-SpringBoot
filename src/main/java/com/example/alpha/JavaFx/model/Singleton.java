@@ -25,6 +25,8 @@ public class Singleton {
     private final viewDiemSinhVien viewDiemSinhVien;
     private final DiemSinnVien diemSinnVienStudent;
 
+    private final QuanLyTaiKhoan quanLyTaiKhoan;
+
     private final ThongKe thongKe;
     private final CellGiaoVien cellGiaoVien;
     private final NhapDiemThi nhapDiemThi;
@@ -37,6 +39,8 @@ public class Singleton {
         this.viewQuanLy = new viewQuanLy();
         this.viewFactory = new viewFactory();
         this.viewThongKe = new viewThongKe();
+
+        this.quanLyTaiKhoan = new QuanLyTaiKhoan();
 
         this.viewDiemSinhVien = new viewDiemSinhVien();
         this.diemSinnVienStudent = new DiemSinnVien();

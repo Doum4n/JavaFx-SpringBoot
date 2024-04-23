@@ -1,15 +1,14 @@
 package com.example.alpha.JavaFx.controller.TaiKhoan;
 
+import com.example.alpha.JavaFx.model.LoaiNguoiDung;
+import com.example.alpha.JavaFx.model.NguoiDung;
 import com.example.alpha.JavaFx.model.Singleton;
 import com.example.alpha.Spring_boot.user.NguoidungEntity;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import org.springframework.stereotype.Controller;
 
 import java.net.URL;
@@ -24,44 +23,37 @@ public class TaiKhoanController implements Initializable{
     private Tab Tab_SV;
     @FXML
     private TabPane Tabpane_TaiKhoan;
-    @FXML
-    private TableView<NguoidungEntity> TableView_TaiKhoan;
 
     @FXML
-    private TableView<?> TableView_TaiKhoan1;
+    private Button button_delete;
 
     @FXML
-    private TableColumn<?, ?> column_MaTK;
+    private Button button_update;
 
     @FXML
-    private TableColumn<?, ?> column_MaTK1;
+    private TextField TextFiled_Password;
 
     @FXML
-    private TableColumn<?, ?> column_Password;
-
-    @FXML
-    private TableColumn<?, ?> column_TenNguoiDung;
-
-    @FXML
-    private TableColumn<?, ?> column_Password1;
-
-    @FXML
-    private TableColumn<?, ?> column_TenTK;
-
-    @FXML
-    private TableColumn<?, ?> column_TenTK1;
-
-    private StringProperty Tab_selected = new SimpleStringProperty();
+    private Label Label_Username;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        System.out.println(Tabpane_TaiKhoan.getTabs().get(0).getContent());
         Tabpane_TaiKhoan.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if(newValue.getText().equals("Sinh viên")){
                 Singleton.getInstant().getViewQuanLy().getTab_selected().set("Sinh viên");
             }else {
                 Singleton.getInstant().getViewQuanLy().getTab_selected().set("Giáo viên");
             }
+        });
+
+        TextFiled_Password.textProperty().bindBidirectional(Singleton.getInstant().getQuanLyTaiKhoan().getPassword());
+        Label_Username.textProperty().bind(Singleton.getInstant().getQuanLyTaiKhoan().getUsername());
+
+        button_update.setOnAction(event -> {
+            NguoiDung.getRepository().updatePassword(Label_Username.getText(),
+                    TextFiled_Password.getText(),
+                    Singleton.getInstant().getQuanLyTaiKhoan().getAccountType().get()
+            );
         });
     }
 }

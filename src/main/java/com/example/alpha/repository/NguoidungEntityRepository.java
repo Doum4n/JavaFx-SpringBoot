@@ -23,6 +23,6 @@ public interface NguoidungEntityRepository extends JpaRepository<NguoidungEntity
 
     @Transactional
     @Modifying
-    @Query("update NguoidungEntity a set a.matKhau=?3 where a.tenDangNhap=?1 and a.matKhau=?2 and a.maLoai=?4")
-    void updatePassword(String username, String oldPassword, String newPassword, String AccountType);
+    @Query("update NguoidungEntity a set a.matKhau=?2 where a.tenDangNhap=?1 and a.maLoai=?3")
+    void updatePassword(String username, String newPassword, String AccountType);
 }

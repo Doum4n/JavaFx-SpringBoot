@@ -3,13 +3,20 @@ package com.example.alpha.JavaFx.controller.TaiKhoan;
 import com.example.alpha.JavaFx.controller.setTable;
 import com.example.alpha.JavaFx.model.Singleton;
 import com.example.alpha.JavaFx.model.TaiKhoan;
+import com.example.alpha.Spring_boot.subject.DiemEntity;
 import com.example.alpha.Spring_boot.user.NguoidungEntity;
+import javafx.beans.binding.Bindings;
+import javafx.beans.property.ListProperty;
+import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
+import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import lombok.Getter;
 import org.springframework.stereotype.Controller;
 
@@ -25,13 +32,7 @@ public class TableView_TaiKhoan implements Initializable, setTable {
     private TableView<NguoidungEntity> TableView_TaiKhoan;
 
     @FXML
-    private TableColumn<?, ?> column_MaTK;
-
-    @FXML
     private TableColumn<?, ?> column_Password;
-
-    @FXML
-    private TableColumn<?, ?> column_TenNguoiDung;
 
     @FXML
     private TableColumn<?, ?> column_TenTK;
@@ -46,19 +47,27 @@ public class TableView_TaiKhoan implements Initializable, setTable {
     public void setTableView() {
         setCellColumn();
         list = TaiKhoan.getRepository().findAll();
+        TableView_TaiKhoan.setItems(FXCollections.observableList(list));
     }
 
     @Override
     public void setCellColumn() {
-        column_MaTK.setCellValueFactory(new PropertyValueFactory<>("MaNguoiDung"));
         column_TenTK.setCellValueFactory(new PropertyValueFactory<>("TenDangNhap"));
-        column_TenNguoiDung.setCellValueFactory(new PropertyValueFactory<>("TenNguoiDung"));
         column_Password.setCellValueFactory(new PropertyValueFactory<>("MatKhau"));
     }
 
     @Override
     public void addListenerTableView() {
-
+        TableView_TaiKhoan.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+            if (event.getClickCount() == 1) {
+                int index = TableView_TaiKhoan.getSelectionModel().getSelectedIndex();
+                NguoidungEntity user = list.get(index);
+                System.out.println(user);
+                Singleton.getInstant().getQuanLyTaiKhoan().getUsername().set(user.getTenDangNhap());
+                Singleton.getInstant().getQuanLyTaiKhoan().getPassword().set(user.getMatKhau());
+                Singleton.getInstant().getQuanLyTaiKhoan().getAccountType().set(user.getMaLoai());
+            }
+        });
     }
 
     @Override
@@ -69,6 +78,7 @@ public class TableView_TaiKhoan implements Initializable, setTable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setTableView();
+        addListenerTableView();
         list = TaiKhoan.getRepository().findAll();
         list.forEach(user -> {
             if(Objects.equals(user.getMaLoai(), "3")){

@@ -1,0 +1,13 @@
+#pane{
+    -fx-background-color: #311D3F;
+    -fx-border-color: #E23E57;
+    -fx-border-width: 2;
+}
+
+/*.tab-pane .tab-header-area .headers-region.tad:selected:top .tab-container .tab-label{*/
+/*    background-color: #88304E;*/
+/*}*/
+
+.tab-pane /*.tab-header-area .headers-region.tad:selected:top{*/{
+    background-color: #88304E;
+}

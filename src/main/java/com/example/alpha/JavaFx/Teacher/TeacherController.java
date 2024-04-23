@@ -17,6 +17,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Region;
 
 import java.lang.reflect.Field;
 import java.net.URL;
@@ -101,6 +102,11 @@ public class TeacherController implements Initializable, setTable {
         Button_edit.setOnAction(event -> {
             Singleton.getInstant().getViewFactory().showChangePasswordWindow();
         });
+
+        Label_TenSV.setPrefHeight(Region.USE_COMPUTED_SIZE);
+        Label_MaSV.setPrefHeight(Region.USE_COMPUTED_SIZE);
+        Label_MaGV.setPrefHeight(Region.USE_COMPUTED_SIZE);
+        Label_TenSV.setPrefHeight(Region.USE_COMPUTED_SIZE);
     }
 
     @Override

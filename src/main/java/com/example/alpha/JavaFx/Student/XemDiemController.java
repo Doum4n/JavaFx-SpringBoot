@@ -24,9 +24,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class XemDiemController implements Initializable {
 
     @FXML
-    private Button Button_profile;
-
-    @FXML
     private VBox VBox_Diem;
     @FXML
     private AnchorPane AnchorPane_main;
@@ -45,6 +42,13 @@ public class XemDiemController implements Initializable {
 
     @FXML
     private Button Button_logOut;
+
+    @FXML
+    private Button button_edit;
+
+    @FXML
+    private AnchorPane BorderPane_left;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -88,9 +92,14 @@ public class XemDiemController implements Initializable {
         Label_MaSV.setPrefWidth(Region.USE_COMPUTED_SIZE);
         Label_Lop.setPrefWidth(Region.USE_COMPUTED_SIZE);
         Label_TenSV.setPrefWidth(Region.USE_COMPUTED_SIZE);
+        BorderPane_left.setPrefWidth(Region.USE_COMPUTED_SIZE);
 
         Button_logOut.setOnAction(event -> {
             Singleton.getInstant().getViewFactory().showLoginWindow();
+        });
+
+        button_edit.setOnAction(event -> {
+            Singleton.getInstant().getViewFactory().showChangePasswordWindow();
         });
     }
 }

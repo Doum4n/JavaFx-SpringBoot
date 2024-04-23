@@ -32,7 +32,6 @@ public class ChangePasswordController implements Initializable {
             if(isValidPassword(Singleton.getInstant().getViewFactory().getUsername().get(), TextFiled_oldPassord.getText(), LoaiNguoiDung.getRepository().getMaLoai(Singleton.getInstant().getViewFactory().getType().name())))
                 NguoiDung.getRepository().updatePassword(
                         Singleton.getInstant().getViewFactory().getUsername().get(),
-                        NguoiDung.getRepository().getPassword(Singleton.getInstant().getViewFactory().getUsername().get() , TextFiled_oldPassord.getText(), LoaiNguoiDung.getRepository().getMaLoai(Singleton.getInstant().getViewFactory().getType().name())),
                         TextFiled_newPassord.getText(),
                         LoaiNguoiDung.getRepository().getMaLoai(Singleton.getInstant().getViewFactory().getType().name())
                 );
