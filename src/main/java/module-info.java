@@ -29,7 +29,6 @@ module com.example.alpha {
     opens com.example.alpha.JavaFx.model.Diem;
     opens com.example.alpha.JavaFx.model.GiaoVien;
     opens com.example.alpha.JavaFx.model.SinhVien;
-    opens com.example.alpha.JavaFx.controller.MonHoc;
     opens com.example.alpha.JavaFx.controller.DanhGia;
 
     opens com.example.alpha.JavaFx.Teacher;
@@ -49,9 +48,9 @@ module com.example.alpha {
     exports com.example.alpha.repository;
     exports com.example.alpha.Spring_boot.class_grade;
     exports com.example.alpha.JavaFx.model;
-    opens com.example.alpha.JavaFx.controller.Diem;
+    opens com.example.alpha.JavaFx.controller.DiemSinhVien;
     opens com.example.alpha.JavaFx.controller.SinhVien;
-    opens com.example.alpha.JavaFx.controller.GiaoVien;
+    opens com.example.alpha.JavaFx.controller.DiemQuaTrinh;
     opens com.example.alpha.JavaFx.controller.TaiKhoan;
     opens com.example.alpha.JavaFx.controller.Menu;
     opens com.example.alpha.JavaFx.controller.ThongKe;
@@ -65,4 +64,7 @@ module com.example.alpha {
 
     exports com.example.alpha.JavaFx.Teacher;
     exports com.example.alpha.JavaFx.Student;
+    opens com.example.alpha.JavaFx.controller.DiemThi;
+    opens com.example.alpha.JavaFx.controller.DiemQuaTrinh.info;
+    exports com.example.alpha.JavaFx.controller.DiemSinhVien;
 }

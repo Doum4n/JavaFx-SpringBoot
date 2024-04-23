@@ -1,5 +1,6 @@
-package com.example.alpha.JavaFx.controller.Diem;
+package com.example.alpha.JavaFx.controller.DiemSinhVien;
 
+import com.example.alpha.JavaFx.controller.DiemQuaTrinh.DiemQTController;
 import com.example.alpha.JavaFx.controller.TaiKhoan.AccountType;
 import com.example.alpha.JavaFx.controller.setTable;
 import com.example.alpha.JavaFx.model.Diem.Diem;
@@ -19,7 +20,6 @@ import javafx.scene.control.TableView;
 import org.springframework.stereotype.Controller;
 
 import java.net.URL;
-import java.security.Signature;
 import java.util.*;
 
 @Controller

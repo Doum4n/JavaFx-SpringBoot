@@ -1,4 +1,4 @@
-package com.example.alpha.JavaFx.controller.GiaoVien;
+package com.example.alpha.JavaFx.controller.DiemQuaTrinh;
 
 import com.example.alpha.JavaFx.model.Singleton;
 import javafx.fxml.FXML;
@@ -23,7 +23,7 @@ public class CellClassController implements Initializable {
         Label_Lop.setText(Singleton.getInstant().getCellGiaoVien().getMaLop().get());
         buttonn_Xem.setOnAction(event -> {
 
-            Label MaMH = (Label) buttonn_Xem.getParent().getParent().getParent().lookup("#Label_MaMH");
+            Label MaMH = (Label) buttonn_Xem.getParent().getParent().getParent().getParent().getParent().lookup("#Label_MaMH");
             Singleton.getInstant().getDiemQuaTrinh().getMaMHSelected().set(MaMH.getText());
 
             Singleton.getInstant().getDiemQuaTrinh().getLopSelected().set(Label_Lop.getText());

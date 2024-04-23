@@ -2,6 +2,7 @@ package com.example.alpha;
 
 import com.example.alpha.JavaFx.model.Singleton;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.stage.Stage;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -27,6 +28,7 @@ public class Main extends Application {
     @Override
     public void stop(){
         applicationContext.stop();
+        Platform.exit();
     }
 
     public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package com.example.alpha.JavaFx.model.SinhVien;
+package com.example.alpha.JavaFx.controller.DiemSinhVien;
 
 import com.example.alpha.JavaFx.model.Singleton;
 import javafx.scene.control.*;
@@ -13,10 +13,6 @@ public class ButtonCellSV {
         this.button = new Button("Xem");
         button.setOnAction(event -> {
             TableCell tableCell = (TableCell) button.getParent().getParent().lookup("#Column_MaSV");
-            System.out.println(button.getParent().getParent().lookup("#Column_MaSV"));
-            System.out.println(button.getParent().getParent());
-            System.out.println(button.getParent());
-            System.out.println(button);
             Singleton.getInstant().getDiemSinhVien().getSvSelected().set(tableCell.getItem().toString());
         });
     }

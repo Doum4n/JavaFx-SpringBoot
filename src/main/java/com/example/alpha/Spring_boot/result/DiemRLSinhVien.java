@@ -30,10 +30,6 @@ public class DiemRLSinhVien {
     @JoinColumn(name = "MaSinhVien", insertable = false, updatable = false)
     private SinhVienEntity sinhVienEntity;
 
-//    @OneToOne
-//    @JoinColumn(name = "MaDRL", insertable = false, updatable = false)
-//    private DiemRenLuyenEntity diemRenLuyenEntity;
-
     @OneToOne
     @JoinColumn(name = "MaHocKy",insertable = false, updatable = false)
     private HockyEntity hockyEntity;

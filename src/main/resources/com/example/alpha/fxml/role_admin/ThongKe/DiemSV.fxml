@@ -3,7 +3,7 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 
-<TableView fx:id="TableView_DiemSV" prefHeight="226.0" prefWidth="726.0" style="-fx-background-color: DDDDDD;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.alpha.JavaFx.controller.Diem.DiemSVController">
+<TableView fx:id="TableView_DiemSV" prefHeight="226.0" prefWidth="726.0" style="-fx-background-color: DDDDDD;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.alpha.JavaFx.controller.DiemSinhVien.DiemSVController">
    <columns>
       <TableColumn fx:id="Column_MaMH" prefWidth="65.0" text="MaMH" />
       <TableColumn fx:id="Column_TenMH" prefWidth="200.0" text="TenMH" />

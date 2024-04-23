@@ -1,4 +1,4 @@
-package com.example.alpha.JavaFx.controller.GiaoVien;
+package com.example.alpha.JavaFx.controller.DiemQuaTrinh;
 
 import com.example.alpha.JavaFx.model.GiaoVien.GiaoVien;
 import com.example.alpha.Spring_boot.class_grade.GiaovienEntity;

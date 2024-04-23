@@ -1,9 +1,7 @@
 package com.example.alpha.JavaFx.model.Diem;
 
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.property.*;
+import javafx.scene.layout.Pane;
 import lombok.Getter;
 
 @Getter
@@ -14,7 +12,9 @@ public class DiemQuaTrinh {
     private final StringProperty LopSelected;
     private final StringProperty MaGVSelected;
     private final StringProperty MaMHSelected;
-    private final StringProperty Search;
+    private final StringProperty Search_SV;
+    private final StringProperty Search_GV;
+    private final StringProperty pane;
 
     public DiemQuaTrinh(){
         this.Diem = new SimpleStringProperty();
@@ -23,6 +23,8 @@ public class DiemQuaTrinh {
         this.LopSelected = new SimpleStringProperty();
         this.MaGVSelected = new SimpleStringProperty();
         this.MaMHSelected = new SimpleStringProperty();
-        this.Search = new SimpleStringProperty();
+        this.Search_SV = new SimpleStringProperty();
+        this.Search_GV = new SimpleStringProperty();
+        this.pane = new SimpleStringProperty();
     }
 }

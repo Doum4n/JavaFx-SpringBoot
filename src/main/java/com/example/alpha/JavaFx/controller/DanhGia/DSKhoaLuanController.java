@@ -78,7 +78,6 @@ public class DSKhoaLuanController implements Initializable, setTable {
     public void setTableView() {
         setCellColumn();
         filteredList = new FilteredList<>(FXCollections.observableArrayList(DiemSV_CaNam.getRepository().findAll()));
-        System.out.println(filteredList);
         Table_DSKhoaLuan.setItems(filteredList);
     }
 

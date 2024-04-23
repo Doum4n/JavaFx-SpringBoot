@@ -1,4 +1,4 @@
-package com.example.alpha.JavaFx.controller.MonHoc;
+package com.example.alpha.JavaFx.controller.DiemQuaTrinh.info;
 
 import com.example.alpha.JavaFx.model.Singleton;
 import com.example.alpha.JavaFx.model.MonHoc.MonHoc;

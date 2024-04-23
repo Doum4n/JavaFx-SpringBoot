@@ -1,4 +1,4 @@
-package com.example.alpha.JavaFx.controller.Diem;
+package com.example.alpha.JavaFx.controller.DiemQuaTrinh;
 
 import com.example.alpha.JavaFx.controller.setTable;
 import com.example.alpha.JavaFx.model.Singleton;
@@ -159,7 +159,7 @@ public class DiemQTController implements Initializable, setTable {
     @Override
     public void addListenerSearch() {
         //Tìm kiếm gián tiếp thông qua StringProperty Search của DiemQuaTrinh
-        Singleton.getInstant().getDiemQuaTrinh().getSearch().addListener((observable, oldValue, newValue) -> {
+        Singleton.getInstant().getDiemQuaTrinh().getSearch_SV().addListener((observable, oldValue, newValue) -> {
             if(!newValue.isBlank()) {
                 filteredList.setPredicate(diemQTEntity -> diemQTEntity.MaMonHoc().equals(Singleton.getInstant().getDiemQuaTrinh().getMaMHSelected().get()) &&
                         diemQTEntity.MaSinhVien().contains(newValue) &&

@@ -1,6 +1,6 @@
 package com.example.alpha.JavaFx.controller.ThongKe;
 
-import com.example.alpha.JavaFx.controller.Diem.DiemQTController;
+import com.example.alpha.JavaFx.controller.DiemQuaTrinh.DiemQTController;
 import com.example.alpha.JavaFx.controller.setTable;
 import com.example.alpha.JavaFx.model.Lop;
 import com.example.alpha.JavaFx.model.Singleton;

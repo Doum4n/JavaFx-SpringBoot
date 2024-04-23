@@ -3,7 +3,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.Pane?>
 
-<Pane prefHeight="166.0" prefWidth="248.0" styleClass="pane" stylesheets="@../../../css/component/pane.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.alpha.JavaFx.controller.GiaoVien.GiaoVienInforController">
+<Pane prefHeight="166.0" prefWidth="248.0" styleClass="pane" stylesheets="@../../../css/component/pane.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.alpha.JavaFx.controller.DiemQuaTrinh.info.GiaoVienInforController">
    <children>
       <Label fx:id="Label_MaGV" layoutX="125.0" layoutY="24.0" prefHeight="25.0" prefWidth="81.0" textFill="WHITE" />
       <Label fx:id="Label_TenGV" layoutX="125.0" layoutY="55.0" prefHeight="25.0" prefWidth="97.0" textFill="WHITE" />

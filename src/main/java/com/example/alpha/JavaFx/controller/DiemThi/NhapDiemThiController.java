@@ -1,5 +1,6 @@
-package com.example.alpha.JavaFx.controller.Diem;
+package com.example.alpha.JavaFx.controller.DiemThi;
 
+import com.example.alpha.JavaFx.controller.DiemQuaTrinh.DiemQTController;
 import com.example.alpha.JavaFx.controller.setTable;
 import com.example.alpha.JavaFx.model.*;
 import com.example.alpha.JavaFx.model.Diem.Diem;

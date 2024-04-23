@@ -22,7 +22,7 @@ public class viewQuanLy {
     private final ObjectProperty<QuanLy> quanLyProperty;
 
     private StringProperty Tab_selected;
-    private IntegerProperty SlMH;
+
 
     private StringProperty Id;
     private StringProperty MaMH;
@@ -35,7 +35,6 @@ public class viewQuanLy {
     public viewQuanLy() {
         this.quanLyProperty = new SimpleObjectProperty<>();
         this.Tab_selected = new SimpleStringProperty();
-        this.SlMH = new SimpleIntegerProperty(1);
         this.Id = new SimpleStringProperty();
         this.MaMH = new SimpleStringProperty();
 
@@ -68,7 +67,7 @@ public class viewQuanLy {
     public AnchorPane getPCChamDiem() {
         try {
             if (scrollPane == null) {
-                scrollPane = new FXMLLoader(getClass().getResource("/com/example/alpha/fxml/role_admin/DiemQuaTrinh/PhanCongChamDiem.fxml")).load();
+                scrollPane = new FXMLLoader(getClass().getResource("/com/example/alpha/fxml/role_admin/DiemQuaTrinh/QLDiemQuaTrinh.fxml")).load();
             }
         }catch (Exception e){
             e.printStackTrace();

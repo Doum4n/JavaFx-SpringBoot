@@ -1,4 +1,4 @@
-package com.example.alpha.JavaFx.controller.Diem;
+package com.example.alpha.JavaFx.controller.DiemThi;
 
 import com.example.alpha.JavaFx.model.MonHoc.ButtonCellMH;
 import com.example.alpha.JavaFx.controller.setTable;

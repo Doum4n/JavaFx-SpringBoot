@@ -1,4 +1,4 @@
-package com.example.alpha.JavaFx.controller.GiaoVien;
+package com.example.alpha.JavaFx.controller.DiemQuaTrinh;
 
 import com.example.alpha.JavaFx.model.Singleton;
 import com.example.alpha.JavaFx.model.GiaoVien.PhanCong;
@@ -21,9 +21,6 @@ public class CellGiaoVienController implements Initializable {
     private Label Label_MaGV;
 
     @FXML
-    private Label Label_MaMH;
-
-    @FXML
     private Label Label_tenGV;
 
     @FXML
@@ -34,7 +31,6 @@ public class CellGiaoVienController implements Initializable {
         List<PhancongEntity> phancongEntities = PhanCong.getRepository().findAll();
         Label_MaGV.setText(Singleton.getInstant().getCellGiaoVien().getMaGV().get());
         Label_tenGV.setText(Singleton.getInstant().getCellGiaoVien().getTenGV().get());
-        Label_MaMH.setText(Singleton.getInstant().getCellGiaoVien().getMaMH().get());
 
         //lưu MaGV, MaMH để tìm kiếm
         Singleton.getInstant().getViewQuanLy().getId().set(Singleton.getInstant().getCellGiaoVien().getMaGV().get());
@@ -45,8 +41,11 @@ public class CellGiaoVienController implements Initializable {
         // Tải CellClass.fxml cho mỗi PhanCong khớp
         for (PhancongEntity phanCong : phancongEntities) {
             if (Objects.equals(phanCong.getMaGiaoVien(), Singleton.getInstant().getCellGiaoVien().getMaGV().get())
+                    && Objects.equals(phanCong.getMaMonHoc(), Singleton.getInstant().getCellGiaoVien().getMaMH().get())
                     && Objects.equals(phanCong.getMaNamHoc(), Singleton.getInstant().getViewFactory().getNamHoc().get())
-                    && Objects.equals(phanCong.getMaHocKy(), Singleton.getInstant().getViewFactory().getHocky().get())) {
+                    && Objects.equals(phanCong.getMaHocKy(), Singleton.getInstant().getViewFactory().getHocky().get()))
+            {
+
                 Singleton.getInstant().getCellGiaoVien().getMaLop().set(phanCong.getMaLop());
 
                 FXMLLoader loaderClass = new FXMLLoader();
@@ -57,16 +56,17 @@ public class CellGiaoVienController implements Initializable {
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
+
                 VBox_LopHoc.getChildren().add(anchorPaneClass);
 
-                SL.put(Singleton.getInstant().getCellGiaoVien().getMaGV().get(),++i);
+                SL.put(Singleton.getInstant().getCellGiaoVien().getMaMH().get(),++i);
             }
         }
 
         //Lấy số lần xuất hiện của MaGV trong bảng phân công
         SL.forEach((s, integer) -> {
             if(integer>=2){
-                Singleton.getInstant().getViewQuanLy().getSlMH().set(integer);
+                Singleton.getInstant().getCellGiaoVien().getSlLop().set(integer);
             }
         });
     }

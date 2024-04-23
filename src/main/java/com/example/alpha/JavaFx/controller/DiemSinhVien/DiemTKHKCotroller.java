@@ -1,4 +1,4 @@
-package com.example.alpha.JavaFx.controller.Diem;
+package com.example.alpha.JavaFx.controller.DiemSinhVien;
 
 import com.example.alpha.JavaFx.model.Singleton;
 import javafx.fxml.FXML;
