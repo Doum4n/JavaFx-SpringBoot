@@ -21,8 +21,8 @@ public interface DiemEntityRepository extends JpaRepository<DiemEntity, Integer>
     @Query("select a.PhongThi from DiemEntity a where a.maSinhVien=?1 and a.maMonHoc=?2")
     List<String> getPhongThi(String MaSV, String maMonHoc);
 
-    @Query("select a.PhongThi from DiemEntity a where a.maMonHoc=?1")
-    List<String> getPhongThiByMaMH(String MaMH);
+    @Query("select a.PhongThi from DiemEntity a where a.maMonHoc=?1 and a.maHocKy=?2 and a.maNamHoc=?3")
+    List<String> getPhongThiByMaMH(String MaMH, String MaHocky, String MaNamHoc);
 
     @Query("select a.lanThi from DiemEntity a where a.maMonHoc=?2 and a.maSinhVien=?1")
     List<String> getLanThi(String MaSV, String MaMH);

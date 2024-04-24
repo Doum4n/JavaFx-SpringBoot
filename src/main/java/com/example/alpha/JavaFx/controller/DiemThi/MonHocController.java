@@ -18,6 +18,9 @@ import javafx.scene.control.TableView;
 import org.springframework.stereotype.Controller;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -74,7 +77,15 @@ public class MonHocController implements Initializable, setTable {
     @Override
     public void setTableView() {
         setCellColumn();
-        filteredList = new FilteredList<>(FXCollections.observableArrayList(Diem.getRepository().findAll()), b -> true);
+        List<String> MonHoc = new ArrayList<>(Collections.emptyList());
+        filteredList = new FilteredList<>(FXCollections.observableArrayList(Diem.getRepository().findAll().stream().filter(diemEntity -> {
+            if (!MonHoc.contains(diemEntity.getMaMonHoc())) {
+                MonHoc.add(diemEntity.getMaMonHoc());
+                return true;
+            }
+            return false;
+        }).toList()), b -> true);
+        System.out.println(filteredList);
         TableView_MH.setItems(filteredList);
     }
 
@@ -98,7 +109,7 @@ public class MonHocController implements Initializable, setTable {
     private void load(String PhongThi, String LanThi, String MaHocKy, String MaNamHoc){
         filteredList.setPredicate(kq -> {
             AtomicBoolean b = new AtomicBoolean(false);
-            for(String phongthi : Diem.getRepository().getPhongThiByMaMH(kq.getMaMonHoc())) {
+            for(String phongthi : Diem.getRepository().getPhongThiByMaMH(kq.getMaMonHoc(), kq.getMaHocKy(), kq.getMaNamHoc())) {
                 if(phongthi.equals(PhongThi) &&
                         String.valueOf(kq.getLanThi()).equals(LanThi) &&
                         kq.getMaHocKy().equals(MaHocKy) &&

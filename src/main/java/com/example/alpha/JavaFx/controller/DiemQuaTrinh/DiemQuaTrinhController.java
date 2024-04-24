@@ -6,6 +6,7 @@ import com.example.alpha.JavaFx.model.GiaoVien.PhanCong;
 import com.example.alpha.JavaFx.model.SinhVien.KqMonHoc_SV;
 import com.example.alpha.Spring_boot.assignment.PhancongEntity;
 import com.example.alpha.Spring_boot.class_grade.GiaovienEntity;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -35,11 +36,9 @@ public class DiemQuaTrinhController implements Initializable{
     private TextField TextField_SearchMaSV;
     @FXML
     private Button Button_Update;
-
     private List<PhancongEntity> phanCongList;
 
-    //Gán mỗi pane là MaGV, MaMH để ìm kiếm
-    private final Map<String, Pane> MaGV = new HashMap<>();
+    //Gán mỗi pane MaMH để tìm kiếm
     private final Map<String, Pane> MaMH = new HashMap<>();
 
     //Lọc dữ liệu
@@ -55,6 +54,7 @@ public class DiemQuaTrinhController implements Initializable{
 
         addData();
         addListenerSearchMaMonHoc();
+        addListenerSearchMaGV();
         addListenerSearchMaSV();
 
         //Khi năm, học kỳ thay đổi
@@ -125,7 +125,6 @@ public class DiemQuaTrinhController implements Initializable{
 
 
                 MaMH.put(Singleton.getInstant().getCellGiaoVien().getMaMH().get(), pane);
-                MaGV.put(Singleton.getInstant().getCellGiaoVien().getMaGV().get(), pane);
                 GV_hocky.put(phancongEntity.getMaMonHoc(), phancongEntity.getMaHocKy());
                 GV_namhoc.put(phancongEntity.getMaMonHoc(), phancongEntity.getMaNamHoc());
             }
@@ -136,18 +135,32 @@ public class DiemQuaTrinhController implements Initializable{
     }
 
     private void addListenerSearchMaMonHoc(){
-        //Tìm kiếm dựa trên MaGV
+        //Tìm kiếm dựa trên MaMH
         textField_SearchMaGV.textProperty().addListener((observable, oldValue, newValue) -> {
             //Xóa dữ liệu trước khi tìm kiếm
             VBox_MonHoc.getChildren().clear();
             Singleton.getInstant().getDiemQuaTrinh().getSearch_GV().set(newValue);
             if(newValue.isBlank() || newValue.isEmpty())
                 addData();
+            else {
+                MaMH.forEach((MonHoc, pane) -> {
+                    if (GV_hocky.get(MonHoc).equals(Singleton.getInstant().getViewFactory().getHocky().get())
+                            && GV_namhoc.get(MonHoc).equals(Singleton.getInstant().getViewFactory().getNamHoc().get())) {
+                        if (newValue.equals(MonHoc) && !VBox_MonHoc.getChildren().contains(pane)) {
+                            VBox_MonHoc.getChildren().add(pane);
+                        }
+                    }
+                });
+            }
         });
+    }
 
+    private void addListenerSearchMaGV(){
+        //Tìm kiếm theo MaGV
+        //getPane trả về MaMH tượng ứng với MaGV
         Singleton.getInstant().getDiemQuaTrinh().getPane().addListener((observable, oldValue, newValue) -> {
             MaMH.forEach((MonHoc, pane) -> {
-                if(Singleton.getInstant().getDiemQuaTrinh().getPane().get()!=null
+                if (Singleton.getInstant().getDiemQuaTrinh().getPane().get() != null
                         && GV_hocky.get(MonHoc).equals(Singleton.getInstant().getViewFactory().getHocky().get())
                         && GV_namhoc.get(MonHoc).equals(Singleton.getInstant().getViewFactory().getNamHoc().get())) {
                     if (newValue.equals(MonHoc) && !VBox_MonHoc.getChildren().contains(pane)) {
