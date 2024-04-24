@@ -36,31 +36,33 @@ public class DiemQuaTrinhController implements Initializable{
     @FXML
     private Button Button_Update;
 
-    private List<GiaovienEntity> giaovienEntities;
-
     private List<PhancongEntity> phanCongList;
+
+    //Gán mỗi pane là MaGV, MaMH để ìm kiếm
+    private final Map<String, Pane> MaGV = new HashMap<>();
+    private final Map<String, Pane> MaMH = new HashMap<>();
+
+    //Lọc dữ liệu
+    private final Map<String, String> GV_hocky = new HashMap<>();
+    private final Map<String, String> GV_namhoc = new HashMap<>();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
-        giaovienEntities = GiaoVien.getRepository().findAll();
         phanCongList = PhanCong.getRepository().findAll();
         ScrollPane_Main.setHbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
         //VBox tự động thay đổi chiều cao cho phù hợp với đối tượng vừa thêm vào
         VBox_MonHoc.setPrefHeight(Region.USE_COMPUTED_SIZE);
 
-        Map<String, Pane> MaGV = new HashMap<>();
-        Map<String, Pane> MaMH = new HashMap<>();
-
-        addData(MaGV,MaMH);
-        addListenerSearchMaMonHoc(MaGV,MaMH);
+        addData();
+        addListenerSearchMaMonHoc();
         addListenerSearchMaSV();
 
         //Khi năm, học kỳ thay đổi
         Singleton.getInstant().getViewFactory().getNamHoc().addListener((observable, oldValue, newValue) -> {
-            addData(MaGV,MaMH);
+            addData();
         });
         Singleton.getInstant().getViewFactory().getHocky().addListener((observable, oldValue, newValue) -> {
-            addData(MaGV,MaMH);
+            addData();
         });
 
         //Hiển thi điểm khi nhấn vào ô bảng DiemQT
@@ -79,13 +81,12 @@ public class DiemQuaTrinhController implements Initializable{
     }
 
 
-    private void addData(Map<String,Pane> MaGV, Map<String, Pane>MaMH){
+    private void addData(){
         /*Xóa dữ liệu cũ trước khi cập nhật*/
         VBox_MonHoc.getChildren().clear();
 
         List<String> MonHoc = new ArrayList<>(Collections.emptyList());
 
-        List<Pane> panes = new ArrayList<>();
         // Tải CellMonHoc, tương ứng với mỗi CellMonHoc là nhưng giáo viên được phân công dạy một đó
         for (PhancongEntity phancongEntity : phanCongList) {
             // Lấy MaMH xuất hiện lần đầu trong MaGV của CellGiaoVien
@@ -119,16 +120,14 @@ public class DiemQuaTrinhController implements Initializable{
                     Singleton.getInstant().getCellGiaoVien().getSlGiaoVien().set(1);
                 }
 
-                Label MaMonHoc = (Label) pane.lookup("#Label_MaMH");
                 //Thêm vào VBox_GV
                 VBox_MonHoc.getChildren().add(pane);
 
-                //Đưa vào danh sách để gắn mỗi Pane là MaGV, và MaMH (tìm kiếm)
+
                 MaMH.put(Singleton.getInstant().getCellGiaoVien().getMaMH().get(), pane);
-
                 MaGV.put(Singleton.getInstant().getCellGiaoVien().getMaGV().get(), pane);
-
-//                System.out.println(pane.getChildren().get(2).lookup("#Label_MaGV"));
+                GV_hocky.put(phancongEntity.getMaMonHoc(), phancongEntity.getMaHocKy());
+                GV_namhoc.put(phancongEntity.getMaMonHoc(), phancongEntity.getMaNamHoc());
             }
         }
         /*Reset lại MaGV khi thay đổi năm, học kỳ*/
@@ -136,24 +135,26 @@ public class DiemQuaTrinhController implements Initializable{
         Singleton.getInstant().getCellGiaoVien().getMaMH().set("");
     }
 
-    private void addListenerSearchMaMonHoc(Map<String,Pane> MaGV, Map<String,Pane> MaMH){
-        //Tìm kiếm dựa trên MaGV và MaMH
+    private void addListenerSearchMaMonHoc(){
+        //Tìm kiếm dựa trên MaGV
         textField_SearchMaGV.textProperty().addListener((observable, oldValue, newValue) -> {
+            //Xóa dữ liệu trước khi tìm kiếm
             VBox_MonHoc.getChildren().clear();
             Singleton.getInstant().getDiemQuaTrinh().getSearch_GV().set(newValue);
             if(newValue.isBlank() || newValue.isEmpty())
-                addData(MaGV, MaMH);
+                addData();
         });
 
         Singleton.getInstant().getDiemQuaTrinh().getPane().addListener((observable, oldValue, newValue) -> {
             MaMH.forEach((MonHoc, pane) -> {
-                        if(Singleton.getInstant().getDiemQuaTrinh().getPane().get()!=null) {
-                            System.out.println(VBox_MonHoc.getChildren());
-                            if (newValue.equals(MonHoc) && !VBox_MonHoc.getChildren().contains(pane)) {
-                                VBox_MonHoc.getChildren().add(pane);
-                            }
-                        }
-                });
+                if(Singleton.getInstant().getDiemQuaTrinh().getPane().get()!=null
+                        && GV_hocky.get(MonHoc).equals(Singleton.getInstant().getViewFactory().getHocky().get())
+                        && GV_namhoc.get(MonHoc).equals(Singleton.getInstant().getViewFactory().getNamHoc().get())) {
+                    if (newValue.equals(MonHoc) && !VBox_MonHoc.getChildren().contains(pane)) {
+                        VBox_MonHoc.getChildren().add(pane);
+                    }
+                }
+            });
         });
     }
 

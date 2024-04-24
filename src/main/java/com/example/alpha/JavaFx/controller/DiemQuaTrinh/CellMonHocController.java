@@ -13,6 +13,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import org.springframework.util.Assert;
 
 import java.io.IOException;
 import java.net.URL;
@@ -30,7 +31,17 @@ public class CellMonHocController implements Initializable {
     private AnchorPane AnchorPane_main;
 
     List<PhancongEntity> phancongEntities = PhanCong.getRepository().findAll();
-    List<GiaovienEntity> giaovienEntities = GiaoVien.getRepository().findAll();
+    List<GiaovienEntity> giaovienEntities = com.example.alpha.JavaFx.model.GiaoVien.GiaoVien.getRepository().findAll();
+
+    //Số lần xuất hiện của MaGV trong bảng phancong
+    private final Map<String, Integer> SL = new HashMap<>();
+
+    //Gán mỗi pane với khóa là mã giáo viên
+    private final Map<String, Pane> GiaoVien = new HashMap<>();
+
+    //Lọc dữ liệu
+    private final Map<String, String> GV_hocky = new HashMap<>();
+    private final Map<String, String> GV_namhoc = new HashMap<>();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -39,34 +50,31 @@ public class CellMonHocController implements Initializable {
         //VBox tự động thay đổi chiều cao khi chèn thêm CellGiaoVien
         VBox_cellGV.setPrefHeight(Region.USE_COMPUTED_SIZE);
 
-        Map<String, Integer> SL = new HashMap<>();
+        loadCellGiaoVien();
 
-        Map<String, Pane> MonHoc = new HashMap<>();
-
-        loadCellGiaoVien(SL, MonHoc);
-
-        //Lấy số lần xuất hiện của MaMH trong bảng phân công
         SL.forEach((s, integer) -> {
             if(integer>=2){
                 Singleton.getInstant().getCellGiaoVien().getSlGiaoVien().set(integer);
             }
         });
 
-//        Singleton.getInstant().getDiemQuaTrinh().getSearch_GV().addListener((observable, oldValue, newValue) -> {
-//            if(!newValue.isEmpty() || !newValue.isBlank()) {
-//                MonHoc.forEach((MaGV, pane) -> {
-//                    if (MaGV.equals(newValue)) {
-//                        VBox_cellGV.getChildren().clear();
-//                        VBox_cellGV.getChildren().add(pane);
-//                    }
-//                });
-//            }else {
-//                loadCellGiaoVien(SL, MonHoc);
-//            }
-//        });
+        Singleton.getInstant().getDiemQuaTrinh().getSearch_GV().addListener((observable, oldValue, newValue) -> {
+            if(!newValue.isEmpty() || !newValue.isBlank()) {
+                GiaoVien.forEach((MaGV, pane) -> {
+                    if (MaGV.equals(newValue)
+                            && GV_hocky.get(MaGV).equals(Singleton.getInstant().getViewFactory().getHocky().get())
+                            && GV_namhoc.get(MaGV).equals(Singleton.getInstant().getViewFactory().getNamHoc().get())) {
+                        VBox_cellGV.getChildren().clear();
+                        VBox_cellGV.getChildren().add(pane);
+                    }
+                });
+            }else {
+                loadCellGiaoVien();
+            }
+        });
     }
 
-    private void loadCellGiaoVien(Map<String, Integer> SL, Map<String, Pane> MonHoc){
+    private void loadCellGiaoVien(){
         int i=0; //Số lượng giáo viện giảng dạy cùng một môn
         // Tải CellGiaoVien.fxml cho mỗi PhanCong khớp
         for (PhancongEntity phanCong : phancongEntities) {
@@ -94,17 +102,17 @@ public class CellMonHocController implements Initializable {
                 VBox_cellGV.getChildren().add(pane);
                 SL.put(Singleton.getInstant().getCellGiaoVien().getMaMH().get(),++i);
 
-//                System.out.println(((Label)pane.lookup("#Label_MaGV")).getText());
-
                 Singleton.getInstant().getDiemQuaTrinh().getSearch_GV().addListener((observable, oldValue, newValue) -> {
-//                    System.out.println(newValue+":"+(((Label)pane.lookup("#Label_MaGV")).getText()));
-                    if(newValue.equals(((Label)pane.lookup("#Label_MaGV")).getText())){
-                        System.out.println(pane.getParent().getParent().lookup("#Label_MaMH"));
-                        Singleton.getInstant().getDiemQuaTrinh().getPane().set(((Label)pane.getParent().getParent().lookup("#Label_MaMH")).getText());
+                    if (pane.getParent()!=null) {
+                        if(newValue.equals(((Label)pane.lookup("#Label_MaGV")).getText())){
+                            Singleton.getInstant().getDiemQuaTrinh().getPane().set(((Label)pane.getParent().getParent().lookup("#Label_MaMH")).getText());
+                        }
                     }
                 });
 
-                MonHoc.put(phanCong.getMaGiaoVien(),pane);
+                GiaoVien.put(phanCong.getMaGiaoVien(),pane);
+                GV_hocky.put(phanCong.getMaGiaoVien(), phanCong.getMaHocKy());
+                GV_namhoc.put(phanCong.getMaGiaoVien(), phanCong.getMaNamHoc());
             }
         }
     }

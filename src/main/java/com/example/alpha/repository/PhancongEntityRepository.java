@@ -8,10 +8,10 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface PhancongEntityRepository extends JpaRepository<PhancongEntity, Integer> {
-    @Query("select a.maHocKy from PhancongEntity a where a.maGiaoVien=?1")
-    String getMaHocKy(String MaSV);
-    @Query("select a.maNamHoc from PhancongEntity a where a.maGiaoVien=?1")
-    List<String> getNamHoc(String MaSV);
+    @Query("select a.maHocKy from PhancongEntity a where a.maGiaoVien=?1 and a.maMonHoc=?2")
+    String getMaHocKy(String MaGV, String MaMonHoc);
+    @Query("select a.maNamHoc from PhancongEntity a where a.maGiaoVien=?1 and a.maMonHoc=?2")
+    List<String> getNamHoc(String MaGV, String MaMonHoc);
 
     @Query("select a.maLop from PhancongEntity a where a.maGiaoVien=?1 and a.maHocKy=?2 and a.maNamHoc=?3")
     List<String> getLopByMaGV(String MaGV, String HocKy, String NamHoc);
