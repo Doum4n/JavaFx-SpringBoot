@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="578.0" prefWidth="1036.0" styleClass="root" stylesheets="@../../../css/role_admin/quan_ly/DiemQuaTrinh.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.alpha.JavaFx.controller.DiemQuaTrinh.DiemQuaTrinhController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="578.0" prefWidth="1036.0" styleClass="root" stylesheets="@../../../css/role_admin/quan_ly/DiemQuaTrinh.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.alpha.JavaFx.role_admin.controller.quan_ly.DiemQuaTrinh.DiemQuaTrinhController">
    <ScrollPane fx:id="ScrollPane_Main" layoutX="84.0" layoutY="94.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="464.0" prefWidth="424.0" styleClass="pane_main">
       <VBox fx:id="VBox_MonHoc" prefHeight="490.0" prefWidth="407.0" styleClass="pane_main" />
    </ScrollPane>
@@ -34,4 +34,5 @@
    </Pane>
    <Button fx:id="Button_Update" layoutX="934.0" layoutY="239.0" mnemonicParsing="false" text="Update" />
    <TextField fx:id="TextField_SearchMaSV" layoutX="526.0" layoutY="140.0" prefHeight="26.0" prefWidth="207.0" promptText="search" />
+   <Button fx:id="button_import" layoutX="938.0" layoutY="523.0" mnemonicParsing="false" text="Import" />
 </AnchorPane>

@@ -1,6 +1,6 @@
 package com.example.alpha.Spring_boot.student;
 
-import com.example.alpha.JavaFx.model.NamHoc;
+import com.example.alpha.JavaFx.role_admin.model.NamHoc;
 import com.example.alpha.Spring_boot.class_grade.HockyEntity;
 import com.example.alpha.Spring_boot.class_grade.NamhocEntity;
 import com.example.alpha.Spring_boot.subject.MonhocEntity;

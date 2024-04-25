@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="513.0" prefWidth="682.0" stylesheets="@../../css/role_teacher/GiaoVienRole.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.alpha.JavaFx.role_teacher.TeacherController">
+   <left>
+      <AnchorPane id="pane" prefHeight="514.0" prefWidth="168.0" stylesheets="@../../css/role_teacher/GiaoVienRole.css" BorderPane.alignment="CENTER">
+         <children>
+            <Label id="label" layoutX="22.0" layoutY="22.0" text="Mã giáo viên:">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+            <Label id="label" layoutX="21.0" layoutY="66.0" text="Tên giáo viên:">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+            <Label id="label" fx:id="Label_MaGV" layoutX="122.0" layoutY="22.0" text="Label">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+            <Label id="label" fx:id="Label_TenGV" layoutX="123.0" layoutY="66.0" text="Label">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+            <Button fx:id="button_logOut" layoutX="57.0" layoutY="446.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="86.0" stylesheets="@../../css/component/LogOutButton.css" text="Đăng xuất" />
+            <Button fx:id="Button_edit" layoutX="58.0" layoutY="143.0" mnemonicParsing="false" stylesheets="@../../css/component/SpecialButton.css" text="Chỉnh sửa" />
+            <Line endX="100.0" layoutX="100.0" layoutY="119.0" startX="-100.00000762939453" stroke="WHITE" strokeWidth="4.0" />
+         </children></AnchorPane>
+   </left>
+   <right>
+      <AnchorPane id="paneRight" prefHeight="514.0" prefWidth="522.0" BorderPane.alignment="CENTER">
+         <children>
+            <TableView fx:id="TableView_DiemQT" layoutX="75.0" layoutY="76.0" prefHeight="312.0" prefWidth="330.0" stylesheets="@../../css/component/Table.css">
+              <columns>
+                <TableColumn fx:id="Column_MaSV" prefWidth="75.0" text="MaSV" />
+                <TableColumn fx:id="Column_TenSV" prefWidth="171.99996948242188" text="TenSV" />
+                  <TableColumn fx:id="Column_DiemQT" text="DiemQT" />
+              </columns>
+            </TableView>
+            <ChoiceBox fx:id="ChoiceBox_Lop" layoutX="76.0" layoutY="31.0" prefWidth="150.0" stylesheets="@../../css/component/ChoiceBox.css" />
+            <TextField fx:id="textField_DiemQT" cacheShape="false" layoutX="326.0" layoutY="412.0" prefHeight="26.0" prefWidth="80.0">
+               <font>
+                  <Font size="14.0" />
+               </font></TextField>
+            <Button fx:id="Buton_Update" cacheShape="false" layoutX="326.0" layoutY="452.0" mnemonicParsing="false" text="Update">
+               <font>
+                  <Font size="14.0" />
+               </font></Button>
+            <Label id="label" fx:id="Label_MaSV" cacheShape="false" layoutX="172.0" layoutY="412.0" prefHeight="26.0" prefWidth="49.0" text="Label">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+            <Label id="label" fx:id="Label_TenSV" cacheShape="false" layoutX="172.0" layoutY="452.0" prefHeight="26.0" prefWidth="46.0" text="Label">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+            <Label id="label" cacheShape="false" layoutX="76.0" layoutY="412.0" text="Mã sinh viên:">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+            <Label id="label" cacheShape="false" layoutX="75.0" layoutY="452.0" text="Tên sinh viên:">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+         </children>
+      </AnchorPane>
+   </right>
+</BorderPane>

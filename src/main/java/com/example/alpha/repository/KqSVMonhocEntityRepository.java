@@ -13,8 +13,8 @@ import java.util.List;
 public interface KqSVMonhocEntityRepository extends JpaRepository<KqSinhVienMonhocEntity, KqSinhVienMonhocEntityPK> {
     @Transactional
     @Modifying
-    @Query("update KqSinhVienMonhocEntity a set a.diemQuaTrinh=?3 where a.maSinhVien=?1 and a.maMonHoc=?2")
-    void updateDiem(String maSinhVien, String MaMH, Float diem);
+    @Query("update KqSinhVienMonhocEntity a set a.diemQuaTrinh=?3 where a.maSinhVien=?1 and a.maMonHoc=?2 and a.maHocKy=?4 and a.maNamHoc=?5")
+    void updateDiem(String maSinhVien, String MaMH, Float diem, String MaHocKy, String MaNamHoc);
 
     @Query("select new KqSinhVienMonhocEntity(a.maSinhVien,a.maMonHoc,a.maHocKy, a.maNamHoc, a.diemQuaTrinh) from KqSinhVienMonhocEntity a")
     List<KqSinhVienMonhocEntity> findAllExceptDiemThi();

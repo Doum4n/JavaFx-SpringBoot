@@ -8,13 +8,12 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="216.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.alpha.JavaFx.controller.Menu.LoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="216.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.alpha.JavaFx.role_admin.controller.Menu.LoginController">
    <Label id="label" fx:id="Label_username" layoutX="37.0" layoutY="31.0" text="user name" />
    <Label id="label" fx:id="Label_password" layoutX="40.0" layoutY="77.0" text="password" />
    <TextField id="label" fx:id="Textfield_username" layoutX="113.0" layoutY="31.0" />
    <PasswordField id="label" fx:id="Textfield_password" layoutX="113.0" layoutY="77.0" />
-   <Button fx:id="button_login" layoutX="113.0" layoutY="117.0" mnemonicParsing="false" onAction="#LoginAction" text="Login" />
-   <Button fx:id="Button_Register" layoutX="200.0" layoutY="117.0" mnemonicParsing="false" onAction="#RegisterButtonAction" text="Register" />
+   <Button fx:id="button_login" layoutX="211.0" layoutY="115.0" mnemonicParsing="false" text="Login" />
    <ChoiceBox fx:id="ChoiceBox" layoutX="112.0" layoutY="158.0" prefWidth="150.0" stylesheets="@../../css/component/ChoiceBox.css" />
    <stylesheets>
       <URL value="@../../css/role_admin/thong_ke/diem_lop_hocky.css" />

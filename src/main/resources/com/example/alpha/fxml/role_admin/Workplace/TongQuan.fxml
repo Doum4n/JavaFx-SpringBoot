@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="556.0" prefWidth="751.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.alpha.JavaFx.controller.Menu.TongQuanController">
+<AnchorPane prefHeight="556.0" prefWidth="751.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.alpha.JavaFx.role_admin.controller.Menu.TongQuanController">
    <children>
       <Label fx:id="Label_SLMatHang" layoutX="217.0" layoutY="29.0" prefHeight="30.0" prefWidth="31.0" textFill="#2b95ff">
          <font>

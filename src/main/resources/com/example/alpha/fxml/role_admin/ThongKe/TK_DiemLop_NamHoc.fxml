@@ -5,7 +5,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="578.0" prefWidth="1036.0" styleClass="root" stylesheets="@../../../css/role_admin/thong_ke/diem_lop_hocky.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.alpha.JavaFx.controller.ThongKe.TKDiemLopNamHoc">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="578.0" prefWidth="1036.0" styleClass="root" stylesheets="@../../../css/role_admin/thong_ke/diem_lop_hocky.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.alpha.JavaFx.role_admin.controller.ThongKe.TKDiemLopNamHoc">
    <children>
       <TableView fx:id="Table_DSKhoaLuan" layoutX="322.0" layoutY="116.0" prefHeight="400.0" prefWidth="392.0" stylesheets="@../../../css/component/Table.css">
          <columns>

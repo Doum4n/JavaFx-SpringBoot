@@ -1,6 +1,6 @@
 package com.example.alpha;
 
-import com.example.alpha.JavaFx.model.Singleton;
+import com.example.alpha.JavaFx.role_admin.model.Singleton;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.stage.Stage;
