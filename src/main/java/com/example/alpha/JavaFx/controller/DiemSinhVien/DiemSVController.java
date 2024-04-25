@@ -8,7 +8,7 @@ import com.example.alpha.JavaFx.model.Diem.DiemSV_HocKy;
 import com.example.alpha.JavaFx.model.Singleton;
 import com.example.alpha.JavaFx.model.MonHoc.MonHoc;
 import com.example.alpha.JavaFx.model.SinhVien.KqMonHoc_SV;
-import com.example.alpha.Spring_boot.subject.DiemEntity;
+import com.example.alpha.Spring_boot.subject.DiemThiEntity;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -25,13 +25,13 @@ import java.util.*;
 @Controller
 public class DiemSVController implements Initializable, setTable {
     @FXML
-    private TableColumn<DiemEntity, Integer> Column_STC;
+    private TableColumn<DiemThiEntity, Integer> Column_STC;
 
     @FXML
-    private TableColumn<DiemEntity, Integer> Column_TLQT;
+    private TableColumn<DiemThiEntity, Integer> Column_TLQT;
 
     @FXML
-    private TableColumn<DiemEntity, Integer> Column_TLthi;
+    private TableColumn<DiemThiEntity, Integer> Column_TLthi;
 
     @FXML
     private TableColumn<Object, Float> Column_DiemQT;
@@ -40,29 +40,29 @@ public class DiemSVController implements Initializable, setTable {
     private TableColumn<Object, Float> Column_DiemTK;
 
     @FXML
-    private TableColumn<DiemEntity, String> Column_Loai;
+    private TableColumn<DiemThiEntity, String> Column_Loai;
 
     @FXML
-    private TableColumn<DiemEntity, String> Column_MaMH;
+    private TableColumn<DiemThiEntity, String> Column_MaMH;
 
     @FXML
-    private TableColumn<DiemEntity, String> Column_TenMH;
+    private TableColumn<DiemThiEntity, String> Column_TenMH;
 
     @FXML
-    private TableColumn<DiemEntity, Double> Column_ThiL1;
+    private TableColumn<DiemThiEntity, Double> Column_ThiL1;
 
     @FXML
-    private TableColumn<DiemEntity, Double> Column_ThiL2;
+    private TableColumn<DiemThiEntity, Double> Column_ThiL2;
 
     @FXML
-    private TableColumn<DiemEntity, Double> Column_ThiL3;
+    private TableColumn<DiemThiEntity, Double> Column_ThiL3;
 
     @FXML
-    private TableView<DiemEntity> TableView_DiemSV;
+    private TableView<DiemThiEntity> TableView_DiemSV;
 
-    private ObservableList<DiemEntity> data = FXCollections.observableArrayList();
+    private ObservableList<DiemThiEntity> data = FXCollections.observableArrayList();
 
-    private FilteredList<DiemEntity> filteredList;
+    private FilteredList<DiemThiEntity> filteredList;
 
     private final ListProperty<String> MH = new SimpleListProperty<>(FXCollections.observableArrayList(""));
     private final ListProperty<String> SV = new SimpleListProperty<>(FXCollections.observableArrayList(""));
@@ -162,7 +162,7 @@ public class DiemSVController implements Initializable, setTable {
     public void setTableView() {
         if(Singleton.getInstant().getViewFactory().getType().equals(AccountType.Admin)) {
             setCellColumn();
-            List<DiemEntity> list = Diem.getRepository().findAll();
+            List<DiemThiEntity> list = Diem.getRepository().findAll();
 
             data = FXCollections.observableArrayList(list);
 
@@ -192,14 +192,14 @@ public class DiemSVController implements Initializable, setTable {
         Column_TenMH.setCellValueFactory(param -> new SimpleStringProperty(MonHoc.getRepository().getTenMH(param.getValue().getMaMonHoc())));
         Column_TLQT.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(MonHoc.getRepository().getTyLeDiemQT(param.getValue().getMaMonHoc())));
         Column_TLthi.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(100-MonHoc.getRepository().getTyLeDiemQT(param.getValue().getMaMonHoc())));
-        Column_DiemQT.setCellValueFactory( param -> new ReadOnlyObjectWrapper<>(KqMonHoc_SV.getRepository().getDiemQT(((DiemEntity)param.getValue()).getMaSinhVien(),((DiemEntity)param.getValue()).getMaMonHoc())));
+        Column_DiemQT.setCellValueFactory( param -> new ReadOnlyObjectWrapper<>(KqMonHoc_SV.getRepository().getDiemQT(((DiemThiEntity)param.getValue()).getMaSinhVien(),((DiemThiEntity)param.getValue()).getMaMonHoc())));
         Column_DiemQT.setCellFactory(new DiemQTController.NullHandlingCellFactory());
 
         Column_DiemTK.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(
-                KqMonHoc_SV.getRepository().getDiemTK(((DiemEntity) param.getValue()).getMaSinhVien(),
-                ((DiemEntity) param.getValue()).getMaMonHoc(),
-                ((DiemEntity) param.getValue()).getMaHocKy(),
-                ((DiemEntity) param.getValue()).getMaNamHoc())
+                KqMonHoc_SV.getRepository().getDiemTK(((DiemThiEntity) param.getValue()).getMaSinhVien(),
+                ((DiemThiEntity) param.getValue()).getMaMonHoc(),
+                ((DiemThiEntity) param.getValue()).getMaHocKy(),
+                ((DiemThiEntity) param.getValue()).getMaNamHoc())
         ));
         Column_DiemTK.setCellFactory(new DiemQTController.NullHandlingCellFactory());
         Column_STC.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(MonHoc.getRepository().getSTC(param.getValue().getMaMonHoc())));

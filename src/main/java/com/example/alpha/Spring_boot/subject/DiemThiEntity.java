@@ -9,16 +9,15 @@ import lombok.*;
 import org.hibernate.annotations.Check;
 import org.hibernate.proxy.HibernateProxy;
 import org.springframework.lang.Nullable;
-import org.springframework.stereotype.Component;
 
 @Entity
 @Getter
 @Setter
 @ToString
 @NoArgsConstructor
-@IdClass(DiemPKEntity.class)
-@Table(name = "DIEM")
-public class DiemEntity {
+@IdClass(DiemThiPKEntity.class)
+@Table(name = "DiemThi")
+public class DiemThiEntity {
     @Id
     @Basic
     @Column(name = "MaSinhVien",
@@ -53,6 +52,7 @@ public class DiemEntity {
 
     @Nullable
     @Column(name = "Diem")
+    @Check(constraints = "diem BETWEEN 0 AND 10")
     private Float Diem;
 
     @ToString.Exclude
@@ -80,7 +80,7 @@ public class DiemEntity {
     @JoinColumn(name = "PhongThi", insertable = false, updatable = false)
     private PhongThiEntity phongThiEntity;
 
-    public DiemEntity(String maSinhVien, String maMonHoc, String maHocKy, String maNamHoc, int lanThi, Float Diem, String phongThi) {
+    public DiemThiEntity(String maSinhVien, String maMonHoc, String maHocKy, String maNamHoc, int lanThi, Float Diem, String phongThi) {
         this.maSinhVien = maSinhVien;
         this.maMonHoc = maMonHoc;
         this.maHocKy = maHocKy;

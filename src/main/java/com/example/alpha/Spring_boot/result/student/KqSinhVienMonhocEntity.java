@@ -9,6 +9,7 @@ import com.example.alpha.Spring_boot.subject.MonhocEntity;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Check;
 import org.springframework.lang.Nullable;
 
 @Entity
@@ -36,6 +37,7 @@ public class KqSinhVienMonhocEntity {
     @Basic
     @Nullable
     @Column(name = "DiemQuaTrinh")
+    @Check(constraints = "diem_qua_trinh between 0 and 10")
     private Float diemQuaTrinh;
 
     @Basic

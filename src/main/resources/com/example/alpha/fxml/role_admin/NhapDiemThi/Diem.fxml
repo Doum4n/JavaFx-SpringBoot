@@ -28,7 +28,7 @@
       <Label id="label" layoutX="660.0" layoutY="459.0" text="Điểm:" />
       <Button fx:id="button_update" layoutX="800.0" layoutY="495.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="63.0" text="Update" />
       <TextField id="text-field" fx:id="textField_search" layoutX="481.0" layoutY="53.0" prefHeight="26.0" prefWidth="170.0" promptText="search" />
-      <Button fx:id="buyyon_import" layoutX="172.0" layoutY="442.0" mnemonicParsing="false" text="Import" />
+      <Button fx:id="button_import" layoutX="172.0" layoutY="442.0" mnemonicParsing="false" text="Import" />
       <ComboBox fx:id="CombocBox_PhongThi" layoutX="172.0" layoutY="53.0" prefHeight="26.0" prefWidth="132.0" styleClass="combo-box" stylesheets="@../../../css/component/ComboBox.css" />
       <Pane layoutX="172.0" layoutY="100.0" prefHeight="200.0" prefWidth="200.0">
          <children>

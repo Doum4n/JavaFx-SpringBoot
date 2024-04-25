@@ -5,7 +5,7 @@ import com.example.alpha.JavaFx.controller.setTable;
 import com.example.alpha.JavaFx.model.Diem.Diem;
 import com.example.alpha.JavaFx.model.Singleton;
 import com.example.alpha.JavaFx.model.MonHoc.MonHoc;
-import com.example.alpha.Spring_boot.subject.DiemEntity;
+import com.example.alpha.Spring_boot.subject.DiemThiEntity;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
@@ -28,18 +28,18 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public class MonHocController implements Initializable, setTable {
 
     @FXML
-    private TableColumn<DiemEntity, Button> ColumnX;
+    private TableColumn<DiemThiEntity, Button> ColumnX;
 
     @FXML
-    private TableColumn<DiemEntity, String> Column_MaMH;
+    private TableColumn<DiemThiEntity, String> Column_MaMH;
 
     @FXML
-    private TableColumn<DiemEntity, String> Column_TenMH;
+    private TableColumn<DiemThiEntity, String> Column_TenMH;
 
     @FXML
-    private TableView<DiemEntity> TableView_MH;
+    private TableView<DiemThiEntity> TableView_MH;
 
-    private FilteredList<DiemEntity> filteredList;
+    private FilteredList<DiemThiEntity> filteredList;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

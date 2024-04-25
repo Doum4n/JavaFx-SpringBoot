@@ -4,7 +4,7 @@ import com.example.alpha.JavaFx.model.Diem.Diem;
 import com.example.alpha.JavaFx.model.PhanLop;
 import com.example.alpha.JavaFx.model.Singleton;
 import com.example.alpha.JavaFx.model.SinhVien.SinhVien;
-import com.example.alpha.Spring_boot.subject.DiemEntity;
+import com.example.alpha.Spring_boot.subject.DiemThiEntity;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -66,7 +66,7 @@ public class XemDiemController implements Initializable {
 
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/com/example/alpha/fxml/role_admin/ThongKe/DiemSV.fxml"));
-            TableView<DiemEntity> tableView;
+            TableView<DiemThiEntity> tableView;
             try {
                 tableView = loader.load();
             } catch (IOException e) {

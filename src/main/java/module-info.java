@@ -12,13 +12,11 @@ module com.example.alpha {
     requires static lombok;
     //very important
     requires org.hibernate.orm.core;
-    requires java.persistence;
-    requires spring.web;
-    requires com.fasterxml.jackson.databind;
     requires jakarta.validation;
     requires spring.tx;
     requires javafx.base;
     requires java.desktop;
+    requires org.apache.poi.poi;
 
     opens com.example.alpha.JavaFx.model;
     opens com.example.alpha.JavaFx.controller;

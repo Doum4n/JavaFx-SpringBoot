@@ -6,7 +6,7 @@ import com.example.alpha.JavaFx.model.*;
 import com.example.alpha.JavaFx.model.Diem.Diem;
 import com.example.alpha.JavaFx.model.Diem.LanThi;
 import com.example.alpha.JavaFx.model.Diem.PhongThi;
-import com.example.alpha.Spring_boot.subject.DiemEntity;
+import com.example.alpha.Spring_boot.subject.DiemThiEntity;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -21,8 +21,13 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.PopupWindow;
 import javafx.stage.Window;
+import org.apache.poi.EncryptedDocumentException;
+import org.apache.poi.ss.usermodel.Cell;
 import org.springframework.stereotype.Controller;
+import org.apache.poi.ss.usermodel.*;
 
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 
@@ -31,13 +36,13 @@ public class NhapDiemThiController implements Initializable, setTable {
     @FXML
     private TableColumn<Object, Float> Column_Diem;
     @FXML
-    private TableColumn<DiemEntity, String> Column_LanThi;
+    private TableColumn<DiemThiEntity, String> Column_LanThi;
     @FXML
     private TableColumn<?, ?> Column_MaMonHoc;
     @FXML
     private TableColumn<?, ?> Column_MaSV;
     @FXML
-    private TableView<DiemEntity> TableView_Diem;
+    private TableView<DiemThiEntity> TableView_Diem;
     @FXML
     private TextField TextField_Diem;
     @FXML
@@ -51,27 +56,27 @@ public class NhapDiemThiController implements Initializable, setTable {
     @FXML
     private Button button_update;
     @FXML
-    private Button buyyon_import;
+    private Button button_import;
     @FXML
     private ChoiceBox<String> ChoiceBox_LanThi;
     @FXML
     private ComboBox<String> CombocBox_PhongThi;
 
-    private ObservableList<DiemEntity> data = FXCollections.observableArrayList();
+    private ObservableList<DiemThiEntity> data = FXCollections.observableArrayList();
 
-    private FilteredList<DiemEntity> filteredList;
+    private FilteredList<DiemThiEntity> filteredList;
 
     public void setCellColumn() {
         Column_MaSV.setCellValueFactory(new PropertyValueFactory<>("MaSinhVien"));
         Column_LanThi.setCellValueFactory(param -> new SimpleObjectProperty<>(param.getValue().getLanThi()).asString());
-        Column_Diem.setCellValueFactory(param -> new SimpleObjectProperty<>(((DiemEntity)param.getValue()).getDiem()));
+        Column_Diem.setCellValueFactory(param -> new SimpleObjectProperty<>(((DiemThiEntity)param.getValue()).getDiem()));
         Column_Diem.setCellFactory(new DiemQTController.NullHandlingCellFactory());
         Column_MaMonHoc.setCellValueFactory(new PropertyValueFactory<>("MaMonHoc"));
     }
     @Override
     public void setTableView() {
         setCellColumn();
-        List<DiemEntity> diemEntities = Diem.getRepository().findAll();
+        List<DiemThiEntity> diemEntities = Diem.getRepository().findAll();
         data = FXCollections.observableArrayList(diemEntities);
         filteredList = new FilteredList<>(data, b -> true);
         TableView_Diem.setItems(filteredList);
@@ -81,12 +86,14 @@ public class NhapDiemThiController implements Initializable, setTable {
     public void addListenerTableView() {
         TableView_Diem.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
             if (event.getClickCount() == 1) {
-                int index = TableView_Diem.getSelectionModel().getSelectedIndex();
-                DiemEntity kq = filteredList.get(index);
+                if (TableView_Diem.getSelectionModel().getSelectedIndex() > -1) {
+                    int index = TableView_Diem.getSelectionModel().getSelectedIndex();
+                    DiemThiEntity kq = filteredList.get(index);
 
-                Label_MaSV.setText(kq.getMaSinhVien());
-                Label_MaMH.setText(kq.getMaMonHoc());
-                TextField_Diem.setText(String.valueOf(kq.getDiem()));
+                    Label_MaSV.setText(kq.getMaSinhVien());
+                    Label_MaMH.setText(kq.getMaMonHoc());
+                    TextField_Diem.setText(String.valueOf(kq.getDiem()));
+                }
             }
         });
         addListenerSearch();
@@ -174,7 +181,7 @@ public class NhapDiemThiController implements Initializable, setTable {
         addListenerComboBox();
 
         button_update.setOnAction(event -> {
-            DiemEntity kq = new DiemEntity(
+            DiemThiEntity kq = new DiemThiEntity(
                     Label_MaSV.getText(),
                     Label_MaMH.getText(),
                     Singleton.getInstant().getViewFactory().getHocky().get(),
@@ -201,18 +208,9 @@ public class NhapDiemThiController implements Initializable, setTable {
             defaultLoad();
         });
 
-//        button_delete.setOnAction(event -> {
-//            Diem.getRepository().deleteByMaSinhVien(Label_MaSV.getText());
-//            data.removeIf(entity -> entity.getMaSinhVien().equals(Label_MaMH.getText()));
-//            filteredList.removeIf(entity -> entity.getMaSinhVien().equals(Label_MaSV.getText()));
-//            defaultLoad();
-//        });
 
         //Khi Năm thay đổi
         Singleton.getInstant().getViewFactory().getNamHoc().addListener((observable, oldValue, newValue) -> {
-            filteredList.setPredicate(diemEntity -> diemEntity.getMaNamHoc().equals(newValue) &&
-                    Diem.getRepository().getPhongThi(diemEntity.getMaSinhVien(),diemEntity.getMaMonHoc()).equals(Singleton.getInstant().getNhapDiemThi().getPhongThiProperty().get()) &&
-                    diemEntity.getMaHocKy().equals(Singleton.getInstant().getViewFactory().getHocky().get()));
             load(Singleton.getInstant().getNhapDiemThi().getMonHocSelected().get(),
                     Singleton.getInstant().getNhapDiemThi().getPhongThiProperty().get(),
                     Singleton.getInstant().getNhapDiemThi().getLanThi().get(),
@@ -229,15 +227,42 @@ public class NhapDiemThiController implements Initializable, setTable {
                     newValue);
         });
 
-        buyyon_import.setOnAction(event -> {
-            FileChooser chooser = new FileChooser();
-            chooser.showOpenDialog(new PopupWindow() {
-                @Override
-                public void show(Window window) {
-                    super.show(window);
-                }
-            });
+        button_import.setOnAction(event -> {
+            FileChooser fileChooser = new FileChooser();
+            // Lọc chỉ cho phép chọn file Excel
+            FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Excel files (*.xlsx)", "*.xlsx");
+            fileChooser.getExtensionFilters().add(extFilter);
+
+            // Hiển thị cửa sổ chọn file
+            File selectedFile = fileChooser.showOpenDialog(button_import.getScene().getWindow()).getAbsoluteFile();
+
+            // Gọi hàm để đọc file Excel ở đây
+            readExcelFile(selectedFile);
         });
+    }
+
+    private void readExcelFile(File selectedFile) {
+        try {
+            Workbook workbook = WorkbookFactory.create(selectedFile);
+            Sheet sheet = workbook.getSheetAt(0);
+
+            // Duyệt qua từng hàng của sheet và in ra các giá trị
+            for (int rowIndex = 1; rowIndex <= sheet.getLastRowNum(); rowIndex++) {
+                Diem.getRepository().updateDiem(
+                        String.valueOf((int)sheet.getRow(rowIndex).getCell(5).getNumericCellValue()),
+                        sheet.getRow(rowIndex).getCell(3).getStringCellValue(),
+                        String.valueOf(sheet.getRow(rowIndex).getCell(6).getNumericCellValue()),
+                        (int) sheet.getRow(1).getCell(rowIndex).getNumericCellValue(),
+                        String.valueOf((int)sheet.getRow(rowIndex).getCell(2).getNumericCellValue()),
+                        String.valueOf((int)sheet.getRow(rowIndex).getCell(4).getNumericCellValue()));
+            }
+
+            workbook.close();
+
+            setTableView();
+        } catch (IOException | EncryptedDocumentException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private void defaultLoad() {
@@ -246,7 +271,6 @@ public class NhapDiemThiController implements Initializable, setTable {
                 Singleton.getInstant().getNhapDiemThi().getLanThi().get(),
                 Singleton.getInstant().getViewFactory().getNamHoc().get(),
                 Singleton.getInstant().getViewFactory().getHocky().get());
-        TableView_Diem.setItems(filteredList);
     }
 
     private void load(String MonHoc, String PhongThi, String LanThi, String NamHoc, String HocKy){

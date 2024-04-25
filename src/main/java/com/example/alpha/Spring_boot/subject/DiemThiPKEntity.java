@@ -5,7 +5,7 @@ import lombok.Data;
 import java.io.Serializable;
 
 @Data
-public class DiemPKEntity implements Serializable {
+public class DiemThiPKEntity implements Serializable {
     private String maSinhVien;
     private String maMonHoc;
     private String maHocKy;
