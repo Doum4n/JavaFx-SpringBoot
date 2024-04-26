@@ -2,20 +2,18 @@ package com.example.alpha.Spring_boot.user;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Data
 @Table(name = "NGUOIDUNG")
+@NoArgsConstructor
 public class NguoidungEntity {
-    @Id
-    @Column(name = "MaNguoiDung")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String maNguoiDung;
-
     @Basic
     @Column(name = "MaLoai")
     private String maLoai;
 
+    @Id
     @Basic
     @Column(name = "TenDangNhap") //MaSV || MaGV
     private String tenDangNhap;
@@ -28,4 +26,9 @@ public class NguoidungEntity {
     @JoinColumn(name = "MaLoai", insertable = false, updatable = false)
     private LoainguoidungEntity loainguoidungEntity;
 
+    public NguoidungEntity(String maLoai, String tenDangNhap, String matKhau) {
+        this.maLoai = maLoai;
+        this.tenDangNhap = tenDangNhap;
+        this.matKhau = matKhau;
+    }
 }

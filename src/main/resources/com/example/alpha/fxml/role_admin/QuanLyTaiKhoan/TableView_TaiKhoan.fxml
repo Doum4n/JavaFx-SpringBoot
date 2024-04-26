@@ -3,9 +3,9 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 
-<TableView fx:id="TableView_TaiKhoan" prefHeight="298.0" prefWidth="265.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.alpha.JavaFx.role_admin.controller.quan_ly.TaiKhoan.TableView_TaiKhoan">
+<TableView fx:id="TableView_TaiKhoan" prefHeight="298.0" prefWidth="295.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.alpha.JavaFx.role_admin.controller.quan_ly.TaiKhoan.TableView_TaiKhoan">
    <columns>
       <TableColumn fx:id="column_TenTK" prefWidth="125.60003966093063" text="Tên đăng nhập" />
-      <TableColumn fx:id="column_Password" prefWidth="136.79991149902344" text="Mặt khẩu" />
+      <TableColumn fx:id="column_Password" prefWidth="167.19996643066406" text="Mặt khẩu" />
    </columns>
 </TableView>

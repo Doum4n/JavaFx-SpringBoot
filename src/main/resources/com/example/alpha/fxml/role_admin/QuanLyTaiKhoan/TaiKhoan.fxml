@@ -9,9 +9,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="578.0" prefWidth="1052.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.alpha.JavaFx.role_admin.controller.quan_ly.TaiKhoan.TaiKhoanController">
-    <Button fx:id="button_update" layoutX="509.0" layoutY="472.0" mnemonicParsing="false" text="Update" />
-    <Button fx:id="button_delete" layoutX="603.0" layoutY="472.0" mnemonicParsing="false" text="Delete" />
-    <TabPane fx:id="Tabpane_TaiKhoan" layoutX="393.0" layoutY="76.0" prefHeight="326.0" prefWidth="265.0" tabClosingPolicy="UNAVAILABLE">
+    <Button fx:id="button_update" layoutX="555.0" layoutY="467.0" mnemonicParsing="false" text="Update" />
+    <Button fx:id="button_delete" layoutX="632.0" layoutY="467.0" mnemonicParsing="false" text="Delete" />
+    <TabPane fx:id="Tabpane_TaiKhoan" layoutX="393.0" layoutY="76.0" prefHeight="326.0" prefWidth="295.0" tabClosingPolicy="UNAVAILABLE">
         <Tab fx:id="Tab_SV" text="Sinh viên">
             <fx:include source="TableView_TaiKhoan.fxml" />
         </Tab>
@@ -19,10 +19,11 @@
             <fx:include source="TableView_TaiKhoan.fxml" />
         </Tab>
     </TabPane>
-   <TextField id="text-field" fx:id="TextFiled_Password" layoutX="527.0" layoutY="424.0" prefHeight="27.0" prefWidth="133.0" stylesheets="@../../../css/component/TextField.css" />
+   <TextField id="text-field" fx:id="TextFiled_Password" layoutX="556.0" layoutY="419.0" prefHeight="27.0" prefWidth="133.0" stylesheets="@../../../css/component/TextField.css" />
    <Label layoutX="166.0" layoutY="171.0" text="Label" />
-   <Label id="label" layoutX="363.0" layoutY="425.0" stylesheets="@../../../css/component/Label.css" text="Tên tài khoản:" />
-   <Label id="label" fx:id="Label_Username" layoutX="459.0" layoutY="425.0" stylesheets="@../../../css/component/Label.css" text="Label" />
+   <Label id="label" layoutX="392.0" layoutY="420.0" stylesheets="@../../../css/component/Label.css" text="Tên tài khoản:" />
+   <Label id="label" fx:id="Label_Username" layoutX="488.0" layoutY="420.0" stylesheets="@../../../css/component/Label.css" text="Label" />
+   <Button fx:id="Button_Create" layoutX="733.0" layoutY="76.0" mnemonicParsing="false" text="Create" />
    <stylesheets>
       <URL value="@../../../css/role_admin/quan_ly/QLTaiKhoan.css" />
       <URL value="@../../../css/component/Button.css" />

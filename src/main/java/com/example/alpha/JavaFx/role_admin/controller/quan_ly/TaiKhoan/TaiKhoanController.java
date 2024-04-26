@@ -28,6 +28,9 @@ public class TaiKhoanController implements Initializable{
     private Button button_delete;
 
     @FXML
+    private Button Button_Create;
+
+    @FXML
     private Button button_update;
 
     @FXML
@@ -54,6 +57,10 @@ public class TaiKhoanController implements Initializable{
                     TextFiled_Password.getText(),
                     Singleton.getInstant().getQuanLyTaiKhoan().getAccountType().get()
             );
+        });
+
+        Button_Create.setOnAction(event -> {
+            Singleton.getInstant().getViewFactory().showCreateAccountWindow();
         });
     }
 }

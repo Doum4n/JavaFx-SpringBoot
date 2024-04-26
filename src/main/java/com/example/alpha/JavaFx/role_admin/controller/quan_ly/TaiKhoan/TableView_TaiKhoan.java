@@ -56,7 +56,6 @@ public class TableView_TaiKhoan implements Initializable, setTable {
             if (event.getClickCount() == 1) {
                 int index = TableView_TaiKhoan.getSelectionModel().getSelectedIndex();
                 NguoidungEntity user = list.get(index);
-                System.out.println(user);
                 Singleton.getInstant().getQuanLyTaiKhoan().getUsername().set(user.getTenDangNhap());
                 Singleton.getInstant().getQuanLyTaiKhoan().getPassword().set(user.getMatKhau());
                 Singleton.getInstant().getQuanLyTaiKhoan().getAccountType().set(user.getMaLoai());

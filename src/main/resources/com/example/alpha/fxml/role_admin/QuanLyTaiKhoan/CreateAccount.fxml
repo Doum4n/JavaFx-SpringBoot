@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="202.0" prefWidth="305.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.alpha.JavaFx.role_admin.controller.quan_ly.TaiKhoan.CreateAccountController">
+   <children>
+      <Label layoutX="30.0" layoutY="41.0" text="Tên đăng nhập:" />
+      <Label layoutX="58.0" layoutY="75.0" text="Mật khảu:" />
+      <Label layoutX="35.0" layoutY="110.0" text="Loại tài khoản:" />
+      <TextField fx:id="TextFiled_uername" layoutX="125.0" layoutY="37.0" />
+      <TextField fx:id="TextFiled_password" layoutX="125.0" layoutY="71.0" />
+      <ChoiceBox fx:id="ChoiceBox_accountType" layoutX="125.0" layoutY="106.0" prefHeight="26.0" prefWidth="69.0" />
+      <Button fx:id="Button_create" layoutX="210.0" layoutY="139.0" mnemonicParsing="false" text="Xác nhận" />
+   </children>
+</AnchorPane>
