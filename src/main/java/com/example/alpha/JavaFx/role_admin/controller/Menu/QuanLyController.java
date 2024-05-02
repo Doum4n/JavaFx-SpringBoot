@@ -48,7 +48,6 @@ public class QuanLyController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         button_Diem.setOnAction(event -> Singleton.getInstant().getViewQuanLy().getQuanLyProperty().set(QuanLy.DiemThi));
         button_PhanCong.setOnAction(event -> Singleton.getInstant().getViewQuanLy().getQuanLyProperty().set(QuanLy.DiemQT));
-        button_TaiKhoan.setOnAction(event -> Singleton.getInstant().getViewQuanLy().getQuanLyProperty().set(QuanLy.TaiKhoan));
         Button_TinhDiemTB.setOnAction(event -> {
             TinhDiemTB_MonHoc();
             TinhDiemTB_HocKy();
@@ -116,7 +115,6 @@ public class QuanLyController implements Initializable {
                         Float diemqt = KqMonHoc_SV.getRepository().getDiemQT(kq.getMaSinhVien(), kq.getMaMonHoc());
                         if(diemqt==null) {
                             Singleton.getInstant().getViewFactory().showLog("Bạn chưa nhập điểm quá trình cho Sinh viên:" +"\nMaSV: " + kq.getMaSinhVien() +"\nMaMonHoc: "+ kq.getMaMonHoc() +"\nHocKy:  "+ kq.getMaHocKy() +"\nNamHoc: "+ kq.getMaNamHoc());
-                            Singleton.getInstant().getViewFactory().getStatus().set(Status.ERROR);
                         }else {
                             float DiemTongKet = diemqt * (TyLe / 100) + max * ((100 - TyLe) / 100);
 
@@ -125,7 +123,6 @@ public class QuanLyController implements Initializable {
                                     kq.getMaMonHoc(),
                                     (float) (Math.round(DiemTongKet * 100.0)/100.0)
                             );
-                            Singleton.getInstant().getViewFactory().getStatus().set(Status.OK);
                         }
                     }
 //                }

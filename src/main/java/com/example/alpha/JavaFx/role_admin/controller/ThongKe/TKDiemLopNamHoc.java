@@ -77,10 +77,15 @@ public class TKDiemLopNamHoc implements Initializable, setTable {
         });
 
         Singleton.getInstant().getThongKe().getSearch_SV().addListener((observable, oldValue, newValue) -> {
-            filteredList.setPredicate(kq -> kq.getMaSinhVien().equals(newValue) &&
-                    PhanLop.getRepository().getLop(kq.getMaSinhVien()).equals(ComboBox_Lop.getValue()) &&
-                    kq.getMaNamHoc().equals(Singleton.getInstant().getViewFactory().getNamHoc().get()));
-            Table_DSKhoaLuan.setItems(filteredList);
+            if(!newValue.isEmpty() || !newValue.isBlank()) {
+                filteredList.setPredicate(kq -> kq.getMaSinhVien().equals(newValue) &&
+                        PhanLop.getRepository().getLop(kq.getMaSinhVien()).equals(ComboBox_Lop.getValue()) &&
+                        kq.getMaNamHoc().equals(Singleton.getInstant().getViewFactory().getNamHoc().get()));
+                Table_DSKhoaLuan.setItems(filteredList);
+            }else {
+                filteredList.setPredicate(kq -> kq.getMaNamHoc().equals(Singleton.getInstant().getViewFactory().getNamHoc().get()));
+                Table_DSKhoaLuan.setItems(filteredList);
+            }
         });
 
         Singleton.getInstant().getThongKe().getSearch_Lop().addListener((observable, oldValue, newValue) -> {

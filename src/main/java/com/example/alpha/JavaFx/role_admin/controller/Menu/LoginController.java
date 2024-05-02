@@ -1,6 +1,6 @@
 package com.example.alpha.JavaFx.role_admin.controller.Menu;
 
-import com.example.alpha.JavaFx.controller.quan_ly.TaiKhoan.AccountType;
+import com.example.alpha.JavaFx.role_admin.controller.quan_ly.TaiKhoan.AccountType;
 import com.example.alpha.JavaFx.role_admin.model.LoaiNguoiDung;
 import com.example.alpha.JavaFx.role_admin.model.NguoiDung;
 import com.example.alpha.JavaFx.role_admin.model.Singleton;

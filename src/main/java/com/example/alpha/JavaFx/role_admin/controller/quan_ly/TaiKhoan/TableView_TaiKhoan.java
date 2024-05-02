@@ -1,10 +1,13 @@
 package com.example.alpha.JavaFx.role_admin.controller.quan_ly.TaiKhoan;
 
+import com.example.alpha.JavaFx.role_admin.model.NguoiDung;
 import com.example.alpha.JavaFx.role_admin.setTable;
 import com.example.alpha.JavaFx.role_admin.model.Singleton;
 import com.example.alpha.JavaFx.role_admin.model.TaiKhoan;
 import com.example.alpha.Spring_boot.user.NguoidungEntity;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
@@ -30,7 +33,8 @@ public class TableView_TaiKhoan implements Initializable, setTable {
 
     @FXML
     private TableColumn<?, ?> column_TenTK;
-    private List<NguoidungEntity> list;
+
+    private ObservableList<NguoidungEntity> data = FXCollections.observableArrayList();
 
     @Getter
     private List<NguoidungEntity> SinhVien = new ArrayList<>();
@@ -40,8 +44,8 @@ public class TableView_TaiKhoan implements Initializable, setTable {
     @Override
     public void setTableView() {
         setCellColumn();
-        list = TaiKhoan.getRepository().findAll();
-        TableView_TaiKhoan.setItems(FXCollections.observableList(list));
+        data = FXCollections.observableArrayList(TaiKhoan.getRepository().findAll());
+        TableView_TaiKhoan.setItems(data);
     }
 
     @Override
@@ -55,7 +59,12 @@ public class TableView_TaiKhoan implements Initializable, setTable {
         TableView_TaiKhoan.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
             if (event.getClickCount() == 1) {
                 int index = TableView_TaiKhoan.getSelectionModel().getSelectedIndex();
-                NguoidungEntity user = list.get(index);
+                NguoidungEntity user;
+                if(Singleton.getInstant().getViewQuanLy().getTab_selected().get().equals("Sinh viên")) {
+                    user = SinhVien.get(index);
+                }else {
+                    user = GiaoVien.get(index);
+                }
                 Singleton.getInstant().getQuanLyTaiKhoan().getUsername().set(user.getTenDangNhap());
                 Singleton.getInstant().getQuanLyTaiKhoan().getPassword().set(user.getMatKhau());
                 Singleton.getInstant().getQuanLyTaiKhoan().getAccountType().set(user.getMaLoai());
@@ -72,25 +81,71 @@ public class TableView_TaiKhoan implements Initializable, setTable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setTableView();
         addListenerTableView();
-        list = TaiKhoan.getRepository().findAll();
-        list.forEach(user -> {
+        data.forEach(user -> {
             if(Objects.equals(user.getMaLoai(), "3")){
                 SinhVien.add(user);
-                TableView_TaiKhoan.setItems(FXCollections.observableArrayList(SinhVien));
             }else if(Objects.equals(user.getMaLoai(),"2")){
                 GiaoVien.add(user);
-                TableView_TaiKhoan.setItems(FXCollections.observableArrayList(GiaoVien));
             }
         });
 
         Singleton.getInstant().getViewQuanLy().getTab_selected().addListener((observable, oldValue, newValue) -> {
             if(Objects.equals(newValue, "Sinh viên")){
-                list = TaiKhoan.getRepository().getSV();
-                TableView_TaiKhoan.setItems(FXCollections.observableArrayList(list));
+                TableView_TaiKhoan.setItems(FXCollections.observableArrayList(SinhVien));
             }else {
-                list = TaiKhoan.getRepository().getGV();
-                TableView_TaiKhoan.setItems(FXCollections.observableArrayList(list));
+                TableView_TaiKhoan.setItems(FXCollections.observableArrayList(GiaoVien));
             }
         });
+
+        Singleton.getInstant().getQuanLyTaiKhoan().getIsUpdate().addListener((observable, oldValue, newValue) -> {
+            load(newValue);
+        });
+
+        Singleton.getInstant().getQuanLyTaiKhoan().getIsDelete().addListener((observable, oldValue, newValue) -> {
+            if(newValue.equals(true)){
+                NguoiDung.getRepository().delete(new NguoidungEntity(Singleton.getInstant().getQuanLyTaiKhoan().getAccountType().get(), Singleton.getInstant().getQuanLyTaiKhoan().getUsername().get(), Singleton.getInstant().getQuanLyTaiKhoan().getPassword().get()));
+                if(Singleton.getInstant().getQuanLyTaiKhoan().getAccountType().get().equals("3")) {
+                    SinhVien.removeIf(nguoidungEntity -> nguoidungEntity.getTenDangNhap().equals(Singleton.getInstant().getQuanLyTaiKhoan().getUsername().get()));
+                    TableView_TaiKhoan.setItems(FXCollections.observableArrayList(SinhVien));
+                }else {
+                    GiaoVien.removeIf(nguoidungEntity -> nguoidungEntity.getTenDangNhap().equals(Singleton.getInstant().getQuanLyTaiKhoan().getUsername().get()));
+                    TableView_TaiKhoan.setItems(FXCollections.observableArrayList(GiaoVien));
+                }
+            }
+        });
+
+        Singleton.getInstant().getQuanLyTaiKhoan().getIsCreate().addListener((observable, oldValue, newValue) -> {
+            NguoidungEntity nguoiDung = new NguoidungEntity(Singleton.getInstant().getQuanLyTaiKhoan().getCreateAccountType().get(),
+                    Singleton.getInstant().getQuanLyTaiKhoan().getCreate_username().get(),
+                    Singleton.getInstant().getQuanLyTaiKhoan().getCreate_password().get());
+            if(newValue.equals(true)){
+                if(Singleton.getInstant().getQuanLyTaiKhoan().getCreateAccountType().get().equals("3")) {
+                    SinhVien.add(nguoiDung);
+                    TableView_TaiKhoan.setItems(FXCollections.observableArrayList(SinhVien));
+                } else {
+                    GiaoVien.add(nguoiDung);
+                    TableView_TaiKhoan.setItems(FXCollections.observableArrayList(GiaoVien));
+                }
+                data.add(nguoiDung);
+            }
+        });
+    }
+
+    private void load(Boolean newValue) {
+        if(newValue.equals(true)){
+            NguoidungEntity nguoiDung = new NguoidungEntity(Singleton.getInstant().getQuanLyTaiKhoan().getAccountType().get(),
+                    Singleton.getInstant().getQuanLyTaiKhoan().getUsername().get(),
+                    Singleton.getInstant().getQuanLyTaiKhoan().getPassword().get());
+
+            if(Singleton.getInstant().getQuanLyTaiKhoan().getAccountType().get().equals("3")) {
+                SinhVien.removeIf(nguoidungEntity -> nguoidungEntity.getTenDangNhap().equals(Singleton.getInstant().getQuanLyTaiKhoan().getUsername().get()));
+                SinhVien.add(nguoiDung);
+                TableView_TaiKhoan.setItems(FXCollections.observableArrayList(SinhVien));
+            }else {
+                GiaoVien.removeIf(nguoidungEntity -> nguoidungEntity.getTenDangNhap().equals(Singleton.getInstant().getQuanLyTaiKhoan().getUsername().get()));
+                GiaoVien.add(nguoiDung);
+                TableView_TaiKhoan.setItems(FXCollections.observableArrayList(GiaoVien));
+            }
+        }
     }
 }

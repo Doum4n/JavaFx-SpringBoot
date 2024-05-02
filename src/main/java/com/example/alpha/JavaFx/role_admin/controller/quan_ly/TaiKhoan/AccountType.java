@@ -1,4 +1,4 @@
-package com.example.alpha.JavaFx.controller.quan_ly.TaiKhoan;
+package com.example.alpha.JavaFx.role_admin.controller.quan_ly.TaiKhoan;
 
 public enum AccountType {
     Admin,

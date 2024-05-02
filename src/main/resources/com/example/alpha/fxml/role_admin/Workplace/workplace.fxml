@@ -11,9 +11,6 @@
    <left>
       <fx:include source="Menu.fxml" />
    </left>
-   <right>
-      <fx:include source="TongQuan.fxml" />
-   </right>
    <top>
       <AnchorPane id="pane" prefHeight="100.0" prefWidth="1048.0" stylesheets="@../../../css/Menu/MenuBar.css" BorderPane.alignment="CENTER">
          <AnchorPane fx:id="AnchorPane_HBox" layoutX="139.0" prefWidth="458.0">
@@ -23,11 +20,12 @@
          </AnchorPane>
          <ChoiceBox id="choice-box" fx:id="ChoiceBox_Nam" layoutX="21.0" layoutY="16.0" prefHeight="32.0" prefWidth="100.0" />
          <ChoiceBox id="choice-box" fx:id="ChoiceBox_HocKy" layoutX="20.0" layoutY="52.0" prefHeight="32.0" prefWidth="100.0" />
-         <Label fx:id="Label_Status" alignment="CENTER" contentDisplay="CENTER" layoutX="1050.0" layoutY="29.0" prefHeight="42.0" prefWidth="86.0" style="-fx-background-color: #8C8F00;" textFill="#d7ff0f">
+         <Label fx:id="Label_time" alignment="CENTER" layoutX="1057.0" layoutY="54.0" prefHeight="27.0" prefWidth="88.0" text="Label" textFill="WHITE">
             <font>
                <Font size="18.0" />
             </font>
          </Label>
+         <ChoiceBox fx:id="ChoiceBox_TienTrinh" layoutX="1042.0" layoutY="18.0" prefHeight="27.0" prefWidth="117.0" />
       </AnchorPane>
    </top>
 </BorderPane>

@@ -42,8 +42,6 @@ public class NhapDiemThiController implements Initializable, setTable {
     @FXML
     private TextField TextField_Diem;
     @FXML
-    private Button button_delete;
-    @FXML
     private TextField textField_search;
     @FXML
     private Label Label_MaMH;
@@ -237,6 +235,19 @@ public class NhapDiemThiController implements Initializable, setTable {
 
             setTableView();
         });
+
+        Singleton.getInstant().getViewFactory().getTienTrinh().addListener((observable, oldValue, newValue) -> {
+            switch (newValue){
+                case statistical -> {
+                    button_update.setDisable(true);
+                    button_import.setDisable(true);
+                }
+                case review, input_score -> {
+                    button_update.setDisable(false);
+                    button_import.setDisable(false);
+                }
+            }
+        });
     }
 
     private void readExcelFile(File selectedFile) {
@@ -258,10 +269,8 @@ public class NhapDiemThiController implements Initializable, setTable {
                             String.valueOf((int) sheet.getRow(rowIndex).getCell(4).getNumericCellValue()));
                 }
                 workbook.close();
-                Singleton.getInstant().getViewFactory().getStatus().set(Status.OK);
             }
         } catch (IOException e) {
-            Singleton.getInstant().getViewFactory().getStatus().set(Status.ERROR);
             throw new RuntimeException(e);
         }
     }

@@ -1,5 +1,6 @@
 package com.example.alpha.JavaFx.role_admin.model;
 
+import com.example.alpha.JavaFx.role_admin.controller.Menu.TienTrinh;
 import com.example.alpha.JavaFx.role_admin.model.Diem.DiemQuaTrinh;
 import com.example.alpha.JavaFx.role_admin.model.Diem.DiemSinhVien;
 import com.example.alpha.JavaFx.role_admin.model.Diem.NhapDiemThi;

@@ -74,7 +74,7 @@ public class TeacherController implements Initializable, setTable {
         ChoiceBox_Lop.setItems(FXCollections.observableArrayList(PhanCong.getRepository().getLopByMaGV(id, hocky, namhoc)));
         ChoiceBox_Lop.valueProperty().addListener((observable, oldValue, newValue) -> {
             filteredList.setPredicate(kq -> PhanLop.getRepository().getLop(kq.getMaSinhVien()).equals(newValue) &&
-                    kq.getMaMonHoc().equals(PhanCong.getRepository().getMonHoc(id, hocky,namhoc)));
+                    kq.getMaMonHoc().equals(PhanCong.getRepository().getMonHoc(id, hocky, namhoc)));
             TableView_DiemQT.setItems(filteredList);
         });
 
@@ -83,14 +83,14 @@ public class TeacherController implements Initializable, setTable {
 
         Buton_Update.setOnAction(event -> {
             KqMonHoc_SV.getRepository().updateDiem(Label_MaSV.getText(),
-                    PhanCong.getRepository().getMonHoc(id, hocky,namhoc),
+                    PhanCong.getRepository().getMonHoc(id, hocky, namhoc),
                     Float.valueOf(textField_DiemQT.getText()),
                     Singleton.getInstant().getViewFactory().getHocky().get(),
                     Singleton.getInstant().getViewFactory().getNamHoc().get());
             filteredList = new FilteredList<>(FXCollections.observableArrayList(KqMonHoc_SV.getRepository().findAll()));
 
             filteredList.setPredicate(kq -> PhanLop.getRepository().getLop(kq.getMaSinhVien()).equals(ChoiceBox_Lop.getValue()) &&
-                    kq.getMaMonHoc().equals(PhanCong.getRepository().getMonHoc(id, hocky,namhoc)));
+                    kq.getMaMonHoc().equals(PhanCong.getRepository().getMonHoc(id, hocky, namhoc)));
             TableView_DiemQT.setItems(filteredList);
         });
 
@@ -128,14 +128,14 @@ public class TeacherController implements Initializable, setTable {
     public void addListenerTableView() {
 //        TableView_DiemQT.setSelectionModel(TableView_DiemQT.getSelectionModel());
         TableView_DiemQT.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-            if(event.getClickCount() == 1) {
+            if (event.getClickCount() == 1) {
 //                TableView_DiemQT.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-                    if(TableView_DiemQT.getSelectionModel().getSelectedIndex()  > -1) {
-                        KqSinhVienMonhocEntity diemQT = filteredList.get(TableView_DiemQT.getSelectionModel().getSelectedIndex());
-                        Label_MaSV.setText(diemQT.getMaSinhVien());
-                        Label_TenSV.setText(SinhVien.getRepository().getByHoTen(diemQT.getMaSinhVien()));
-                        textField_DiemQT.setText(KqMonHoc_SV.getRepository().getDiemQT(diemQT.getMaSinhVien(), diemQT.getMaMonHoc()).toString());
-                    }
+                if (TableView_DiemQT.getSelectionModel().getSelectedIndex() > -1) {
+                    KqSinhVienMonhocEntity diemQT = filteredList.get(TableView_DiemQT.getSelectionModel().getSelectedIndex());
+                    Label_MaSV.setText(diemQT.getMaSinhVien());
+                    Label_TenSV.setText(SinhVien.getRepository().getByHoTen(diemQT.getMaSinhVien()));
+                    textField_DiemQT.setText(KqMonHoc_SV.getRepository().getDiemQT(diemQT.getMaSinhVien(), diemQT.getMaMonHoc()).toString());
+                }
 //                });
             }
         });

@@ -102,6 +102,19 @@ public class DiemQuaTrinhController implements Initializable{
             Singleton.getInstant().getDiemQuaTrinh().getReLoad().set(false);
 
         });
+
+        Singleton.getInstant().getViewFactory().getTienTrinh().addListener((observable, oldValue, newValue) -> {
+            switch (newValue) {
+                case input_score, statistical -> {
+                    button_import.setDisable(true);
+                    Button_Update.setDisable(true);
+                }
+                case review -> {
+                    button_import.setDisable(false);
+                    Button_Update.setDisable(false);
+                }
+            }
+        });
     }
 
     private void readExcelFile(File selectedFile) {
@@ -122,10 +135,8 @@ public class DiemQuaTrinhController implements Initializable{
                             String.valueOf((int) sheet.getRow(rowIndex).getCell(2).getNumericCellValue()));
                 }
                 workbook.close();
-                Singleton.getInstant().getViewFactory().getStatus().set(Status.OK);
             }
         } catch (IOException e) {
-            Singleton.getInstant().getViewFactory().getStatus().set(Status.ERROR);
             throw new RuntimeException(e);
         }
     }

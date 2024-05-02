@@ -27,16 +27,21 @@ public class MenuController implements Initializable {
 
     @FXML
     private Button button_DanhGia;
+
+    @FXML
+    private Button button_TaiKhoan;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         button_QuanLy.setOnAction(event -> addListenerQuanLy());
         button_DanhGia.setOnAction(event -> addListenerTongQuan());
         button_TongKe.setOnAction(event -> addListenerThongKe());
         Button_LogOut.setOnAction(event -> Singleton.getInstant().getViewFactory().showLoginWindow());
+        button_TaiKhoan.setOnAction(event -> Singleton.getInstant().getViewFactory().getMenuProperty().set(Menu.TaiKhoan));
     }
 
     private void addListenerQuanLy(){
-        Singleton.getInstant().getViewFactory().getMenuProperty().set(Menu.QuanLy);
+        Singleton.getInstant().getViewFactory().getMenuProperty().set(Menu.NhapDiem);
     }
 
     private void addListenerTongQuan(){

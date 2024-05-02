@@ -57,10 +57,22 @@ public class TaiKhoanController implements Initializable{
                     TextFiled_Password.getText(),
                     Singleton.getInstant().getQuanLyTaiKhoan().getAccountType().get()
             );
+            Singleton.getInstant().getQuanLyTaiKhoan().getIsUpdate().set(true);
+            Singleton.getInstant().getQuanLyTaiKhoan().getIsUpdate().set(false);
         });
 
         Button_Create.setOnAction(event -> {
             Singleton.getInstant().getViewFactory().showCreateAccountWindow();
+        });
+
+        button_delete.setOnAction(event -> {
+            NguoiDung.getRepository().delete(
+                    new NguoidungEntity(Singleton.getInstant().getQuanLyTaiKhoan().getAccountType().get(),
+                            Label_Username.getText(),
+                            TextFiled_Password.getText())
+            );
+            Singleton.getInstant().getQuanLyTaiKhoan().getIsDelete().set(true);
+            Singleton.getInstant().getQuanLyTaiKhoan().getIsDelete().set(false);
         });
     }
 }

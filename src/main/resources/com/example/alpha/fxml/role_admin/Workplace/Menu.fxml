@@ -12,7 +12,7 @@
             <AnchorPane prefHeight="253.0" prefWidth="119.0">
                <children>
                   <Button fx:id="button_DanhGia" layoutX="24.0" layoutY="36.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="90.0" text="Đánh giá" />
-                  <Button fx:id="button_QuanLy" layoutX="24.0" layoutY="203.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="90.0" text="Quản lý" />
+                  <Button fx:id="button_QuanLy" layoutX="14.0" layoutY="203.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="110.0" text="Nhập điểm" />
                   <Button fx:id="button_TongKe" layoutX="24.0" layoutY="97.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="90.0" text="Thống kê" />
                   <Line endX="76.00001525878906" layoutX="61.0" layoutY="166.0" startX="-58.999977111816406" startY="-7.62939453125E-6" stroke="WHITE" strokeWidth="2.0" />
                </children>
@@ -20,5 +20,6 @@
          </children>
       </VBox>
       <Button fx:id="Button_LogOut" layoutX="31.0" layoutY="523.0" mnemonicParsing="false" text="Đăng xuất" />
+      <Button fx:id="button_TaiKhoan" layoutX="28.0" layoutY="273.0" mnemonicParsing="false" text="Tài khoản" />
    </children>
 </AnchorPane>

@@ -1,7 +1,7 @@
 package com.example.alpha.JavaFx.role_admin.controller.quan_ly.DiemSinhVien;
 
 import com.example.alpha.JavaFx.role_admin.controller.quan_ly.DiemQuaTrinh.DiemQTController;
-import com.example.alpha.JavaFx.controller.quan_ly.TaiKhoan.AccountType;
+import com.example.alpha.JavaFx.role_admin.controller.quan_ly.TaiKhoan.AccountType;
 import com.example.alpha.JavaFx.role_admin.setTable;
 import com.example.alpha.JavaFx.role_admin.model.Diem.Diem;
 import com.example.alpha.JavaFx.role_admin.model.Diem.DiemSV_HocKy;

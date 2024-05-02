@@ -37,7 +37,11 @@ public class CreateAccountController implements Initializable {
 
         Button_create.setOnAction(event -> {
             NguoiDung.getRepository().save(new NguoidungEntity(LoaiNguoiDung.getRepository().getMaLoai(ChoiceBox_accountType.getValue()), TextFiled_uername.getText(), TextFiled_password.getText()));
-            Singleton.getInstant().getViewFactory().getStatus().set(Status.OK);
+            Singleton.getInstant().getQuanLyTaiKhoan().getCreateAccountType().set(LoaiNguoiDung.getRepository().getMaLoai(ChoiceBox_accountType.getValue()));
+            Singleton.getInstant().getQuanLyTaiKhoan().getCreate_username().set(TextFiled_uername.getText());
+            Singleton.getInstant().getQuanLyTaiKhoan().getCreate_password().set(TextFiled_password.getText());
+            Singleton.getInstant().getQuanLyTaiKhoan().getIsCreate().set(true);
+            Singleton.getInstant().getQuanLyTaiKhoan().getIsCreate().set(false);
         });
     }
 }
