@@ -5,7 +5,9 @@ import com.example.alpha.JavaFx.role_admin.model.Diem.DiemSV_HocKy;
 import com.example.alpha.JavaFx.role_admin.model.Singleton;
 import com.example.alpha.JavaFx.role_admin.model.PhanLop;
 import com.example.alpha.JavaFx.role_admin.model.SinhVien.SinhVien;
+import com.example.alpha.Spring_boot.result.student.KqSinhVienMonhocEntity;
 import com.example.alpha.Spring_boot.result.student.KqSinnhVienHocKy;
+import com.example.alpha.Spring_boot.student.SinhVienEntity;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.transformation.FilteredList;
@@ -16,6 +18,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
 import java.net.URL;
+import java.util.Comparator;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class DSTop10percentController implements Initializable, setTable {
@@ -64,12 +68,26 @@ public class DSTop10percentController implements Initializable, setTable {
     public void setTableView() {
         setCellColumn();
         filteredList = new FilteredList<>(FXCollections.observableArrayList(DiemSV_HocKy.getRepository().findAll()));
+
+        int Top10 = (int)(filteredList.size()*0.1);
+
         filteredList.setPredicate(sv -> PhanLop.getRepository().getLop(sv.getMaSinhVien()).equals(Singleton.getInstant().getDsTop10percentSVLop().getLop().get()) &&
                 sv.getMaHocKy().equals(Singleton.getInstant().getViewFactory().getHocky().get()) &&
-                sv.getMaNamHoc().equals(Singleton.getInstant().getViewFactory().getNamHoc().get()));
+                sv.getMaNamHoc().equals(Singleton.getInstant().getViewFactory().getNamHoc().get()) &&
+                isTop10(sv, Top10));
         sortedList = new SortedList<>(filteredList);
         sortedList.comparatorProperty().bind(TableView_DS.comparatorProperty());
         TableView_DS.setItems(sortedList);
+    }
+
+    private boolean isTop10(KqSinnhVienHocKy kqSV, int Top10){
+        List<KqSinnhVienHocKy> sortedList = filteredList.stream().sorted(Comparator.comparing(KqSinnhVienHocKy::getDiemTkHocKy)).toList();
+        for(int i=0; i<Top10;i++){
+            if(sortedList.contains(kqSV)){
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override

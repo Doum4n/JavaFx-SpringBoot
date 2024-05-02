@@ -1,5 +1,6 @@
 package com.example.alpha.JavaFx.role_admin.controller.ThongKe;
 
+import com.example.alpha.JavaFx.role_admin.controller.DanhGia.DSHocBongController;
 import com.example.alpha.JavaFx.role_admin.model.Diem.DiemSV_HocKy;
 import com.example.alpha.JavaFx.role_admin.model.Lop;
 import com.example.alpha.JavaFx.role_admin.model.Singleton;
@@ -18,6 +19,8 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import static com.example.alpha.JavaFx.role_admin.controller.component.Auto_Suggest;
 
 public class TKDiemLopHocKy implements Initializable, setTable {
 
@@ -56,22 +59,7 @@ public class TKDiemLopHocKy implements Initializable, setTable {
             Label_SiSo.setText(String.valueOf(filteredList.size()));
             TableView_TKDiemLopHK.setItems(filteredList);
         });
-        ComboBox_Lop.getEditor().addEventHandler(KeyEvent.KEY_RELEASED, event -> {
-            var suggestion = FXCollections.observableArrayList(Lop.getRepository().getAllLop());
-
-            ObservableList<String> S = FXCollections.observableArrayList();
-            for (String s : suggestion) {
-                if (!s.equals(ComboBox_Lop.getEditor().getText())) {
-                    if (s.contains(ComboBox_Lop.getEditor().getText())) {
-                        S.add(s);
-                    }
-                }
-            }
-            if(!event.getCode().equals(KeyCode.ENTER)) {
-                ComboBox_Lop.setItems(S);
-                ComboBox_Lop.show();
-            }
-        });
+        Auto_Suggest(ComboBox_Lop);
 
         Singleton.getInstant().getViewFactory().getHocky().addListener((observable, oldValue, newValue) -> {
             load();

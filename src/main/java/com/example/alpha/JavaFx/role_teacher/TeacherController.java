@@ -1,5 +1,7 @@
 package com.example.alpha.JavaFx.role_teacher;
 
+import com.example.alpha.JavaFx.role_admin.model.Lop;
+import com.example.alpha.JavaFx.role_admin.model.MonHoc.MonHoc;
 import com.example.alpha.JavaFx.role_admin.setTable;
 import com.example.alpha.JavaFx.role_admin.model.GiaoVien.GiaoVien;
 import com.example.alpha.JavaFx.role_admin.model.GiaoVien.PhanCong;
@@ -16,7 +18,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
+import javafx.stage.FileChooser;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
 
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -25,7 +33,13 @@ public class TeacherController implements Initializable, setTable {
     private Button Buton_Update;
 
     @FXML
+    private Button button_import;
+
+    @FXML
     private ChoiceBox<String> ChoiceBox_Lop;
+
+    @FXML
+    private ChoiceBox<String> ChoiceBox_monhoc;
 
     @FXML
     private TableColumn<KqSinhVienMonhocEntity, Float> Column_DiemQT;
@@ -71,12 +85,8 @@ public class TeacherController implements Initializable, setTable {
         setTableView();
         addListenerTableView();
 
-        ChoiceBox_Lop.setItems(FXCollections.observableArrayList(PhanCong.getRepository().getLopByMaGV(id, hocky, namhoc)));
-        ChoiceBox_Lop.valueProperty().addListener((observable, oldValue, newValue) -> {
-            filteredList.setPredicate(kq -> PhanLop.getRepository().getLop(kq.getMaSinhVien()).equals(newValue) &&
-                    kq.getMaMonHoc().equals(PhanCong.getRepository().getMonHoc(id, hocky, namhoc)));
-            TableView_DiemQT.setItems(filteredList);
-        });
+        addListenerChoiceBoxLop();
+        addListenerChoiceBoxMonHoc();
 
         Label_MaGV.setText(id);
         Label_TenGV.setText(GiaoVien.getRepository().getTenGV(id));
@@ -102,10 +112,69 @@ public class TeacherController implements Initializable, setTable {
             Singleton.getInstant().getViewFactory().showChangePasswordWindow();
         });
 
+        button_import.setOnAction(event -> {
+            FileChooser fileChooser = new FileChooser();
+            // Lọc chỉ cho phép chọn file Excel
+            FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Excel files (*.xlsx)", "*.xlsx");
+            fileChooser.getExtensionFilters().add(extFilter);
+
+            // Hiển thị cửa sổ chọn file
+            File selectedFile = fileChooser.showOpenDialog(button_import.getScene().getWindow()).getAbsoluteFile();
+
+            // Gọi hàm để đọc file Excel ở đây
+            readExcelFile(selectedFile);
+
+            Singleton.getInstant().getDiemQuaTrinh().getReLoad().set(true);
+            Singleton.getInstant().getDiemQuaTrinh().getReLoad().set(false);
+        });
+
         Label_TenSV.setPrefHeight(Region.USE_COMPUTED_SIZE);
         Label_MaSV.setPrefHeight(Region.USE_COMPUTED_SIZE);
         Label_MaGV.setPrefHeight(Region.USE_COMPUTED_SIZE);
         Label_TenSV.setPrefHeight(Region.USE_COMPUTED_SIZE);
+    }
+
+    private void addListenerChoiceBoxLop() {
+        ChoiceBox_Lop.setItems(FXCollections.observableArrayList(PhanCong.getRepository().getLopByMaGV(id, hocky, namhoc)));
+        ChoiceBox_Lop.valueProperty().addListener((observable, oldValue, newValue) -> {
+            filteredList.setPredicate(kq -> PhanLop.getRepository().getLop(kq.getMaSinhVien()).equals(newValue) &&
+                    kq.getMaMonHoc().equals(PhanCong.getRepository().getMonHoc(id, hocky, namhoc)));
+            TableView_DiemQT.setItems(filteredList);
+        });
+    }
+
+    private void addListenerChoiceBoxMonHoc() {
+        ChoiceBox_monhoc.setItems(FXCollections.observableArrayList(PhanCong.getRepository().getMonHoc(id, hocky, namhoc)));
+        ChoiceBox_monhoc.valueProperty().addListener((observable, oldValue, newValue) -> {
+            filteredList.setPredicate(kq -> kq.getMaMonHoc().equals(newValue) &&
+                    PhanLop.getRepository().getLop(kq.getMaSinhVien()).equals(ChoiceBox_Lop.getValue()) &&
+                    kq.getMaMonHoc().equals(PhanCong.getRepository().getMonHoc(id, hocky, namhoc)));
+            TableView_DiemQT.setItems(filteredList);
+        });
+    }
+
+    private void readExcelFile(File selectedFile) {
+        try {
+            Workbook workbook = WorkbookFactory.create(selectedFile);
+            workbook.getNumberOfSheets();
+
+            for (int sheetIndex = 0; sheetIndex < workbook.getNumberOfSheets(); sheetIndex++) {
+                Sheet sheet = workbook.getSheetAt(sheetIndex);
+
+                // Duyệt qua từng hàng của sheet và in ra các giá trị
+                for (int rowIndex = 1; rowIndex <= sheet.getLastRowNum(); rowIndex++) {
+                    KqMonHoc_SV.getRepository().updateDiem(
+                            String.valueOf((int) sheet.getRow(rowIndex).getCell(3).getNumericCellValue()),
+                            sheet.getRow(rowIndex).getCell(1).getStringCellValue(),
+                            (float) sheet.getRow(rowIndex).getCell(4).getNumericCellValue(),
+                            String.valueOf((int) sheet.getRow(rowIndex).getCell(0).getNumericCellValue()),
+                            String.valueOf((int) sheet.getRow(rowIndex).getCell(2).getNumericCellValue()));
+                }
+                workbook.close();
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override

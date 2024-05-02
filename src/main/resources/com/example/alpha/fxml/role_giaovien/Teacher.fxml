@@ -32,8 +32,9 @@
                   <Font size="14.0" />
                </font></Label>
             <Button fx:id="button_logOut" layoutX="57.0" layoutY="446.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="86.0" stylesheets="@../../css/component/LogOutButton.css" text="Đăng xuất" />
-            <Button fx:id="Button_edit" layoutX="58.0" layoutY="143.0" mnemonicParsing="false" stylesheets="@../../css/component/SpecialButton.css" text="Chỉnh sửa" />
-            <Line endX="100.0" layoutX="100.0" layoutY="119.0" startX="-100.00000762939453" stroke="WHITE" strokeWidth="4.0" />
+            <Button fx:id="Button_edit" layoutX="58.0" layoutY="178.0" mnemonicParsing="false" stylesheets="@../../css/component/SpecialButton.css" text="Chỉnh sửa" />
+            <Line endX="100.0" layoutX="100.0" layoutY="154.0" startX="-100.00000762939453" stroke="WHITE" strokeWidth="4.0" />
+            <ChoiceBox fx:id="ChoiceBox_monhoc" layoutX="21.0" layoutY="109.0" prefHeight="27.0" prefWidth="94.0" stylesheets="@../../css/component/ChoiceBox.css" />
          </children></AnchorPane>
    </left>
    <right>
@@ -71,6 +72,7 @@
                <font>
                   <Font size="14.0" />
                </font></Label>
+            <Button fx:id="button_import" layoutX="351.0" layoutY="31.0" mnemonicParsing="false" text="Import" />
          </children>
       </AnchorPane>
    </right>

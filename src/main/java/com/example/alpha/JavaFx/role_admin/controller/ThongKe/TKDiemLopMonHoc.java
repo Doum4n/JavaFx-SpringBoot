@@ -1,5 +1,6 @@
 package com.example.alpha.JavaFx.role_admin.controller.ThongKe;
 
+import com.example.alpha.JavaFx.role_admin.controller.DanhGia.DSHocBongController;
 import com.example.alpha.JavaFx.role_admin.model.Lop;
 import com.example.alpha.JavaFx.role_admin.model.MonHoc.MonHoc;
 import com.example.alpha.JavaFx.role_admin.model.Singleton;
@@ -23,6 +24,8 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.concurrent.atomic.AtomicBoolean;
+
+import static com.example.alpha.JavaFx.role_admin.controller.component.Auto_Suggest;
 
 public class TKDiemLopMonHoc implements Initializable, setTable {
 
@@ -65,7 +68,7 @@ public class TKDiemLopMonHoc implements Initializable, setTable {
         addListenerComboBox_Lop();
 
         ChoiceBox_MonHoc.setItems(FXCollections.observableArrayList(MonHoc.getRepository().getAllMonHoc()));
-        ChoiceBox_MonHoc.setValue(MonHoc.getRepository().findAll().get(0).toString());
+        ChoiceBox_MonHoc.setValue(MonHoc.getRepository().findAll().get(0).getMaMonHoc());
 
         ChoiceBox_MonHoc.valueProperty().addListener((observable, oldValue, newValue) -> {
             Label_TenMH.setText(MonHoc.getRepository().getTenMH(newValue));
@@ -107,6 +110,8 @@ public class TKDiemLopMonHoc implements Initializable, setTable {
         setCellColumn();
         ObservableList<KqSinhVienMonhocEntity> data = FXCollections.observableArrayList(KqMonHoc_SV.getRepository().findAll());
         filteredList = new FilteredList<>(data, b -> true);
+        filteredList.setPredicate(kq -> PhanLop.getRepository().getLop(kq.getMaSinhVien()).equals(ComboBox_Lop.getValue()) &
+                kq.getMaMonHoc().equals(ChoiceBox_MonHoc.getValue()));
         TableView_TKDiemLop.setItems(data);
     }
 
@@ -135,28 +140,13 @@ public class TKDiemLopMonHoc implements Initializable, setTable {
     private void addListenerComboBox_Lop(){
         ComboBox_Lop.setEditable(true);
         ComboBox_Lop.setItems(FXCollections.observableArrayList(Lop.getRepository().getAllLop()));
-        ComboBox_Lop.setValue(PhanLop.getRepository().findAll().get(0).toString());
+        ComboBox_Lop.setValue(PhanLop.getRepository().findAll().get(0).getMaLop());
 
         ComboBox_Lop.valueProperty().addListener((observable, oldValue, newValue) -> {
             filteredList.setPredicate(kq -> PhanLop.getRepository().getLop(kq.getMaSinhVien()).equals(newValue) &&
                     ChoiceBox_MonHoc.getValue().equals(kq.getMaMonHoc()));
             TableView_TKDiemLop.setItems(filteredList);
         });
-        ComboBox_Lop.getEditor().addEventHandler(KeyEvent.KEY_RELEASED, event -> {
-            var suggestion = FXCollections.observableArrayList(Lop.getRepository().getAllLop());
-
-            ObservableList<String> S = FXCollections.observableArrayList();
-            for (String s : suggestion) {
-                if (!s.equals(ComboBox_Lop.getEditor().getText())) {
-                    if (s.contains(ComboBox_Lop.getEditor().getText())) {
-                        S.add(s);
-                    }
-                }
-            }
-            if(!event.getCode().equals(KeyCode.ENTER)) {
-                ComboBox_Lop.setItems(S);
-                ComboBox_Lop.show();
-            }
-        });
+        Auto_Suggest(ComboBox_Lop);
     }
 }

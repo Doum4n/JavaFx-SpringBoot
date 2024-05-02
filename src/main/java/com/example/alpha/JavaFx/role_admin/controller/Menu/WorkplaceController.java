@@ -14,10 +14,12 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import lombok.Getter;
+import org.hibernate.validator.internal.util.privilegedactions.LoadClass;
 import org.springframework.stereotype.Controller;
 
 import java.net.URL;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.*;
 
 @Controller
@@ -79,8 +81,8 @@ public class WorkplaceController implements Initializable{
                 }
             }
         });
-        ChoiceBox_HocKy.setValue(HocKy.getRepository().getHocKy().get(0));
-        ChoiceBox_Nam.setValue(NamHoc.getRepository().getNamHoc().get(0));
+        ChoiceBox_HocKy.setValue(HocKy.getRepository().getTenHocKy(String.valueOf(LocalDate.now().getMonthValue()<6?1:2)));
+        ChoiceBox_Nam.setValue(String.valueOf(LocalDate.now().getYear()));
 
         addListenerChoiceBoc_Nam();
         addListenerChoiceBoc_HocKy();

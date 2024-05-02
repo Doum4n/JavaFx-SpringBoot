@@ -20,9 +20,9 @@
          </AnchorPane>
          <ChoiceBox id="choice-box" fx:id="ChoiceBox_Nam" layoutX="21.0" layoutY="16.0" prefHeight="32.0" prefWidth="100.0" />
          <ChoiceBox id="choice-box" fx:id="ChoiceBox_HocKy" layoutX="20.0" layoutY="52.0" prefHeight="32.0" prefWidth="100.0" />
-         <Label fx:id="Label_time" alignment="CENTER" layoutX="1057.0" layoutY="54.0" prefHeight="27.0" prefWidth="88.0" text="Label" textFill="WHITE">
+         <Label fx:id="Label_time" alignment="CENTER" layoutX="1029.0" layoutY="50.0" prefHeight="35.0" prefWidth="144.0" text="Label" textFill="WHITE">
             <font>
-               <Font size="18.0" />
+               <Font size="24.0" />
             </font>
          </Label>
          <ChoiceBox fx:id="ChoiceBox_TienTrinh" layoutX="1042.0" layoutY="18.0" prefHeight="27.0" prefWidth="117.0" />

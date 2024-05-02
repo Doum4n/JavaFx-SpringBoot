@@ -18,6 +18,7 @@ module com.example.alpha {
     requires java.desktop;
     requires org.apache.poi.poi;
     requires org.jetbrains.annotations;
+    requires org.hibernate.validator;
 
     opens com.example.alpha;
 
